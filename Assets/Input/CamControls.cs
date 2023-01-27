@@ -17,7 +17,7 @@ public class CamControls : MonoBehaviour
         zoomDampening = 7.5f,
         zoomSpeed = 2.0f,
         minHeight = 2.0f,
-        maxHeight = 25.0f,
+        maxHeight = 50.0f,
         maxRotationSpeed = 0.2f;
 
 
