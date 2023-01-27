@@ -8,6 +8,7 @@ public class CamControls : MonoBehaviour
     //references: https://onewheelstudio.com/blog/2022/1/14/strategy-game-camera-unitys-new-input-system
 
     private Controls controls;
+    private Camera cam;
     private Transform cameraTransform;
     private float zoomHeight;
 
@@ -24,6 +25,7 @@ public class CamControls : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
+        cam = GetComponentInChildren<Camera>();
         cameraTransform = GetComponentInChildren<Camera>().transform;
     }
 
@@ -62,13 +64,21 @@ public class CamControls : MonoBehaviour
 
     private void RotateCamera(InputAction.CallbackContext input)
     {
-        if (!Mouse.current.leftButton.isPressed)
+        //if (!Mouse.current.leftButton.isPressed)
+        //{
+        //    previousPos = cam.ScreenToViewportPoint(Input.mousePosition);
+        //}
+        //if (Mouse.current.leftButton.isPressed)
+        //{
+        //    Vector3 currentPos = cam.ScreenToViewport
+        //}
+        if (Mouse.current.leftButton.isPressed)
         {
-            return;
+            float inputX = input.ReadValue<Vector2>().x;
+            transform.rotation = Quaternion.Euler(0f, inputX * maxRotationSpeed + cameraTransform.rotation.eulerAngles.y, 0f);
         }
 
-        float inputX = input.ReadValue<Vector2>().x;
-        transform.rotation = Quaternion.Euler(0f, inputX * maxRotationSpeed + cameraTransform.rotation.eulerAngles.y, 0f);
+
     }
 
     private void OnEnable()
