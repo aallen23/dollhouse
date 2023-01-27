@@ -72,7 +72,7 @@ public class CamControls : MonoBehaviour
         //{
         //    Vector3 currentPos = cam.ScreenToViewport
         //}
-        if (Mouse.current.leftButton.isPressed)
+        if (Mouse.current.rightButton.isPressed)
         {
             float inputX = input.ReadValue<Vector2>().x;
             transform.rotation = Quaternion.Euler(0f, inputX * maxRotationSpeed + cameraTransform.rotation.eulerAngles.y, 0f);
