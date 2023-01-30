@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pan"",
+                    ""type"": ""Value"",
+                    ""id"": ""cff38082-01a8-4e60-a9e5-e36cb1dee12a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -76,6 +84,61 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""51c601f3-c55e-43ec-aa50-36f69218c567"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pan"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""9c8b434a-0a57-40e9-a278-55a6e676a62f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pan"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9e84f4f2-8673-4cc0-9165-50f4ecfc1ab7"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pan"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ca154dc4-59db-466a-9445-bc72afd881c5"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pan"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8aa16626-a624-41f8-afdf-f21b027ed2c6"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pan"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -87,6 +150,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Camera_Rotate = m_Camera.FindAction("Rotate", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
         m_Camera_Walk = m_Camera.FindAction("Walk", throwIfNotFound: true);
+        m_Camera_Pan = m_Camera.FindAction("Pan", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,6 +203,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Camera_Rotate;
     private readonly InputAction m_Camera_Zoom;
     private readonly InputAction m_Camera_Walk;
+    private readonly InputAction m_Camera_Pan;
     public struct CameraActions
     {
         private @Controls m_Wrapper;
@@ -146,6 +211,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Rotate => m_Wrapper.m_Camera_Rotate;
         public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
         public InputAction @Walk => m_Wrapper.m_Camera_Walk;
+        public InputAction @Pan => m_Wrapper.m_Camera_Pan;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,6 +230,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Walk.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnWalk;
                 @Walk.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnWalk;
                 @Walk.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnWalk;
+                @Pan.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnPan;
+                @Pan.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnPan;
+                @Pan.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnPan;
             }
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
@@ -177,6 +246,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Walk.started += instance.OnWalk;
                 @Walk.performed += instance.OnWalk;
                 @Walk.canceled += instance.OnWalk;
+                @Pan.started += instance.OnPan;
+                @Pan.performed += instance.OnPan;
+                @Pan.canceled += instance.OnPan;
             }
         }
     }
@@ -186,5 +258,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
+        void OnPan(InputAction.CallbackContext context);
     }
 }

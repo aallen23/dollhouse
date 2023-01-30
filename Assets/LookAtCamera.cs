@@ -8,9 +8,8 @@ public class LookAtCamera : MonoBehaviour
     public SpriteRenderer player;
     public GameObject cam;
     private Animator anim;
-    public bool lookAt = true;
-    public bool locked = true;
-    public bool lookLeft = true;
+    public bool lookAt;
+    public bool lookLeft;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,25 +34,15 @@ public class LookAtCamera : MonoBehaviour
             lookLeft = !lookLeft;
         }
 
-        if (Keyboard.current.kKey.wasPressedThisFrame)
+        if (lookAt)
         {
-            lookAt = !lookAt;
-        }
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-        {
-            locked = !locked;
-        }
-        if (locked)
-        {
-            if (lookAt)
-            {
-                player.gameObject.transform.LookAt(new Vector3(cam.transform.position.x, 0, cam.transform.position.z));
-            }
-            else
-            {
-                player.gameObject.transform.LookAt(cam.transform);
+            player.transform.LookAt(cam.transform);
+            player.transform.eulerAngles = new Vector3(0, player.transform.eulerAngles.y, 0);
 
-            }
+        }
+        else
+        {
+            player.transform.localEulerAngles = Vector3.zero;
         }
 
 

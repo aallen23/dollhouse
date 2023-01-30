@@ -20,7 +20,7 @@ public class CamControls : MonoBehaviour
         maxHeight = 50.0f,
         maxRotationSpeed = 0.2f;
 
-
+    public Vector3 desiredMoveDirection;
 
     private void Awake()
     {
@@ -31,13 +31,17 @@ public class CamControls : MonoBehaviour
 
     private void Update()
     {
-        UpdateCameraPosition();
+
+        float inputValue = controls.Camera.Zoom.ReadValue<Vector2>().y / 100;
+        desiredMoveDirection = transform.up * inputValue * stepSize;
+
+        transform.position += desiredMoveDirection;
+        //UpdateCameraPosition();
     }
 
     private void ZoomCamera(InputAction.CallbackContext input)
     {
-        float inputValue = -input.ReadValue<Vector2>().y / 100;
-
+        float inputValue = input.ReadValue<Vector2>().y / 100;
         if (Mathf.Abs(inputValue) > 0.1f)
         {
             zoomHeight = cameraTransform.localPosition.y + inputValue * stepSize;
@@ -46,11 +50,20 @@ public class CamControls : MonoBehaviour
             {
                 zoomHeight = minHeight;
             }
-            else if(zoomHeight > maxHeight)
+            else if (zoomHeight > maxHeight)
             {
                 zoomHeight = maxHeight;
             }
+
+            
+
         }
+        //this is the direction in the world space we want to move:
+        desiredMoveDirection = transform.position + transform.up * inputValue * stepSize;
+
+        //now we can apply the movement:
+        //transform.position += desiredMoveDirection * 20 * Time.deltaTime;
+
     }
 
     private void UpdateCameraPosition()
@@ -74,8 +87,10 @@ public class CamControls : MonoBehaviour
         //}
         if (Mouse.current.rightButton.isPressed)
         {
+            
             float inputX = input.ReadValue<Vector2>().x;
             transform.rotation = Quaternion.Euler(0f, inputX * maxRotationSpeed + cameraTransform.rotation.eulerAngles.y, 0f);
+            
         }
 
 
@@ -84,11 +99,11 @@ public class CamControls : MonoBehaviour
     private void OnEnable()
     {
         cameraTransform.LookAt(transform);
-        
+
         zoomHeight = cameraTransform.localPosition.y;
 
         controls.Camera.Rotate.performed += RotateCamera;
-        controls.Camera.Zoom.performed += ZoomCamera;
+        //controls.Camera.Zoom.performed += ZoomCamera;
         controls.Camera.Enable();
     }
 
@@ -96,7 +111,7 @@ public class CamControls : MonoBehaviour
     private void OnDisable()
     {
         controls.Camera.Rotate.performed -= RotateCamera;
-        controls.Camera.Zoom.performed -= ZoomCamera;
+        //controls.Camera.Zoom.performed -= ZoomCamera;
         controls.Camera.Disable();
     }
 
