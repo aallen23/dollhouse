@@ -141,6 +141,275 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Child"",
+            ""id"": ""c2cbb2db-db79-47d6-9978-9b23d4991f6b"",
+            ""actions"": [
+                {
+                    ""name"": ""FPCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""2e49fda5-2d2d-48b5-b4b2-71cecfb2c355"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""c2fcd82e-2878-4593-bd38-dc75b8734476"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ray"",
+                    ""type"": ""Value"",
+                    ""id"": ""cf371c91-7fd2-4864-818a-9d739ff089a9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a092bc3-2334-41af-93b1-48e339eda5bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.1)""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""914d0828-5b5d-4f5e-9f15-d7043873502e"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FPCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""8b1b402a-f2a7-4eba-a686-09b0e1df4d63"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e6f26bd1-3e23-47a6-bc7a-a587e658fab6"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""57d7e920-0aa7-4c38-a1d4-373c3f27a13c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""e1aeb0c9-1658-4202-8755-1b7316c5267f"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""62532cc0-6849-46f6-8a76-5ffe7334ef20"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3da1042c-7a2b-49ec-b8f7-034f80e39368"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ray"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9eef9118-2738-4101-9ad0-113d13752a1e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PointToPoint"",
+            ""id"": ""b1502389-6581-479e-9ecc-91626decf2a5"",
+            ""actions"": [
+                {
+                    ""name"": ""RotRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""64b40e4a-8906-495c-9ac7-131296693f36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf7be491-b2f2-4288-b40f-0c576624f912"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveForward"",
+                    ""type"": ""Button"",
+                    ""id"": ""0eeeb6fe-8f2d-496f-b6ad-1720ad4f76b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveBackward"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c25d6bc-7167-4596-8f8f-721790f6f44c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbf6b374-ffd1-4b67-a18b-8d52e6121d28"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ea95700-4f57-4c47-b1a9-c4a536c1268f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MousePos"",
+                    ""type"": ""Value"",
+                    ""id"": ""f330c7d8-af73-4c83-b998-f62a25faf94b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fc20edc7-7cc7-4eaa-9e9a-fac7d9e5304e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5e6fd7d-dd5b-4f98-ac08-4e5d7bb01c8a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98fbea13-58ad-4917-86ec-9b04ad4b8f11"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""493a4277-534a-4522-82ae-15feccf5ce69"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba2e212f-fa97-4b65-9380-b33f4c4a9410"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a81f954-76d0-4cd8-8452-c9ac599d2e31"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1203065-c1d6-495b-8943-2614b404e69a"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -151,6 +420,21 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
         m_Camera_Walk = m_Camera.FindAction("Walk", throwIfNotFound: true);
         m_Camera_Pan = m_Camera.FindAction("Pan", throwIfNotFound: true);
+        // Child
+        m_Child = asset.FindActionMap("Child", throwIfNotFound: true);
+        m_Child_FPCamera = m_Child.FindAction("FPCamera", throwIfNotFound: true);
+        m_Child_Movement = m_Child.FindAction("Movement", throwIfNotFound: true);
+        m_Child_Ray = m_Child.FindAction("Ray", throwIfNotFound: true);
+        m_Child_Zoom = m_Child.FindAction("Zoom", throwIfNotFound: true);
+        // PointToPoint
+        m_PointToPoint = asset.FindActionMap("PointToPoint", throwIfNotFound: true);
+        m_PointToPoint_RotRight = m_PointToPoint.FindAction("RotRight", throwIfNotFound: true);
+        m_PointToPoint_RotLeft = m_PointToPoint.FindAction("RotLeft", throwIfNotFound: true);
+        m_PointToPoint_MoveForward = m_PointToPoint.FindAction("MoveForward", throwIfNotFound: true);
+        m_PointToPoint_MoveBackward = m_PointToPoint.FindAction("MoveBackward", throwIfNotFound: true);
+        m_PointToPoint_MoveLeft = m_PointToPoint.FindAction("MoveLeft", throwIfNotFound: true);
+        m_PointToPoint_MoveRight = m_PointToPoint.FindAction("MoveRight", throwIfNotFound: true);
+        m_PointToPoint_MousePos = m_PointToPoint.FindAction("MousePos", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -253,11 +537,166 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // Child
+    private readonly InputActionMap m_Child;
+    private IChildActions m_ChildActionsCallbackInterface;
+    private readonly InputAction m_Child_FPCamera;
+    private readonly InputAction m_Child_Movement;
+    private readonly InputAction m_Child_Ray;
+    private readonly InputAction m_Child_Zoom;
+    public struct ChildActions
+    {
+        private @Controls m_Wrapper;
+        public ChildActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @FPCamera => m_Wrapper.m_Child_FPCamera;
+        public InputAction @Movement => m_Wrapper.m_Child_Movement;
+        public InputAction @Ray => m_Wrapper.m_Child_Ray;
+        public InputAction @Zoom => m_Wrapper.m_Child_Zoom;
+        public InputActionMap Get() { return m_Wrapper.m_Child; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ChildActions set) { return set.Get(); }
+        public void SetCallbacks(IChildActions instance)
+        {
+            if (m_Wrapper.m_ChildActionsCallbackInterface != null)
+            {
+                @FPCamera.started -= m_Wrapper.m_ChildActionsCallbackInterface.OnFPCamera;
+                @FPCamera.performed -= m_Wrapper.m_ChildActionsCallbackInterface.OnFPCamera;
+                @FPCamera.canceled -= m_Wrapper.m_ChildActionsCallbackInterface.OnFPCamera;
+                @Movement.started -= m_Wrapper.m_ChildActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_ChildActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_ChildActionsCallbackInterface.OnMovement;
+                @Ray.started -= m_Wrapper.m_ChildActionsCallbackInterface.OnRay;
+                @Ray.performed -= m_Wrapper.m_ChildActionsCallbackInterface.OnRay;
+                @Ray.canceled -= m_Wrapper.m_ChildActionsCallbackInterface.OnRay;
+                @Zoom.started -= m_Wrapper.m_ChildActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_ChildActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_ChildActionsCallbackInterface.OnZoom;
+            }
+            m_Wrapper.m_ChildActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @FPCamera.started += instance.OnFPCamera;
+                @FPCamera.performed += instance.OnFPCamera;
+                @FPCamera.canceled += instance.OnFPCamera;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Ray.started += instance.OnRay;
+                @Ray.performed += instance.OnRay;
+                @Ray.canceled += instance.OnRay;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
+            }
+        }
+    }
+    public ChildActions @Child => new ChildActions(this);
+
+    // PointToPoint
+    private readonly InputActionMap m_PointToPoint;
+    private IPointToPointActions m_PointToPointActionsCallbackInterface;
+    private readonly InputAction m_PointToPoint_RotRight;
+    private readonly InputAction m_PointToPoint_RotLeft;
+    private readonly InputAction m_PointToPoint_MoveForward;
+    private readonly InputAction m_PointToPoint_MoveBackward;
+    private readonly InputAction m_PointToPoint_MoveLeft;
+    private readonly InputAction m_PointToPoint_MoveRight;
+    private readonly InputAction m_PointToPoint_MousePos;
+    public struct PointToPointActions
+    {
+        private @Controls m_Wrapper;
+        public PointToPointActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RotRight => m_Wrapper.m_PointToPoint_RotRight;
+        public InputAction @RotLeft => m_Wrapper.m_PointToPoint_RotLeft;
+        public InputAction @MoveForward => m_Wrapper.m_PointToPoint_MoveForward;
+        public InputAction @MoveBackward => m_Wrapper.m_PointToPoint_MoveBackward;
+        public InputAction @MoveLeft => m_Wrapper.m_PointToPoint_MoveLeft;
+        public InputAction @MoveRight => m_Wrapper.m_PointToPoint_MoveRight;
+        public InputAction @MousePos => m_Wrapper.m_PointToPoint_MousePos;
+        public InputActionMap Get() { return m_Wrapper.m_PointToPoint; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PointToPointActions set) { return set.Get(); }
+        public void SetCallbacks(IPointToPointActions instance)
+        {
+            if (m_Wrapper.m_PointToPointActionsCallbackInterface != null)
+            {
+                @RotRight.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnRotRight;
+                @RotRight.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnRotRight;
+                @RotRight.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnRotRight;
+                @RotLeft.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnRotLeft;
+                @RotLeft.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnRotLeft;
+                @RotLeft.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnRotLeft;
+                @MoveForward.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveForward;
+                @MoveForward.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveForward;
+                @MoveForward.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveForward;
+                @MoveBackward.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveBackward;
+                @MoveBackward.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveBackward;
+                @MoveBackward.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveBackward;
+                @MoveLeft.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveLeft;
+                @MoveLeft.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveLeft;
+                @MoveLeft.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveLeft;
+                @MoveRight.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveRight;
+                @MoveRight.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveRight;
+                @MoveRight.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMoveRight;
+                @MousePos.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
+                @MousePos.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
+                @MousePos.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
+            }
+            m_Wrapper.m_PointToPointActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @RotRight.started += instance.OnRotRight;
+                @RotRight.performed += instance.OnRotRight;
+                @RotRight.canceled += instance.OnRotRight;
+                @RotLeft.started += instance.OnRotLeft;
+                @RotLeft.performed += instance.OnRotLeft;
+                @RotLeft.canceled += instance.OnRotLeft;
+                @MoveForward.started += instance.OnMoveForward;
+                @MoveForward.performed += instance.OnMoveForward;
+                @MoveForward.canceled += instance.OnMoveForward;
+                @MoveBackward.started += instance.OnMoveBackward;
+                @MoveBackward.performed += instance.OnMoveBackward;
+                @MoveBackward.canceled += instance.OnMoveBackward;
+                @MoveLeft.started += instance.OnMoveLeft;
+                @MoveLeft.performed += instance.OnMoveLeft;
+                @MoveLeft.canceled += instance.OnMoveLeft;
+                @MoveRight.started += instance.OnMoveRight;
+                @MoveRight.performed += instance.OnMoveRight;
+                @MoveRight.canceled += instance.OnMoveRight;
+                @MousePos.started += instance.OnMousePos;
+                @MousePos.performed += instance.OnMousePos;
+                @MousePos.canceled += instance.OnMousePos;
+            }
+        }
+    }
+    public PointToPointActions @PointToPoint => new PointToPointActions(this);
     public interface ICameraActions
     {
         void OnRotate(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
         void OnPan(InputAction.CallbackContext context);
+    }
+    public interface IChildActions
+    {
+        void OnFPCamera(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
+        void OnRay(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
+    }
+    public interface IPointToPointActions
+    {
+        void OnRotRight(InputAction.CallbackContext context);
+        void OnRotLeft(InputAction.CallbackContext context);
+        void OnMoveForward(InputAction.CallbackContext context);
+        void OnMoveBackward(InputAction.CallbackContext context);
+        void OnMoveLeft(InputAction.CallbackContext context);
+        void OnMoveRight(InputAction.CallbackContext context);
+        void OnMousePos(InputAction.CallbackContext context);
     }
 }
