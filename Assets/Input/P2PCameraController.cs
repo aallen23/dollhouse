@@ -13,6 +13,8 @@ public class P2PCameraController : MonoBehaviour
     private RaycastHit hit;
     public NavMeshAgent doll;
     private float desiredFOV;
+    public float rotationSpeed;
+    public float moveSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -129,8 +131,8 @@ public class P2PCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation, Time.deltaTime * 2), transform.eulerAngles.z);
-        gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * 2);
+        gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation, Time.deltaTime * rotationSpeed), transform.eulerAngles.z);
+        gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * moveSpeed);
 
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         if (Physics.Raycast(ray, out hit))
