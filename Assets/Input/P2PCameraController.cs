@@ -51,7 +51,7 @@ public class P2PCameraController : MonoBehaviour
     private void MoveForward_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
-        Debug.Log(i);
+        //Debug.Log(i);
         if (curPos.positions[i] != null)
         {
             curPos = curPos.positions[i];
