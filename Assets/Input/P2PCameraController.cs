@@ -15,6 +15,7 @@ public class P2PCameraController : MonoBehaviour
     private float desiredFOV;
     public float rotationSpeed;
     public float moveSpeed;
+    public List<GameObject> objects;
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +70,7 @@ public class P2PCameraController : MonoBehaviour
         {
             i = 0;
         }
-        Debug.Log(i);
+        //Debug.Log(i);
         if (curPos.positions[i] != null)
         {
             curPos = curPos.positions[i];
@@ -137,7 +138,7 @@ public class P2PCameraController : MonoBehaviour
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         if (Physics.Raycast(ray, out hit))
         {
-            //pc
+            //Debug.Log(hit.transform.name);
             if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 0.25f, 1 << 0) && Mouse.current.leftButton.isPressed)
             {
                 //Debug.Log("Walk");
@@ -146,6 +147,23 @@ public class P2PCameraController : MonoBehaviour
                 //direction = (new Vector3(0, moveTarget.y, moveTarget.z) - transform.position).normalized;
                 //lookRotation = Quaternion.LookRotation(direction);
                 //needToRotate = true;
+            }
+
+            if (hit.transform.gameObject.CompareTag("Object"))
+            {
+                //hit.transform.gameObject.layer = 8;
+            }
+        }
+
+        foreach (GameObject obj in objects)
+        {
+            if (obj != hit.transform.gameObject)
+            {
+                obj.layer = 0;
+            }
+            else if (obj == hit.transform.gameObject && hit.transform.gameObject.CompareTag("Object"))
+            {
+                obj.layer = 8;
             }
         }
 
