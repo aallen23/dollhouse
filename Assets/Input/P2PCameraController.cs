@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using Yarn.Unity;
 
 public class P2PCameraController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class P2PCameraController : MonoBehaviour
     public float rotationSpeed;
     public float moveSpeed;
     public List<GameObject> objects;
+
+    public DialogueRunner dialog;
 
     // Start is called before the first frame update
     void Start()
@@ -32,36 +35,28 @@ public class P2PCameraController : MonoBehaviour
         inputMap.PointToPoint.MoveBackward.performed += MoveBackward_performed;
     }
 
-    private void MoveBackward_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void MoveBackward_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
-        //Because Move Left
+        //Because Move Back
         i += 2;
         if (i > 3)
         {
             i -= 4;
         }
-        Debug.Log(i);
-        if (curPos.positions[i] != null)
-        {
-            curPos = curPos.positions[i];
-        }
+        StartMove(i);
     }
 
-    private void MoveForward_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void MoveForward_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
-        //Debug.Log(i);
-        if (curPos.positions[i] != null)
-        {
-            curPos = curPos.positions[i];
-        }
+        StartMove(i);
     }
 
-    private void MoveRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void MoveRight_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
-        //Because Move Left
+        //Because Move Right
         if (i < 3)
         {
             i++;
@@ -70,14 +65,10 @@ public class P2PCameraController : MonoBehaviour
         {
             i = 0;
         }
-        //Debug.Log(i);
-        if (curPos.positions[i] != null)
-        {
-            curPos = curPos.positions[i];
-        }
+        StartMove(i);
     }
 
-    private void MoveLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void MoveLeft_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
         //Because Move Left
@@ -89,10 +80,19 @@ public class P2PCameraController : MonoBehaviour
         {
             i = 3;
         }
-        Debug.Log(i);
+        StartMove(i);
+    }
+    
+    void StartMove(int i)
+    {
+        //Debug.Log(i);
         if (curPos.positions[i] != null)
         {
             curPos = curPos.positions[i];
+            if (curPos.obeyRotation)
+            {
+                desiredRotation = (int)curPos.transform.eulerAngles.y;
+            }
         }
     }
 
@@ -121,12 +121,18 @@ public class P2PCameraController : MonoBehaviour
 
     private void RotRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        desiredRotation += 90;
+        if (!curPos.obeyRotation)
+        {
+            desiredRotation += 90;
+        }
     }
 
     private void RotLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        desiredRotation -= 90;
+        if (!curPos.obeyRotation)
+        {
+            desiredRotation -= 90;
+        }
     }
 
     // Update is called once per frame
@@ -149,9 +155,9 @@ public class P2PCameraController : MonoBehaviour
                 //needToRotate = true;
             }
 
-            if (hit.transform.gameObject.CompareTag("Object"))
+            if (hit.transform.gameObject.CompareTag("Object") && Mouse.current.leftButton.wasPressedThisFrame)
             {
-                //hit.transform.gameObject.layer = 8;
+                dialog.StartDialogue(hit.transform.gameObject.name);
             }
         }
 
