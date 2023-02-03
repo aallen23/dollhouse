@@ -86,7 +86,7 @@ public class P2PCameraController : MonoBehaviour
     void StartMove(int i)
     {
         //Debug.Log(i);
-        if (curPos.positions[i] != null)
+        if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
             curPos = curPos.positions[i];
             if (curPos.obeyRotation)
@@ -121,23 +121,56 @@ public class P2PCameraController : MonoBehaviour
 
     private void RotRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!curPos.obeyRotation)
+        if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
         {
             desiredRotation += 90;
+        }
+        else if (curPos.obeyRotation)
+        {
+            int i = CalcDirection();
+            //Because Move Right
+            if (i < 3)
+            {
+                i++;
+            }
+            else
+            {
+                i = 0;
+            }
+            StartMove(i);
         }
     }
 
     private void RotLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!curPos.obeyRotation)
+        if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
         {
             desiredRotation -= 90;
+        }
+        else if (curPos.obeyRotation)
+        {
+            int i = CalcDirection();
+            //Because Move Left
+            if (i > 0)
+            {
+                i--;
+            }
+            else
+            {
+                i = 3;
+            }
+            StartMove(i);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Mouse.current.leftButton.wasPressedThisFrame && dialog.IsDialogueRunning)
+        {
+            dialog.OnViewRequestedInterrupt();
+        }
+
         gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation, Time.deltaTime * rotationSpeed), transform.eulerAngles.z);
         gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * moveSpeed);
 
@@ -145,7 +178,7 @@ public class P2PCameraController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.transform.name);
-            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 0.25f, 1 << 0) && Mouse.current.leftButton.isPressed)
+            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 1f, 1 << 0) && Mouse.current.leftButton.isPressed)
             {
                 //Debug.Log("Walk");
                 Vector3 moveTarget = navPos.position;
@@ -155,15 +188,17 @@ public class P2PCameraController : MonoBehaviour
                 //needToRotate = true;
             }
 
-            if (hit.transform.gameObject.CompareTag("Object") && Mouse.current.leftButton.wasPressedThisFrame)
+            if (hit.transform.gameObject.CompareTag("Object") && Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
             {
                 dialog.StartDialogue(hit.transform.gameObject.name);
             }
         }
 
+        
+
         foreach (GameObject obj in objects)
         {
-            if (obj != hit.transform.gameObject)
+            if (obj != hit.transform.gameObject || dialog.IsDialogueRunning)
             {
                 obj.layer = 0;
             }
