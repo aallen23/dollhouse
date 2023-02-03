@@ -6,8 +6,8 @@ public class LightFlicker : MonoBehaviour
 {
     //references: https://gist.github.com/VeggieVampire/ea4cc2d07534f947bdad9284809856fc
 
-
-    private float maxIntensity = 80.0f,
+    [SerializeField]
+    public float maxIntensity = 80.0f,
         minIntensity = 20.0f,
         minFlickerTime = 0.1f,
         maxFlickerTime = 0.04f;
