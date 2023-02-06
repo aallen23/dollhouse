@@ -185,6 +185,7 @@ public class P2PCameraController : MonoBehaviour
             if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 1f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 //Debug.Log("Walk");
+                doll.GetComponent<DollBehavior>().od = null;
                 Vector3 moveTarget = navPos.position;
                 doll.destination = moveTarget;
                 //direction = (new Vector3(0, moveTarget.y, moveTarget.z) - transform.position).normalized;
@@ -195,11 +196,11 @@ public class P2PCameraController : MonoBehaviour
             if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
             {
                 ObjectData od = hit.transform.gameObject.GetComponent<ObjectData>();
-                if (od.notSelectableWhenHere && curPos == od.moveToHere)
+                if (od.dollToHere != null)
                 {
-
+                    doll.GetComponent<DollBehavior>().GoToObject(od);
                 }
-                else
+                else if (!(od.notSelectableWhenHere && curPos == od.moveToHere))
                 {
                     if (od.yarnNode != null && od.yarnNode != "")
                     {
@@ -207,7 +208,7 @@ public class P2PCameraController : MonoBehaviour
                     }
                     if (od.moveToHere != null)
                     {
-                        curPos = hit.transform.gameObject.GetComponent<ObjectData>().moveToHere;
+                        curPos = od.moveToHere;
                         if (curPos.obeyRotation)
                         {
                             desiredRotation = (int)curPos.transform.eulerAngles.y;
@@ -216,10 +217,6 @@ public class P2PCameraController : MonoBehaviour
                     if (od.rotationToApply != Vector3.zero)
                     {
                         od.objectToApplyRotationTo.transform.eulerAngles += od.rotationToApply;
-                    }
-                    if (od.dollToHere != null)
-                    {
-                        doll.destination = od.dollToHere.position;
                     }
                 }
                 
