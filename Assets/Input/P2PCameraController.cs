@@ -182,7 +182,7 @@ public class P2PCameraController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.transform.name);
-            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 1f, 1 << 0) && Mouse.current.leftButton.isPressed)
+            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 1f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 //Debug.Log("Walk");
                 Vector3 moveTarget = navPos.position;
@@ -216,6 +216,10 @@ public class P2PCameraController : MonoBehaviour
                     if (od.rotationToApply != Vector3.zero)
                     {
                         od.objectToApplyRotationTo.transform.eulerAngles += od.rotationToApply;
+                    }
+                    if (od.dollToHere != null)
+                    {
+                        doll.destination = od.dollToHere.position;
                     }
                 }
                 
