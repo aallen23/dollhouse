@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using Yarn.Unity;
 
 public class P2PCameraController : MonoBehaviour
 {
@@ -15,11 +17,16 @@ public class P2PCameraController : MonoBehaviour
     private float desiredFOV;
     public float rotationSpeed;
     public float moveSpeed;
-    public List<GameObject> objects;
+    [SerializeField] private ObjectData[] objects;
+
+    public DialogueRunner dialog;
 
     // Start is called before the first frame update
     void Start()
     {
+        objects = FindObjectsOfType<ObjectData>();
+
+
         curPos = startPos;
         desiredRotation = 0;
         inputMap = new Controls();
@@ -32,36 +39,28 @@ public class P2PCameraController : MonoBehaviour
         inputMap.PointToPoint.MoveBackward.performed += MoveBackward_performed;
     }
 
-    private void MoveBackward_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void MoveBackward_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
-        //Because Move Left
+        //Because Move Back
         i += 2;
         if (i > 3)
         {
             i -= 4;
         }
-        Debug.Log(i);
-        if (curPos.positions[i] != null)
-        {
-            curPos = curPos.positions[i];
-        }
+        StartMove(i);
     }
 
-    private void MoveForward_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void MoveForward_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
-        Debug.Log(i);
-        if (curPos.positions[i] != null)
-        {
-            curPos = curPos.positions[i];
-        }
+        StartMove(i);
     }
 
-    private void MoveRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void MoveRight_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
-        //Because Move Left
+        //Because Move Right
         if (i < 3)
         {
             i++;
@@ -70,14 +69,10 @@ public class P2PCameraController : MonoBehaviour
         {
             i = 0;
         }
-        //Debug.Log(i);
-        if (curPos.positions[i] != null)
-        {
-            curPos = curPos.positions[i];
-        }
+        StartMove(i);
     }
 
-    private void MoveLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void MoveLeft_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
         //Because Move Left
@@ -89,10 +84,19 @@ public class P2PCameraController : MonoBehaviour
         {
             i = 3;
         }
-        Debug.Log(i);
-        if (curPos.positions[i] != null)
+        StartMove(i);
+    }
+    
+    void StartMove(int i)
+    {
+        //Debug.Log(i);
+        if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
             curPos = curPos.positions[i];
+            if (curPos.obeyRotation)
+            {
+                desiredRotation = (int)curPos.transform.eulerAngles.y;
+            }
         }
     }
 
@@ -121,17 +125,56 @@ public class P2PCameraController : MonoBehaviour
 
     private void RotRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        desiredRotation += 90;
+        if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
+        {
+            desiredRotation += 90;
+        }
+        else if (curPos.obeyRotation)
+        {
+            int i = CalcDirection();
+            //Because Move Right
+            if (i < 3)
+            {
+                i++;
+            }
+            else
+            {
+                i = 0;
+            }
+            StartMove(i);
+        }
     }
 
     private void RotLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        desiredRotation -= 90;
+        if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
+        {
+            desiredRotation -= 90;
+        }
+        else if (curPos.obeyRotation)
+        {
+            int i = CalcDirection();
+            //Because Move Left
+            if (i > 0)
+            {
+                i--;
+            }
+            else
+            {
+                i = 3;
+            }
+            StartMove(i);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Mouse.current.leftButton.wasPressedThisFrame && dialog.IsDialogueRunning)
+        {
+            dialog.OnViewRequestedInterrupt();
+        }
+
         gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation, Time.deltaTime * rotationSpeed), transform.eulerAngles.z);
         gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * moveSpeed);
 
@@ -139,7 +182,7 @@ public class P2PCameraController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.transform.name);
-            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 0.25f, 1 << 0) && Mouse.current.leftButton.isPressed)
+            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 1f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 //Debug.Log("Walk");
                 Vector3 moveTarget = navPos.position;
@@ -149,21 +192,58 @@ public class P2PCameraController : MonoBehaviour
                 //needToRotate = true;
             }
 
-            if (hit.transform.gameObject.CompareTag("Object"))
+            if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
             {
-                //hit.transform.gameObject.layer = 8;
+                ObjectData od = hit.transform.gameObject.GetComponent<ObjectData>();
+                if (od.notSelectableWhenHere && curPos == od.moveToHere)
+                {
+
+                }
+                else
+                {
+                    if (od.yarnNode != null && od.yarnNode != "")
+                    {
+                        dialog.StartDialogue(od.yarnNode);
+                    }
+                    if (od.moveToHere != null)
+                    {
+                        curPos = hit.transform.gameObject.GetComponent<ObjectData>().moveToHere;
+                        if (curPos.obeyRotation)
+                        {
+                            desiredRotation = (int)curPos.transform.eulerAngles.y;
+                        }
+                    }
+                    if (od.rotationToApply != Vector3.zero)
+                    {
+                        od.objectToApplyRotationTo.transform.eulerAngles += od.rotationToApply;
+                    }
+                    if (od.dollToHere != null)
+                    {
+                        doll.destination = od.dollToHere.position;
+                    }
+                }
+                
             }
         }
 
-        foreach (GameObject obj in objects)
+        
+
+        foreach (ObjectData od in objects)
         {
-            if (obj != hit.transform.gameObject)
+            if (od.gameObject != hit.transform.gameObject || dialog.IsDialogueRunning)
             {
-                obj.layer = 0;
+                od.gameObject.layer = 0;
             }
-            else if (obj == hit.transform.gameObject && hit.transform.gameObject.CompareTag("Object"))
+            else if (od.gameObject == hit.transform.gameObject && hit.transform.gameObject.GetComponent<ObjectData>() != null)
             {
-                obj.layer = 8;
+                if (hit.transform.gameObject.GetComponent<ObjectData>().moveToHere == curPos && hit.transform.gameObject.GetComponent<ObjectData>().notSelectableWhenHere)
+                {
+                    od.gameObject.layer = 0;
+                }
+                else
+                {
+                    od.gameObject.layer = 8;
+                }
             }
         }
 
