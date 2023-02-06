@@ -2887,8 +2887,8 @@ MonoBehaviour:
   positions:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 415995002}
-  - {fileID: 0}
+  - {fileID: 739530637}
+  - {fileID: 1286980533}
   obeyRotation: 1
 --- !u!4 &899248619
 Transform:
@@ -5780,6 +5780,7 @@ GameObject:
   - component: {fileID: 2071882472}
   - component: {fileID: 2071882474}
   - component: {fileID: 2071882475}
+  - component: {fileID: 2071882476}
   m_Layer: 8
   m_Name: Doll
   m_TagString: Untagged
@@ -5889,6 +5890,21 @@ NavMeshAgent:
   m_BaseOffset: 9.255
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2071882476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071882471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb2c998501c99b468ee2ed988e7b91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  od: {fileID: 0}
+  dialog: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &18198895547261374
 Transform:
   m_ObjectHideFlags: 0
