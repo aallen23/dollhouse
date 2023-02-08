@@ -18,6 +18,10 @@ public class ObjectData : MonoBehaviour
     [Tooltip("Apply the following rotation")]
     public Vector3 rotationToApply;
 
+    public ItemScriptableObject applyableItem;
+    public GameObject objectToShowWithItem;
+
+
     // Start is called before the first frame update
     void Start()
     {
