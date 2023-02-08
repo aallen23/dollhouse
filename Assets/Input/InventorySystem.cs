@@ -32,7 +32,7 @@ public class InventorySystem : MonoBehaviour
         foreach (ItemScriptableObject i in inv)
         {
             GameObject newItem = Instantiate(itemDisplayTemplate, contentParent.transform);
-            newItem.GetComponent<Image>().sprite = i.displaySprite;
+            newItem.GetComponent<InventoryItem>().item = i;
             //newItem.GetComponent<Button>().onClick.AddListener()
         }
     }

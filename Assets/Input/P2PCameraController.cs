@@ -19,7 +19,10 @@ public class P2PCameraController : MonoBehaviour
     public float moveSpeed;
     [SerializeField] private ObjectData[] objects;
 
+    public ItemScriptableObject heldItem;
+
     public DialogueRunner dialog;
+    public InventorySystem invSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -181,6 +184,8 @@ public class P2PCameraController : MonoBehaviour
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         if (Physics.Raycast(ray, out hit))
         {
+
+
             //Debug.Log(hit.transform.name);
             if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 1f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -193,6 +198,7 @@ public class P2PCameraController : MonoBehaviour
                 //needToRotate = true;
             }
 
+            
             if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
             {
                 ObjectData od = hit.transform.gameObject.GetComponent<ObjectData>();
@@ -220,6 +226,16 @@ public class P2PCameraController : MonoBehaviour
                     }
                 }
                 
+            }
+            else if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasReleasedThisFrame && !dialog.IsDialogueRunning)
+            {
+                if (hit.transform.gameObject.GetComponent<ObjectData>().applyableItem == heldItem && hit.transform.gameObject.GetComponent<ObjectData>().objectToShowWithItem != null)
+                {
+                    hit.transform.gameObject.GetComponent<ObjectData>().objectToShowWithItem.SetActive(true);
+                    invSystem.inv.Remove(heldItem);
+                    invSystem.UpdateInventory();
+                }
+                heldItem = null;
             }
         }
 
