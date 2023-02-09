@@ -173,6 +173,11 @@ public class P2PCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Vector2 oldMousePos = Mouse.current.position.ReadValue();
+        //Vector2 newMousePos = oldMousePos + inputMap.PointToPoint.GamepadMouse.ReadValue<Vector2>();
+        //Mouse.current.WarpCursorPosition(newMousePos);
+        
+
         if (Mouse.current.leftButton.wasPressedThisFrame && dialog.IsDialogueRunning)
         {
             dialog.OnViewRequestedInterrupt();
@@ -271,7 +276,12 @@ public class P2PCameraController : MonoBehaviour
         //Debug.Log(desiredFOV);
         gameObject.GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
 
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Application.Quit();
+        }
     }
 
-
+    
 }

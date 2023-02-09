@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class CameraLooking : MonoBehaviour
 {
-    private P2PCameraController playerCam;
+    public Transform playerCam;
+    private GameObject mirror;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerCam = FindObjectOfType<P2PCameraController>();
+        //playerCam = FindObjectOfType<P2PCameraController>();
+        mirror = GameObject.Find("Mirror");
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.LookAt(new Vector3(playerCam.transform.position.x, playerCam.transform.position.y, -playerCam.transform.position.z));
+        gameObject.transform.position = (playerCam.transform.position + mirror.transform.position) / 2;
         //Debug.Log("hmm");
     }
 }
