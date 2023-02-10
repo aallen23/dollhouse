@@ -207,28 +207,33 @@ public class P2PCameraController : MonoBehaviour
             if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
             {
                 ObjectData od = hit.transform.gameObject.GetComponent<ObjectData>();
-                if (od.dollToHere != null)
+                
+                if (!(od.notSelectableWhenHere && curPos == od.moveToHere))
                 {
-                    doll.GetComponent<DollBehavior>().GoToObject(od);
-                }
-                else if (!(od.notSelectableWhenHere && curPos == od.moveToHere))
-                {
-                    if (od.yarnNode != null && od.yarnNode != "")
+                    if (od.dollToHere != null)
                     {
-                        dialog.StartDialogue(od.yarnNode);
+                        doll.GetComponent<DollBehavior>().GoToObject(od);
                     }
-                    if (od.moveToHere != null)
+                    else
                     {
-                        curPos = od.moveToHere;
-                        if (curPos.obeyRotation)
+                        if (od.yarnNode != null && od.yarnNode != "")
                         {
-                            desiredRotation = (int)curPos.transform.eulerAngles.y;
+                            dialog.StartDialogue(od.yarnNode);
+                        }
+                        if (od.moveToHere != null)
+                        {
+                            curPos = od.moveToHere;
+                            if (curPos.obeyRotation)
+                            {
+                                desiredRotation = (int)curPos.transform.eulerAngles.y;
+                            }
+                        }
+                        if (od.rotationToApply != Vector3.zero)
+                        {
+                            od.objectToApplyRotationTo.transform.eulerAngles += od.rotationToApply;
                         }
                     }
-                    if (od.rotationToApply != Vector3.zero)
-                    {
-                        od.objectToApplyRotationTo.transform.eulerAngles += od.rotationToApply;
-                    }
+                    
                 }
 
             }
