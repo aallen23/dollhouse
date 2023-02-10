@@ -3,39 +3,113 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
+
+public enum InteractType
+{
+    Examine,
+    Rotate
+}
+
+public enum ObjectUseType
+{
+    None,
+    ShowObject
+}
+
 public class ObjectData : MonoBehaviour
 {
-    [Tooltip("The Yarn Node to run when object clicked.")]
-    public string yarnNode;
-    [Tooltip("Move camera to this CameraPosition when clicked. If rotation desired, set Obey Rotation to true on this object.")]
-    public CameraPosition moveToHere;
+    [Tooltip("If true, Doll must travel to object before Interact()ing.")]
+    public bool isDollObject;
     [Tooltip("Move Doll to here.")]
-    public Transform dollToHere;
+    public Transform positionDoll;
 
-    [Tooltip("If True, object is not interactable while at the above position.")]
-    public bool notSelectableWhenHere;
-    public GameObject objectToApplyRotationTo;
-    [Tooltip("Apply the following rotation")]
-    public Vector3 rotationToApply;
-
-    public ItemScriptableObject applyableItem;
-    public string yarnNodeItem;
-    public GameObject objectToShowWithItem;
+    [Tooltip("CameraPosition to LERP camera to when Interact()ing.")]
+    public CameraPosition positionCamera;
+    [Tooltip("If True, object is not interactable while at the above CameraPosition.")]
+    public bool disableInteractAtPosition;
 
 
-    // Start is called before the first frame update
+    [Header("Clicking Settings")]
+    [Tooltip("What happens when this object is clicked.")]
+    public InteractType interactType;
+
+    [Space(20)]
+    [Tooltip("Yarn node to call when Examined.")]
+    public string yarnExamine;
+
+    [Space(10)]
+    [Tooltip("For Rotate type objects, apply the following rotation:")]
+    public Vector3 rotateAmount;
+    [Tooltip("For Rotate type objects, apply rotation to this object.")]
+    public GameObject rotateObject;
+
+
+    [Header("Item Interaction Settings")]
+    [Tooltip("What ItemScriptableObject can be used on this object.")]
+    public ItemScriptableObject item;
+
+    [Tooltip("What happens when an Item is dragged onto this object.")]
+    public ObjectUseType objectUseType;
+    [Tooltip("Yarn node to call (if any) when the Item is dragged onto this object.")]
+    public string yarnItem;
+
+    [Space(20)]
+    [Tooltip("For ShowObject Type objects, show this GameObject.")]
+    public GameObject shownObject;
+
+    //Private variables for calling fucntions
+    private DialogueRunner dialog;
+    private P2PCameraController player;
+
     void Start()
     {
-        if (objectToShowWithItem != null)
+        //Find specific GameObjects to be called alter.
+        dialog = FindObjectOfType<DialogueRunner>();
+        player = FindObjectOfType<P2PCameraController>();
+
+
+        //If an Item would show an GameObject, we want it to start hidden
+        StartCoroutine(HideShownObject());
+    }
+
+    IEnumerator HideShownObject()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (shownObject)
         {
-            objectToShowWithItem.SetActive(false);
+            shownObject.SetActive(false);
         }
     }
+
+    //Function
+    public void Interact()
+    {
+        if (positionCamera)
+        {
+            player.Travel(positionCamera);
+        }
+
+        switch (interactType)
+        {
+            case InteractType.Examine:
+                dialog.StartDialogue(yarnExamine);
+                break;
+            case InteractType.Rotate:
+                rotateObject.transform.eulerAngles += rotateAmount;
+                break;
+        }
+    }
+
 
     [YarnCommand("use_item")]
     public void UseItem()
     {
-        objectToShowWithItem.SetActive(true);
+        switch (objectUseType)
+        {
+            case ObjectUseType.ShowObject:
+                shownObject.SetActive(true);
+                break;
+        }
         
     }
 }
