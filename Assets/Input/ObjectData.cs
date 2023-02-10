@@ -19,6 +19,7 @@ public class ObjectData : MonoBehaviour
     public Vector3 rotationToApply;
 
     public ItemScriptableObject applyableItem;
+    public string yarnNodeItem;
     public GameObject objectToShowWithItem;
 
 
@@ -31,9 +32,10 @@ public class ObjectData : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    [YarnCommand("use_item")]
+    public void UseItem()
     {
+        objectToShowWithItem.SetActive(true);
         
     }
 }

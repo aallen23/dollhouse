@@ -7,16 +7,14 @@ using UnityEngine.EventSystems;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private bool dragging;
     private GameObject cursorSprite;
     public GameObject cursorSpritePrefab;
     private P2PCameraController player;
     public Controls inputMap;
     public ItemScriptableObject item;
-
     private void Start()
     {
-        player = GameObject.FindObjectOfType<P2PCameraController>();
+        player = FindObjectOfType<P2PCameraController>();
         gameObject.GetComponent<Image>().sprite = item.displaySprite;
     }
 
@@ -40,7 +38,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        dragging = false;
         //player.heldItem = null;
         Destroy(cursorSprite);
     }

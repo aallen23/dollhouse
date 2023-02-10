@@ -203,7 +203,7 @@ public class P2PCameraController : MonoBehaviour
                 //needToRotate = true;
             }
 
-            
+
             if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
             {
                 ObjectData od = hit.transform.gameObject.GetComponent<ObjectData>();
@@ -230,37 +230,46 @@ public class P2PCameraController : MonoBehaviour
                         od.objectToApplyRotationTo.transform.eulerAngles += od.rotationToApply;
                     }
                 }
-                
+
             }
-            else if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasReleasedThisFrame && !dialog.IsDialogueRunning)
+            else if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasReleasedThisFrame && !dialog.IsDialogueRunning && heldItem != null)
             {
-                if (hit.transform.gameObject.GetComponent<ObjectData>().applyableItem == heldItem && hit.transform.gameObject.GetComponent<ObjectData>().objectToShowWithItem != null)
+                if (hit.transform.gameObject.GetComponent<ObjectData>().applyableItem == heldItem)
                 {
-                    hit.transform.gameObject.GetComponent<ObjectData>().objectToShowWithItem.SetActive(true);
-                    invSystem.inv.Remove(heldItem);
-                    invSystem.UpdateInventory();
+                    dialog.StartDialogue(hit.transform.gameObject.GetComponent<ObjectData>().yarnNodeItem);
+                    if (!heldItem.multiUse)
+                    {
+                        invSystem.inv.Remove(heldItem);
+                        invSystem.UpdateInventory();
+                    }
+
                 }
                 heldItem = null;
             }
-        }
-
-        
-
-        foreach (ObjectData od in objects)
-        {
-            if (od.gameObject != hit.transform.gameObject || dialog.IsDialogueRunning)
+            else if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
-                od.gameObject.layer = 0;
+                heldItem = null;
             }
-            else if (od.gameObject == hit.transform.gameObject && hit.transform.gameObject.GetComponent<ObjectData>() != null)
+
+
+
+
+            foreach (ObjectData od in objects)
             {
-                if (hit.transform.gameObject.GetComponent<ObjectData>().moveToHere == curPos && hit.transform.gameObject.GetComponent<ObjectData>().notSelectableWhenHere)
+                if (od.gameObject != hit.transform.gameObject || dialog.IsDialogueRunning)
                 {
                     od.gameObject.layer = 0;
                 }
-                else
+                else if (od.gameObject == hit.transform.gameObject && hit.transform.gameObject.GetComponent<ObjectData>() != null)
                 {
-                    od.gameObject.layer = 8;
+                    if (hit.transform.gameObject.GetComponent<ObjectData>().moveToHere == curPos && hit.transform.gameObject.GetComponent<ObjectData>().notSelectableWhenHere)
+                    {
+                        od.gameObject.layer = 0;
+                    }
+                    else
+                    {
+                        od.gameObject.layer = 8;
+                    }
                 }
             }
         }
