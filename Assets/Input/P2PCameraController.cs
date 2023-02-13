@@ -95,7 +95,7 @@ public class P2PCameraController : MonoBehaviour
     
     void StartMove(int i)
     {
-        Debug.Log(i);
+        //Debug.Log(i);
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
             curPos = curPos.positions[i];
@@ -103,6 +103,7 @@ public class P2PCameraController : MonoBehaviour
             {
                 desiredRotation = curPos.transform.eulerAngles;
             }
+            //Debug.Log(curPos.quickSwitch);
             if (curPos.quickSwitch) {
                 rotationSpeed = 256;
                 moveSpeed = 256;
