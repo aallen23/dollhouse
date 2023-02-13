@@ -104,11 +104,13 @@ public class P2PCameraController : MonoBehaviour
                 desiredRotation = curPos.transform.eulerAngles;
             }
             if (curPos.quickSwitch) {
-                rotationSpeed = moveSpeed = 256;
+                rotationSpeed = 256;
+                moveSpeed = 256;
             }
             else
             {
-                rotationSpeed = moveSpeed = 16;
+                rotationSpeed = 16;
+                moveSpeed = 16;
             }
         }
     }
@@ -297,11 +299,13 @@ public class P2PCameraController : MonoBehaviour
         }
         if (curPos.quickSwitch)
         {
-            rotationSpeed = moveSpeed = 256;
+            rotationSpeed = 256;
+            moveSpeed = 256;
         }
         else
         {
-            rotationSpeed = moveSpeed = 16;
+            rotationSpeed = 16;
+            moveSpeed = 16;
         }
     }
 
