@@ -9,7 +9,7 @@ using Yarn.Unity;
 public class P2PCameraController : MonoBehaviour
 {
     public Controls inputMap;
-    public int desiredRotation;
+    public Vector3 desiredRotation;
     public CameraPosition startPos;
     public CameraPosition curPos;
     private RaycastHit hit;
@@ -32,7 +32,6 @@ public class P2PCameraController : MonoBehaviour
 
 
         curPos = startPos;
-        desiredRotation = 0;
         inputMap = new Controls();
         inputMap.PointToPoint.Enable();
         inputMap.PointToPoint.RotLeft.performed += RotLeft_performed;
@@ -102,7 +101,14 @@ public class P2PCameraController : MonoBehaviour
             curPos = curPos.positions[i];
             if (curPos.obeyRotation)
             {
-                desiredRotation = (int)curPos.transform.eulerAngles.y;
+                desiredRotation = curPos.transform.eulerAngles;
+            }
+            if (curPos.quickSwitch) {
+                rotationSpeed = moveSpeed = 256;
+            }
+            else
+            {
+                rotationSpeed = moveSpeed = 16;
             }
         }
     }
@@ -112,7 +118,7 @@ public class P2PCameraController : MonoBehaviour
         int iPos = -1;
         if (!curPos.obeyRotation)
         {
-            int choosePos = desiredRotation % 360;
+            int choosePos = (int) desiredRotation.y % 360;
             if (choosePos == 0)
             {
                 iPos = 0;
@@ -141,7 +147,7 @@ public class P2PCameraController : MonoBehaviour
     {
         if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
         {
-            desiredRotation += 90;
+            desiredRotation += new Vector3(0f, 90f, 0f);
         }
         else if (curPos.obeyRotation)
         {
@@ -154,7 +160,7 @@ public class P2PCameraController : MonoBehaviour
     {
         if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
         {
-            desiredRotation -= 90;
+            desiredRotation -= new Vector3(0f, 90f, 0f);
         }
         else if (curPos.obeyRotation)
         {
@@ -176,7 +182,12 @@ public class P2PCameraController : MonoBehaviour
             dialog.OnViewRequestedInterrupt();
         }
 
-        gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation, Time.deltaTime * rotationSpeed), transform.eulerAngles.z);
+        gameObject.transform.eulerAngles = new Vector3(
+            Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
+            Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
+            Mathf.LerpAngle(transform.eulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
+            );
+        //gameObject.transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, desiredRotation, Time.deltaTime * rotationSpeed);
         gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * moveSpeed);
 
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
@@ -186,7 +197,7 @@ public class P2PCameraController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.transform.name);
-            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 1f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame)
+            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 //Debug.Log("Walk");
                 doll.GetComponent<DollBehavior>().od = null;
@@ -282,7 +293,15 @@ public class P2PCameraController : MonoBehaviour
         curPos = newPosition;
         if (curPos.obeyRotation)
         {
-            desiredRotation = (int)curPos.transform.eulerAngles.y;
+            desiredRotation = curPos.transform.eulerAngles;
+        }
+        if (curPos.quickSwitch)
+        {
+            rotationSpeed = moveSpeed = 256;
+        }
+        else
+        {
+            rotationSpeed = moveSpeed = 16;
         }
     }
 
