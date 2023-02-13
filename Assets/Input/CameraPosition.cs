@@ -7,6 +7,7 @@ public class CameraPosition : MonoBehaviour
     [Tooltip("Do in order: Z+, X+, Z-, X-")]
     public CameraPosition[] positions;
     public bool obeyRotation;
+    public bool quickSwitch;
 
     public void Awake()
     {
