@@ -7,36 +7,38 @@ using UnityEngine.EventSystems;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private bool dragging;
     private GameObject cursorSprite;
     public GameObject cursorSpritePrefab;
+    private P2PCameraController player;
     public Controls inputMap;
-
+    public ItemScriptableObject item;
     private void Start()
     {
-        inputMap = new Controls();
-        inputMap.PointToPoint.Enable();
+        player = FindObjectOfType<P2PCameraController>();
+        gameObject.GetComponent<Image>().sprite = item.displaySprite;
     }
+
     private void Update()
     {
+
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
         cursorSprite = Instantiate(cursorSpritePrefab, transform.GetComponentInParent<Canvas>().transform);
-        cursorSprite.GetComponent<Image>().sprite = gameObject.GetComponent<Image>().sprite;
+        cursorSprite.GetComponent<Image>().sprite = item.displaySprite;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        dragging = true;
+        player.heldItem = item;
         cursorSprite.transform.position = eventData.position;
         
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        dragging = false;
+        //player.heldItem = null;
         Destroy(cursorSprite);
     }
 }

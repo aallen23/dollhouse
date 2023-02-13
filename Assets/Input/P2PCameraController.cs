@@ -19,7 +19,11 @@ public class P2PCameraController : MonoBehaviour
     public float moveSpeed;
     [SerializeField] private ObjectData[] objects;
 
+    public ItemScriptableObject heldItem;
+
     public DialogueRunner dialog;
+    public InventorySystem invSystem;
+
 
     // Start is called before the first frame update
     void Start()
@@ -170,6 +174,11 @@ public class P2PCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Vector2 oldMousePos = Mouse.current.position.ReadValue();
+        //Vector2 newMousePos = oldMousePos + inputMap.PointToPoint.GamepadMouse.ReadValue<Vector2>();
+        //Mouse.current.WarpCursorPosition(newMousePos);
+
+
         if (Mouse.current.leftButton.wasPressedThisFrame && dialog.IsDialogueRunning)
         {
             dialog.OnViewRequestedInterrupt();
@@ -179,6 +188,9 @@ public class P2PCameraController : MonoBehaviour
         gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * moveSpeed);
 
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
+
+        ObjectData hitObject;
+
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.transform.name);
@@ -193,53 +205,66 @@ public class P2PCameraController : MonoBehaviour
                 //needToRotate = true;
             }
 
-            if (hit.transform.gameObject.GetComponent<ObjectData>() != null && Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
+            hit.transform.gameObject.TryGetComponent(out hitObject);
+
+            if (hitObject)
             {
-                ObjectData od = hit.transform.gameObject.GetComponent<ObjectData>();
-                if (od.dollToHere != null)
+                if (Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
                 {
-                    doll.GetComponent<DollBehavior>().GoToObject(od);
-                }
-                else if (!(od.notSelectableWhenHere && curPos == od.moveToHere))
-                {
-                    if (od.yarnNode != null && od.yarnNode != "")
+                    if (!(hitObject.disableInteractAtPosition && curPos == hitObject.positionCamera))
                     {
-                        dialog.StartDialogue(od.yarnNode);
-                    }
-                    if (od.moveToHere != null)
-                    {
-                        curPos = od.moveToHere;
-                        if (curPos.obeyRotation)
+                        if (hitObject.positionDoll != null)
                         {
-                            desiredRotation = (int)curPos.transform.eulerAngles.y;
+                            doll.GetComponent<DollBehavior>().GoToObject(hitObject);
+                        }
+                        else
+                        {
+                            hitObject.Interact();
+                        }
+
+                    }
+                }
+                if (Mouse.current.leftButton.wasReleasedThisFrame && !dialog.IsDialogueRunning && heldItem)
+                {
+                    if (hitObject.item == heldItem)
+                    {
+                        dialog.StartDialogue(hit.transform.gameObject.GetComponent<ObjectData>().yarnItem);
+                        if (!heldItem.multiUse)
+                        {
+                            invSystem.inv.Remove(heldItem);
+                            invSystem.UpdateInventory();
                         }
                     }
-                    if (od.rotationToApply != Vector3.zero)
-                    {
-                        od.objectToApplyRotationTo.transform.eulerAngles += od.rotationToApply;
-                    }
+                    heldItem = null;
+                }
+                else if (Mouse.current.leftButton.wasReleasedThisFrame)
+                {
+                    heldItem = null;
                 }
                 
             }
+            
         }
-
         
-
         foreach (ObjectData od in objects)
         {
             if (od.gameObject != hit.transform.gameObject || dialog.IsDialogueRunning)
             {
                 od.gameObject.layer = 0;
             }
-            else if (od.gameObject == hit.transform.gameObject && hit.transform.gameObject.GetComponent<ObjectData>() != null)
+            else if (od.gameObject == hit.transform.gameObject)
             {
-                if (hit.transform.gameObject.GetComponent<ObjectData>().moveToHere == curPos && hit.transform.gameObject.GetComponent<ObjectData>().notSelectableWhenHere)
+                hit.transform.gameObject.TryGetComponent(out hitObject);
+                if (hitObject)
                 {
-                    od.gameObject.layer = 0;
-                }
-                else
-                {
-                    od.gameObject.layer = 8;
+                    if (hitObject.positionCamera == curPos && hitObject.disableInteractAtPosition)
+                    {
+                        od.gameObject.layer = 0;
+                    }
+                    else
+                    {
+                        od.gameObject.layer = 8;
+                    }
                 }
             }
         }
@@ -252,10 +277,22 @@ public class P2PCameraController : MonoBehaviour
         {
             desiredFOV = 60f;
         }
-        //Debug.Log(desiredFOV);
         gameObject.GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
 
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Application.Quit();
+        }
+    }
+    public void Travel(CameraPosition newPosition)
+    {
+        curPos = newPosition;
+        if (curPos.obeyRotation)
+        {
+            desiredRotation = (int)curPos.transform.eulerAngles.y;
+        }
     }
 
-
+    
 }

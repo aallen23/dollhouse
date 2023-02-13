@@ -24,22 +24,7 @@ public class DollBehavior : MonoBehaviour
     {
         if (agent.remainingDistance <= 1 && od != null)
         {
-            if (od.yarnNode != null && od.yarnNode != "")
-            {
-                dialog.StartDialogue(od.yarnNode);
-            }
-            if (od.moveToHere != null)
-            {
-                player.curPos = od.moveToHere;
-                if (player.curPos.obeyRotation)
-                {
-                    player.desiredRotation = (int)player.curPos.transform.eulerAngles.y;
-                }
-            }
-            if (od.rotationToApply != Vector3.zero)
-            {
-                od.objectToApplyRotationTo.transform.eulerAngles += od.rotationToApply;
-            }
+            od.Interact();
             od = null;
         }
     }
@@ -47,6 +32,6 @@ public class DollBehavior : MonoBehaviour
     public void GoToObject(ObjectData newOD)
     {
         od = newOD;
-        agent.destination = od.dollToHere.position;
+        agent.destination = od.positionDoll.position;
     }
 }

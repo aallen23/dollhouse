@@ -329,13 +329,32 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""GamepadMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""d721d058-5a39-4b01-be7a-ab90453659c7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""fc20edc7-7cc7-4eaa-9e9a-fac7d9e5304e"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""988ac27d-8db9-4456-88fa-77c60d8d4bd6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -346,7 +365,18 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e5e6fd7d-dd5b-4f98-ac08-4e5d7bb01c8a"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53ff502a-5ef9-4ac2-87f9-044ccbe82db7"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -367,6 +397,17 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""67ead853-8b8a-42ff-a7bb-2ab2e0894e8e"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""493a4277-534a-4522-82ae-15feccf5ce69"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
@@ -378,8 +419,19 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ba2e212f-fa97-4b65-9380-b33f4c4a9410"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""id"": ""1d9d0adc-d3b2-49b2-a95a-22c0577744e4"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56d31625-97b3-4638-a84d-9edd7844bb12"",
+                    ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -389,8 +441,8 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8a81f954-76d0-4cd8-8452-c9ac599d2e31"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""id"": ""9a167c3c-fea7-4f06-b0fd-6632e851e31e"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -406,6 +458,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MousePos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b24c5e1-6022-4f57-bae8-29ba38a3d56e"",
+                    ""path"": ""<VirtualMouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e007be4-029a-45e4-9a92-6ab33dcbdf7b"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GamepadMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -435,6 +509,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PointToPoint_MoveLeft = m_PointToPoint.FindAction("MoveLeft", throwIfNotFound: true);
         m_PointToPoint_MoveRight = m_PointToPoint.FindAction("MoveRight", throwIfNotFound: true);
         m_PointToPoint_MousePos = m_PointToPoint.FindAction("MousePos", throwIfNotFound: true);
+        m_PointToPoint_GamepadMouse = m_PointToPoint.FindAction("GamepadMouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -605,6 +680,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PointToPoint_MoveLeft;
     private readonly InputAction m_PointToPoint_MoveRight;
     private readonly InputAction m_PointToPoint_MousePos;
+    private readonly InputAction m_PointToPoint_GamepadMouse;
     public struct PointToPointActions
     {
         private @Controls m_Wrapper;
@@ -616,6 +692,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @MoveLeft => m_Wrapper.m_PointToPoint_MoveLeft;
         public InputAction @MoveRight => m_Wrapper.m_PointToPoint_MoveRight;
         public InputAction @MousePos => m_Wrapper.m_PointToPoint_MousePos;
+        public InputAction @GamepadMouse => m_Wrapper.m_PointToPoint_GamepadMouse;
         public InputActionMap Get() { return m_Wrapper.m_PointToPoint; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -646,6 +723,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @MousePos.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
                 @MousePos.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
                 @MousePos.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
+                @GamepadMouse.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamepadMouse;
+                @GamepadMouse.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamepadMouse;
+                @GamepadMouse.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamepadMouse;
             }
             m_Wrapper.m_PointToPointActionsCallbackInterface = instance;
             if (instance != null)
@@ -671,6 +751,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @MousePos.started += instance.OnMousePos;
                 @MousePos.performed += instance.OnMousePos;
                 @MousePos.canceled += instance.OnMousePos;
+                @GamepadMouse.started += instance.OnGamepadMouse;
+                @GamepadMouse.performed += instance.OnGamepadMouse;
+                @GamepadMouse.canceled += instance.OnGamepadMouse;
             }
         }
     }
@@ -698,5 +781,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
+        void OnGamepadMouse(InputAction.CallbackContext context);
     }
 }
