@@ -37,31 +37,34 @@ public class P2PCameraController : MonoBehaviour
         inputMap.PointToPoint.Enable();
         inputMap.PointToPoint.RotLeft.performed += RotLeft_performed;
         inputMap.PointToPoint.RotRight.performed += RotRight_performed;
-        inputMap.PointToPoint.MoveLeft.performed += MoveLeft_performed;
-        inputMap.PointToPoint.MoveRight.performed += MoveRight_performed;
+        //inputMap.PointToPoint.MoveLeft.performed += MoveLeft_performed;
+        //inputMap.PointToPoint.MoveRight.performed += MoveRight_performed;
         inputMap.PointToPoint.MoveForward.performed += MoveForward_performed;
         inputMap.PointToPoint.MoveBackward.performed += MoveBackward_performed;
     }
 
     private void MoveBackward_performed(InputAction.CallbackContext obj)
     {
-        int i = CalcDirection();
-        //Because Move Back
-        i += 2;
-        if (i > 3)
+        int i = CalcDirection(2);
+        if (!curPos.obeyRotation)
         {
-            i -= 4;
+            //Because Move Back
+            i += 2;
+            if (i > 3)
+            {
+                i -= 4;
+            }
         }
         StartMove(i);
     }
 
     private void MoveForward_performed(InputAction.CallbackContext obj)
     {
-        int i = CalcDirection();
+        int i = CalcDirection(0);
         StartMove(i);
     }
 
-    private void MoveRight_performed(InputAction.CallbackContext obj)
+    /*private void MoveRight_performed(InputAction.CallbackContext obj)
     {
         int i = CalcDirection();
         //Because Move Right
@@ -89,11 +92,11 @@ public class P2PCameraController : MonoBehaviour
             i = 3;
         }
         StartMove(i);
-    }
+    }*/
     
     void StartMove(int i)
     {
-        //Debug.Log(i);
+        Debug.Log(i);
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
             curPos = curPos.positions[i];
@@ -104,27 +107,34 @@ public class P2PCameraController : MonoBehaviour
         }
     }
 
-    int CalcDirection()
+    int CalcDirection(int inputDirection)
     {
         int iPos = -1;
-        int choosePos = desiredRotation % 360;
-        if (choosePos == 0)
+        if (!curPos.obeyRotation)
         {
-            iPos = 0;
+            int choosePos = desiredRotation % 360;
+            if (choosePos == 0)
+            {
+                iPos = 0;
+            }
+            else if (choosePos == 90 || choosePos == -270)
+            {
+                iPos = 1;
+            }
+            else if (choosePos == 180 || choosePos == -180)
+            {
+                iPos = 2;
+            }
+            else if (choosePos == 270 || choosePos == -90)
+            {
+                iPos = 3;
+            }
+            return iPos;
         }
-        else if (choosePos == 90 || choosePos == -270)
+        else
         {
-            iPos = 1;
+            return inputDirection;
         }
-        else if (choosePos == 180 || choosePos == -180)
-        {
-            iPos = 2;
-        }
-        else if (choosePos == 270 || choosePos == -90)
-        {
-            iPos = 3;
-        }
-        return iPos;
     }
 
     private void RotRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -135,16 +145,7 @@ public class P2PCameraController : MonoBehaviour
         }
         else if (curPos.obeyRotation)
         {
-            int i = CalcDirection();
-            //Because Move Right
-            if (i < 3)
-            {
-                i++;
-            }
-            else
-            {
-                i = 0;
-            }
+            int i = CalcDirection(1);
             StartMove(i);
         }
     }
@@ -157,16 +158,7 @@ public class P2PCameraController : MonoBehaviour
         }
         else if (curPos.obeyRotation)
         {
-            int i = CalcDirection();
-            //Because Move Left
-            if (i > 0)
-            {
-                i--;
-            }
-            else
-            {
-                i = 3;
-            }
+            int i = CalcDirection(3);
             StartMove(i);
         }
     }
