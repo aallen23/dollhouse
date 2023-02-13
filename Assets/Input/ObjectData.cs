@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.AI;
 using Yarn.Unity;
 
 
 public enum InteractType
 {
     Examine,
-    Rotate
+    Rotate,
+    Teleport
 }
 
 public enum ObjectUseType
@@ -42,6 +45,14 @@ public class ObjectData : MonoBehaviour
     public Vector3 rotateAmount;
     [Tooltip("For Rotate type objects, apply rotation to this object.")]
     public GameObject rotateObject;
+
+    [Space(10)]
+    [Tooltip("For Teleport type objects, teleport to this point.")]
+    public Transform teleportPoint;
+
+
+    [Tooltip("What function to call, if any.")]
+    public UnityEvent functioninteract;
 
 
     [Header("Item Interaction Settings")]
@@ -95,9 +106,14 @@ public class ObjectData : MonoBehaviour
                 dialog.StartDialogue(yarnExamine);
                 break;
             case InteractType.Rotate:
-                rotateObject.transform.eulerAngles += rotateAmount;
+                rotateObject.transform.Rotate(rotateAmount, Space.Self);
+                break;
+            case InteractType.Teleport:
+                NavMeshAgent doll = FindObjectOfType<DollBehavior>().GetComponent<NavMeshAgent>();
+                doll.Warp(teleportPoint.position);
                 break;
         }
+        functioninteract.Invoke();
     }
 
 
