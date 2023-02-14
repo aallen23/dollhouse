@@ -1,7 +1,7 @@
 ﻿title: Start
 tags:
 ---
-Hello World!
+<<set $itemUsed to 0>>
 ===
 
 title: GrandfatherClock
@@ -18,7 +18,7 @@ This is a very ornate grandfather clock.
 
 title: PutInClockHand
 ---
-<<use_item GC>>
+<<use_item GC {$itemUsed}>>
 You fix the clock.
 ===
 

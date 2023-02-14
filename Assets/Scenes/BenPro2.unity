@@ -196,8 +196,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 71814d04f9e1ee6468d16af8a9b04f6a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0a8b7311295c6d841a5354bd4d3cb4a5, type: 3}
+  m_Color: {r: 0, g: 0.8207547, b: 0.06868518, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -230,13 +230,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 11400000, guid: 096bf00e6ed2e4f479067e891e4488e7, type: 2}
   addItemHideObject: {fileID: 43541356}
+  itemEnabledToggleObject: {fileID: 1754279168}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &43541360
 BoxCollider:
@@ -463,13 +467,18 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 11400000, guid: 2c0a3db82cefe74468bb22936260e28b, type: 2}
+  item:
+  - {fileID: 11400000, guid: 2c0a3db82cefe74468bb22936260e28b, type: 2}
+  itemEnabled: 0
   objectUseType: 1
   yarnItem: PutInClockHand
   shownObject: {fileID: 1967944998769179439}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!1 &147385611
 GameObject:
@@ -924,7 +933,7 @@ MonoBehaviour:
   - {fileID: 1004983511}
   - {fileID: 769225815}
   startNode: Start
-  startAutomatically: 0
+  startAutomatically: 1
   runSelectedOptionAsLine: 0
   lineProvider: {fileID: 164240963}
   verboseLogging: 1
@@ -1017,6 +1026,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
+      propertyPath: m_Name
+      value: stand3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_Name
@@ -1595,8 +1608,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93d6f79cd51b59c4d9cf81e232f468e1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0a8b7311295c6d841a5354bd4d3cb4a5, type: 3}
+  m_Color: {r: 0, g: 0.40796807, b: 0.6698113, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1629,13 +1642,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 11400000, guid: 6cf69d13611457f49aa5ecd0d50fc79a, type: 2}
   addItemHideObject: {fileID: 389270381}
+  itemEnabledToggleObject: {fileID: 1972292120}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &389270385
 BoxCollider:
@@ -1798,8 +1815,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5642dda2bd363ae448c101b5e3d053c3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0a8b7311295c6d841a5354bd4d3cb4a5, type: 3}
+  m_Color: {r: 0.8584906, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1832,13 +1849,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 11400000, guid: 977ac46e926be3a47a28c75e0723b2a7, type: 2}
   addItemHideObject: {fileID: 437677484}
+  itemEnabledToggleObject: {fileID: 1075237349}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &437677488
 BoxCollider:
@@ -1998,13 +2019,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &484114056
 BoxCollider:
@@ -2600,6 +2625,7 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls:
@@ -2615,10 +2641,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &635460454
 BoxCollider:
@@ -4484,6 +4513,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
+      propertyPath: m_Name
+      value: stand4
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_Name
       value: umbrellastandtest
@@ -5062,7 +5095,7 @@ GameObject:
   - component: {fileID: 1043382908}
   - component: {fileID: 1043382907}
   m_Layer: 0
-  m_Name: Foyer3
+  m_Name: Hall3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5271,14 +5304,22 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
-  objectUseType: 0
+  item:
+  - {fileID: 11400000, guid: 6cf69d13611457f49aa5ecd0d50fc79a, type: 2}
+  - {fileID: 11400000, guid: 096bf00e6ed2e4f479067e891e4488e7, type: 2}
+  - {fileID: 11400000, guid: 977ac46e926be3a47a28c75e0723b2a7, type: 2}
+  - {fileID: 11400000, guid: d69f7c512906fb6469d855700c7e01be, type: 2}
+  itemEnabled: 0
+  objectUseType: 1
   yarnItem: 
-  shownObject: {fileID: 0}
-  startVisible: 0
+  shownObject: {fileID: 437677484}
+  shownObjectModColor: 1
+  shownObjectItemOverride: 1
+  startVisible: 1
 --- !u!1 &1121595378
 GameObject:
   m_ObjectHideFlags: 0
@@ -5498,13 +5539,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!64 &1135070567
 MeshCollider:
@@ -7265,13 +7310,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!64 &1491458138
 MeshCollider:
@@ -7669,8 +7718,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 170fbacb98114044cbff9c846f072e25, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0a8b7311295c6d841a5354bd4d3cb4a5, type: 3}
+  m_Color: {r: 1, g: 0.72512776, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7703,13 +7752,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 11400000, guid: d69f7c512906fb6469d855700c7e01be, type: 2}
   addItemHideObject: {fileID: 1683952286}
+  itemEnabledToggleObject: {fileID: 1945475339}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &1683952290
 BoxCollider:
@@ -7849,6 +7902,7 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls:
@@ -7864,10 +7918,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &1717177642
 BoxCollider:
@@ -8099,14 +8156,22 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
-  objectUseType: 0
+  item:
+  - {fileID: 11400000, guid: 6cf69d13611457f49aa5ecd0d50fc79a, type: 2}
+  - {fileID: 11400000, guid: 096bf00e6ed2e4f479067e891e4488e7, type: 2}
+  - {fileID: 11400000, guid: 977ac46e926be3a47a28c75e0723b2a7, type: 2}
+  - {fileID: 11400000, guid: d69f7c512906fb6469d855700c7e01be, type: 2}
+  itemEnabled: 0
+  objectUseType: 1
   yarnItem: 
-  shownObject: {fileID: 0}
-  startVisible: 0
+  shownObject: {fileID: 43541356}
+  shownObjectModColor: 1
+  shownObjectItemOverride: 1
+  startVisible: 1
 --- !u!1 &1785844894
 GameObject:
   m_ObjectHideFlags: 0
@@ -8356,13 +8421,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &1795154499
 BoxCollider:
@@ -8642,6 +8711,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
+      propertyPath: m_Name
+      value: stand1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_Name
       value: umbrellastandtest (3)
@@ -8695,14 +8768,22 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
-  objectUseType: 0
+  item:
+  - {fileID: 11400000, guid: 6cf69d13611457f49aa5ecd0d50fc79a, type: 2}
+  - {fileID: 11400000, guid: 096bf00e6ed2e4f479067e891e4488e7, type: 2}
+  - {fileID: 11400000, guid: 977ac46e926be3a47a28c75e0723b2a7, type: 2}
+  - {fileID: 11400000, guid: d69f7c512906fb6469d855700c7e01be, type: 2}
+  itemEnabled: 0
+  objectUseType: 1
   yarnItem: 
-  shownObject: {fileID: 0}
-  startVisible: 0
+  shownObject: {fileID: 1683952286}
+  shownObjectModColor: 1
+  shownObjectItemOverride: 1
+  startVisible: 1
 --- !u!1 &1960367570
 GameObject:
   m_ObjectHideFlags: 0
@@ -8953,14 +9034,22 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
-  objectUseType: 0
+  item:
+  - {fileID: 11400000, guid: 6cf69d13611457f49aa5ecd0d50fc79a, type: 2}
+  - {fileID: 11400000, guid: 096bf00e6ed2e4f479067e891e4488e7, type: 2}
+  - {fileID: 11400000, guid: 977ac46e926be3a47a28c75e0723b2a7, type: 2}
+  - {fileID: 11400000, guid: d69f7c512906fb6469d855700c7e01be, type: 2}
+  itemEnabled: 0
+  objectUseType: 1
   yarnItem: 
-  shownObject: {fileID: 0}
-  startVisible: 0
+  shownObject: {fileID: 389270381}
+  shownObjectModColor: 1
+  shownObjectItemOverride: 1
+  startVisible: 1
 --- !u!1 &1974320577
 GameObject:
   m_ObjectHideFlags: 0
@@ -9158,6 +9247,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
+      propertyPath: m_Name
+      value: stand2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_Name
       value: umbrellastandtest (2)
@@ -9322,13 +9415,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 758138256}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!114 &2009201446
 MonoBehaviour:
@@ -10317,13 +10414,17 @@ MonoBehaviour:
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: {fileID: 0}
+  item: []
+  itemEnabled: 0
   objectUseType: 0
   yarnItem: 
   shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
   startVisible: 0
 --- !u!65 &8883912632345983858
 BoxCollider:

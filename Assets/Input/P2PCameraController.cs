@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using Yarn.Unity;
+using UnityEngine.EventSystems;
 
 public class P2PCameraController : MonoBehaviour
 {
@@ -200,7 +198,7 @@ public class P2PCameraController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.transform.name);
-            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame)
+            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame && !EventSystem.current.IsPointerOverGameObject())
             {
                 //Debug.Log("Walk");
                 doll.GetComponent<DollBehavior>().od = null;
@@ -232,17 +230,16 @@ public class P2PCameraController : MonoBehaviour
                 }
                 if (Mouse.current.leftButton.wasReleasedThisFrame && !dialog.IsDialogueRunning && heldItem)
                 {
-                    if (hitObject.item == heldItem)
+                    if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
                     {
-                        ObjectData curObject = hit.transform.gameObject.GetComponent<ObjectData>();
-                        if (curObject.yarnItem != null && curObject.yarnItem != "")
+                        if (hitObject.yarnItem != null && hitObject.yarnItem != "")
                         {
-
-                            dialog.StartDialogue(curObject.yarnItem);
+                            dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));
+                            dialog.StartDialogue(hitObject.yarnItem);
                         }
                         else
                         {
-                            curObject.UseItem();
+                            hitObject.UseItem(hitObject.item.IndexOf(heldItem));
                         }
                         if (!heldItem.multiUse)
                         {

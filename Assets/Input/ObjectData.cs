@@ -56,6 +56,8 @@ public class ObjectData : MonoBehaviour
     public ItemScriptableObject addedItem;
     [Tooltip("(Optional) For AddItem type objects, hide this GameObject.")]
     public GameObject addItemHideObject;
+    [Tooltip("(Optional) For AddItem type objects, toggle Item Enabled on this object after adding.")]
+    public ObjectData itemEnabledToggleObject;
 
     [Tooltip("(Optional) What function to call after interacting.")]
     public UnityEvent functioninteract;
@@ -63,7 +65,10 @@ public class ObjectData : MonoBehaviour
 
     [Header("Item Interaction Settings")]
     [Tooltip("What ItemScriptableObject can be used on this object.")]
-    public ItemScriptableObject item;
+    public List<ItemScriptableObject> item;
+
+    [Tooltip("Are Item Interactions enabled?")]
+    public bool itemEnabled;
 
     [Tooltip("What happens when an Item is dragged onto this object.")]
     public ObjectUseType objectUseType;
@@ -75,6 +80,8 @@ public class ObjectData : MonoBehaviour
     public GameObject shownObject;
     [Tooltip("For ShowObject Type objects, modify the color.")]
     public bool shownObjectModColor;
+    [Tooltip("For ShowObject Type objects, modify the Add Item Hide Object value with the Item. (Useful for dropping an item, or similar)")]
+    public bool shownObjectItemOverride;
     [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
     public bool startVisible;
 
@@ -90,7 +97,7 @@ public class ObjectData : MonoBehaviour
 
 
         //If an Item would show an GameObject, we want it to start hidden
-        if (startVisible)
+        if (!startVisible)
         {
             StartCoroutine(HideShownObject());
         }
@@ -136,6 +143,10 @@ public class ObjectData : MonoBehaviour
                 {
                     addItemHideObject.SetActive(false);
                 }
+                if (itemEnabledToggleObject)
+                {
+                    itemEnabledToggleObject.itemEnabled = !itemEnabledToggleObject.itemEnabled;
+                }
                 break;
         }
         functioninteract.Invoke();
@@ -143,16 +154,26 @@ public class ObjectData : MonoBehaviour
 
 
     [YarnCommand("use_item")]
-    public void UseItem()
+    public void UseItem(float i)
     {
+        int it = (int)i;
         switch (objectUseType)
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
-                shownObject.TryGetComponent<SpriteRenderer>(out SpriteRenderer sprite);
+                shownObject.TryGetComponent(out SpriteRenderer sprite);
                 if (sprite && shownObjectModColor)
                 {
-                    sprite.color = item.displayColor;
+                    sprite.color = item[it].displayColor;
+                }
+                shownObject.TryGetComponent(out ObjectData data);
+                if (data && shownObjectItemOverride)
+                {
+                    data.addedItem = item[it];
+                }
+                if (itemEnabled)
+                {
+                    itemEnabled = !itemEnabled;
                 }
                 break;
         }
