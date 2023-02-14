@@ -234,7 +234,16 @@ public class P2PCameraController : MonoBehaviour
                 {
                     if (hitObject.item == heldItem)
                     {
-                        dialog.StartDialogue(hit.transform.gameObject.GetComponent<ObjectData>().yarnItem);
+                        ObjectData curObject = hit.transform.gameObject.GetComponent<ObjectData>();
+                        if (curObject.yarnItem != null && curObject.yarnItem != "")
+                        {
+
+                            dialog.StartDialogue(curObject.yarnItem);
+                        }
+                        else
+                        {
+                            curObject.UseItem();
+                        }
                         if (!heldItem.multiUse)
                         {
                             invSystem.inv.Remove(heldItem);

@@ -73,6 +73,8 @@ public class ObjectData : MonoBehaviour
     [Space(20)]
     [Tooltip("For ShowObject Type objects, show this GameObject.")]
     public GameObject shownObject;
+    [Tooltip("For ShowObject Type objects, modify the color.")]
+    public bool shownObjectModColor;
     [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
     public bool startVisible;
 
@@ -147,6 +149,11 @@ public class ObjectData : MonoBehaviour
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
+                shownObject.TryGetComponent<SpriteRenderer>(out SpriteRenderer sprite);
+                if (sprite && shownObjectModColor)
+                {
+                    sprite.color = item.displayColor;
+                }
                 break;
         }
         
