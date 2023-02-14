@@ -10,7 +10,8 @@ public enum InteractType
 {
     Examine,
     Rotate,
-    Teleport
+    Teleport,
+    AddItem
 }
 
 public enum ObjectUseType
@@ -50,8 +51,13 @@ public class ObjectData : MonoBehaviour
     [Tooltip("For Teleport type objects, teleport to this point.")]
     public Transform teleportPoint;
 
+    [Space(10)]
+    [Tooltip("For AddItem type objects, add this item to your inventory")]
+    public ItemScriptableObject addedItem;
+    [Tooltip("(Optional) For AddItem type objects, hide this GameObject.")]
+    public GameObject addItemHideObject;
 
-    [Tooltip("What function to call, if any.")]
+    [Tooltip("(Optional) What function to call after interacting.")]
     public UnityEvent functioninteract;
 
 
@@ -67,6 +73,8 @@ public class ObjectData : MonoBehaviour
     [Space(20)]
     [Tooltip("For ShowObject Type objects, show this GameObject.")]
     public GameObject shownObject;
+    [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
+    public bool startVisible;
 
     //Private variables for calling fucntions
     private DialogueRunner dialog;
@@ -80,7 +88,10 @@ public class ObjectData : MonoBehaviour
 
 
         //If an Item would show an GameObject, we want it to start hidden
-        StartCoroutine(HideShownObject());
+        if (startVisible)
+        {
+            StartCoroutine(HideShownObject());
+        }
     }
 
     IEnumerator HideShownObject()
@@ -103,7 +114,10 @@ public class ObjectData : MonoBehaviour
         switch (interactType)
         {
             case InteractType.Examine:
-                dialog.StartDialogue(yarnExamine);
+                if (yarnExamine != "" && yarnExamine != null)
+                {
+                    dialog.StartDialogue(yarnExamine);
+                }
                 break;
             case InteractType.Rotate:
                 rotateObject.transform.Rotate(rotateAmount, Space.Self);
@@ -111,6 +125,15 @@ public class ObjectData : MonoBehaviour
             case InteractType.Teleport:
                 NavMeshAgent doll = FindObjectOfType<DollBehavior>().GetComponent<NavMeshAgent>();
                 doll.Warp(teleportPoint.position);
+                break;
+            case InteractType.AddItem:
+                InventorySystem inv = FindObjectOfType<InventorySystem>();
+                inv.inv.Add(addedItem);
+                inv.UpdateInventory();
+                if (addItemHideObject)
+                {
+                    addItemHideObject.SetActive(false);
+                }
                 break;
         }
         functioninteract.Invoke();
