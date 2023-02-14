@@ -144,7 +144,7 @@ public class P2PCameraController : MonoBehaviour
         }
     }
 
-    private void RotRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void RotRight_performed(InputAction.CallbackContext obj)
     {
         if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
         {
@@ -157,7 +157,7 @@ public class P2PCameraController : MonoBehaviour
         }
     }
 
-    private void RotLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void RotLeft_performed(InputAction.CallbackContext obj)
     {
         if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
         {
@@ -260,24 +260,11 @@ public class P2PCameraController : MonoBehaviour
         
         foreach (ObjectData od in objects)
         {
-            if (od.gameObject != hit.transform.gameObject || dialog.IsDialogueRunning)
+            od.gameObject.layer = 0;
+
+            if (od.gameObject == hit.transform.gameObject && !dialog.IsDialogueRunning && !(od.positionCamera == curPos && od.disableInteractAtPosition))
             {
-                od.gameObject.layer = 0;
-            }
-            else if (od.gameObject == hit.transform.gameObject)
-            {
-                hit.transform.gameObject.TryGetComponent(out hitObject);
-                if (hitObject)
-                {
-                    if (hitObject.positionCamera == curPos && hitObject.disableInteractAtPosition)
-                    {
-                        od.gameObject.layer = 0;
-                    }
-                    else
-                    {
-                        od.gameObject.layer = 8;
-                    }
-                }
+                od.gameObject.layer = 8;
             }
         }
 
