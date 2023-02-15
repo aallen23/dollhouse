@@ -22,6 +22,10 @@ public class P2PCameraController : MonoBehaviour
     public DialogueRunner dialog;
     public InventorySystem invSystem;
 
+    public GameObject gamepadMouse;
+
+    public GameObject cursorSprite;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,24 @@ public class P2PCameraController : MonoBehaviour
         //inputMap.PointToPoint.MoveRight.performed += MoveRight_performed;
         inputMap.PointToPoint.MoveForward.performed += MoveForward_performed;
         inputMap.PointToPoint.MoveBackward.performed += MoveBackward_performed;
+        inputMap.PointToPoint.Interact.performed += Interact_performed;
+        inputMap.PointToPoint.Interact.canceled += Interact_canceled;
+        inputMap.PointToPoint.MousePos.performed += MousePos_performed;
+        //inputMap.asset.controlSchemes.
+    }
+
+    private void MousePos_performed(InputAction.CallbackContext obj)
+    {
+        if (obj.control.device.name == "Mouse")
+        {
+            gamepadMouse.SetActive(false);
+            Cursor.visible = true;
+        }
+        else
+        {
+            gamepadMouse.SetActive(true);
+            Cursor.visible = false;
+        }
     }
 
     private void MoveBackward_performed(InputAction.CallbackContext obj)
@@ -170,18 +192,78 @@ public class P2PCameraController : MonoBehaviour
         }
     }
 
+
+
+    private void Interact_performed(InputAction.CallbackContext obj)
+    {
+        if (dialog.IsDialogueRunning)
+        {
+            dialog.OnViewRequestedInterrupt();
+            return;
+        }
+
+        hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
+        if (hitObject && !EventSystem.current.IsPointerOverGameObject())
+        {
+            if (!(hitObject.disableInteractAtPosition && curPos == hitObject.positionCamera))
+            {
+                if (hitObject.positionDoll != null)
+                {
+                    doll.GetComponent<DollBehavior>().GoToObject(hitObject);
+                }
+                else
+                {
+                    hitObject.Interact();
+                }
+            }
+        }
+        else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            //Debug.Log("Walk");
+            doll.GetComponent<DollBehavior>().od = null;
+            Vector3 moveTarget = navPos.position;
+            doll.destination = moveTarget;
+            //direction = (new Vector3(0, moveTarget.y, moveTarget.z) - transform.position).normalized;
+            //lookRotation = Quaternion.LookRotation(direction);
+            //needToRotate = true;
+        }
+    }
+
+    private void Interact_canceled(InputAction.CallbackContext obj)
+    {
+        hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
+        if (hitObject && !dialog.IsDialogueRunning && heldItem)
+        {
+            Debug.Log("holdingitem");
+            if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
+            {
+                Debug.Log("holdingitem2");
+                if (hitObject.yarnItem != null && hitObject.yarnItem != "")
+                {
+                    Debug.Log("holdingitem3");
+                    dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));
+                    dialog.StartDialogue(hitObject.yarnItem);
+                }
+                else
+                {
+                    Debug.Log("holdingitem4");
+                    hitObject.UseItem(hitObject.item.IndexOf(heldItem));
+                }
+                if (!heldItem.multiUse)
+                {
+                    Debug.Log("holdingitem5");
+                    invSystem.inv.Remove(heldItem);
+                    invSystem.UpdateInventory();
+                }
+            }
+        }
+        heldItem = null;
+        Destroy(cursorSprite);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //Vector2 oldMousePos = Mouse.current.position.ReadValue();
-        //Vector2 newMousePos = oldMousePos + inputMap.PointToPoint.GamepadMouse.ReadValue<Vector2>();
-        //Mouse.current.WarpCursorPosition(newMousePos);
-
-
-        if (Mouse.current.leftButton.wasPressedThisFrame && dialog.IsDialogueRunning)
-        {
-            dialog.OnViewRequestedInterrupt();
-        }
 
         gameObject.transform.eulerAngles = new Vector3(
             Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
@@ -192,77 +274,14 @@ public class P2PCameraController : MonoBehaviour
         gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * moveSpeed);
 
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
-
-        ObjectData hitObject;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            //Debug.Log(hit.transform.name);
-            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame && !EventSystem.current.IsPointerOverGameObject())
-            {
-                //Debug.Log("Walk");
-                doll.GetComponent<DollBehavior>().od = null;
-                Vector3 moveTarget = navPos.position;
-                doll.destination = moveTarget;
-                //direction = (new Vector3(0, moveTarget.y, moveTarget.z) - transform.position).normalized;
-                //lookRotation = Quaternion.LookRotation(direction);
-                //needToRotate = true;
-            }
-
-            hit.transform.gameObject.TryGetComponent(out hitObject);
-
-            if (hitObject)
-            {
-                if (Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
-                {
-                    if (!(hitObject.disableInteractAtPosition && curPos == hitObject.positionCamera))
-                    {
-                        if (hitObject.positionDoll != null)
-                        {
-                            doll.GetComponent<DollBehavior>().GoToObject(hitObject);
-                        }
-                        else
-                        {
-                            hitObject.Interact();
-                        }
-
-                    }
-                }
-                if (Mouse.current.leftButton.wasReleasedThisFrame && !dialog.IsDialogueRunning && heldItem)
-                {
-                    if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
-                    {
-                        if (hitObject.yarnItem != null && hitObject.yarnItem != "")
-                        {
-                            dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));
-                            dialog.StartDialogue(hitObject.yarnItem);
-                        }
-                        else
-                        {
-                            hitObject.UseItem(hitObject.item.IndexOf(heldItem));
-                        }
-                        if (!heldItem.multiUse)
-                        {
-                            invSystem.inv.Remove(heldItem);
-                            invSystem.UpdateInventory();
-                        }
-                    }
-                    heldItem = null;
-                }
-                else if (Mouse.current.leftButton.wasReleasedThisFrame)
-                {
-                    heldItem = null;
-                }
-                
-            }
-            
-        }
+        //Debug.Log(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
+        Physics.Raycast(ray, out hit);
         
         foreach (ObjectData od in objects)
         {
             od.gameObject.layer = 0;
 
-            if (od.gameObject == hit.transform.gameObject && !dialog.IsDialogueRunning && !(od.positionCamera == curPos && od.disableInteractAtPosition))
+            if (od.gameObject == hit.transform.gameObject && !dialog.IsDialogueRunning && !(od.positionCamera == curPos && od.disableInteractAtPosition) && !EventSystem.current.IsPointerOverGameObject())
             {
                 od.gameObject.layer = 8;
             }

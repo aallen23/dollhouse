@@ -324,17 +324,25 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""MousePos"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""f330c7d8-af73-4c83-b998-f62a25faf94b"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""GamepadMouse"",
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5fa0ba2-072e-44be-bed7-6b6665061512"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""GamePadPos"",
                     ""type"": ""Value"",
-                    ""id"": ""d721d058-5a39-4b01-be7a-ab90453659c7"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""id"": ""7642d67b-68de-4857-b12d-4a7e64e34578"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -441,7 +449,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6b24c5e1-6022-4f57-bae8-29ba38a3d56e"",
+                    ""id"": ""88085478-9553-4658-a91e-2d3102507558"",
                     ""path"": ""<VirtualMouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -452,12 +460,34 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6e007be4-029a-45e4-9a92-6ab33dcbdf7b"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""id"": ""795484c2-a086-46c9-a5f8-602f3584ea1f"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""GamepadMouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e8f21c3-da18-4176-a483-5faed2d387cb"",
+                    ""path"": ""<VirtualMouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b846d954-bf35-430a-a298-e660792e5621"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GamePadPos"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -487,7 +517,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PointToPoint_MoveLeft = m_PointToPoint.FindAction("MoveLeft", throwIfNotFound: true);
         m_PointToPoint_MoveRight = m_PointToPoint.FindAction("MoveRight", throwIfNotFound: true);
         m_PointToPoint_MousePos = m_PointToPoint.FindAction("MousePos", throwIfNotFound: true);
-        m_PointToPoint_GamepadMouse = m_PointToPoint.FindAction("GamepadMouse", throwIfNotFound: true);
+        m_PointToPoint_Interact = m_PointToPoint.FindAction("Interact", throwIfNotFound: true);
+        m_PointToPoint_GamePadPos = m_PointToPoint.FindAction("GamePadPos", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -658,7 +689,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PointToPoint_MoveLeft;
     private readonly InputAction m_PointToPoint_MoveRight;
     private readonly InputAction m_PointToPoint_MousePos;
-    private readonly InputAction m_PointToPoint_GamepadMouse;
+    private readonly InputAction m_PointToPoint_Interact;
+    private readonly InputAction m_PointToPoint_GamePadPos;
     public struct PointToPointActions
     {
         private @Controls m_Wrapper;
@@ -670,7 +702,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @MoveLeft => m_Wrapper.m_PointToPoint_MoveLeft;
         public InputAction @MoveRight => m_Wrapper.m_PointToPoint_MoveRight;
         public InputAction @MousePos => m_Wrapper.m_PointToPoint_MousePos;
-        public InputAction @GamepadMouse => m_Wrapper.m_PointToPoint_GamepadMouse;
+        public InputAction @Interact => m_Wrapper.m_PointToPoint_Interact;
+        public InputAction @GamePadPos => m_Wrapper.m_PointToPoint_GamePadPos;
         public InputActionMap Get() { return m_Wrapper.m_PointToPoint; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -701,9 +734,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @MousePos.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
                 @MousePos.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
                 @MousePos.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMousePos;
-                @GamepadMouse.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamepadMouse;
-                @GamepadMouse.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamepadMouse;
-                @GamepadMouse.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamepadMouse;
+                @Interact.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnInteract;
+                @GamePadPos.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamePadPos;
+                @GamePadPos.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamePadPos;
+                @GamePadPos.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamePadPos;
             }
             m_Wrapper.m_PointToPointActionsCallbackInterface = instance;
             if (instance != null)
@@ -729,9 +765,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @MousePos.started += instance.OnMousePos;
                 @MousePos.performed += instance.OnMousePos;
                 @MousePos.canceled += instance.OnMousePos;
-                @GamepadMouse.started += instance.OnGamepadMouse;
-                @GamepadMouse.performed += instance.OnGamepadMouse;
-                @GamepadMouse.canceled += instance.OnGamepadMouse;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @GamePadPos.started += instance.OnGamePadPos;
+                @GamePadPos.performed += instance.OnGamePadPos;
+                @GamePadPos.canceled += instance.OnGamePadPos;
             }
         }
     }
@@ -759,6 +798,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
-        void OnGamepadMouse(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnGamePadPos(InputAction.CallbackContext context);
     }
 }
