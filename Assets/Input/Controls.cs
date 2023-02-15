@@ -339,9 +339,9 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""GamePadPos"",
-                    ""type"": ""Value"",
-                    ""id"": ""7642d67b-68de-4857-b12d-4a7e64e34578"",
+                    ""name"": ""Zoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""db06567d-adf0-41d0-905e-cae5aaaf107b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -482,12 +482,23 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b846d954-bf35-430a-a298-e660792e5621"",
-                    ""path"": """",
+                    ""id"": ""8ab629ef-100b-4036-8540-747ae646839e"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""GamePadPos"",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2be8eb56-faf9-41c8-9137-04126c6baa07"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -518,7 +529,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PointToPoint_MoveRight = m_PointToPoint.FindAction("MoveRight", throwIfNotFound: true);
         m_PointToPoint_MousePos = m_PointToPoint.FindAction("MousePos", throwIfNotFound: true);
         m_PointToPoint_Interact = m_PointToPoint.FindAction("Interact", throwIfNotFound: true);
-        m_PointToPoint_GamePadPos = m_PointToPoint.FindAction("GamePadPos", throwIfNotFound: true);
+        m_PointToPoint_Zoom = m_PointToPoint.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -690,7 +701,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PointToPoint_MoveRight;
     private readonly InputAction m_PointToPoint_MousePos;
     private readonly InputAction m_PointToPoint_Interact;
-    private readonly InputAction m_PointToPoint_GamePadPos;
+    private readonly InputAction m_PointToPoint_Zoom;
     public struct PointToPointActions
     {
         private @Controls m_Wrapper;
@@ -703,7 +714,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @MoveRight => m_Wrapper.m_PointToPoint_MoveRight;
         public InputAction @MousePos => m_Wrapper.m_PointToPoint_MousePos;
         public InputAction @Interact => m_Wrapper.m_PointToPoint_Interact;
-        public InputAction @GamePadPos => m_Wrapper.m_PointToPoint_GamePadPos;
+        public InputAction @Zoom => m_Wrapper.m_PointToPoint_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_PointToPoint; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -737,9 +748,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnInteract;
-                @GamePadPos.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamePadPos;
-                @GamePadPos.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamePadPos;
-                @GamePadPos.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnGamePadPos;
+                @Zoom.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_PointToPointActionsCallbackInterface = instance;
             if (instance != null)
@@ -768,9 +779,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @GamePadPos.started += instance.OnGamePadPos;
-                @GamePadPos.performed += instance.OnGamePadPos;
-                @GamePadPos.canceled += instance.OnGamePadPos;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -799,6 +810,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMoveRight(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnGamePadPos(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }

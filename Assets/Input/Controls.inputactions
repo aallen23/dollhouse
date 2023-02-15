@@ -326,9 +326,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "GamePadPos",
-                    "type": "Value",
-                    "id": "7642d67b-68de-4857-b12d-4a7e64e34578",
+                    "name": "Zoom",
+                    "type": "Button",
+                    "id": "db06567d-adf0-41d0-905e-cae5aaaf107b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -469,12 +469,23 @@
                 },
                 {
                     "name": "",
-                    "id": "b846d954-bf35-430a-a298-e660792e5621",
-                    "path": "",
+                    "id": "8ab629ef-100b-4036-8540-747ae646839e",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GamePadPos",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2be8eb56-faf9-41c8-9137-04126c6baa07",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

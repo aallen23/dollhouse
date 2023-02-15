@@ -12,7 +12,7 @@ public class P2PCameraController : MonoBehaviour
     public CameraPosition curPos;
     private RaycastHit hit;
     public NavMeshAgent doll;
-    private float desiredFOV;
+    private float desiredFOV = 60f;
     public float rotationSpeed;
     public float moveSpeed;
     [SerializeField] private ObjectData[] objects;
@@ -45,7 +45,19 @@ public class P2PCameraController : MonoBehaviour
         inputMap.PointToPoint.Interact.performed += Interact_performed;
         inputMap.PointToPoint.Interact.canceled += Interact_canceled;
         inputMap.PointToPoint.MousePos.performed += MousePos_performed;
+        inputMap.PointToPoint.Zoom.performed += Zoom_performed;
+        inputMap.PointToPoint.Zoom.canceled += Zoom_canceled;
         //inputMap.asset.controlSchemes.
+    }
+
+    private void Zoom_canceled(InputAction.CallbackContext obj)
+    {
+        desiredFOV = 60f;
+    }
+
+    private void Zoom_performed(InputAction.CallbackContext obj)
+    {
+        desiredFOV = 30f;
     }
 
     private void MousePos_performed(InputAction.CallbackContext obj)
@@ -196,36 +208,43 @@ public class P2PCameraController : MonoBehaviour
 
     private void Interact_performed(InputAction.CallbackContext obj)
     {
-        if (dialog.IsDialogueRunning)
+        if (obj.ReadValue<float>() == 0)
+        {
+            return;
+        }
+        if (!dialog.IsDialogueRunning)
+        {
+            hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
+            if (hitObject && !EventSystem.current.IsPointerOverGameObject())
+            {
+                if (!(hitObject.disableInteractAtPosition && curPos == hitObject.positionCamera))
+                {
+                    if (hitObject.positionDoll != null)
+                    {
+                        doll.GetComponent<DollBehavior>().GoToObject(hitObject);
+                    }
+                    else
+                    {
+                        hitObject.Interact();
+                    }
+                }
+            }
+            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                //Debug.Log("Walk");
+                doll.GetComponent<DollBehavior>().od = null;
+                Vector3 moveTarget = navPos.position;
+                doll.destination = moveTarget;
+                //direction = (new Vector3(0, moveTarget.y, moveTarget.z) - transform.position).normalized;
+                //lookRotation = Quaternion.LookRotation(direction);
+                //needToRotate = true;
+            }
+
+        }
+        else
         {
             dialog.OnViewRequestedInterrupt();
             return;
-        }
-
-        hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
-        if (hitObject && !EventSystem.current.IsPointerOverGameObject())
-        {
-            if (!(hitObject.disableInteractAtPosition && curPos == hitObject.positionCamera))
-            {
-                if (hitObject.positionDoll != null)
-                {
-                    doll.GetComponent<DollBehavior>().GoToObject(hitObject);
-                }
-                else
-                {
-                    hitObject.Interact();
-                }
-            }
-        }
-        else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !EventSystem.current.IsPointerOverGameObject())
-        {
-            //Debug.Log("Walk");
-            doll.GetComponent<DollBehavior>().od = null;
-            Vector3 moveTarget = navPos.position;
-            doll.destination = moveTarget;
-            //direction = (new Vector3(0, moveTarget.y, moveTarget.z) - transform.position).normalized;
-            //lookRotation = Quaternion.LookRotation(direction);
-            //needToRotate = true;
         }
     }
 
@@ -287,15 +306,7 @@ public class P2PCameraController : MonoBehaviour
             }
         }
 
-        if (Mouse.current.rightButton.isPressed)
-        {
-            desiredFOV = 30f;
-        }
-        else
-        {
-            desiredFOV = 60f;
-        }
-        gameObject.GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
+        GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
 
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
