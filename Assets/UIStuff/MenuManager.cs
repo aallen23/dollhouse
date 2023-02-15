@@ -17,6 +17,15 @@ public class MenuManager : MonoBehaviour
         audioFrame,
         controlsFrame;
 
+    [SerializeField]
+    private Slider brightnessSlider;
+
+    public void Start()
+    {
+        brightnessSlider.onValueChanged.AddListener(delegate { BrightnessSlide(); });
+    }
+
+
     public void SetAllInactive()
     {
         mainMenu1.SetActive(false);
@@ -50,6 +59,12 @@ public class MenuManager : MonoBehaviour
         audioFrame.SetActive(false);
         controlsFrame.SetActive(false);
         videoFrame.SetActive(true);
+    }
+
+    public void BrightnessSlide()
+    {
+        Debug.Log(brightnessSlider.value);
+        Screen.brightness = brightnessSlider.value;
     }
 
     public void AudioButton()
