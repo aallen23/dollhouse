@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class MenuManager : MonoBehaviour
 {
@@ -15,14 +17,31 @@ public class MenuManager : MonoBehaviour
         optionsFrame,
         videoFrame,
         audioFrame,
-        controlsFrame;
+        controlsFrame,
+        volume;
+
+    [SerializeField]
+    private Volume postProVolume;
 
     [SerializeField]
     private Slider brightnessSlider;
 
+    private ColorAdjustments color;
+    private Bloom bloom;
+    private Vignette vg;
+
+    private bool bloomBool,
+        vgBool;
+
     public void Start()
     {
         brightnessSlider.onValueChanged.AddListener(delegate { BrightnessSlide(); });
+        postProVolume = volume.GetComponent<Volume>();
+        postProVolume.profile.TryGet<Vignette>(out vg);
+        postProVolume.profile.TryGet<Bloom>(out bloom);
+        postProVolume.profile.TryGet<ColorAdjustments>(out color);
+        bloomBool = true;
+        vgBool = true;
     }
 
 
@@ -63,8 +82,43 @@ public class MenuManager : MonoBehaviour
 
     public void BrightnessSlide()
     {
-        Debug.Log(brightnessSlider.value);
-        Screen.brightness = brightnessSlider.value;
+        color.postExposure.value = brightnessSlider.value;
+    }
+
+    public void BloomTrigger()
+    {
+        bloomBool = !bloomBool;
+        SetBloom();
+    }
+
+    public void SetBloom()
+    {
+        if (bloomBool)
+        {
+            bloom.intensity.value = 1.0f;
+        }
+        else
+        {
+            bloom.intensity.value = 0.0f;
+        }
+    }
+
+    public void VignetteTrigger()
+    {
+        vgBool = !vgBool;
+        SetVignette();
+    }
+
+    public void SetVignette()
+    {
+        if (vgBool)
+        {
+            vg.intensity.value = 0.25f;
+        }
+        else
+        {
+            vg.intensity.value = 0.0f;
+        }
     }
 
     public void AudioButton()
