@@ -54,6 +54,8 @@ public class ObjectData : MonoBehaviour
     [Space(10)]
     [Tooltip("For AddItem type objects, add this item to your inventory")]
     public ItemScriptableObject addedItem;
+    [Tooltip("For AddItem type objects, is this multiUse or one-time only?")]
+    public ItemScriptableObject addItemIsInfinite;
     [Tooltip("(Optional) For AddItem type objects, hide this GameObject.")]
     public GameObject addItemHideObject;
     [Tooltip("(Optional) For AddItem type objects, toggle Item Enabled on this object after adding.")]
@@ -84,6 +86,9 @@ public class ObjectData : MonoBehaviour
     public bool shownObjectItemOverride;
     [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
     public bool startVisible;
+
+    [Tooltip("(Optional) What function to call after using an Item")]
+    public UnityEvent functionItem;
 
     //Private variables for calling fucntions
     private DialogueRunner dialog;
@@ -147,6 +152,10 @@ public class ObjectData : MonoBehaviour
                 {
                     itemEnabledToggleObject.itemEnabled = !itemEnabledToggleObject.itemEnabled;
                 }
+                if (!addItemIsInfinite)
+                {
+                    addedItem = null;
+                }
                 break;
         }
         functioninteract.Invoke();
@@ -177,6 +186,7 @@ public class ObjectData : MonoBehaviour
                 }
                 break;
         }
+        functionItem.Invoke();
         
     }
 }

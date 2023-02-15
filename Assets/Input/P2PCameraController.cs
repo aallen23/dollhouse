@@ -253,24 +253,19 @@ public class P2PCameraController : MonoBehaviour
         hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
         if (hitObject && !dialog.IsDialogueRunning && heldItem)
         {
-            Debug.Log("holdingitem");
             if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
             {
-                Debug.Log("holdingitem2");
                 if (hitObject.yarnItem != null && hitObject.yarnItem != "")
                 {
-                    Debug.Log("holdingitem3");
                     dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));
                     dialog.StartDialogue(hitObject.yarnItem);
                 }
                 else
                 {
-                    Debug.Log("holdingitem4");
                     hitObject.UseItem(hitObject.item.IndexOf(heldItem));
                 }
                 if (!heldItem.multiUse)
                 {
-                    Debug.Log("holdingitem5");
                     invSystem.inv.Remove(heldItem);
                     invSystem.UpdateInventory();
                 }
