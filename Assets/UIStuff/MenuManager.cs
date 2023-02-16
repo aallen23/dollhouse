@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -10,7 +11,8 @@ public class MenuManager : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject mainMenu1,
+    private GameObject dollLantern,
+        mainMenu1,
         mainMenu2,
         gameUI,
         quitFrame,
@@ -18,7 +20,17 @@ public class MenuManager : MonoBehaviour
         videoFrame,
         audioFrame,
         controlsFrame,
-        volume;
+        lighting,
+        filterVol;
+
+    [SerializeField]
+    private AudioMixer masterMixer;
+
+    [SerializeField]
+    private bool flicker;
+
+    [SerializeField]
+    private Light[] lits;
 
     [SerializeField]
     private Volume postProVolume;
@@ -33,13 +45,17 @@ public class MenuManager : MonoBehaviour
     private bool bloomBool,
         vgBool;
 
+    private Resolution r;
+
     public void Start()
     {
+        lits = lighting.GetComponentsInChildren<Light>();
         brightnessSlider.onValueChanged.AddListener(delegate { BrightnessSlide(); });
-        postProVolume = volume.GetComponent<Volume>();
+        postProVolume = filterVol.GetComponent<Volume>();
         postProVolume.profile.TryGet<Vignette>(out vg);
         postProVolume.profile.TryGet<Bloom>(out bloom);
         postProVolume.profile.TryGet<ColorAdjustments>(out color);
+        flicker = true;
         bloomBool = true;
         vgBool = true;
     }
@@ -85,6 +101,50 @@ public class MenuManager : MonoBehaviour
         color.postExposure.value = brightnessSlider.value;
     }
 
+    public void Resolution()
+    {
+        if (Screen.fullScreen)
+        {
+            r = Screen.currentResolution;
+            Screen.fullScreen = false;
+        }
+        else
+        {
+            Screen.fullScreen = true;
+            Screen.SetResolution(r.width, r.height, true);
+        }
+    }
+
+    public void FlickerTrigger()
+    {
+        if (flicker)
+        {
+            flicker = !flicker;
+            dollLantern.GetComponentInChildren<LightFlicker>().TurnFlickerOff();
+            for(int i=0; i < lits.Length; i++)
+            {
+                if(lits[i].TryGetComponent<LightFlicker>(out LightFlicker flickerScript))
+                {
+                    flickerScript.TurnFlickerOff();
+                }
+            }
+        }
+
+        else
+        {
+            flicker = !flicker;
+            dollLantern.GetComponentInChildren<LightFlicker>().TurnFlickerOn();
+            for (int i = 0; i < lits.Length; i++)
+            {
+                if (lits[i].TryGetComponent<LightFlicker>(out LightFlicker flickerScript))
+                {
+                    flickerScript.TurnFlickerOn();
+                }
+            }
+        }
+    }
+
+
     public void BloomTrigger()
     {
         bloomBool = !bloomBool;
@@ -126,6 +186,21 @@ public class MenuManager : MonoBehaviour
         videoFrame.SetActive(false);
         controlsFrame.SetActive(false);
         audioFrame.SetActive(true);
+    }
+
+    public void SetMasterLvl(float masterLvl)
+    {
+        masterMixer.SetFloat("masterVol", masterLvl);
+    }
+
+    public void SetSFXLvl(float sfxLvl)
+    {
+        masterMixer.SetFloat("sfxVol", sfxLvl);
+    }
+
+    public void SetMusicLvl(float musicLvl)
+    {
+        masterMixer.SetFloat("musicVol", musicLvl);
     }
 
     public void ControlsButton()
