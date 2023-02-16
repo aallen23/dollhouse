@@ -13,7 +13,7 @@ public class LightFlicker : MonoBehaviour
         maxFlickerTime = 0.04f;
     [SerializeField] private Light thislight;
 
-    [SerializeField] private bool flicker;
+    [SerializeField] public bool flicker;
 
 
     // Start is called before the first frame update
@@ -32,6 +32,17 @@ public class LightFlicker : MonoBehaviour
             thislight.intensity = Random.Range(minIntensity, maxIntensity);
         }
 
+    }
+
+    public void TurnFlickerOff()
+    {
+        flicker = false;
+    }
+
+    public void TurnFlickerOn()
+    {
+        flicker = true;
+        StartCoroutine(Flickering());
     }
 
 }
