@@ -18,6 +18,7 @@ public class ClockDoor : MonoBehaviour
 
     public void Check()
     {
+        //if (handBig.GetComponent<ObjectData>().desiredRotation.z == compareHandBig.localEulerAngles.z && handSmall.GetComponent<ObjectData>().desiredRotation.z == compareHandSmall.localEulerAngles.z)
         if (handBig.localRotation == compareHandBig.localRotation && handSmall.localRotation == compareHandSmall.localRotation)
         {
             GetComponent<MeshRenderer>().enabled = true;
