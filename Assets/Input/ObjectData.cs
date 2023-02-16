@@ -44,6 +44,8 @@ public class ObjectData : MonoBehaviour
     [Space(10)]
     [Tooltip("For Rotate type objects, apply the following rotation:")]
     public Vector3 rotateAmount;
+    private Quaternion desiredRotation; //We'll change this, so we can lerp the rotation nicely.
+    public float rotationSpeed;
     [Tooltip("For Rotate type objects, apply rotation to this object.")]
     public GameObject rotateObject;
 
@@ -100,11 +102,23 @@ public class ObjectData : MonoBehaviour
         dialog = FindObjectOfType<DialogueRunner>();
         player = FindObjectOfType<P2PCameraController>();
 
+        if (rotateObject)
+        {
+            desiredRotation = rotateObject.transform.rotation;
+        }
 
         //If an Item would show an GameObject, we want it to start hidden
         if (!startVisible)
         {
             StartCoroutine(HideShownObject());
+        }
+    }
+
+    void Update()
+    {
+        if (rotateObject)
+        {
+            //rotateObject.transform.rotation = Quaternion.LerpUnclamped(rotateObject.transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
         }
     }
 
@@ -134,6 +148,7 @@ public class ObjectData : MonoBehaviour
                 }
                 break;
             case InteractType.Rotate:
+                //desiredRotation = desiredRotation * Quaternion.Euler(rotateAmount);
                 rotateObject.transform.Rotate(rotateAmount, Space.Self);
                 break;
             case InteractType.Teleport:
