@@ -26,17 +26,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private AudioMixer masterMixer;
 
-    [SerializeField]
     private bool flicker;
-
-    [SerializeField]
     private Light[] lits;
-
-    [SerializeField]
     private Volume postProVolume;
-
-    [SerializeField]
-    private Slider brightnessSlider;
 
     private ColorAdjustments color;
     private Bloom bloom;
@@ -50,7 +42,6 @@ public class MenuManager : MonoBehaviour
     public void Start()
     {
         lits = lighting.GetComponentsInChildren<Light>();
-        brightnessSlider.onValueChanged.AddListener(delegate { BrightnessSlide(); });
         postProVolume = filterVol.GetComponent<Volume>();
         postProVolume.profile.TryGet<Vignette>(out vg);
         postProVolume.profile.TryGet<Bloom>(out bloom);
@@ -86,6 +77,8 @@ public class MenuManager : MonoBehaviour
     public void OptionsButton()
     {
         optionsFrame.SetActive(true);
+        audioFrame.SetActive(false);
+        controlsFrame.SetActive(false);
         videoFrame.SetActive(true);
     }
 
@@ -96,9 +89,9 @@ public class MenuManager : MonoBehaviour
         videoFrame.SetActive(true);
     }
 
-    public void BrightnessSlide()
+    public void BrightnessSlide(float brightLvl)
     {
-        color.postExposure.value = brightnessSlider.value;
+        color.postExposure.value = brightLvl;
     }
 
     public void Resolution()
@@ -190,17 +183,17 @@ public class MenuManager : MonoBehaviour
 
     public void SetMasterLvl(float masterLvl)
     {
-        masterMixer.SetFloat("masterVol", masterLvl);
+        masterMixer.SetFloat("masterVol", Mathf.Log10(masterLvl) * 20);
     }
 
     public void SetSFXLvl(float sfxLvl)
     {
-        masterMixer.SetFloat("sfxVol", sfxLvl);
+        masterMixer.SetFloat("sfxVol", Mathf.Log10(sfxLvl) * 20);
     }
 
     public void SetMusicLvl(float musicLvl)
     {
-        masterMixer.SetFloat("musicVol", musicLvl);
+        masterMixer.SetFloat("musicVol", Mathf.Log10(musicLvl) * 20);
     }
 
     public void ControlsButton()
