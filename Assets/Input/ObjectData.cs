@@ -44,6 +44,8 @@ public class ObjectData : MonoBehaviour
     [Space(10)]
     [Tooltip("For Rotate type objects, apply the following rotation:")]
     public Vector3 rotateAmount;
+    public Vector3 desiredRotation; //We'll change this, so we can lerp the rotation nicely.
+    public float rotationSpeed;
     [Tooltip("For Rotate type objects, apply rotation to this object.")]
     public GameObject rotateObject;
 
@@ -54,6 +56,8 @@ public class ObjectData : MonoBehaviour
     [Space(10)]
     [Tooltip("For AddItem type objects, add this item to your inventory")]
     public ItemScriptableObject addedItem;
+    [Tooltip("For AddItem type objects, is this multiUse or one-time only?")]
+    public ItemScriptableObject addItemIsInfinite;
     [Tooltip("(Optional) For AddItem type objects, hide this GameObject.")]
     public GameObject addItemHideObject;
     [Tooltip("(Optional) For AddItem type objects, toggle Item Enabled on this object after adding.")]
@@ -85,6 +89,9 @@ public class ObjectData : MonoBehaviour
     [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
     public bool startVisible;
 
+    [Tooltip("(Optional) What function to call after using an Item")]
+    public UnityEvent functionItem;
+
     //Private variables for calling fucntions
     private DialogueRunner dialog;
     private P2PCameraController player;
@@ -95,11 +102,27 @@ public class ObjectData : MonoBehaviour
         dialog = FindObjectOfType<DialogueRunner>();
         player = FindObjectOfType<P2PCameraController>();
 
+        if (rotateObject)
+        {
+            desiredRotation = rotateObject.transform.eulerAngles;
+        }
 
         //If an Item would show an GameObject, we want it to start hidden
         if (!startVisible)
         {
             StartCoroutine(HideShownObject());
+        }
+    }
+
+    void Update()
+    {
+        if (rotateObject && false)
+        {
+            rotateObject.transform.eulerAngles = new Vector3(
+             Mathf.LerpAngle(rotateObject.transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
+             Mathf.LerpAngle(rotateObject.transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
+             Mathf.LerpAngle(rotateObject.transform.eulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
+             );
         }
     }
 
@@ -129,6 +152,7 @@ public class ObjectData : MonoBehaviour
                 }
                 break;
             case InteractType.Rotate:
+                //desiredRotation += rotateAmount;
                 rotateObject.transform.Rotate(rotateAmount, Space.Self);
                 break;
             case InteractType.Teleport:
@@ -146,6 +170,10 @@ public class ObjectData : MonoBehaviour
                 if (itemEnabledToggleObject)
                 {
                     itemEnabledToggleObject.itemEnabled = !itemEnabledToggleObject.itemEnabled;
+                }
+                if (!addItemIsInfinite)
+                {
+                    addedItem = null;
                 }
                 break;
         }
@@ -177,6 +205,7 @@ public class ObjectData : MonoBehaviour
                 }
                 break;
         }
+        functionItem.Invoke();
         
     }
 }

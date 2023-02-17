@@ -32,6 +32,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnDrag(PointerEventData eventData)
     {
         player.heldItem = item;
+        player.cursorSprite = cursorSprite;
         cursorSprite.transform.position = eventData.position;
         
     }

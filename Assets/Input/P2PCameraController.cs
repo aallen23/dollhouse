@@ -12,7 +12,7 @@ public class P2PCameraController : MonoBehaviour
     public CameraPosition curPos;
     private RaycastHit hit;
     public NavMeshAgent doll;
-    private float desiredFOV;
+    private float desiredFOV = 60f;
     public float rotationSpeed;
     public float moveSpeed;
     [SerializeField] private ObjectData[] objects;
@@ -21,6 +21,10 @@ public class P2PCameraController : MonoBehaviour
 
     public DialogueRunner dialog;
     public InventorySystem invSystem;
+
+    public GameObject gamepadMouse;
+
+    public GameObject cursorSprite;
 
 
     // Start is called before the first frame update
@@ -38,6 +42,36 @@ public class P2PCameraController : MonoBehaviour
         //inputMap.PointToPoint.MoveRight.performed += MoveRight_performed;
         inputMap.PointToPoint.MoveForward.performed += MoveForward_performed;
         inputMap.PointToPoint.MoveBackward.performed += MoveBackward_performed;
+        inputMap.PointToPoint.Interact.performed += Interact_performed;
+        inputMap.PointToPoint.Interact.canceled += Interact_canceled;
+        inputMap.PointToPoint.MousePos.performed += MousePos_performed;
+        inputMap.PointToPoint.Zoom.performed += Zoom_performed;
+        inputMap.PointToPoint.Zoom.canceled += Zoom_canceled;
+        //inputMap.asset.controlSchemes.
+    }
+
+    private void Zoom_canceled(InputAction.CallbackContext obj)
+    {
+        desiredFOV = 60f;
+    }
+
+    private void Zoom_performed(InputAction.CallbackContext obj)
+    {
+        desiredFOV = 30f;
+    }
+
+    private void MousePos_performed(InputAction.CallbackContext obj)
+    {
+        if (obj.control.device.name == "Mouse")
+        {
+            gamepadMouse.SetActive(false);
+            Cursor.visible = true;
+        }
+        else
+        {
+            gamepadMouse.SetActive(true);
+            Cursor.visible = false;
+        }
     }
 
     private void MoveBackward_performed(InputAction.CallbackContext obj)
@@ -170,35 +204,32 @@ public class P2PCameraController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    private void Interact_performed(InputAction.CallbackContext obj)
     {
-        //Vector2 oldMousePos = Mouse.current.position.ReadValue();
-        //Vector2 newMousePos = oldMousePos + inputMap.PointToPoint.GamepadMouse.ReadValue<Vector2>();
-        //Mouse.current.WarpCursorPosition(newMousePos);
-
-
-        if (Mouse.current.leftButton.wasPressedThisFrame && dialog.IsDialogueRunning)
+        if (obj.ReadValue<float>() == 0)
         {
-            dialog.OnViewRequestedInterrupt();
+            return;
         }
-
-        gameObject.transform.eulerAngles = new Vector3(
-            Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
-            Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
-            Mathf.LerpAngle(transform.eulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
-            );
-        //gameObject.transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, desiredRotation, Time.deltaTime * rotationSpeed);
-        gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * moveSpeed);
-
-        Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
-
-        ObjectData hitObject;
-
-        if (Physics.Raycast(ray, out hit))
+        if (!dialog.IsDialogueRunning)
         {
-            //Debug.Log(hit.transform.name);
-            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && Mouse.current.leftButton.wasPressedThisFrame && !EventSystem.current.IsPointerOverGameObject())
+            hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
+            if (hitObject && !EventSystem.current.IsPointerOverGameObject())
+            {
+                if (!(hitObject.disableInteractAtPosition && curPos == hitObject.positionCamera))
+                {
+                    if (hitObject.positionDoll != null)
+                    {
+                        doll.GetComponent<DollBehavior>().GoToObject(hitObject);
+                    }
+                    else
+                    {
+                        hitObject.Interact();
+                    }
+                }
+            }
+            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 //Debug.Log("Walk");
                 doll.GetComponent<DollBehavior>().od = null;
@@ -209,74 +240,68 @@ public class P2PCameraController : MonoBehaviour
                 //needToRotate = true;
             }
 
-            hit.transform.gameObject.TryGetComponent(out hitObject);
-
-            if (hitObject)
-            {
-                if (Mouse.current.leftButton.wasPressedThisFrame && !dialog.IsDialogueRunning)
-                {
-                    if (!(hitObject.disableInteractAtPosition && curPos == hitObject.positionCamera))
-                    {
-                        if (hitObject.positionDoll != null)
-                        {
-                            doll.GetComponent<DollBehavior>().GoToObject(hitObject);
-                        }
-                        else
-                        {
-                            hitObject.Interact();
-                        }
-
-                    }
-                }
-                if (Mouse.current.leftButton.wasReleasedThisFrame && !dialog.IsDialogueRunning && heldItem)
-                {
-                    if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
-                    {
-                        if (hitObject.yarnItem != null && hitObject.yarnItem != "")
-                        {
-                            dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));
-                            dialog.StartDialogue(hitObject.yarnItem);
-                        }
-                        else
-                        {
-                            hitObject.UseItem(hitObject.item.IndexOf(heldItem));
-                        }
-                        if (!heldItem.multiUse)
-                        {
-                            invSystem.inv.Remove(heldItem);
-                            invSystem.UpdateInventory();
-                        }
-                    }
-                    heldItem = null;
-                }
-                else if (Mouse.current.leftButton.wasReleasedThisFrame)
-                {
-                    heldItem = null;
-                }
-                
-            }
-            
         }
+        else
+        {
+            dialog.OnViewRequestedInterrupt();
+            return;
+        }
+    }
+
+    private void Interact_canceled(InputAction.CallbackContext obj)
+    {
+        hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
+        if (hitObject && !dialog.IsDialogueRunning && heldItem)
+        {
+            if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
+            {
+                if (hitObject.yarnItem != null && hitObject.yarnItem != "")
+                {
+                    dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));
+                    dialog.StartDialogue(hitObject.yarnItem);
+                }
+                else
+                {
+                    hitObject.UseItem(hitObject.item.IndexOf(heldItem));
+                }
+                if (!heldItem.multiUse)
+                {
+                    invSystem.inv.Remove(heldItem);
+                    invSystem.UpdateInventory();
+                }
+            }
+        }
+        heldItem = null;
+        Destroy(cursorSprite);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        gameObject.transform.eulerAngles = new Vector3(
+            Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
+            Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
+            Mathf.LerpAngle(transform.eulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
+            );
+        //gameObject.transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, desiredRotation, Time.deltaTime * rotationSpeed);
+        gameObject.transform.position = Vector3.Lerp(transform.position, curPos.transform.position, Time.deltaTime * moveSpeed);
+
+        Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
+        //Debug.Log(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
+        Physics.Raycast(ray, out hit);
         
         foreach (ObjectData od in objects)
         {
             od.gameObject.layer = 0;
 
-            if (od.gameObject == hit.transform.gameObject && !dialog.IsDialogueRunning && !(od.positionCamera == curPos && od.disableInteractAtPosition))
+            if (od.gameObject == hit.transform.gameObject && !dialog.IsDialogueRunning && !(od.positionCamera == curPos && od.disableInteractAtPosition) && !EventSystem.current.IsPointerOverGameObject())
             {
                 od.gameObject.layer = 8;
             }
         }
 
-        if (Mouse.current.rightButton.isPressed)
-        {
-            desiredFOV = 30f;
-        }
-        else
-        {
-            desiredFOV = 60f;
-        }
-        gameObject.GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
+        GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
 
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame)

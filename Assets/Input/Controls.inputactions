@@ -311,17 +311,25 @@
                 },
                 {
                     "name": "MousePos",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "f330c7d8-af73-4c83-b998-f62a25faf94b",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "GamepadMouse",
-                    "type": "Value",
-                    "id": "d721d058-5a39-4b01-be7a-ab90453659c7",
-                    "expectedControlType": "Vector2",
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "c5fa0ba2-072e-44be-bed7-6b6665061512",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Button",
+                    "id": "db06567d-adf0-41d0-905e-cae5aaaf107b",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -428,7 +436,7 @@
                 },
                 {
                     "name": "",
-                    "id": "6b24c5e1-6022-4f57-bae8-29ba38a3d56e",
+                    "id": "88085478-9553-4658-a91e-2d3102507558",
                     "path": "<VirtualMouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -439,12 +447,45 @@
                 },
                 {
                     "name": "",
-                    "id": "6e007be4-029a-45e4-9a92-6ab33dcbdf7b",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "795484c2-a086-46c9-a5f8-602f3584ea1f",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GamepadMouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e8f21c3-da18-4176-a483-5faed2d387cb",
+                    "path": "<VirtualMouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ab629ef-100b-4036-8540-747ae646839e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2be8eb56-faf9-41c8-9137-04126c6baa07",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
