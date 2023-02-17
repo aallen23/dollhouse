@@ -7,5 +7,6 @@ public class ItemScriptableObject : ScriptableObject
 {
     public string displayName;
     public Sprite displaySprite;
+    public Color displayColor;
     public bool multiUse;
 }

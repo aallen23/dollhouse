@@ -9,8 +9,13 @@ public class CameraPosition : MonoBehaviour
     public bool obeyRotation;
     public bool quickSwitch;
 
+    [Tooltip("GameObjects to show at this position, and hide otherwise.")]
+    public List<ObjectData> enableAtPosition;
+
     public void Awake()
     {
         GetComponent<MeshRenderer>().enabled = false;
     }
+
+
 }

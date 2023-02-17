@@ -16,14 +16,10 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if (other.gameObject == doll.gameObject)
         {
-            pcamera.curPos = GetComponentInParent<CameraPosition>();
-            if (pcamera.curPos.obeyRotation)
-            {
-                pcamera.desiredRotation = pcamera.curPos.transform.eulerAngles;
-            }
+            pcamera.Travel(GetComponentInParent<CameraPosition>());
         }
     }
 }
