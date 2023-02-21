@@ -20,6 +20,7 @@ public enum ObjectUseType
     ShowObject
 }
 
+//Stores an Interactable Object's Data
 public class ObjectData : MonoBehaviour
 {
     [Tooltip("If true, Doll must travel to object before Interact()ing.")]
@@ -116,7 +117,7 @@ public class ObjectData : MonoBehaviour
 
     void Update()
     {
-        if (rotateObject && false)
+        if (rotateObject && false) //Failed attempt at lerping the object's rotation.
         {
             rotateObject.transform.eulerAngles = new Vector3(
              Mathf.LerpAngle(rotateObject.transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
@@ -124,6 +125,12 @@ public class ObjectData : MonoBehaviour
              Mathf.LerpAngle(rotateObject.transform.eulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
              );
         }
+        /*  This works well for stuff like the Clocks.
+         *  But if the object has multiple things that can control its rotation, then it falls apart
+         *  Probably fixable TO FIX
+         */
+
+
     }
 
     IEnumerator HideShownObject()

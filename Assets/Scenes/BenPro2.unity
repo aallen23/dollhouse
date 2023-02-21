@@ -722,7 +722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1e6bd1eae8adea64b950b2e0e9caabd0, type: 3}
       propertyPath: m_Name
-      value: GrandfatherClockModel1
+      value: GrandfatherClock
       objectReference: {fileID: 0}
     - target: {fileID: 8182320217418860803, guid: 1e6bd1eae8adea64b950b2e0e9caabd0, type: 3}
       propertyPath: m_Name
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 147385613}
   - component: {fileID: 147385612}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Old FPSPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1073,7 +1073,7 @@ Transform:
   m_Children:
   - {fileID: 1275557731}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &155951424
 GameObject:
@@ -1419,7 +1419,7 @@ Transform:
   m_Children:
   - {fileID: 1025518534}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &192048973
 PrefabInstance:
@@ -1430,7 +1430,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_RootOrder
-      value: 27
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_LocalScale.x
@@ -1498,7 +1498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_Name
-      value: umbrellastandtest (1)
+      value: Umbrella Stand MidRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
@@ -1937,12 +1937,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344303578}
   m_LocalRotation: {x: -0.08943338, y: 0.99599284, z: -0, w: 0}
-  m_LocalPosition: {x: 1010.2, y: 191, z: -129}
+  m_LocalPosition: {x: 1022.1, y: 191, z: -129}
   m_LocalScale: {x: 1, y: 231.42651, z: 342.17737}
   m_Children:
   - {fileID: 1066218869}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -10.262}
 --- !u!1 &348906956
 GameObject:
@@ -1958,7 +1958,7 @@ GameObject:
   - component: {fileID: 348906957}
   - component: {fileID: 348906958}
   m_Layer: 8
-  m_Name: Doll
+  m_Name: Cecilia Doll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2080,7 +2080,7 @@ Transform:
   m_Children:
   - {fileID: 1279218155}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &349684584
 GameObject:
@@ -2411,7 +2411,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 535f4a61ac05b074c8f1f60a28545e34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0b9a30094e2a164684a01c18a3f5d83, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2738,7 +2738,7 @@ GameObject:
   - component: {fileID: 460795016}
   - component: {fileID: 460795015}
   m_Layer: 0
-  m_Name: Hall2
+  m_Name: Cam_Hall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2757,7 +2757,7 @@ Transform:
   m_Children:
   - {fileID: 2085194460}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 12, y: 140, z: 0}
 --- !u!33 &460795015
 MeshFilter:
@@ -2842,7 +2842,7 @@ GameObject:
   - component: {fileID: 484114056}
   - component: {fileID: 484114055}
   m_Layer: 0
-  m_Name: CubeDice
+  m_Name: Test Block (Dice)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2963,7 +2963,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &492437775
 GameObject:
@@ -3239,7 +3239,7 @@ GameObject:
   - component: {fileID: 569970055}
   - component: {fileID: 569970054}
   m_Layer: 0
-  m_Name: WalkTo
+  m_Name: DollPos_GrandClock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3409,7 +3409,7 @@ GameObject:
   - component: {fileID: 587696232}
   - component: {fileID: 587696231}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: DrawingCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3537,11 +3537,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593020816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 861.5, y: 484.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598512747
 GameObject:
@@ -4166,7 +4166,7 @@ GameObject:
   - component: {fileID: 646136812}
   - component: {fileID: 646136811}
   m_Layer: 0
-  m_Name: Table
+  m_Name: Test Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4247,7 +4247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &647572895
 GameObject:
@@ -4262,7 +4262,7 @@ GameObject:
   - component: {fileID: 647572898}
   - component: {fileID: 647572897}
   m_Layer: 0
-  m_Name: WalkTo
+  m_Name: DollPos_Safe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4511,7 +4511,7 @@ GameObject:
   - component: {fileID: 667780554}
   - component: {fileID: 667780553}
   m_Layer: 0
-  m_Name: MovePos
+  m_Name: Cam_CuckooClock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5994,7 +5994,7 @@ GameObject:
   - component: {fileID: 800599011}
   - component: {fileID: 800599010}
   m_Layer: 0
-  m_Name: Foyer2
+  m_Name: Cam_Foyer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6083,7 +6083,7 @@ Transform:
   - {fileID: 1171739547}
   - {fileID: 1791983237}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 12, y: -30, z: 0}
 --- !u!1 &803048566
 GameObject:
@@ -6437,7 +6437,7 @@ GameObject:
   - component: {fileID: 841979891}
   - component: {fileID: 841979890}
   m_Layer: 0
-  m_Name: P2PCam
+  m_Name: P2PPlayer
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6456,7 +6456,7 @@ Transform:
   m_Children:
   - {fileID: 1964442806}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 23.47, y: -106.58, z: 0}
 --- !u!108 &841979890
 Light:
@@ -6815,7 +6815,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_LocalScale.x
@@ -6883,7 +6883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_Name
-      value: umbrellastandtest
+      value: Umbrella Stand Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
@@ -7005,7 +7005,7 @@ GameObject:
   - component: {fileID: 901826661}
   - component: {fileID: 901826660}
   m_Layer: 0
-  m_Name: Room2 1
+  m_Name: Cam_Room3-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7093,7 +7093,7 @@ Transform:
   m_Children:
   - {fileID: 804172629}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 12, y: 19.544, z: 0}
 --- !u!1 &907357812
 GameObject:
@@ -8086,7 +8086,7 @@ GameObject:
   - component: {fileID: 1043382908}
   - component: {fileID: 1043382907}
   m_Layer: 0
-  m_Name: Hall3
+  m_Name: Cam_Hall3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8174,7 +8174,7 @@ Transform:
   m_Children:
   - {fileID: 714208289}
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 12, y: -30, z: 0}
 --- !u!1 &1066218868
 GameObject:
@@ -8430,7 +8430,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 12, y: -30, z: 0}
 --- !u!1001 &1135070563
 PrefabInstance:
@@ -8509,7 +8509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 06383d755c82e394ca8e64f1b73ce788, type: 3}
       propertyPath: m_Name
-      value: CuckooClockModel1
+      value: CuckooClock
       objectReference: {fileID: 0}
     - target: {fileID: 7874888529378031273, guid: 06383d755c82e394ca8e64f1b73ce788, type: 3}
       propertyPath: m_Name
@@ -9096,7 +9096,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1239884224
 GameObject:
@@ -9703,7 +9703,7 @@ GameObject:
   - component: {fileID: 1302363634}
   - component: {fileID: 1302363633}
   m_Layer: 0
-  m_Name: MovePos
+  m_Name: Cam_GrandClock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10036,7 +10036,7 @@ GameObject:
   - component: {fileID: 1396071908}
   - component: {fileID: 1396071907}
   m_Layer: 0
-  m_Name: Hall1
+  m_Name: Cam_Hall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10125,7 +10125,7 @@ Transform:
   - {fileID: 1419138703}
   - {fileID: 155951425}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 12, y: -50, z: 0}
 --- !u!1 &1402480210
 GameObject:
@@ -10562,7 +10562,7 @@ GameObject:
   - component: {fileID: 1447618960}
   - component: {fileID: 1447618959}
   m_Layer: 5
-  m_Name: CE BG
+  m_Name: Emotions BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10639,7 +10639,7 @@ GameObject:
   - component: {fileID: 1450176569}
   - component: {fileID: 1450176568}
   m_Layer: 0
-  m_Name: UmbrellaWalk
+  m_Name: DollPos_Umbrella
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10719,7 +10719,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1463480310
 GameObject:
@@ -10935,7 +10935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 631b338bd35905f40b59e8894ba804de, type: 3}
       propertyPath: m_Name
-      value: Chair
+      value: Test Chair
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 631b338bd35905f40b59e8894ba804de, type: 3}
       propertyPath: m_Layer
@@ -11225,7 +11225,7 @@ GameObject:
   - component: {fileID: 1595731258}
   - component: {fileID: 1595731257}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11308,7 +11308,7 @@ RectTransform:
   - {fileID: 1447618958}
   - {fileID: 1417101697}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11733,7 +11733,7 @@ GameObject:
   - component: {fileID: 1689590348}
   - component: {fileID: 1689590347}
   m_Layer: 0
-  m_Name: Foyer1
+  m_Name: Cam_Foyer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11821,7 +11821,7 @@ Transform:
   m_Children:
   - {fileID: 2063560769}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 12, y: 19.544, z: 0}
 --- !u!1 &1706509523
 GameObject:
@@ -11981,7 +11981,7 @@ GameObject:
   - component: {fileID: 1723770919}
   - component: {fileID: 1723770918}
   m_Layer: 0
-  m_Name: UmbrellaMove
+  m_Name: Cam_Umbrella
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12068,7 +12068,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 12, y: 180, z: 0}
 --- !u!1 &1734760853
 GameObject:
@@ -12142,7 +12142,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754279164 stripped
 GameObject:
@@ -12811,7 +12811,7 @@ GameObject:
   - component: {fileID: 1820632625}
   - component: {fileID: 1820632624}
   m_Layer: 0
-  m_Name: Note Move
+  m_Name: Cam_Logic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13251,7 +13251,7 @@ GameObject:
   - component: {fileID: 1867860894}
   - component: {fileID: 1867860898}
   m_Layer: 0
-  m_Name: Note
+  m_Name: Umbrella Puzzle Logic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13385,7 +13385,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_LocalScale.x
@@ -13453,7 +13453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_Name
-      value: umbrellastandtest (3)
+      value: Umbrella Stand Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
@@ -13930,7 +13930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965155245}
   m_Layer: 0
-  m_Name: Positions
+  m_Name: Cam_RoomPositions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13956,7 +13956,7 @@ Transform:
   - {fileID: 771057926}
   - {fileID: 2068377423}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1972292116 stripped
 GameObject:
@@ -14177,7 +14177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_LocalScale.x
@@ -14245,7 +14245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
       propertyPath: m_Name
-      value: umbrellastandtest (2)
+      value: Umbrella Stand MidLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
@@ -14267,7 +14267,7 @@ GameObject:
   - component: {fileID: 1995403567}
   - component: {fileID: 1995403566}
   m_Layer: 0
-  m_Name: MovePos
+  m_Name: Cam_Safe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14369,7 +14369,7 @@ GameObject:
   - component: {fileID: 2006857950}
   - component: {fileID: 2006857949}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: WindowBlocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14449,7 +14449,7 @@ Transform:
   m_LocalScale: {x: 21.887, y: 674.85004, z: 489.38007}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2009201443
 GameObject:
@@ -14970,7 +14970,7 @@ GameObject:
   - component: {fileID: 2103842436}
   - component: {fileID: 2103842435}
   m_Layer: 0
-  m_Name: Upstairs
+  m_Name: Cam_Upstairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15058,7 +15058,7 @@ Transform:
   m_Children:
   - {fileID: 306913407}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 12, y: 19.544, z: 0}
 --- !u!1 &2115617447
 GameObject:
