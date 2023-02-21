@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 
+//Legacy FPS Camera Controller
 public class CameraController : MonoBehaviour
 {
     public float mouseSensitivity;

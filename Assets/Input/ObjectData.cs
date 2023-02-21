@@ -111,6 +111,15 @@ public class ObjectData : MonoBehaviour
         }
     }
 
+    IEnumerator HideShownObject()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (shownObject)
+        {
+            shownObject.SetActive(false);
+        }
+    }
+
     void Update()
     {
         //Rotates object (uses Quaternion.Lerp isntead of below to avoid Gimbal Lock) :)
@@ -122,18 +131,10 @@ public class ObjectData : MonoBehaviour
              );*/
     }
 
-    IEnumerator HideShownObject()
-    {
-        yield return new WaitForSeconds(0.5f);
-        if (shownObject)
-        {
-            shownObject.SetActive(false);
-        }
-    }
-
-    //Function
+    //Based on InteractType, we do various things
     public void Interact()
     {
+        //If it has a camera position, go there first.
         if (positionCamera)
         {
             player.Travel(positionCamera);
@@ -141,10 +142,10 @@ public class ObjectData : MonoBehaviour
 
         switch (interactType)
         {
-            case InteractType.Examine:
+            case InteractType.Examine: 
                 if (yarnExamine != "" && yarnExamine != null)
                 {
-                    dialog.StartDialogue(yarnExamine);
+                    dialog.StartDialogue(yarnExamine); //Trigger yarn
                 }
                 break;
             case InteractType.Rotate:

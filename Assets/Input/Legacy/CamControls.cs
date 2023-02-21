@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//Old Class for RTS style Camera controls
 public class CamControls : MonoBehaviour
 {
     //references: https://onewheelstudio.com/blog/2022/1/14/strategy-game-camera-unitys-new-input-system

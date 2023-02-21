@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
+//An Inventory Item (for Prefab)
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private GameObject cursorSprite;
