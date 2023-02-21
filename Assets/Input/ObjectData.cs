@@ -48,7 +48,7 @@ public class ObjectData : MonoBehaviour
     public Vector3 desiredRotation; //We'll change this, so we can lerp the rotation nicely.
     public float rotationSpeed;
     [Tooltip("For Rotate type objects, apply rotation to this object.")]
-    public GameObject rotateObject;
+    public ObjectData rotateObject;
 
     [Space(10)]
     [Tooltip("For Teleport type objects, teleport to this point.")]
@@ -102,11 +102,7 @@ public class ObjectData : MonoBehaviour
         //Find specific GameObjects to be called alter.
         dialog = FindObjectOfType<DialogueRunner>();
         player = FindObjectOfType<P2PCameraController>();
-
-        if (rotateObject)
-        {
-            desiredRotation = rotateObject.transform.eulerAngles;
-        }
+        desiredRotation = transform.eulerAngles;
 
         //If an Item would show an GameObject, we want it to start hidden
         if (!startVisible)
@@ -117,20 +113,13 @@ public class ObjectData : MonoBehaviour
 
     void Update()
     {
-        if (rotateObject && false) //Failed attempt at lerping the object's rotation.
-        {
-            rotateObject.transform.eulerAngles = new Vector3(
-             Mathf.LerpAngle(rotateObject.transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
-             Mathf.LerpAngle(rotateObject.transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
-             Mathf.LerpAngle(rotateObject.transform.eulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
-             );
-        }
-        /*  This works well for stuff like the Clocks.
-         *  But if the object has multiple things that can control its rotation, then it falls apart
-         *  Probably fixable TO FIX
-         */
-
-
+        //Rotates object (uses Quaternion.Lerp isntead of below to avoid Gimbal Lock) :)
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+        /*transform.localEulerAngles = new Vector3(
+             Mathf.LerpAngle(transform.localEulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
+             Mathf.LerpAngle(transform.localEulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
+             Mathf.LerpAngle(transform.localEulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
+             );*/
     }
 
     IEnumerator HideShownObject()
@@ -159,8 +148,8 @@ public class ObjectData : MonoBehaviour
                 }
                 break;
             case InteractType.Rotate:
-                //desiredRotation += rotateAmount;
-                rotateObject.transform.Rotate(rotateAmount, Space.Self);
+                rotateObject.desiredRotation += rotateAmount;
+                //rotateObject.transform.Rotate(rotateAmount, Space.Self);
                 break;
             case InteractType.Teleport:
                 NavMeshAgent doll = FindObjectOfType<DollBehavior>().GetComponent<NavMeshAgent>();

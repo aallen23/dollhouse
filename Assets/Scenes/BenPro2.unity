@@ -1638,10 +1638,10 @@ MonoBehaviour:
   disableInteractAtPosition: 0
   interactType: 1
   yarnExamine: 
-  rotateAmount: {x: 0, y: 18, z: 0}
+  rotateAmount: {x: -18, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
-  rotationSpeed: 8
-  rotateObject: {fileID: 7107839376548933403}
+  rotationSpeed: 0
+  rotateObject: {fileID: 7107839376548933404}
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemIsInfinite: {fileID: 0}
@@ -3526,7 +3526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTransform: {fileID: 1417101697}
-  cursorSpeed: 1000
+  cursorSpeed: 2000
   canvasTransform: {fileID: 1595731260}
   canvas: {fileID: 1595731259}
 --- !u!4 &593020818
@@ -3974,7 +3974,7 @@ MonoBehaviour:
   rotateAmount: {x: 0, y: 0, z: 30}
   desiredRotation: {x: 0, y: 0, z: 0}
   rotationSpeed: 32
-  rotateObject: {fileID: 1967944998769179439}
+  rotateObject: {fileID: 635460453}
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemIsInfinite: {fileID: 0}
@@ -6564,22 +6564,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952a09d956a38ac4e8db3fe617df5734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desiredRotation: {x: 0, y: 0, z: 0}
   startPos: {fileID: 1860770541}
   curPos: {fileID: 0}
   doll: {fileID: 348906957}
+  desiredRotation: {x: 0, y: 0, z: 0}
+  desiredFOV: 60
   rotationSpeed: 16
   moveSpeed: 16
-  objects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  heldItem: {fileID: 0}
-  dialog: {fileID: 164240965}
+  objects: []
   invSystem: {fileID: 1018322399}
-  gamepadMouse: {fileID: 1417101696}
+  heldItem: {fileID: 0}
   cursorSprite: {fileID: 0}
+  dialog: {fileID: 164240965}
+  gamepadMouse: {fileID: 1417101696}
 --- !u!81 &841979893
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7988,10 +7985,10 @@ MonoBehaviour:
   disableInteractAtPosition: 0
   interactType: 1
   yarnExamine: 
-  rotateAmount: {x: 0, y: -18, z: 0}
+  rotateAmount: {x: 18, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
-  rotationSpeed: 8
-  rotateObject: {fileID: 7107839376548933403}
+  rotationSpeed: 0
+  rotateObject: {fileID: 7107839376548933404}
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemIsInfinite: {fileID: 0}
@@ -11923,7 +11920,7 @@ MonoBehaviour:
   rotateAmount: {x: 0, y: 0, z: 30}
   desiredRotation: {x: 0, y: 0, z: 0}
   rotationSpeed: 32
-  rotateObject: {fileID: 1322095485952212797}
+  rotateObject: {fileID: 1717177641}
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemIsInfinite: {fileID: 0}
@@ -12619,10 +12616,10 @@ MonoBehaviour:
   disableInteractAtPosition: 0
   interactType: 1
   yarnExamine: 
-  rotateAmount: {x: 0, y: 0, z: 0}
+  rotateAmount: {x: 0, y: 0, z: 30}
   desiredRotation: {x: 0, y: 0, z: 0}
   rotationSpeed: 0
-  rotateObject: {fileID: 4333118305697913150}
+  rotateObject: {fileID: 0}
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemIsInfinite: {fileID: 0}
@@ -15567,6 +15564,7 @@ GameObject:
   - component: {fileID: 2369167405997435748}
   - component: {fileID: 887388311235385447}
   - component: {fileID: 7107839376548933405}
+  - component: {fileID: 7107839376548933404}
   m_Layer: 0
   m_Name: Knob
   m_TagString: Untagged
@@ -15574,6 +15572,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7107839376548933404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7107839376548933403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDollObject: 0
+  positionDoll: {fileID: 0}
+  positionCamera: {fileID: 1995403565}
+  disableInteractAtPosition: 1
+  interactType: 0
+  yarnExamine: 
+  rotateAmount: {x: 0, y: 0, z: 0}
+  desiredRotation: {x: 0, y: 0, z: 0}
+  rotationSpeed: 8
+  rotateObject: {fileID: 0}
+  teleportPoint: {fileID: 0}
+  addedItem: {fileID: 0}
+  addItemIsInfinite: {fileID: 0}
+  addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
+  functioninteract:
+    m_PersistentCalls:
+      m_Calls: []
+  item: []
+  itemEnabled: 0
+  objectUseType: 0
+  yarnItem: 
+  shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
+  startVisible: 0
+  functionItem:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!64 &7107839376548933405
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15859,10 +15898,10 @@ MonoBehaviour:
   disableInteractAtPosition: 0
   interactType: 1
   yarnExamine: 
-  rotateAmount: {x: 0, y: 0, z: 0}
+  rotateAmount: {x: 0, y: 0, z: 30}
   desiredRotation: {x: 0, y: 0, z: 0}
   rotationSpeed: 0
-  rotateObject: {fileID: 8883912632345983856}
+  rotateObject: {fileID: 0}
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
   addItemIsInfinite: {fileID: 0}
