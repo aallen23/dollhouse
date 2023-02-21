@@ -47,8 +47,9 @@ public class P2PCameraController : MonoBehaviour
         inputMap.PointToPoint.MousePos.performed += MousePos_performed;
         inputMap.PointToPoint.Zoom.performed += Zoom_performed;
         inputMap.PointToPoint.Zoom.canceled += Zoom_canceled;
+        inputMap.PointToPoint.Cry.performed += Cry_performed;
+        inputMap.PointToPoint.Cry.canceled += Cry_canceled;
     }
-
     void Start()
     {
         //Load Objects into an array that we can iterate through later.
@@ -225,6 +226,23 @@ public class P2PCameraController : MonoBehaviour
         }
     }
     
+    private void Cry_performed(InputAction.CallbackContext obj)
+    {
+        if (obj.ReadValue<float>() == 0)
+        {
+            return;
+        }
+        doll.GetComponent<AudioSource>().Play();
+    }
+
+
+
+    private void Cry_canceled(InputAction.CallbackContext obj)
+    {
+        doll.GetComponent<AudioSource>().Stop();
+    }
+
+
     private void Interact_performed(InputAction.CallbackContext obj)
     {
         //For Gamepad buttons, they trigger _performed when releasing the button (in addition to pressing the button down) with the value of 0. When this occurs, we don't want to do anything, so we return
