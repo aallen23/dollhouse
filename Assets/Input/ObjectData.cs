@@ -109,6 +109,20 @@ public class ObjectData : MonoBehaviour
         {
             StartCoroutine(HideShownObject());
         }
+        if (positionDoll)
+        {
+            if (positionDoll.TryGetComponent(out MeshRenderer mesh))
+            {
+                mesh.enabled = false;
+            }
+        }
+        if (teleportPoint)
+        {
+            if (teleportPoint.TryGetComponent(out MeshRenderer mesh))
+            {
+                mesh.enabled = false;
+            }
+        }
     }
 
     IEnumerator HideShownObject()

@@ -31,14 +31,8 @@ public class P2PCameraController : MonoBehaviour
     [Tooltip("The Cursor for the Gamepad.")] public GameObject gamepadMouse;
 
 
-
-    void Start()
+    private void Awake()
     {
-        //Load Objects into an array that we can iterate through later.
-        objects = FindObjectsOfType<ObjectData>();
-        //Move Camera to starting postion (although Doll will likely override) TO FIX
-        curPos = startPos;
-
         //Load input map and connect to all the functions
         inputMap = new Controls();
         inputMap.PointToPoint.Enable();
@@ -53,6 +47,16 @@ public class P2PCameraController : MonoBehaviour
         inputMap.PointToPoint.MousePos.performed += MousePos_performed;
         inputMap.PointToPoint.Zoom.performed += Zoom_performed;
         inputMap.PointToPoint.Zoom.canceled += Zoom_canceled;
+    }
+
+    void Start()
+    {
+        //Load Objects into an array that we can iterate through later.
+        objects = FindObjectsOfType<ObjectData>();
+        //Move Camera to starting postion (although Doll will likely override) TO FIX
+        curPos = startPos;
+
+        
     }
 
     //Decreases FOV while held (later, we'll Lerp with these values for a smooth transition)

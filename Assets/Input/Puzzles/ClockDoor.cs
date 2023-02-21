@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ClockDoor : MonoBehaviour
 {
-    public Transform handBig;
-    public Transform handSmall;
+    public ObjectData handBig;
+    public ObjectData handSmall;
 
-    public Transform compareHandBig;
-    public Transform compareHandSmall;
+    public ObjectData compareHandBig;
+    public ObjectData compareHandSmall;
 
     private void Start()
     {
@@ -18,8 +18,9 @@ public class ClockDoor : MonoBehaviour
 
     public void Check()
     {
-        //if (handBig.GetComponent<ObjectData>().desiredRotation.z == compareHandBig.localEulerAngles.z && handSmall.GetComponent<ObjectData>().desiredRotation.z == compareHandSmall.localEulerAngles.z)
-        if (handBig.localRotation == compareHandBig.localRotation && handSmall.localRotation == compareHandSmall.localRotation)
+        //Debug.Log((int)handBig.desiredRotation.z + " " + (int)compareHandBig.desiredRotation.z + " " + (int)handSmall.desiredRotation.z + " " + (int)compareHandSmall.desiredRotation.z);
+        //Debug.Log(((int)handBig.desiredRotation.z == (int)compareHandBig.desiredRotation.z) + " " + ((int)handSmall.desiredRotation.z == (int)compareHandSmall.desiredRotation.z));
+        if ((int)handBig.desiredRotation.z == (int)compareHandBig.desiredRotation.z && (int)handSmall.desiredRotation.z == (int)compareHandSmall.desiredRotation.z)
         {
             GetComponent<MeshRenderer>().enabled = true;
             GetComponent<Collider>().enabled = true;
