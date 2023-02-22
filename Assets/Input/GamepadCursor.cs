@@ -5,14 +5,15 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
 
+//Adapted from https://youtube.com/watch?v=Y3WNwl1ObC8&feature=shares (Some of it was outdated/irrelevent)
 public class GamepadCursor : MonoBehaviour
 {
-    [SerializeField] private Controls playerInput;
+    [Tooltip("The Input Map we are using.")] [SerializeField] private Controls playerInput;
     private Mouse virtualMouse;
-    [SerializeField] private RectTransform cursorTransform;
-    [SerializeField] private float cursorSpeed = 2000;
-    [SerializeField] private RectTransform canvasTransform;
-    [SerializeField] private Canvas canvas;
+    [Tooltip("The Transform of the Gamepad Cursor.")] [SerializeField] private RectTransform cursorTransform;
+    [Tooltip("The Gamepad Cursor Speed.")] [SerializeField] private float cursorSpeed;
+    [Tooltip("The Transform of the UI Canvas.")] [SerializeField] private RectTransform canvasTransform;
+    [Tooltip("The UI Canvas.")] [SerializeField] private Canvas canvas;
     private Camera mainCamera;
 
     private bool previousMouseState;
@@ -21,11 +22,12 @@ public class GamepadCursor : MonoBehaviour
     {
         mainCamera = Camera.main;
 
+        //If we don't have a virtualMouse, create it and add the device.
         if (virtualMouse == null)
         {
             virtualMouse = (Mouse) InputSystem.AddDevice("VirtualMouse");
         }
-        else if (!virtualMouse.added)
+        else if (!virtualMouse.added) //If it's been created but not added, add it
         {
             InputSystem.AddDevice(virtualMouse);
         }
@@ -44,6 +46,7 @@ public class GamepadCursor : MonoBehaviour
 
     private void OnDisable()
     {
+        //Making sure the virtualMouse gets removed, otherwise it will stick around, even after the game stops.
         InputSystem.RemoveDevice(virtualMouse);
         InputSystem.onAfterUpdate -= UpdateMotion;
     }

@@ -5,11 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
+//Inventory System Controller
 public class InventorySystem : MonoBehaviour
 {
-    public List<ItemScriptableObject> inv;
-    public GameObject contentParent;
-    public GameObject itemDisplayTemplate;
+    [Tooltip("List of ItemScriptableObjects currently in the inventory.")] public List<ItemScriptableObject> inv;
+    [Tooltip("GameObject to Instantiate Inventory Items into.")] public GameObject contentParent;
+    [Tooltip("Prefab template for Inventory Items.")] public GameObject itemDisplayTemplate;
 
     // Start is called before the first frame update
     void Start()

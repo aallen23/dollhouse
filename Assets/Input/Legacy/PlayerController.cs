@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 
+//Legacy FPS Player Controller
 public class PlayerController : MonoBehaviour
 {
     //private Rigidbody rb;

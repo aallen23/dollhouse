@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Switches the Player Camera when the Doll enters the Trigger
 public class CameraSwitcher : MonoBehaviour
 {
     private P2PCameraController pcamera;

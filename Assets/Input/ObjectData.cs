@@ -20,6 +20,7 @@ public enum ObjectUseType
     ShowObject
 }
 
+//Stores an Interactable Object's Data
 public class ObjectData : MonoBehaviour
 {
     [Tooltip("If true, Doll must travel to object before Interact()ing.")]
@@ -47,7 +48,7 @@ public class ObjectData : MonoBehaviour
     public Vector3 desiredRotation; //We'll change this, so we can lerp the rotation nicely.
     public float rotationSpeed;
     [Tooltip("For Rotate type objects, apply rotation to this object.")]
-    public GameObject rotateObject;
+    public ObjectData rotateObject;
 
     [Space(10)]
     [Tooltip("For Teleport type objects, teleport to this point.")]
@@ -101,28 +102,26 @@ public class ObjectData : MonoBehaviour
         //Find specific GameObjects to be called alter.
         dialog = FindObjectOfType<DialogueRunner>();
         player = FindObjectOfType<P2PCameraController>();
-
-        if (rotateObject)
-        {
-            desiredRotation = rotateObject.transform.eulerAngles;
-        }
+        desiredRotation = transform.eulerAngles;
 
         //If an Item would show an GameObject, we want it to start hidden
         if (!startVisible)
         {
             StartCoroutine(HideShownObject());
         }
-    }
-
-    void Update()
-    {
-        if (rotateObject && false)
+        if (positionDoll)
         {
-            rotateObject.transform.eulerAngles = new Vector3(
-             Mathf.LerpAngle(rotateObject.transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
-             Mathf.LerpAngle(rotateObject.transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
-             Mathf.LerpAngle(rotateObject.transform.eulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
-             );
+            if (positionDoll.TryGetComponent(out MeshRenderer mesh))
+            {
+                mesh.enabled = false;
+            }
+        }
+        if (teleportPoint)
+        {
+            if (teleportPoint.TryGetComponent(out MeshRenderer mesh))
+            {
+                mesh.enabled = false;
+            }
         }
     }
 
@@ -135,9 +134,21 @@ public class ObjectData : MonoBehaviour
         }
     }
 
-    //Function
+    void Update()
+    {
+        //Rotates object (uses Quaternion.Lerp isntead of below to avoid Gimbal Lock) :)
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+        /*transform.localEulerAngles = new Vector3(
+             Mathf.LerpAngle(transform.localEulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
+             Mathf.LerpAngle(transform.localEulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
+             Mathf.LerpAngle(transform.localEulerAngles.z, desiredRotation.z, Time.deltaTime * rotationSpeed)
+             );*/
+    }
+
+    //Based on InteractType, we do various things
     public void Interact()
     {
+        //If it has a camera position, go there first.
         if (positionCamera)
         {
             player.Travel(positionCamera);
@@ -145,15 +156,15 @@ public class ObjectData : MonoBehaviour
 
         switch (interactType)
         {
-            case InteractType.Examine:
+            case InteractType.Examine: 
                 if (yarnExamine != "" && yarnExamine != null)
                 {
-                    dialog.StartDialogue(yarnExamine);
+                    dialog.StartDialogue(yarnExamine); //Trigger yarn
                 }
                 break;
             case InteractType.Rotate:
-                //desiredRotation += rotateAmount;
-                rotateObject.transform.Rotate(rotateAmount, Space.Self);
+                rotateObject.desiredRotation += rotateAmount;
+                //rotateObject.transform.Rotate(rotateAmount, Space.Self);
                 break;
             case InteractType.Teleport:
                 NavMeshAgent doll = FindObjectOfType<DollBehavior>().GetComponent<NavMeshAgent>();
