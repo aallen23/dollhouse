@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Yarn.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -21,7 +22,8 @@ public class MenuManager : MonoBehaviour
         audioFrame,
         controlsFrame,
         lighting,
-        filterVol;
+        filterVol,
+        blackscreen;
 
     [SerializeField]
     private AudioMixer masterMixer;
@@ -39,7 +41,7 @@ public class MenuManager : MonoBehaviour
 
     private Resolution r;
 
-    public void Start()
+    public void Awake()
     {
         lits = lighting.GetComponentsInChildren<Light>();
         postProVolume = filterVol.GetComponent<Volume>();
@@ -51,6 +53,37 @@ public class MenuManager : MonoBehaviour
         vgBool = true;
     }
 
+    public void FadeIn()
+    {
+        StartCoroutine(Fade(true));
+    }
+
+    public void FadeOut()
+    {
+        StartCoroutine(Fade(false));
+    }
+
+    IEnumerator Fade(bool fadeToBlack)
+    {
+        Color c = blackscreen.GetComponent<Image>().color;
+
+        if (fadeToBlack)
+        {
+            for (float i = 0; i <= 1; i += Time.deltaTime)
+            {
+                blackscreen.GetComponent<Image>().color = new Color(0,0,0, i);
+                yield return null;
+            }
+        }
+        else
+        {
+            for (float i = 0; i >= 0; i -= Time.deltaTime)
+            {
+                blackscreen.GetComponent<Image>().color = new Color(0,0,0, i);
+                yield return null;
+            }
+        }
+    }
 
     public void SetAllInactive()
     {
@@ -61,11 +94,17 @@ public class MenuManager : MonoBehaviour
         optionsFrame.SetActive(false);
     }
 
+    public void ActivateGameUI()
+    {
+        gameUI.SetActive(true);
+    }
+
     public void StartButton()
     {
         mainMenu1.SetActive(false);
         quitFrame.SetActive(false);
         optionsFrame.SetActive(false);
+        //FadeIn();
         gameUI.SetActive(true);
     }
 
