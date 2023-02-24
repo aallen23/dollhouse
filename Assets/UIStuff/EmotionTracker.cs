@@ -70,4 +70,22 @@ public class EmotionTracker : MonoBehaviour
             ChangeFearLvl(-1);
         }
     }
+
+    public void StartCrying()
+    {
+        if(fearfactor > 4)
+        {
+            StartCoroutine(Cry());
+        }
+    }
+
+    IEnumerator Cry()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(2.0f);
+            ChangeFearLvl(-1);
+        }
+    }
+
 }

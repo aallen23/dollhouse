@@ -1,0 +1,73 @@
+﻿title: Start
+tags:
+---
+<<set $itemUsed to 0>>
+<<set $BBfed to false>>
+===
+
+title: GrandfatherClock
+tags:
+---
+This is a very ornate grandfather clock.
+===
+
+title: CuckooClock
+tags:
+---
+This is a very ornate cuckoo clock.
+Its very gooda
+mama mia 
+pasta italiano
+its a me mar rio.
+===
+
+title: PutInClockHand
+---
+<<use_item GC {$itemUsed}>>
+You fix the clock.
+===
+
+title: Chair
+tags:
+---
+This is a very nice chair.
+===
+
+title: Safe
+tags:
+---
+This safe looks tough to crack. Maybe the code is written down somewhere.
+===
+
+title: Die
+tags:
+---
+Perfect for rolling.
+===
+
+title: BigBoy
+tags:
+---
+<<if !$BBfed>>
+BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
+<<endif>>
+<<if $BBfed>>
+BigBoy: FOOD! REAL FOOD! I have been eating paper nothings for years and years… Someone used to feed me, but they disappeared long ago. Thank you, thank you. The taste of this food reminds me of the past.
+<<endif>>
+===
+
+title: BirdMan
+tags:
+---
+Talon: ...
+Cece: Hello? Mr. Bird Man?
+Talon: My name is... Talon.
+Cece: Hello, Mr. Talon.
+-> Cece: Why are you so quiet and sad?
+	Talon: I have waited here alone for many years. Talking seemed a waste of breath.
+-> Cece: Are you going to eat me?
+	Talon: You hardly seem tempting enough to try.
+-> Cece: Why is everything here so frightening?
+	Talon: Is it? I have known nothing else.
+
+===
