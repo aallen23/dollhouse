@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 using Yarn.Unity;
 
+//Doll Controller
 public class DollBehavior : MonoBehaviour
 {
-    public ObjectData od;
+    [Tooltip("The queued Object to interact with when reaching its destination.")] public ObjectData od;
     private NavMeshAgent agent;
-    public DialogueRunner dialog;
-    public P2PCameraController player;
-    public CameraPosition dollCamera;
+    [Tooltip("Dialog Controller.")] public DialogueRunner dialog;
+    [Tooltip("Player Controller.")] public P2PCameraController player;
+    [Tooltip("The Doll Camera GameObject. Will move to the current camera position to save the position in the Dollhouse.")] public CameraPosition dollCamera;
 
     // Start is called before the first frame update
     void Start()

@@ -345,6 +345,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cry"",
+                    ""type"": ""Button"",
+                    ""id"": ""c25db633-88d8-450a-b50b-aeb73ca87b0f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -501,6 +509,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e43ab1bc-14d8-4f18-8f6e-37f33d9ff1be"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75b453b5-84de-436a-b058-6acb75f317aa"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -530,6 +560,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PointToPoint_MousePos = m_PointToPoint.FindAction("MousePos", throwIfNotFound: true);
         m_PointToPoint_Interact = m_PointToPoint.FindAction("Interact", throwIfNotFound: true);
         m_PointToPoint_Zoom = m_PointToPoint.FindAction("Zoom", throwIfNotFound: true);
+        m_PointToPoint_Cry = m_PointToPoint.FindAction("Cry", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -702,6 +733,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PointToPoint_MousePos;
     private readonly InputAction m_PointToPoint_Interact;
     private readonly InputAction m_PointToPoint_Zoom;
+    private readonly InputAction m_PointToPoint_Cry;
     public struct PointToPointActions
     {
         private @Controls m_Wrapper;
@@ -715,6 +747,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @MousePos => m_Wrapper.m_PointToPoint_MousePos;
         public InputAction @Interact => m_Wrapper.m_PointToPoint_Interact;
         public InputAction @Zoom => m_Wrapper.m_PointToPoint_Zoom;
+        public InputAction @Cry => m_Wrapper.m_PointToPoint_Cry;
         public InputActionMap Get() { return m_Wrapper.m_PointToPoint; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -751,6 +784,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Zoom.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnZoom;
+                @Cry.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnCry;
+                @Cry.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnCry;
+                @Cry.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnCry;
             }
             m_Wrapper.m_PointToPointActionsCallbackInterface = instance;
             if (instance != null)
@@ -782,6 +818,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @Cry.started += instance.OnCry;
+                @Cry.performed += instance.OnCry;
+                @Cry.canceled += instance.OnCry;
             }
         }
     }
@@ -811,5 +850,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMousePos(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnCry(InputAction.CallbackContext context);
     }
 }

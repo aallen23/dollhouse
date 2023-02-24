@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Currently unused Class. Puts the reflection probe halfway between the mirror and player.
 public class CameraLooking : MonoBehaviour
 {
     public Transform playerCam;

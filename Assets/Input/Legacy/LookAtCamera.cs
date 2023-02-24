@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//Old Class that could force Doll to always look at camera
 public class LookAtCamera : MonoBehaviour
 {
     public SpriteRenderer player;
