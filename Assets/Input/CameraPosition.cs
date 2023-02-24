@@ -15,12 +15,6 @@ public class CameraPosition : MonoBehaviour
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
     public List<ObjectData> enableAtPosition;
 
-    public void Awake()
-    {
-        //We don't want to see the spheres used for positioning
-        GetComponent<MeshRenderer>().enabled = false;
-    }
-
     private void OnDrawGizmos()
     {
         if (obeyRotation)
