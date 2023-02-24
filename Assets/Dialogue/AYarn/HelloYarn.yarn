@@ -48,12 +48,14 @@ Perfect for rolling.
 title: BigBoy
 tags:
 ---
+<<activate BigBoy>>
 <<if !$BBfed>>
 BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
 <<endif>>
 <<if $BBfed>>
 BigBoy: FOOD! REAL FOOD! I have been eating paper nothings for years and years… Someone used to feed me, but they disappeared long ago. Thank you, thank you. The taste of this food reminds me of the past.
 <<endif>>
+<<deactivate BigBoy>>
 ===
 
 title: BirdMan
@@ -70,4 +72,9 @@ Cece: Hello, Mr. Talon.
 -> Cece: Why is everything here so frightening?
 	Talon: Is it? I have known nothing else.
 
+===
+
+title: StartGame
+tags:
+---
 ===

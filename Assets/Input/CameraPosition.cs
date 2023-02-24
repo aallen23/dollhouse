@@ -21,5 +21,23 @@ public class CameraPosition : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;
     }
 
-
+    private void OnDrawGizmos()
+    {
+        if (obeyRotation)
+        {
+            if (quickSwitch)
+            {
+                Gizmos.color = Color.blue;
+            }
+            else
+            {
+                Gizmos.color = Color.green;
+            }
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawSphere(transform.position, 5f);
+    }
 }
