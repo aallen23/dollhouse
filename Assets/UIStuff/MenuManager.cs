@@ -41,8 +41,11 @@ public class MenuManager : MonoBehaviour
 
     private Resolution r;
 
+    private DialogueRunner dialog;
+
     public void Awake()
     {
+        dialog = FindObjectOfType<DialogueRunner>();
         lits = lighting.GetComponentsInChildren<Light>();
         postProVolume = filterVol.GetComponent<Volume>();
         postProVolume.profile.TryGet<Vignette>(out vg);
@@ -53,11 +56,13 @@ public class MenuManager : MonoBehaviour
         vgBool = true;
     }
 
+    [YarnCommand("fadeIn")]
     public void FadeIn()
     {
         StartCoroutine(Fade(true));
     }
 
+    [YarnCommand("fadeOut")]
     public void FadeOut()
     {
         StartCoroutine(Fade(false));
@@ -74,14 +79,16 @@ public class MenuManager : MonoBehaviour
                 blackscreen.GetComponent<Image>().color = new Color(0,0,0, i);
                 yield return null;
             }
+            blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 1);
         }
         else
         {
-            for (float i = 0; i >= 0; i -= Time.deltaTime)
+            for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 blackscreen.GetComponent<Image>().color = new Color(0,0,0, i);
                 yield return null;
             }
+            blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
         }
     }
 
@@ -94,6 +101,7 @@ public class MenuManager : MonoBehaviour
         optionsFrame.SetActive(false);
     }
 
+    [YarnCommand("ActivateUI")]
     public void ActivateGameUI()
     {
         gameUI.SetActive(true);
@@ -104,8 +112,8 @@ public class MenuManager : MonoBehaviour
         mainMenu1.SetActive(false);
         quitFrame.SetActive(false);
         optionsFrame.SetActive(false);
-        //FadeIn();
-        gameUI.SetActive(true);
+        FadeIn();
+        dialog.StartDialogue("StartGame");
     }
 
     public void CreditsButton()
