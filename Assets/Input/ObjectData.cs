@@ -10,6 +10,7 @@ public enum InteractType
 {
     Examine,
     Rotate,
+    RotateAround,
     Teleport,
     AddItem
 }
@@ -96,6 +97,7 @@ public class ObjectData : MonoBehaviour
     //Private variables for calling fucntions
     private DialogueRunner dialog;
     private P2PCameraController player;
+    public Vector3 lookPoint;
 
     void Start()
     {
@@ -137,7 +139,17 @@ public class ObjectData : MonoBehaviour
     void Update()
     {
         //Rotates object (uses Quaternion.Lerp isntead of below to avoid Gimbal Lock) :)
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+        if (lookPoint == Vector3.zero)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+        }
+        else
+        {
+            //lookPoint.y = 0;
+            transform.LookAt(new Vector3(lookPoint.x, lookPoint.y, transform.position.z));
+            transform.eulerAngles += new Vector3(90f, 0f, 0f);
+            //transform.localEulerAngles += new Vector3(0f, 90f, 0f);
+        }
         /*transform.localEulerAngles = new Vector3(
              Mathf.LerpAngle(transform.localEulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
              Mathf.LerpAngle(transform.localEulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
@@ -165,6 +177,9 @@ public class ObjectData : MonoBehaviour
             case InteractType.Rotate:
                 rotateObject.desiredRotation += rotateAmount;
                 //rotateObject.transform.Rotate(rotateAmount, Space.Self);
+                break;
+            case InteractType.RotateAround:
+                player.rotateAroundObject = this;
                 break;
             case InteractType.Teleport:
                 NavMeshAgent doll = FindObjectOfType<DollBehavior>().GetComponent<NavMeshAgent>();
