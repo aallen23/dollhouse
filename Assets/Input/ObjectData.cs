@@ -98,6 +98,9 @@ public class ObjectData : MonoBehaviour
     private DialogueRunner dialog;
     private P2PCameraController player;
     public Vector3 lookPoint;
+    public Vector2 mouseDelta;
+    public Vector3 rotateAroundModAngle;
+    public Vector3 rotateAroundForceAngle;
 
     void Start()
     {
@@ -146,9 +149,15 @@ public class ObjectData : MonoBehaviour
         else
         {
             //lookPoint.y = 0;
-            transform.LookAt(new Vector3(lookPoint.x, lookPoint.y, transform.position.z));
-            transform.eulerAngles += new Vector3(90f, 0f, 0f);
-            //transform.localEulerAngles += new Vector3(0f, 90f, 0f);
+            //transform.LookAt(new Vector3(lookPoint.x, lookPoint.y, transform.position.z));
+            Vector3 dir = lookPoint - transform.position;
+            //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            Quaternion rotationQ = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
+            transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+            //transform.eulerAngles += rotateAroundModAngle;
+            //Debug.Log(transform.eulerAngles.z);
+            //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90f);
+            //Debug.Log(transform.eulerAngles.z);
         }
         /*transform.localEulerAngles = new Vector3(
              Mathf.LerpAngle(transform.localEulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
