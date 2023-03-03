@@ -315,10 +315,18 @@ public class P2PCameraController : MonoBehaviour
         //No matter what, we want to remove the item from our cursor
         heldItem = null;
         Destroy(cursorSprite);
+        if (rotateAroundObject)
+        {
+            rotateAroundObject.lookPoint = Vector3.zero;
+            rotateAroundObject.GetComponent<ObjectData>().desiredRotation = rotateAroundObject.transform.eulerAngles;
+            rotateAroundObject.GetComponent<ObjectData>().functioninteract.Invoke();
+            rotateAroundObject = null;
+        }
     }
 
     void Update()
     {
+
         //Lerping our rotation, the hard way (otherwise, it gets confused when going over 360 and below 0 degrees)
         gameObject.transform.eulerAngles = new Vector3(
             Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
@@ -337,6 +345,7 @@ public class P2PCameraController : MonoBehaviour
         if (rotateAroundObject)
         {
             rotateAroundObject.lookPoint = hit.point;
+            rotateAroundObject.mouseDelta = inputMap.PointToPoint.MouseDelta.ReadValue<Vector2>();
         }
 
         //We need to change object layers if they are interactable, so we can later apply the interact shader based on the layer

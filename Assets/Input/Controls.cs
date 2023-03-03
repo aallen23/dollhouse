@@ -353,6 +353,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseDelta"",
+                    ""type"": ""Value"",
+                    ""id"": ""de9ca6a7-d0b1-4191-a22e-f490a0eb51f5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -531,6 +539,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Cry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1051199d-d1a6-4459-b7b7-0caffe3a6cbc"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e301a9a2-1a8d-4394-b575-eb7bbe5cb7a5"",
+                    ""path"": ""<VirtualMouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -561,6 +591,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PointToPoint_Interact = m_PointToPoint.FindAction("Interact", throwIfNotFound: true);
         m_PointToPoint_Zoom = m_PointToPoint.FindAction("Zoom", throwIfNotFound: true);
         m_PointToPoint_Cry = m_PointToPoint.FindAction("Cry", throwIfNotFound: true);
+        m_PointToPoint_MouseDelta = m_PointToPoint.FindAction("MouseDelta", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -734,6 +765,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PointToPoint_Interact;
     private readonly InputAction m_PointToPoint_Zoom;
     private readonly InputAction m_PointToPoint_Cry;
+    private readonly InputAction m_PointToPoint_MouseDelta;
     public struct PointToPointActions
     {
         private @Controls m_Wrapper;
@@ -748,6 +780,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_PointToPoint_Interact;
         public InputAction @Zoom => m_Wrapper.m_PointToPoint_Zoom;
         public InputAction @Cry => m_Wrapper.m_PointToPoint_Cry;
+        public InputAction @MouseDelta => m_Wrapper.m_PointToPoint_MouseDelta;
         public InputActionMap Get() { return m_Wrapper.m_PointToPoint; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -787,6 +820,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Cry.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnCry;
                 @Cry.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnCry;
                 @Cry.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnCry;
+                @MouseDelta.started -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMouseDelta;
+                @MouseDelta.performed -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMouseDelta;
+                @MouseDelta.canceled -= m_Wrapper.m_PointToPointActionsCallbackInterface.OnMouseDelta;
             }
             m_Wrapper.m_PointToPointActionsCallbackInterface = instance;
             if (instance != null)
@@ -821,6 +857,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Cry.started += instance.OnCry;
                 @Cry.performed += instance.OnCry;
                 @Cry.canceled += instance.OnCry;
+                @MouseDelta.started += instance.OnMouseDelta;
+                @MouseDelta.performed += instance.OnMouseDelta;
+                @MouseDelta.canceled += instance.OnMouseDelta;
             }
         }
     }
@@ -851,5 +890,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnCry(InputAction.CallbackContext context);
+        void OnMouseDelta(InputAction.CallbackContext context);
     }
 }
