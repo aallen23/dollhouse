@@ -60,7 +60,15 @@ public class GamepadCursor : MonoBehaviour
 
         //Delta 
         Vector2 stickValue = Gamepad.current.leftStick.ReadValue();
-        stickValue *= cursorSpeed * Time.deltaTime;
+        //Debug.Log(stickValue.magnitude);
+        if (stickValue.magnitude > 0.5f)
+        {
+            stickValue *= cursorSpeed * Time.deltaTime;
+        }
+        else
+        {
+            stickValue = Vector2.zero;
+        }
 
         Vector2 currentPositon = virtualMouse.position.ReadValue();
 

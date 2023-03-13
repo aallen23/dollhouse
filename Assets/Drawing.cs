@@ -54,6 +54,10 @@ public class Drawing : MonoBehaviour
 
     private void Interact_performed(InputAction.CallbackContext obj)
     {
+        if (obj.ReadValue<float>() == 0)
+        {
+            return;
+        }
         if (FindObjectOfType<P2PCameraController>().curPos == DrawPos)
         {
             CreateBrush();
