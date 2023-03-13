@@ -11,21 +11,60 @@ public class Drawing : MonoBehaviour
     public Camera cam;
     public GameObject brush;
 
-    LineRenderer curLineRenderer;
+    public LineRenderer curLineRenderer;
+    public Vector3 mousePos;
+    public Transform mouseTransform;
 
-    Vector2 lastPos;
+    Vector3 lastPos;
+
+    public List<Transform> drawPoints;
+    private int numDrawn;
+    public CameraPosition DrawPos;
 
     private void Start()
     {
         inputMap = FindObjectOfType<P2PCameraController>().inputMap;
-        inputMap.PointToPoint.MousePos.started += MousePos_started;
+        //inputMap.PointToPoint.MousePos.started += MousePos_started;
         inputMap.PointToPoint.MousePos.performed += MousePos_performed;
+        inputMap.PointToPoint.Interact.performed += Interact_performed;
+        inputMap.PointToPoint.Interact.canceled += Interact_canceled;
+        //CreateBrush();
+    }
+
+    private void Interact_canceled(InputAction.CallbackContext obj)
+    {
+        if (curLineRenderer)
+        {
+            if (numDrawn < drawPoints.Count)
+            {
+                foreach (Transform t in drawPoints)
+                {
+                    t.GetComponent<Image>().color = Color.red;
+                }
+                numDrawn = 0;
+            }
+            else
+            {
+                Debug.Log("Draw Success");
+            }
+            Destroy(curLineRenderer.gameObject);
+            curLineRenderer = null;
+        }
+    }
+
+    private void Interact_performed(InputAction.CallbackContext obj)
+    {
+        if (FindObjectOfType<P2PCameraController>().curPos == DrawPos)
+        {
+            CreateBrush();
+        }
     }
 
     private void MousePos_performed(InputAction.CallbackContext obj)
     {
-        Vector2 mousePos = cam.ScreenToWorldPoint(obj.ReadValue<Vector2>());
-        if (mousePos != lastPos)
+        //Vector2 mousePos = cam.ScreenToWorldPoint(obj.ReadValue<Vector2>());
+        //Debug.Log(mousePos);
+        if (mousePos != lastPos && curLineRenderer && FindObjectOfType<P2PCameraController>().curPos == DrawPos)
         {
             AddAPoint(mousePos);
             lastPos = mousePos;
@@ -34,24 +73,33 @@ public class Drawing : MonoBehaviour
 
     private void MousePos_started(InputAction.CallbackContext obj)
     {
-        CreateBrush();
+        //CreateBrush();
     }
 
     void CreateBrush()
     {
-        GameObject brushInstance = Instantiate(brush);
+        GameObject brushInstance = Instantiate(brush, transform.parent);
         curLineRenderer = brushInstance.GetComponent<LineRenderer>();
 
-        Vector2 mousePos = cam.ScreenToWorldPoint(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
+        //Vector2 mousePos = cam.ScreenToWorldPoint(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
 
-        curLineRenderer.SetPosition(0, mousePos);
-        curLineRenderer.SetPosition(1, mousePos);
+        //curLineRenderer.SetPosition(0, mousePos);
+        //curLineRenderer.SetPosition(1, mousePos);
+        AddAPoint(mousePos);
     }
 
-    void AddAPoint(Vector2 pointPos)
+    void AddAPoint(Vector3 pointPos)
     {
         curLineRenderer.positionCount++;
         int positionIndex = curLineRenderer.positionCount - 1;
         curLineRenderer.SetPosition(positionIndex, pointPos);
+        if (drawPoints.Contains(mouseTransform))
+        {
+            if (mouseTransform.GetComponent<Image>().color != Color.green)
+            {
+                mouseTransform.GetComponent<Image>().color = Color.green;
+                numDrawn++;
+            }
+        }
     }
 }

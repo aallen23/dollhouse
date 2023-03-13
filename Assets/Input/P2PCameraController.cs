@@ -341,7 +341,8 @@ public class P2PCameraController : MonoBehaviour
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         //Debug.Log(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         Physics.Raycast(ray, out hit);
-        
+        FindObjectOfType<Drawing>().mousePos = hit.point;
+        FindObjectOfType<Drawing>().mouseTransform = hit.transform;
         if (rotateAroundObject)
         {
             rotateAroundObject.lookPoint = hit.point;
