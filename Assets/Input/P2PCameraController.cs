@@ -30,7 +30,7 @@ public class P2PCameraController : MonoBehaviour
 
     [Tooltip("The Cursor for the Gamepad.")] public GameObject gamepadMouse;
 
-
+    public ObjectData rotateAroundObject;
     private void Awake()
     {
         //Load input map and connect to all the functions
@@ -334,6 +334,11 @@ public class P2PCameraController : MonoBehaviour
         //Debug.Log(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         Physics.Raycast(ray, out hit);
         
+        if (rotateAroundObject)
+        {
+            rotateAroundObject.lookPoint = hit.point;
+        }
+
         //We need to change object layers if they are interactable, so we can later apply the interact shader based on the layer
         foreach (ObjectData od in objects)
         {

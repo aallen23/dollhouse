@@ -15,11 +15,33 @@ public class CameraPosition : MonoBehaviour
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
     public List<ObjectData> enableAtPosition;
 
-    public void Awake()
+    private void OnDrawGizmos()
     {
-        //We don't want to see the spheres used for positioning
-        GetComponent<MeshRenderer>().enabled = false;
+
+        if (gameObject.name == "DollCameraPos")
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawSphere(transform.position, 6f);
+        }
+        else
+        {
+
+            if (obeyRotation)
+            {
+                if (quickSwitch)
+                {
+                    Gizmos.color = Color.blue;
+                }
+                else
+                {
+                    Gizmos.color = Color.green;
+                }
+            }
+            else
+            {
+                Gizmos.color = Color.red;
+            }
+            Gizmos.DrawSphere(transform.position, 5f);
+        }
     }
-
-
 }

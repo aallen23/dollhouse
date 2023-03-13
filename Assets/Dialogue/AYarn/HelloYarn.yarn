@@ -5,6 +5,20 @@ tags:
 <<set $BBfed to false>>
 ===
 
+title: StartGame
+tags:
+---
+<<wait 2>>
+...: Poor thing. They deserved a better mother.
+Grandma: Well, no surprise there.
+...: She hadn’t come home in a long time, had she?
+Grandma: No. Not since the child was born.
+...: What a tragedy… At least now, they have you to take care of them…
+<<fadeOut UI>>
+<<wait 1>>
+<<ActivateUI UI>>
+===
+
 title: GrandfatherClock
 tags:
 ---
@@ -48,12 +62,14 @@ Perfect for rolling.
 title: BigBoy
 tags:
 ---
+<<activate BigBoy>>
 <<if !$BBfed>>
 BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
 <<endif>>
 <<if $BBfed>>
 BigBoy: FOOD! REAL FOOD! I have been eating paper nothings for years and years… Someone used to feed me, but they disappeared long ago. Thank you, thank you. The taste of this food reminds me of the past.
 <<endif>>
+<<deactivate BigBoy>>
 ===
 
 title: BirdMan
@@ -69,5 +85,4 @@ Cece: Hello, Mr. Talon.
 	Talon: You hardly seem tempting enough to try.
 -> Cece: Why is everything here so frightening?
 	Talon: Is it? I have known nothing else.
-
 ===
