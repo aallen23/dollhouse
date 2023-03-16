@@ -22,6 +22,7 @@ public class Drawing : MonoBehaviour
     public CameraPosition DrawPos;
 
     public GameObject objectToDestroy;
+    public ItemScriptableObject itemToAdd;
 
     private void Start()
     {
@@ -48,9 +49,19 @@ public class Drawing : MonoBehaviour
             else
             {
                 Debug.Log("Draw Success");
-                FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().curPos.positions[2]);
-                objectToDestroy.SetActive(false);
-                //Destroy(transform.root.gameObject);
+                if (objectToDestroy)
+                {
+                    FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().curPos.positions[2]);
+                    objectToDestroy.SetActive(false);
+                    //Destroy(transform.root.gameObject);
+                }
+                if (itemToAdd)
+                {
+                    InventorySystem invSystem = FindObjectOfType<InventorySystem>();
+                    invSystem.inv.Add(itemToAdd);
+                    invSystem.UpdateInventory();
+                }
+                
             }
             Destroy(curLineRenderer.gameObject);
             curLineRenderer = null;

@@ -18,7 +18,8 @@ public enum InteractType
 public enum ObjectUseType
 {
     None,
-    ShowObject
+    ShowObject,
+    AddItemElsewhere
 }
 
 //Stores an Interactable Object's Data
@@ -90,6 +91,9 @@ public class ObjectData : MonoBehaviour
     public bool shownObjectItemOverride;
     [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
     public bool startVisible;
+
+    public ObjectData addItemDestination;
+    public ItemScriptableObject addItemItem;
 
     [Tooltip("(Optional) What function to call after using an Item")]
     public UnityEvent functionItem;
@@ -210,6 +214,10 @@ public class ObjectData : MonoBehaviour
                 {
                     addedItem = null;
                 }
+                if (yarnExamine != "" && yarnExamine != null)
+                {
+                    dialog.StartDialogue(yarnExamine); //Trigger yarn
+                }
                 break;
         }
         functioninteract.Invoke();
@@ -238,6 +246,9 @@ public class ObjectData : MonoBehaviour
                 {
                     itemEnabled = !itemEnabled;
                 }
+                break;
+            case ObjectUseType.AddItemElsewhere:
+                addItemDestination.addedItem = addItemItem;
                 break;
         }
         functionItem.Invoke();

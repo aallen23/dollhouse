@@ -164,6 +164,10 @@ public class P2PCameraController : MonoBehaviour
                 //If we must obeyRotation, then we take our desired Rotation from the camera positions rotation
                 desiredRotation = curPos.transform.eulerAngles;
             }
+            else
+            {
+                desiredRotation.x = 12;
+            }
             //Debug.Log(curPos.quickSwitch);
             if (curPos.quickSwitch) {
                 //If it's a quick switch (so far exclusively inside the Dollhouse, we want the transition to be virtually instant
@@ -407,6 +411,10 @@ public class P2PCameraController : MonoBehaviour
         if (curPos.obeyRotation)
         {
             desiredRotation = curPos.transform.eulerAngles;
+        }
+        else
+        {
+            desiredRotation.x = 12;
         }
         if (curPos.quickSwitch)
         {
