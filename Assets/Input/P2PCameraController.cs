@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
@@ -30,6 +32,8 @@ public class P2PCameraController : MonoBehaviour
 
     [Tooltip("The Cursor for the Gamepad.")] public GameObject gamepadMouse;
 
+    [Tooltip("All Drawing Objects.")] public Drawing[] drawingObjects;
+
     public ObjectData rotateAroundObject;
     private void Awake()
     {
@@ -57,7 +61,7 @@ public class P2PCameraController : MonoBehaviour
         //Move Camera to starting postion (although Doll will likely override) TO FIX
         curPos = startPos;
 
-        
+        drawingObjects = FindObjectsOfType<Drawing>();
     }
 
     //Decreases FOV while held (later, we'll Lerp with these values for a smooth transition)
@@ -146,6 +150,14 @@ public class P2PCameraController : MonoBehaviour
         //First we check that there is a valid camera positon in that direction, and we are not mid dialog
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
+            if (curPos.enableAtPosition.Count > 0)
+            {
+                foreach (GameObject obj in curPos.enableAtPosition)
+                {
+                    obj.SetActive(false);
+                }
+            }
+
             curPos = curPos.positions[i]; //Update the current camera positon
             if (curPos.obeyRotation)
             {
@@ -163,6 +175,14 @@ public class P2PCameraController : MonoBehaviour
                 //Otherwise, it's cool to see the camera move a bit.
                 rotationSpeed = 16;
                 moveSpeed = 16;
+            }
+
+            if (curPos.enableAtPosition.Count > 0)
+            {
+                foreach (GameObject obj in curPos.enableAtPosition)
+                {
+                    obj.SetActive(true);
+                }
             }
         }
     }
@@ -341,8 +361,12 @@ public class P2PCameraController : MonoBehaviour
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         //Debug.Log(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         Physics.Raycast(ray, out hit);
-        FindObjectOfType<Drawing>().mousePos = hit.point;
-        FindObjectOfType<Drawing>().mouseTransform = hit.transform;
+        
+        foreach (Drawing draw in drawingObjects)
+        {
+            draw.mousePos = hit.point;
+            draw.mouseTransform = hit.transform;
+        }
         if (rotateAroundObject)
         {
             rotateAroundObject.lookPoint = hit.point;
@@ -372,6 +396,13 @@ public class P2PCameraController : MonoBehaviour
     //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object) Redudant.
     public void Travel(CameraPosition newPosition)
     {
+        if (curPos.enableAtPosition.Count > 0)
+        {
+            foreach (GameObject obj in curPos.enableAtPosition)
+            {
+                obj.SetActive(false);
+            }
+        }
         curPos = newPosition;
         if (curPos.obeyRotation)
         {
@@ -386,6 +417,13 @@ public class P2PCameraController : MonoBehaviour
         {
             rotationSpeed = 16;
             moveSpeed = 16;
+        }
+        if (curPos.enableAtPosition.Count > 0)
+        {
+            foreach (GameObject obj in curPos.enableAtPosition)
+            {
+                obj.SetActive(true);
+            }
         }
     }
 

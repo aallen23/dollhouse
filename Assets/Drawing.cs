@@ -21,6 +21,8 @@ public class Drawing : MonoBehaviour
     private int numDrawn;
     public CameraPosition DrawPos;
 
+    public GameObject objectToDestroy;
+
     private void Start()
     {
         inputMap = FindObjectOfType<P2PCameraController>().inputMap;
@@ -46,6 +48,9 @@ public class Drawing : MonoBehaviour
             else
             {
                 Debug.Log("Draw Success");
+                FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().curPos.positions[2]);
+                objectToDestroy.SetActive(false);
+                //Destroy(transform.root.gameObject);
             }
             Destroy(curLineRenderer.gameObject);
             curLineRenderer = null;
