@@ -27,6 +27,8 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     private AudioMixer masterMixer;
+    [SerializeField]
+    private AudioSource ambience;
 
     private bool flicker;
     private Light[] lits;
@@ -112,6 +114,7 @@ public class MenuManager : MonoBehaviour
         mainMenu1.SetActive(false);
         quitFrame.SetActive(false);
         optionsFrame.SetActive(false);
+        ambience.Play();
         FadeIn();
         dialog.StartDialogue("StartGame");
     }
