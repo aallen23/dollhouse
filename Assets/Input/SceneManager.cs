@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class SceneManager : MonoBehaviour
 {
-    public NavMeshSurface surface;
+    //public NavMeshSurface surface;
     //public Transform rotateObject;
 
     // Start is called before the first frame update
@@ -18,6 +18,6 @@ public class SceneManager : MonoBehaviour
     void Update()
     {
         //rotateObject.localRotation = Quaternion.Euler(new Vector3(0, 15 * Time.deltaTime, 0) + rotateObject.localEulerAngles);
-        surface.BuildNavMesh();
+        //surface.BuildNavMesh();
     }
 }
