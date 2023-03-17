@@ -19,6 +19,7 @@ public enum ObjectUseType
 {
     None,
     ShowObject,
+    AddItem,
     AddItemElsewhere
 }
 
@@ -91,6 +92,8 @@ public class ObjectData : MonoBehaviour
     public bool shownObjectItemOverride;
     [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
     public bool startVisible;
+
+    public ItemScriptableObject itemAddItem;
 
     public ObjectData addItemDestination;
     public ItemScriptableObject addItemItem;
@@ -242,6 +245,15 @@ public class ObjectData : MonoBehaviour
                 {
                     data.addedItem = item[it];
                 }
+                if (itemEnabled)
+                {
+                    itemEnabled = !itemEnabled;
+                }
+                break;
+            case ObjectUseType.AddItem:
+                InventorySystem inv = FindObjectOfType<InventorySystem>();
+                inv.inv.Add(itemAddItem);
+                inv.UpdateInventory();
                 if (itemEnabled)
                 {
                     itemEnabled = !itemEnabled;
