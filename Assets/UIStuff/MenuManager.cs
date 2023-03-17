@@ -261,6 +261,16 @@ public class MenuManager : MonoBehaviour
         controlsFrame.SetActive(true);
     }
 
+    public void Pause()
+    {
+        pause.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        pause.SetActive(false);
+    }
+
     public void ReturnToMain()
     {
         audioManager.TurnOffMusic();
