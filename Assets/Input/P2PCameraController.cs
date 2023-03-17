@@ -62,6 +62,12 @@ public class P2PCameraController : MonoBehaviour
         curPos = startPos;
 
         drawingObjects = FindObjectsOfType<Drawing>();
+
+        doll = FindObjectOfType<NavMeshAgent>();
+
+        invSystem = FindObjectOfType<InventorySystem>();
+        dialog = FindObjectOfType<DialogueRunner>();
+        gamepadMouse = GameObject.Find("GamepadMouse");
     }
 
     //Decreases FOV while held (later, we'll Lerp with these values for a smooth transition)
