@@ -449,6 +449,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -616,6 +619,9 @@ MonoBehaviour:
   shownObjectModColor: 1
   shownObjectItemOverride: 1
   startVisible: 1
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls:
@@ -930,6 +936,9 @@ MonoBehaviour:
   shownObjectModColor: 1
   shownObjectItemOverride: 1
   startVisible: 1
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls:
@@ -2180,7 +2189,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 06383d755c82e394ca8e64f1b73ce788, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06383d755c82e394ca8e64f1b73ce788, type: 3}
       propertyPath: m_LocalScale.x
@@ -2446,6 +2455,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -2531,53 +2543,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &404753711
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 404753713}
-  - component: {fileID: 404753712}
-  m_Layer: 0
-  m_Name: GamepadCursorController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &404753712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404753711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc1bc8d833d945478311d7f01503605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorTransform: {fileID: 1543586567}
-  cursorSpeed: 2000
-  canvasTransform: {fileID: 792052017}
-  canvas: {fileID: 792052020}
---- !u!4 &404753713
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404753711}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408992906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3172,7 +3137,7 @@ Transform:
   - {fileID: 908580573}
   - {fileID: 1644629139}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &473391715
 GameObject:
@@ -3278,7 +3243,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 631b338bd35905f40b59e8894ba804de, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 631b338bd35905f40b59e8894ba804de, type: 3}
       propertyPath: m_LocalScale.x
@@ -3553,6 +3518,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -3673,7 +3641,7 @@ Transform:
   - {fileID: 741932073}
   - {fileID: 1244615563}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &543215389 stripped
 GameObject:
@@ -3722,6 +3690,9 @@ MonoBehaviour:
   shownObjectModColor: 1
   shownObjectItemOverride: 1
   startVisible: 1
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls:
@@ -3942,7 +3913,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &577022985
 GameObject:
@@ -4002,6 +3973,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -4959,7 +4933,7 @@ Transform:
   - {fileID: 1791360119}
   - {fileID: 496290761}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &741932069
 GameObject:
@@ -5237,18 +5211,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!224 &792052017 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6077036836380721481, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
-  m_PrefabInstance: {fileID: 6077036836664508536}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &792052020 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 6077036836380721484, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
-  m_PrefabInstance: {fileID: 6077036836664508536}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &793852411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5932,7 +5896,7 @@ Transform:
   - {fileID: 1831422849}
   - {fileID: 957490985}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &883800681
 GameObject:
@@ -6293,6 +6257,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -7248,6 +7215,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -7436,7 +7406,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1e6bd1eae8adea64b950b2e0e9caabd0, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e6bd1eae8adea64b950b2e0e9caabd0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7669,6 +7639,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -7974,6 +7947,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -8120,7 +8096,7 @@ Transform:
   m_Children:
   - {fileID: 1100213457}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 23.47, y: -106.58, z: 0}
 --- !u!108 &1185782886
 Light:
@@ -8241,6 +8217,7 @@ MonoBehaviour:
   cursorSprite: {fileID: 0}
   dialog: {fileID: 645111974}
   gamepadMouse: {fileID: 1543586566}
+  drawingObjects: []
   rotateAroundObject: {fileID: 0}
 --- !u!81 &1185782889
 AudioListener:
@@ -8564,6 +8541,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -8852,6 +8832,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -9389,6 +9372,8 @@ MonoBehaviour:
   mouseTransform: {fileID: 0}
   drawPoints: []
   DrawPos: {fileID: 0}
+  objectToDestroy: {fileID: 0}
+  itemToAdd: {fileID: 0}
 --- !u!1 &1337418985
 GameObject:
   m_ObjectHideFlags: 0
@@ -9784,6 +9769,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -9854,7 +9842,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1401161548
 MeshCollider:
@@ -10062,6 +10050,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -10315,6 +10306,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -10396,7 +10390,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1480091436
 GameObject:
@@ -10471,6 +10465,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -10926,11 +10923,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6077036837671224190, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
   m_PrefabInstance: {fileID: 6077036836664508536}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1543586567 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6077036837671224191, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
-  m_PrefabInstance: {fileID: 6077036836664508536}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1555227720
 GameObject:
   m_ObjectHideFlags: 0
@@ -10988,6 +10980,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -11209,7 +11204,7 @@ Transform:
   m_Children:
   - {fileID: 1510566473}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566574382 stripped
 GameObject:
@@ -11258,6 +11253,9 @@ MonoBehaviour:
   shownObjectModColor: 1
   shownObjectItemOverride: 1
   startVisible: 1
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls:
@@ -11802,6 +11800,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -12566,6 +12567,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -12838,6 +12842,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -12920,7 +12927,7 @@ Transform:
   m_LocalScale: {x: 16, y: 0.5, z: 16}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!4 &1902147597 stripped
 Transform:
@@ -13201,6 +13208,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -13354,6 +13364,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -13601,7 +13614,7 @@ Transform:
   - {fileID: 1539386900}
   - {fileID: 600181246}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2030808465
 GameObject:
@@ -14089,6 +14102,9 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
   functionItem:
     m_PersistentCalls:
       m_Calls: []
@@ -14480,7 +14496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1781249076528404306, guid: 459fda4ac5680d343a39214abed20e95, type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 1781249076528404306, guid: 459fda4ac5680d343a39214abed20e95, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14533,7 +14549,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5991710185028922248, guid: f89e129f85e45ae40a5fbe83f3c60e40, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5991710185028922248, guid: f89e129f85e45ae40a5fbe83f3c60e40, type: 3}
       propertyPath: m_LocalPosition.x

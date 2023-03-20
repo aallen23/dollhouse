@@ -76,7 +76,7 @@ public class GamepadCursor : MonoBehaviour
 
         newPosition.x = Mathf.Clamp(newPosition.x, 10, Screen.width - 10);
         newPosition.y = Mathf.Clamp(newPosition.y, 10, Screen.height - 10);
-
+        //Debug.Log(newPosition);
         InputState.Change(virtualMouse.position, newPosition);
         InputState.Change(virtualMouse.delta, stickValue);
 
@@ -98,6 +98,7 @@ public class GamepadCursor : MonoBehaviour
         Vector2 anchoredPosition;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasTransform, position, canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : mainCamera, out anchoredPosition);
+        //Debug.Log(anchoredPosition);
         cursorTransform.anchoredPosition = anchoredPosition;
     }
 }
