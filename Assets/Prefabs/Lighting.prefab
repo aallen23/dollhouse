@@ -211,11 +211,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676385133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50.31, y: -11.58, z: 8.46}
+  m_LocalPosition: {x: 50.31, y: -11.58, z: 8.459999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 772102151}
-  m_RootOrder: 3
+  m_Father: {fileID: 230218792476533134}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &676385135
 Light:
@@ -342,7 +342,6 @@ Transform:
   - {fileID: 1378134773}
   - {fileID: 1775998880}
   - {fileID: 567624233}
-  - {fileID: 676385134}
   m_Father: {fileID: 1781249076528404306}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -469,7 +468,6 @@ Transform:
   - {fileID: 1056307040}
   - {fileID: 2022224204}
   - {fileID: 1145426691}
-  - {fileID: 1264182208}
   m_Father: {fileID: 1781249076528404306}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -720,8 +718,8 @@ Transform:
   m_LocalPosition: {x: 101.624, y: -30.582, z: 54.676}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 951191862}
-  m_RootOrder: 3
+  m_Father: {fileID: 230218792476533134}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1264182209
 Light:
@@ -1908,6 +1906,7 @@ Transform:
   - {fileID: 967596697}
   - {fileID: 1683531793}
   - {fileID: 951191862}
+  - {fileID: 230218792476533134}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1959,6 +1958,38 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 805dbdd025ccfa2459b2520d287a2545, type: 2}
+--- !u!1 &9068318475479201060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 230218792476533134}
+  m_Layer: 0
+  m_Name: kitchen lights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &230218792476533134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068318475479201060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 676385134}
+  - {fileID: 1264182208}
+  m_Father: {fileID: 1781249076528404306}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1346139235
 PrefabInstance:
   m_ObjectHideFlags: 0
