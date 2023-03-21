@@ -126,8 +126,8 @@ public class MenuManager : MonoBehaviour
     public void CreditsButton()
     {
         SetAllInactive();
-        audioManager.TurnOffMusic();
-        audioManager.MenuMusic();
+        //audioManager.TurnOffMusic();
+        //audioManager.MenuMusic();
         credits.SetActive(true);
         credits.GetComponent<CreditsScroll>().StartScroll();
     }
@@ -153,9 +153,10 @@ public class MenuManager : MonoBehaviour
         color.postExposure.value = brightLvl;
     }
 
-    public void Resolution()
+    public void ChangeDisplay()
     {
-        if (Screen.fullScreen)
+        TMP_Dropdown dropdown = videoFrame.transform.GetComponentInChildren<TMP_Dropdown>(true);
+        if (dropdown.value == 1)
         {
             r = Screen.currentResolution;
             Screen.fullScreen = false;
@@ -273,8 +274,8 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnToMain()
     {
-        audioManager.TurnOffMusic();
-        audioManager.MenuMusic();
+        //audioManager.TurnOffMusic();
+        //audioManager.MenuMusic();
         SetAllInactive();
         mainMenu1.SetActive(true);
     }
