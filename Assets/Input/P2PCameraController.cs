@@ -398,10 +398,10 @@ public class P2PCameraController : MonoBehaviour
         GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
 
         //Eventually will be replaced by our pause system, in the meantime we will want to quit the game this way
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        /*if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Application.Quit();
-        }
+        }*/
     }
     //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object) Redudant.
     public void Travel(CameraPosition newPosition)
