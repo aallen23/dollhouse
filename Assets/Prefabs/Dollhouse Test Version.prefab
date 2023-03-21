@@ -8398,7 +8398,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 233804915014680902}
-  - component: {fileID: 233804915014680901}
   m_Layer: 0
   m_Name: Dollhouse Test Version
   m_TagString: Untagged
@@ -8460,18 +8459,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &233804915014680901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233804915014680903}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad3c4fbbc63de9498382f9d5cedc341, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &233804915018614814
 GameObject:
   m_ObjectHideFlags: 0
@@ -15698,14 +15685,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
---- !u!1 &784921333279601881 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8513424388201257645, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
-  m_PrefabInstance: {fileID: 233804914606494090}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &338927937101313633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
+  m_PrefabInstance: {fileID: 233804914606494090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &784921333279601881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8513424388201257645, guid: 22405bf0116ceae46ab9572db90d88da, type: 3}
   m_PrefabInstance: {fileID: 233804914606494090}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &233804914796426859

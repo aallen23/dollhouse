@@ -18,7 +18,7 @@ public class CameraSwitcher : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.name);
-        if (other.gameObject == doll.gameObject)
+        if (other.gameObject == doll.gameObject && pcamera.gameStarted)
         {
             pcamera.Travel(GetComponentInParent<CameraPosition>());
         }

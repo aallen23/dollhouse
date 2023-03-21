@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 public class P2PCameraController : MonoBehaviour
 {
     private RaycastHit hit;
-    private bool gameStarted;
+    public bool gameStarted;
     [Tooltip("The Input Map we are using.")] public Controls inputMap;
     [Tooltip("Starting CameraPosition.")] public CameraPosition startPos;
     [Tooltip("Current CameraPosition.")] public CameraPosition curPos;
@@ -60,6 +60,7 @@ public class P2PCameraController : MonoBehaviour
         objects = FindObjectsOfType<ObjectData>(true);
         //Move Camera to starting postion (although Doll will likely override) TO FIX
         curPos = startPos;
+        Travel(startPos);
 
         drawingObjects = FindObjectsOfType<Drawing>(true);
 
@@ -377,6 +378,7 @@ public class P2PCameraController : MonoBehaviour
     {
 
         //Lerping our rotation, the hard way (otherwise, it gets confused when going over 360 and below 0 degrees)
+        desiredRotation = curPos.transform.eulerAngles;
         gameObject.transform.eulerAngles = new Vector3(
             Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
             Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
