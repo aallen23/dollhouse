@@ -264,12 +264,7 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
-        pause.SetActive(true);
-    }
-
-    public void Resume()
-    {
-        pause.SetActive(false);
+        pause.SetActive(!pause.activeSelf);
     }
 
     public void ReturnToMain()

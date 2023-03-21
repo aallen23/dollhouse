@@ -15,6 +15,8 @@ public class CameraPosition : MonoBehaviour
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
     public List<GameObject> enableAtPosition;
 
+    public GameObject rotateAround;
+
     private void Start()
     {
         if (enableAtPosition.Count > 0)
@@ -23,6 +25,15 @@ public class CameraPosition : MonoBehaviour
             {
                 obj.SetActive(false);
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (rotateAround)
+        {
+            transform.RotateAround(rotateAround.transform.position, Vector3.up, 10 * Time.deltaTime);
+            transform.LookAt(rotateAround.transform);
         }
     }
 
