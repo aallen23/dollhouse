@@ -235,7 +235,7 @@ public class ObjectData : MonoBehaviour
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
-                shownObject.TryGetComponent(out SpriteRenderer sprite);
+                shownObject.TryGetComponent(out Material sprite);
                 if (sprite && shownObjectModColor)
                 {
                     sprite.color = item[it].displayColor;
