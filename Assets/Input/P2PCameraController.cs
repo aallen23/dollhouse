@@ -13,6 +13,7 @@ public class P2PCameraController : MonoBehaviour
     public bool gameStarted;
     [Tooltip("The Input Map we are using.")] public Controls inputMap;
     [Tooltip("Starting CameraPosition.")] public CameraPosition startPos;
+    public CameraPosition firstPos;
     [Tooltip("Current CameraPosition.")] public CameraPosition curPos;
     [Tooltip("The NavMeshAgent of the Doll")] public NavMeshAgent doll;
 
@@ -467,6 +468,7 @@ public class P2PCameraController : MonoBehaviour
     public void EnableControls()
     {
         gameStarted = true;
+        //Travel(firstPos);
     }
 
 }

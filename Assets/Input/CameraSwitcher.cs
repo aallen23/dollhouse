@@ -22,5 +22,11 @@ public class CameraSwitcher : MonoBehaviour
         {
             pcamera.Travel(GetComponentInParent<CameraPosition>());
         }
+        else if (other.gameObject == doll.gameObject)
+        {
+            doll.dollCamera.transform.position = GetComponentInParent<CameraPosition>().gameObject.transform.position;
+            doll.dollCamera.transform.rotation = GetComponentInParent<CameraPosition>().gameObject.transform.rotation;
+        }
+
     }
 }
