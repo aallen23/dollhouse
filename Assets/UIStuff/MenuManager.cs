@@ -16,6 +16,8 @@ public class MenuManager : MonoBehaviour
         mainMenu1,
         mainMenu2,
         gameUI,
+        credits,
+        pause,
         quitFrame,
         optionsFrame,
         videoFrame,
@@ -23,10 +25,12 @@ public class MenuManager : MonoBehaviour
         controlsFrame,
         lighting,
         filterVol,
-        blackscreen;
+        blackscreen,
+        audioBox;
 
     [SerializeField]
     private AudioMixer masterMixer;
+    private AudioManager audioManager;
 
     private bool flicker;
     private Light[] lits;
@@ -45,6 +49,7 @@ public class MenuManager : MonoBehaviour
 
     public void Awake()
     {
+        audioManager = audioBox.GetComponent<AudioManager>();
         dialog = FindObjectOfType<DialogueRunner>();
         lits = lighting.GetComponentsInChildren<Light>();
         postProVolume = filterVol.GetComponent<Volume>();
@@ -97,6 +102,8 @@ public class MenuManager : MonoBehaviour
         mainMenu1.SetActive(false);
         mainMenu2.SetActive(false);
         gameUI.SetActive(false);
+        credits.SetActive(false);
+        pause.SetActive(false);
         quitFrame.SetActive(false);
         optionsFrame.SetActive(false);
     }
@@ -104,25 +111,30 @@ public class MenuManager : MonoBehaviour
     [YarnCommand("ActivateUI")]
     public void ActivateGameUI()
     {
+        SetAllInactive();
         gameUI.SetActive(true);
     }
 
     public void StartButton()
     {
-        mainMenu1.SetActive(false);
-        quitFrame.SetActive(false);
-        optionsFrame.SetActive(false);
+        SetAllInactive();
+        audioManager.Ambience();
         FadeIn();
         dialog.StartDialogue("StartGame");
     }
 
     public void CreditsButton()
     {
-
+        SetAllInactive();
+        audioManager.TurnOffMusic();
+        audioManager.MenuMusic();
+        credits.SetActive(true);
+        credits.GetComponent<CreditsScroll>().StartScroll();
     }
 
     public void OptionsButton()
     {
+        SetAllInactive();
         optionsFrame.SetActive(true);
         audioFrame.SetActive(false);
         controlsFrame.SetActive(false);
@@ -183,7 +195,6 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
-
 
     public void BloomTrigger()
     {
@@ -250,16 +261,27 @@ public class MenuManager : MonoBehaviour
         controlsFrame.SetActive(true);
     }
 
+    public void Pause()
+    {
+        pause.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        pause.SetActive(false);
+    }
+
     public void ReturnToMain()
     {
-        gameUI.SetActive(false);
-        quitFrame.SetActive(false);
-        optionsFrame.SetActive(false);
+        audioManager.TurnOffMusic();
+        audioManager.MenuMusic();
+        SetAllInactive();
         mainMenu1.SetActive(true);
     }
 
     public void QuitButton()
     {
+        SetAllInactive();
         quitFrame.SetActive(true);
     }
 

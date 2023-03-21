@@ -13,7 +13,18 @@ public class CameraPosition : MonoBehaviour
     public bool quickSwitch;
 
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
-    public List<ObjectData> enableAtPosition;
+    public List<GameObject> enableAtPosition;
+
+    private void Start()
+    {
+        if (enableAtPosition.Count > 0)
+        {
+            foreach (GameObject obj in enableAtPosition)
+            {
+                obj.SetActive(false);
+            }
+        }
+    }
 
     private void OnDrawGizmos()
     {

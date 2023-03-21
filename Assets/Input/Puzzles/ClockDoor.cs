@@ -18,9 +18,10 @@ public class ClockDoor : MonoBehaviour
 
     public void Check()
     {
-        //Debug.Log((int)handBig.desiredRotation.z + " " + (int)compareHandBig.desiredRotation.z + " " + (int)handSmall.desiredRotation.z + " " + (int)compareHandSmall.desiredRotation.z);
-        //Debug.Log(((int)handBig.desiredRotation.z == (int)compareHandBig.desiredRotation.z) + " " + ((int)handSmall.desiredRotation.z == (int)compareHandSmall.desiredRotation.z));
-        if ((int)handBig.desiredRotation.z == (int)compareHandBig.desiredRotation.z && (int)handSmall.desiredRotation.z == (int)compareHandSmall.desiredRotation.z)
+        Debug.Log(handSmall.transform.eulerAngles + " " + handSmall.transform.localEulerAngles);
+        Debug.Log(Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) + " " + Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f));
+        //Debug.Log(((int)handBig.desiredlocalEulerAngles.z == (int)compareHandBig.desiredlocalEulerAngles.z) + " " + ((int)handSmall.desiredlocalEulerAngles.z == (int)compareHandSmall.desiredlocalEulerAngles.z));
+        if (Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) < 15f && Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f) < 15f)
         {
             GetComponent<MeshRenderer>().enabled = true;
             GetComponent<Collider>().enabled = true;

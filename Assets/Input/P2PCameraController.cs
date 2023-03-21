@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
@@ -30,6 +32,8 @@ public class P2PCameraController : MonoBehaviour
 
     [Tooltip("The Cursor for the Gamepad.")] public GameObject gamepadMouse;
 
+    [Tooltip("All Drawing Objects.")] public Drawing[] drawingObjects;
+
     public ObjectData rotateAroundObject;
     private void Awake()
     {
@@ -57,7 +61,13 @@ public class P2PCameraController : MonoBehaviour
         //Move Camera to starting postion (although Doll will likely override) TO FIX
         curPos = startPos;
 
-        
+        drawingObjects = FindObjectsOfType<Drawing>();
+
+        doll = FindObjectOfType<NavMeshAgent>();
+
+        invSystem = FindObjectOfType<InventorySystem>();
+        dialog = FindObjectOfType<DialogueRunner>();
+        gamepadMouse = GameObject.Find("GamepadMouse");
     }
 
     //Decreases FOV while held (later, we'll Lerp with these values for a smooth transition)
@@ -146,11 +156,23 @@ public class P2PCameraController : MonoBehaviour
         //First we check that there is a valid camera positon in that direction, and we are not mid dialog
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
+            if (curPos.enableAtPosition.Count > 0)
+            {
+                foreach (GameObject obj in curPos.enableAtPosition)
+                {
+                    obj.SetActive(false);
+                }
+            }
+
             curPos = curPos.positions[i]; //Update the current camera positon
             if (curPos.obeyRotation)
             {
                 //If we must obeyRotation, then we take our desired Rotation from the camera positions rotation
                 desiredRotation = curPos.transform.eulerAngles;
+            }
+            else
+            {
+                desiredRotation.x = 12;
             }
             //Debug.Log(curPos.quickSwitch);
             if (curPos.quickSwitch) {
@@ -163,6 +185,14 @@ public class P2PCameraController : MonoBehaviour
                 //Otherwise, it's cool to see the camera move a bit.
                 rotationSpeed = 16;
                 moveSpeed = 16;
+            }
+
+            if (curPos.enableAtPosition.Count > 0)
+            {
+                foreach (GameObject obj in curPos.enableAtPosition)
+                {
+                    obj.SetActive(true);
+                }
             }
         }
     }
@@ -315,10 +345,18 @@ public class P2PCameraController : MonoBehaviour
         //No matter what, we want to remove the item from our cursor
         heldItem = null;
         Destroy(cursorSprite);
+        if (rotateAroundObject)
+        {
+            rotateAroundObject.lookPoint = Vector3.zero;
+            rotateAroundObject.GetComponent<ObjectData>().desiredRotation = rotateAroundObject.transform.eulerAngles;
+            rotateAroundObject.GetComponent<ObjectData>().functioninteract.Invoke();
+            rotateAroundObject = null;
+        }
     }
 
     void Update()
     {
+
         //Lerping our rotation, the hard way (otherwise, it gets confused when going over 360 and below 0 degrees)
         gameObject.transform.eulerAngles = new Vector3(
             Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
@@ -334,9 +372,15 @@ public class P2PCameraController : MonoBehaviour
         //Debug.Log(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         Physics.Raycast(ray, out hit);
         
+        foreach (Drawing draw in drawingObjects)
+        {
+            draw.mousePos = hit.point;
+            draw.mouseTransform = hit.transform;
+        }
         if (rotateAroundObject)
         {
             rotateAroundObject.lookPoint = hit.point;
+            rotateAroundObject.mouseDelta = inputMap.PointToPoint.MouseDelta.ReadValue<Vector2>();
         }
 
         //We need to change object layers if they are interactable, so we can later apply the interact shader based on the layer
@@ -362,10 +406,21 @@ public class P2PCameraController : MonoBehaviour
     //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object) Redudant.
     public void Travel(CameraPosition newPosition)
     {
+        if (curPos.enableAtPosition.Count > 0)
+        {
+            foreach (GameObject obj in curPos.enableAtPosition)
+            {
+                obj.SetActive(false);
+            }
+        }
         curPos = newPosition;
         if (curPos.obeyRotation)
         {
             desiredRotation = curPos.transform.eulerAngles;
+        }
+        else
+        {
+            desiredRotation.x = 12;
         }
         if (curPos.quickSwitch)
         {
@@ -376,6 +431,13 @@ public class P2PCameraController : MonoBehaviour
         {
             rotationSpeed = 16;
             moveSpeed = 16;
+        }
+        if (curPos.enableAtPosition.Count > 0)
+        {
+            foreach (GameObject obj in curPos.enableAtPosition)
+            {
+                obj.SetActive(true);
+            }
         }
     }
 
