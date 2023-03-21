@@ -14,7 +14,7 @@ public class CreditsScroll : MonoBehaviour
     public void Awake()
     {
         from = creditsText.transform.position;
-        to = new Vector3(from.x, 11000, from.z);
+        to = new Vector3(from.x, 10000, from.z);
         scrollTime = 40.0f;
         timeElapsed = 0.0f;
     }
