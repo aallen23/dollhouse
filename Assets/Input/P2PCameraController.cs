@@ -104,16 +104,15 @@ public class P2PCameraController : MonoBehaviour
     //Any time mouse or left analog stick changes positon (moves), we check which device and enable/disable the gamepad cursor as required
     private void MousePos_performed(InputAction.CallbackContext obj)
     {
+        Cursor.visible = false;
         if (obj.control.device.name == "Mouse")
         {
             //gamepadMouse.SetActive(false);
-            //Cursor.visible = true;
             FindObjectOfType<GamepadCursor>().lastDevice = "Mouse";
         }
         else if (Application.isFocused)
         {
             //gamepadMouse.SetActive(true);
-            Cursor.visible = false;
             FindObjectOfType<GamepadCursor>().lastDevice = "Gamepad";
         }
         else if (!Application.isFocused)
