@@ -287,7 +287,8 @@ public class MenuManager : MonoBehaviour
 
     public void Restart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     public void QuitButton()
