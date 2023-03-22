@@ -120,6 +120,7 @@ public class MenuManager : MonoBehaviour
     public void StartButton()
     {
         SetAllInactive();
+        audioManager.TurnOffMusic();
         audioManager.Ambience();
         FadeIn();
         dialog.StartDialogue("StartGame");
