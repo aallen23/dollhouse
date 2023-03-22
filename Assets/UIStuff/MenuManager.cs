@@ -70,6 +70,7 @@ public class MenuManager : MonoBehaviour
     [YarnCommand("fadeOut")]
     public void FadeOut()
     {
+        FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().firstPos);
         StartCoroutine(Fade(false));
     }
 
