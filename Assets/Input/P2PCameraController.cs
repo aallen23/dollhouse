@@ -10,9 +10,10 @@ using UnityEngine.EventSystems;
 public class P2PCameraController : MonoBehaviour
 {
     private RaycastHit hit;
-
+    public bool gameStarted;
     [Tooltip("The Input Map we are using.")] public Controls inputMap;
     [Tooltip("Starting CameraPosition.")] public CameraPosition startPos;
+    public CameraPosition firstPos;
     [Tooltip("Current CameraPosition.")] public CameraPosition curPos;
     [Tooltip("The NavMeshAgent of the Doll")] public NavMeshAgent doll;
 
@@ -57,15 +58,16 @@ public class P2PCameraController : MonoBehaviour
     void Start()
     {
         //Load Objects into an array that we can iterate through later.
-        objects = FindObjectsOfType<ObjectData>();
+        objects = FindObjectsOfType<ObjectData>(true);
         //Move Camera to starting postion (although Doll will likely override) TO FIX
         curPos = startPos;
+        Travel(startPos);
 
-        drawingObjects = FindObjectsOfType<Drawing>();
+        drawingObjects = FindObjectsOfType<Drawing>(true);
 
-        doll = FindObjectOfType<NavMeshAgent>();
+        doll = FindObjectOfType<NavMeshAgent>(true);
 
-        invSystem = FindObjectOfType<InventorySystem>();
+        invSystem = FindObjectOfType<InventorySystem>(true);
         dialog = FindObjectOfType<DialogueRunner>();
         gamepadMouse = GameObject.Find("GamepadMouse");
     }
@@ -73,13 +75,19 @@ public class P2PCameraController : MonoBehaviour
     //Decreases FOV while held (later, we'll Lerp with these values for a smooth transition)
     private void Zoom_performed(InputAction.CallbackContext obj)
     {
-        desiredFOV = 30f;
+        if (gameStarted)
+        {
+            desiredFOV = 30f;
+        }
     }
 
     //Sets desired FOV back to default when button is released
     private void Zoom_canceled(InputAction.CallbackContext obj)
     {
-        desiredFOV = 60f;
+        if (gameStarted)
+        {
+            desiredFOV = 60f;
+        }
     }
 
     //Any time mouse or left analog stick changes positon (moves), we check which device and enable/disable the gamepad cursor as required
@@ -99,24 +107,30 @@ public class P2PCameraController : MonoBehaviour
 
     private void MoveBackward_performed(InputAction.CallbackContext obj)
     {
-        int i = CalcDirection(2);
-        if (!curPos.obeyRotation) //Only during BigRoom movement. Can probably be merged into CalcDirection. TO FIX
+        if (gameStarted)
         {
-            //Because we are moving backward, we need to add 2 to the direction
-            i += 2;
-            if (i > 3)
+            int i = CalcDirection(2);
+            if (!curPos.obeyRotation) //Only during BigRoom movement. Can probably be merged into CalcDirection. TO FIX
             {
-                i -= 4;
+                //Because we are moving backward, we need to add 2 to the direction
+                i += 2;
+                if (i > 3)
+                {
+                    i -= 4;
+                }
             }
+            StartMove(i);
         }
-        StartMove(i);
     }
 
     private void MoveForward_performed(InputAction.CallbackContext obj)
     {
-        int i = CalcDirection(0);
-        //Because we are moving forward, we never need to modify i from the default value
-        StartMove(i);
+        if (gameStarted)
+        {
+            int i = CalcDirection(0);
+            //Because we are moving forward, we never need to modify i from the default value
+            StartMove(i);
+        }
     }
 
     //Commented out, as it was determined that strafing was unneeded. If we change our mind, code will need to be tweaked
@@ -230,29 +244,35 @@ public class P2PCameraController : MonoBehaviour
 
     private void RotRight_performed(InputAction.CallbackContext obj)
     {
-        //If we don't have to obey Rotation, then turn right.
-        if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
+        if (gameStarted)
         {
-            desiredRotation += new Vector3(0f, 90f, 0f);
-        }
-        else if (curPos.obeyRotation) //Otherwise, treat it like a strafe
-        {
-            int i = CalcDirection(1);
-            StartMove(i);
+            //If we don't have to obey Rotation, then turn right.
+            if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
+            {
+                desiredRotation += new Vector3(0f, 90f, 0f);
+            }
+            else if (curPos.obeyRotation) //Otherwise, treat it like a strafe
+            {
+                int i = CalcDirection(1);
+                StartMove(i);
+            }
         }
     }
 
     private void RotLeft_performed(InputAction.CallbackContext obj)
     {
-        //If we don't have to obey Rotation, then turn left.
-        if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
+        if (gameStarted)
         {
-            desiredRotation -= new Vector3(0f, 90f, 0f);
-        }
-        else if (curPos.obeyRotation) //Otherwise, treat it like a strafe
-        {
-            int i = CalcDirection(3);
-            StartMove(i);
+            //If we don't have to obey Rotation, then turn left.
+            if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
+            {
+                desiredRotation -= new Vector3(0f, 90f, 0f);
+            }
+            else if (curPos.obeyRotation) //Otherwise, treat it like a strafe
+            {
+                int i = CalcDirection(3);
+                StartMove(i);
+            }
         }
     }
     
@@ -336,6 +356,7 @@ public class P2PCameraController : MonoBehaviour
                 }
                 if (!heldItem.multiUse) 
                 {
+                    Debug.Log(heldItem.displayName);
                     //If the item isn't multi use, like the lantern or any other tool, we need to remove the item and update our inventory display
                     invSystem.inv.Remove(heldItem);
                     invSystem.UpdateInventory();
@@ -358,6 +379,7 @@ public class P2PCameraController : MonoBehaviour
     {
 
         //Lerping our rotation, the hard way (otherwise, it gets confused when going over 360 and below 0 degrees)
+        desiredRotation = curPos.transform.eulerAngles;
         gameObject.transform.eulerAngles = new Vector3(
             Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
             Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
@@ -398,9 +420,10 @@ public class P2PCameraController : MonoBehaviour
         GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
 
         //Eventually will be replaced by our pause system, in the meantime we will want to quit the game this way
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame && gameStarted)
         {
-            Application.Quit();
+            FindObjectOfType<MenuManager>().Pause();
+            //Application.Quit();
         }
     }
     //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object) Redudant.
@@ -441,5 +464,11 @@ public class P2PCameraController : MonoBehaviour
         }
     }
 
-    
+    [YarnCommand("enable_controls")]
+    public void EnableControls()
+    {
+        gameStarted = true;
+        //Travel(firstPos);
+    }
+
 }

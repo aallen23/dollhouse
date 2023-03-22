@@ -235,10 +235,10 @@ public class ObjectData : MonoBehaviour
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
-                shownObject.TryGetComponent(out SpriteRenderer sprite);
-                if (sprite && shownObjectModColor)
+                if (shownObjectModColor)
                 {
-                    sprite.color = item[it].displayColor;
+                    shownObject.GetComponent<Renderer>().material = item[it].displayMaterial;
+                    
                 }
                 shownObject.TryGetComponent(out ObjectData data);
                 if (data && shownObjectItemOverride)
