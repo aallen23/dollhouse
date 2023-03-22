@@ -81,6 +81,11 @@ public class GamepadCursor : MonoBehaviour
                 Mouse.current.WarpCursorPosition(virtualMouse.position.ReadValue());
                 freshSwitch = false;
             }
+            else if (lastDevice == "Mouse")
+            {
+                AnchorCursor(Mouse.current.position.ReadValue());
+                return;
+            }
         }
 
         Vector2 currentPositon = virtualMouse.position.ReadValue();
