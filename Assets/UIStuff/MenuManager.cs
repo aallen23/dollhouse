@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Yarn.Unity;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
@@ -265,6 +266,14 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
+        if (Time.timeScale == 1f)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
         pause.SetActive(!pause.activeSelf);
     }
 
@@ -274,6 +283,11 @@ public class MenuManager : MonoBehaviour
         //audioManager.MenuMusic();
         SetAllInactive();
         mainMenu1.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void QuitButton()

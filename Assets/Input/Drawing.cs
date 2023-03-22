@@ -17,6 +17,7 @@ public class Drawing : MonoBehaviour
 
     Vector3 lastPos;
 
+    public Transform drawParent;
     public List<Transform> drawPoints;
     private int numDrawn;
     public CameraPosition DrawPos;
@@ -32,6 +33,10 @@ public class Drawing : MonoBehaviour
         inputMap.PointToPoint.Interact.performed += Interact_performed;
         inputMap.PointToPoint.Interact.canceled += Interact_canceled;
         //CreateBrush();
+        foreach (Transform point in drawParent)
+        {
+            drawPoints.Add(point);
+        }
     }
 
     private void Interact_canceled(InputAction.CallbackContext obj)
