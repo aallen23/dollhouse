@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using Yarn.Unity;
@@ -32,6 +33,11 @@ public class P2PCameraController : MonoBehaviour
     [Tooltip("The Dialog System Controller.")] public DialogueRunner dialog;
 
     [Tooltip("The Cursor for the Gamepad.")] public GameObject gamepadMouse;
+    public Image mouseCursorImage;
+    public Sprite curDefault;
+    public Sprite curHand;
+    public Sprite curLook;
+    public Sprite curExamine;
 
     [Tooltip("All Drawing Objects.")] public Drawing[] drawingObjects;
 
@@ -70,6 +76,10 @@ public class P2PCameraController : MonoBehaviour
         invSystem = FindObjectOfType<InventorySystem>(true);
         dialog = FindObjectOfType<DialogueRunner>();
         gamepadMouse = GameObject.Find("GamepadMouse");
+
+
+        gamepadMouse.SetActive(true);
+        Cursor.visible = false;
     }
 
     //Decreases FOV while held (later, we'll Lerp with these values for a smooth transition)
@@ -93,15 +103,22 @@ public class P2PCameraController : MonoBehaviour
     //Any time mouse or left analog stick changes positon (moves), we check which device and enable/disable the gamepad cursor as required
     private void MousePos_performed(InputAction.CallbackContext obj)
     {
+        Cursor.visible = false;
         if (obj.control.device.name == "Mouse")
         {
-            gamepadMouse.SetActive(false);
-            Cursor.visible = true;
+            //gamepadMouse.SetActive(false);
+            //Cursor.visible = true;
+            FindObjectOfType<GamepadCursor>().lastDevice = "Mouse";
         }
-        else
+        else if (Application.isFocused)
         {
-            gamepadMouse.SetActive(true);
+            //gamepadMouse.SetActive(true);
             Cursor.visible = false;
+            FindObjectOfType<GamepadCursor>().lastDevice = "Gamepad";
+        }
+        else if (!Application.isFocused)
+        {
+            Cursor.visible = true;
         }
     }
 
@@ -211,7 +228,7 @@ public class P2PCameraController : MonoBehaviour
         }
     }
 
-   
+    
     private int CalcDirection(int inputDirection)
     {
         int iPos = -1;
@@ -267,6 +284,7 @@ public class P2PCameraController : MonoBehaviour
             if (!curPos.obeyRotation && !dialog.IsDialogueRunning)
             {
                 desiredRotation -= new Vector3(0f, 90f, 0f);
+                //Debug.Log(gameStarted + " " + !curPos.obeyRotation + " " + !dialog.IsDialogueRunning +  " " + desiredRotation);
             }
             else if (curPos.obeyRotation) //Otherwise, treat it like a strafe
             {
@@ -379,7 +397,10 @@ public class P2PCameraController : MonoBehaviour
     {
 
         //Lerping our rotation, the hard way (otherwise, it gets confused when going over 360 and below 0 degrees)
-        desiredRotation = curPos.transform.eulerAngles;
+        if (curPos.obeyRotation)
+        {
+            desiredRotation = curPos.transform.eulerAngles;
+        }
         gameObject.transform.eulerAngles = new Vector3(
             Mathf.LerpAngle(transform.eulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
             Mathf.LerpAngle(transform.eulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
@@ -406,6 +427,7 @@ public class P2PCameraController : MonoBehaviour
         }
 
         //We need to change object layers if they are interactable, so we can later apply the interact shader based on the layer
+        bool hitAnObject = false;
         foreach (ObjectData od in objects)
         {
             od.gameObject.layer = 0;
@@ -413,7 +435,24 @@ public class P2PCameraController : MonoBehaviour
             if (od.gameObject == hit.transform.gameObject && !dialog.IsDialogueRunning && !(od.positionCamera == curPos && od.disableInteractAtPosition) && !EventSystem.current.IsPointerOverGameObject())
             {
                 od.gameObject.layer = 8;
+                hitAnObject = true;
+                if (od.interactType == InteractType.Examine)
+                {
+                    mouseCursorImage.sprite = curExamine;
+                }
+                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem)
+                {
+                    mouseCursorImage.sprite = curHand;
+                }
+                else
+                {
+                    mouseCursorImage.sprite = curDefault;
+                }
             }
+        }
+        if (!hitAnObject)
+        {
+            mouseCursorImage.sprite = curDefault;
         }
 
         //Lerping our FOV
