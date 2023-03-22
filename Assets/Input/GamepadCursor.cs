@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
@@ -84,6 +85,18 @@ public class GamepadCursor : MonoBehaviour
             else if (lastDevice == "Mouse")
             {
                 AnchorCursor(Mouse.current.position.ReadValue());
+
+                bool asButtonIsPressed = Gamepad.current.aButton.isPressed;
+                //Debug.Log(sButtonIsPressed);
+                if (previousMouseState != asButtonIsPressed)
+                {
+                    virtualMouse.CopyState<MouseState>(out var mouseState);
+
+                    mouseState.WithButton(MouseButton.Left, asButtonIsPressed);
+                    InputState.Change(virtualMouse, mouseState);
+                    previousMouseState = asButtonIsPressed;
+                }
+
                 return;
             }
         }
@@ -99,6 +112,7 @@ public class GamepadCursor : MonoBehaviour
         InputState.Change(virtualMouse.delta, stickValue);
 
         bool sButtonIsPressed = Gamepad.current.aButton.isPressed;
+        //Debug.Log(sButtonIsPressed);
         if (previousMouseState != sButtonIsPressed)
         {
             virtualMouse.CopyState<MouseState>(out var mouseState);
