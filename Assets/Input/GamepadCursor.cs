@@ -59,7 +59,7 @@ public class GamepadCursor : MonoBehaviour
     {
         if (virtualMouse == null || Gamepad.current == null)
         {
-            
+            AnchorCursor(Mouse.current.position.ReadValue());
             return;
         }
         //Delta 
