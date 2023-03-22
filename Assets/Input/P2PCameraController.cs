@@ -95,13 +95,15 @@ public class P2PCameraController : MonoBehaviour
     {
         if (obj.control.device.name == "Mouse")
         {
-            gamepadMouse.SetActive(false);
-            Cursor.visible = true;
+            //gamepadMouse.SetActive(false);
+            //Cursor.visible = true;
+            FindObjectOfType<GamepadCursor>().lastDevice = "Mouse";
         }
-        else
+        else if (Application.isFocused)
         {
             gamepadMouse.SetActive(true);
             Cursor.visible = false;
+            FindObjectOfType<GamepadCursor>().lastDevice = "Gamepad";
         }
     }
 
