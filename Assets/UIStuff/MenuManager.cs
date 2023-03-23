@@ -60,6 +60,7 @@ public class MenuManager : MonoBehaviour
         flicker = true;
         bloomBool = true;
         vgBool = true;
+        //SetAllInactive();
     }
 
     [YarnCommand("fadeIn")]
@@ -103,9 +104,9 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu1.SetActive(false);
         mainMenu2.SetActive(false);
+        pause.SetActive(false);
         gameUI.SetActive(false);
         credits.SetActive(false);
-        pause.SetActive(false);
         quitFrame.SetActive(false);
         optionsFrame.SetActive(false);
     }
@@ -280,10 +281,18 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnToMain()
     {
-        //audioManager.TurnOffMusic();
-        //audioManager.MenuMusic();
-        SetAllInactive();
-        mainMenu1.SetActive(true);
+        if (FindObjectOfType<P2PCameraController>().gameStarted)
+        {
+            optionsFrame.SetActive(false);
+            pause.SetActive(true);
+        }
+        else
+        {
+            //audioManager.TurnOffMusic();
+            //audioManager.MenuMusic();
+            SetAllInactive();
+            mainMenu1.SetActive(true);
+        }
     }
 
     public void Restart()
