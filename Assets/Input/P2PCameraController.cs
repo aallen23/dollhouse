@@ -319,6 +319,7 @@ public class P2PCameraController : MonoBehaviour
         }
         if (!dialog.IsDialogueRunning)
         {
+            //Debug.Log(hit.transform.gameObject.TryGetComponent<ObjectData>(out ObjectData ff));
             hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
             if (hitObject && !overUI) //First, we check if there is an Object at that positon, and we are not over a UI element
             {
