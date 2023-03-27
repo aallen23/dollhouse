@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 1284492282}
   - component: {fileID: 1284492281}
   - component: {fileID: 1284492280}
+  - component: {fileID: 233804914754469579}
   m_Layer: 0
   m_Name: Door Closed
   m_TagString: Untagged
@@ -292,6 +293,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.24999996, z: 0.17999999}
   m_Center: {x: -0.005, y: 0.12499998, z: -0.08999958}
+--- !u!208 &233804914754469579
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284492278}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.0050000004, y: 0.125, z: 0.09}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.0050000004, y: 0.125, z: -0.09}
+  m_TimeToStationary: 0.5
 --- !u!1 &1334187971
 GameObject:
   m_ObjectHideFlags: 0
@@ -3768,8 +3785,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233804914168518450}
-  m_LocalRotation: {x: 0.3597109, y: 0.27930912, z: -0.11378621, w: 0.88297635}
-  m_LocalPosition: {x: -43.599976, y: -35.79, z: 24.85}
+  m_LocalRotation: {x: -0.36138225, y: -0.33217376, z: 0.13958547, w: -0.85998803}
+  m_LocalPosition: {x: -40.089996, y: -19.48, z: 25.84144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8779,14 +8796,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233804915101314248}
-  m_LocalRotation: {x: -0.36391816, y: -0.28550917, z: 0.11762252, w: 0.8787565}
-  m_LocalPosition: {x: 4.12, y: -1.73, z: 31.9}
+  m_LocalRotation: {x: -0.3553671, y: -0.3410446, z: 0.14130747, w: 0.85874045}
+  m_LocalPosition: {x: -1.57, y: -10.48, z: 50.43}
   m_LocalScale: {x: 30.381002, y: 10, z: 27.633171}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 233804914168518448}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -34.92, y: -45.756, z: 30.368}
+  m_LocalEulerAnglesHint: {x: -30.927, y: -53.121, z: 34.436}
 --- !u!33 &233804915101314258
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13554,6 +13571,7 @@ GameObject:
   - component: {fileID: 3354824527165899007}
   - component: {fileID: 5115128272982471184}
   - component: {fileID: 8079893052739868463}
+  - component: {fileID: 233804914754469580}
   m_Layer: 0
   m_Name: DrawDoor 2
   m_TagString: Untagged
@@ -13690,6 +13708,22 @@ MonoBehaviour:
   mouseDelta: {x: 0, y: 0}
   rotateAroundModAngle: {x: 0, y: 0, z: 0}
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
+--- !u!208 &233804914754469580
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515027116260443092}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.0050000004, y: 0.125, z: 0.09}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.0050000004, y: 0.125, z: -0.09}
+  m_TimeToStationary: 0.5
 --- !u!1 &1555695461088413290
 GameObject:
   m_ObjectHideFlags: 0
@@ -16044,6 +16078,7 @@ GameObject:
   - component: {fileID: 6398907778906834282}
   - component: {fileID: 5754137306636565124}
   - component: {fileID: 2492503935504528021}
+  - component: {fileID: 233804914754469581}
   m_Layer: 0
   m_Name: Draw Door 1
   m_TagString: Untagged
@@ -16180,6 +16215,22 @@ MonoBehaviour:
   mouseDelta: {x: 0, y: 0}
   rotateAroundModAngle: {x: 0, y: 0, z: 0}
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
+--- !u!208 &233804914754469581
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616432138715498414}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.0050000004, y: 0.125, z: 0.09}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.0050000004, y: 0.125, z: -0.09}
+  m_TimeToStationary: 0.5
 --- !u!1 &7790520667071454622
 GameObject:
   m_ObjectHideFlags: 0
