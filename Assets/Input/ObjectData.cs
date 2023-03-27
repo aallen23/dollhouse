@@ -108,9 +108,15 @@ public class ObjectData : MonoBehaviour
     public Vector2 mouseDelta;
     public Vector3 rotateAroundModAngle;
     public Vector3 rotateAroundForceAngle;
+    private Vector3 defaultPos;
+    public Vector3 desiredPos;
+    public Vector3 secondPos;
+    public float animSpeed;
 
     void Start()
     {
+        defaultPos = transform.localPosition;
+        desiredPos = defaultPos;
         //Find specific GameObjects to be called alter.
         dialog = FindObjectOfType<DialogueRunner>();
         player = FindObjectOfType<P2PCameraController>();
@@ -166,6 +172,16 @@ public class ObjectData : MonoBehaviour
             //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90f);
             //Debug.Log(transform.eulerAngles.z);
         }
+
+        if (transform.localPosition != desiredPos)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, desiredPos, Time.deltaTime * animSpeed) ;
+        }
+        else if (desiredPos != defaultPos)
+        {
+            desiredPos = defaultPos;
+        }
+
         /*transform.localEulerAngles = new Vector3(
              Mathf.LerpAngle(transform.localEulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
              Mathf.LerpAngle(transform.localEulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
@@ -222,6 +238,10 @@ public class ObjectData : MonoBehaviour
                     dialog.StartDialogue(yarnExamine); //Trigger yarn
                 }
                 break;
+        }
+        if (secondPos != Vector3.zero || secondPos != null)
+        {
+            desiredPos = defaultPos + secondPos;
         }
         functioninteract.Invoke();
     }
