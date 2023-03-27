@@ -794,6 +794,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233464014}
   m_CullTransparentMesh: 1
+--- !u!1 &281611887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281611891}
+  - component: {fileID: 281611890}
+  - component: {fileID: 281611889}
+  m_Layer: 0
+  m_Name: Destination Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &281611889
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281611887}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e539e11733e17d945ad3136a7c37b776, type: 2}
+  - {fileID: 2100000, guid: 91377a55ae7ca75428e3251f9ef6e304, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &281611890
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281611887}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &281611891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281611887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 363.28058, y: -70.03343, z: -35.83521}
+  m_LocalScale: {x: 2, y: 0.5, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &309100724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1559,10 @@ PrefabInstance:
       propertyPath: dollCamera
       value: 
       objectReference: {fileID: 1121595381}
+    - target: {fileID: 5964903420643166953, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+      propertyPath: destinationIndicator
+      value: 
+      objectReference: {fileID: 281611891}
     - target: {fileID: 5964903420643166954, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -6080,6 +6168,54 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 841979894}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 24.33826
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 74.81385
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 53.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 69.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96825886
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.18293196
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.16600616
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0381132
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -19.974
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -20.909
+      objectReference: {fileID: 0}
+    - target: {fileID: 233804913834224762, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 8.23
+      objectReference: {fileID: 0}
     - target: {fileID: 233804914294628984, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
       propertyPath: m_Camera
       value: 
@@ -6104,6 +6240,10 @@ PrefabInstance:
       propertyPath: addItemDestination
       value: 
       objectReference: {fileID: 557216573}
+    - target: {fileID: 233804914905030978, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 73.80732
+      objectReference: {fileID: 0}
     - target: {fileID: 233804915014680902, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
       propertyPath: m_RootOrder
       value: 17

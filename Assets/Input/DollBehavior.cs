@@ -12,6 +12,7 @@ public class DollBehavior : MonoBehaviour
     [Tooltip("Dialog Controller.")] public DialogueRunner dialog;
     [Tooltip("Player Controller.")] public P2PCameraController player;
     [Tooltip("The Doll Camera GameObject. Will move to the current camera position to save the position in the Dollhouse.")] public CameraPosition dollCamera;
+    public Transform destinationIndicator;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,10 @@ public class DollBehavior : MonoBehaviour
             dollCamera.transform.position = player.curPos.transform.position;
             dollCamera.transform.rotation = player.curPos.transform.rotation;
         }
-        
+
+        destinationIndicator.position = agent.destination;
+
+
     }
 
     public void GoToObject(ObjectData newOD)
