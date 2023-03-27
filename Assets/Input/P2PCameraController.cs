@@ -439,7 +439,7 @@ public class P2PCameraController : MonoBehaviour
                 {
                     mouseCursorImage.sprite = curExamine;
                 }
-                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem)
+                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem || od.interactType == InteractType.BlankHand)
                 {
                     mouseCursorImage.sprite = curHand;
                 }

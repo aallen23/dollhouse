@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 160423292}
   - component: {fileID: 160423291}
   - component: {fileID: 160423290}
+  - component: {fileID: 160423294}
   m_Layer: 0
   m_Name: Key3
   m_TagString: Untagged
@@ -469,11 +470,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
-  positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
+  isDollObject: 1
+  positionDoll: {fileID: 172429530}
+  positionCamera: {fileID: 987251202}
   disableInteractAtPosition: 0
-  interactType: 0
+  interactType: 5
   yarnExamine: 
   rotateAmount: {x: 0, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
@@ -507,7 +508,8 @@ MonoBehaviour:
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: -0.05, z: 0}
-  animSpeed: 20
+  animSpeed: 40
+  interactSFX: {fileID: 160423294}
 --- !u!65 &160423291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -571,6 +573,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160423288}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &160423294
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160423288}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1098888376455090242, guid: a7e0d59747a99324aa09811e5c0b9f41, type: 2}
+  m_audioClip: {fileID: 8300000, guid: c4cafd1a10d124d498a1756abb366246, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &172429529
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +1061,7 @@ GameObject:
   - component: {fileID: 231092746}
   - component: {fileID: 231092745}
   - component: {fileID: 231092744}
+  - component: {fileID: 231092748}
   m_Layer: 0
   m_Name: Key6
   m_TagString: Untagged
@@ -997,11 +1096,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
-  positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
+  isDollObject: 1
+  positionDoll: {fileID: 172429530}
+  positionCamera: {fileID: 987251202}
   disableInteractAtPosition: 0
-  interactType: 0
+  interactType: 5
   yarnExamine: 
   rotateAmount: {x: 0, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
@@ -1035,7 +1134,8 @@ MonoBehaviour:
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: -0.05, z: 0}
-  animSpeed: 20
+  animSpeed: 40
+  interactSFX: {fileID: 231092748}
 --- !u!65 &231092745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1099,6 +1199,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231092742}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &231092748
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231092742}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1098888376455090242, guid: a7e0d59747a99324aa09811e5c0b9f41, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 7f96b6d79fa82c142b9d166f342e75aa, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &233464014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,6 +1795,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!1 &359259800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,6 +2280,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!65 &484114056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2452,6 +2650,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!65 &528560413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2643,6 +2842,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!65 &557216574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3398,6 +3598,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!1 &771057922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3654,6 +3855,7 @@ GameObject:
   - component: {fileID: 895846481}
   - component: {fileID: 895846480}
   - component: {fileID: 895846479}
+  - component: {fileID: 895846483}
   m_Layer: 0
   m_Name: Key2
   m_TagString: Untagged
@@ -3688,11 +3890,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
-  positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
+  isDollObject: 1
+  positionDoll: {fileID: 172429530}
+  positionCamera: {fileID: 987251202}
   disableInteractAtPosition: 0
-  interactType: 0
+  interactType: 5
   yarnExamine: 
   rotateAmount: {x: 0, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
@@ -3726,7 +3928,8 @@ MonoBehaviour:
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: -0.05, z: 0}
-  animSpeed: 20
+  animSpeed: 40
+  interactSFX: {fileID: 895846483}
 --- !u!65 &895846480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3790,6 +3993,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895846477}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &895846483
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895846477}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1098888376455090242, guid: a7e0d59747a99324aa09811e5c0b9f41, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 90c82295f8c9f094ba0d46cfd52640b2, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &905336818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3919,7 +4218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &918490998
 Transform:
   m_ObjectHideFlags: 0
@@ -3947,11 +4246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
-  positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
+  isDollObject: 1
+  positionDoll: {fileID: 172429530}
+  positionCamera: {fileID: 987251202}
   disableInteractAtPosition: 0
-  interactType: 0
+  interactType: 5
   yarnExamine: 
   rotateAmount: {x: 0, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
@@ -3985,7 +4284,8 @@ MonoBehaviour:
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: -0.05, z: 0}
-  animSpeed: 20
+  animSpeed: 40
+  interactSFX: {fileID: 0}
 --- !u!65 &918491000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4566,6 +4866,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!64 &1135070567
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4740,6 +5041,7 @@ GameObject:
   - component: {fileID: 1191556686}
   - component: {fileID: 1191556685}
   - component: {fileID: 1191556684}
+  - component: {fileID: 1191556688}
   m_Layer: 0
   m_Name: Key4
   m_TagString: Untagged
@@ -4774,11 +5076,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
-  positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
+  isDollObject: 1
+  positionDoll: {fileID: 172429530}
+  positionCamera: {fileID: 987251202}
   disableInteractAtPosition: 0
-  interactType: 0
+  interactType: 5
   yarnExamine: 
   rotateAmount: {x: 0, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
@@ -4812,7 +5114,8 @@ MonoBehaviour:
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: -0.05, z: 0}
-  animSpeed: 20
+  animSpeed: 40
+  interactSFX: {fileID: 1191556688}
 --- !u!65 &1191556685
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4876,6 +5179,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191556682}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1191556688
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191556682}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1098888376455090242, guid: a7e0d59747a99324aa09811e5c0b9f41, type: 2}
+  m_audioClip: {fileID: 8300000, guid: bc532fed31a515149a99fabc8777658a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1195503553
 GameObject:
   m_ObjectHideFlags: 0
@@ -5987,6 +6386,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!64 &1491458138
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6184,6 +6584,7 @@ GameObject:
   - component: {fileID: 1531707856}
   - component: {fileID: 1531707855}
   - component: {fileID: 1531707854}
+  - component: {fileID: 1531707859}
   m_Layer: 0
   m_Name: Piano
   m_TagString: Untagged
@@ -6242,6 +6643,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!65 &1531707855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6330,6 +6732,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1531707859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531707853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fe4aae247034442b63f1d85789f139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1656951299
 GameObject:
   m_ObjectHideFlags: 0
@@ -6650,6 +7064,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!65 &1795154499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7192,7 +7607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1968991774
 Transform:
   m_ObjectHideFlags: 0
@@ -7224,7 +7639,7 @@ MonoBehaviour:
   positionDoll: {fileID: 172429530}
   positionCamera: {fileID: 987251202}
   disableInteractAtPosition: 0
-  interactType: 0
+  interactType: 5
   yarnExamine: 
   rotateAmount: {x: 0, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
@@ -7258,7 +7673,8 @@ MonoBehaviour:
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: -0.05, z: 0}
-  animSpeed: 20
+  animSpeed: 40
+  interactSFX: {fileID: 0}
 --- !u!65 &1968991776
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7335,6 +7751,7 @@ GameObject:
   - component: {fileID: 1979097593}
   - component: {fileID: 1979097592}
   - component: {fileID: 1979097591}
+  - component: {fileID: 1979097595}
   m_Layer: 0
   m_Name: Key5
   m_TagString: Untagged
@@ -7369,11 +7786,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
-  positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
+  isDollObject: 1
+  positionDoll: {fileID: 172429530}
+  positionCamera: {fileID: 987251202}
   disableInteractAtPosition: 0
-  interactType: 0
+  interactType: 5
   yarnExamine: 
   rotateAmount: {x: 0, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
@@ -7407,7 +7824,8 @@ MonoBehaviour:
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: -0.05, z: 0}
-  animSpeed: 20
+  animSpeed: 40
+  interactSFX: {fileID: 1979097595}
 --- !u!65 &1979097592
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7471,6 +7889,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979097589}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1979097595
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979097589}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1098888376455090242, guid: a7e0d59747a99324aa09811e5c0b9f41, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 9d51683fae6e6fd46a627dc488a261ec, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2006857948
 GameObject:
   m_ObjectHideFlags: 0
@@ -8588,6 +9102,7 @@ MonoBehaviour:
   desiredPos: {x: 0, y: 0, z: 0}
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
+  interactSFX: {fileID: 0}
 --- !u!65 &8883912632345983858
 BoxCollider:
   m_ObjectHideFlags: 0

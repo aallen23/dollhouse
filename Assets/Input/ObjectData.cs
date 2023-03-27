@@ -12,7 +12,8 @@ public enum InteractType
     Rotate,
     RotateAround,
     Teleport,
-    AddItem
+    AddItem,
+    BlankHand
 }
 
 public enum ObjectUseType
@@ -112,6 +113,7 @@ public class ObjectData : MonoBehaviour
     public Vector3 desiredPos;
     public Vector3 secondPos;
     public float animSpeed;
+    public AudioSource interactSFX;
 
     void Start()
     {
@@ -196,6 +198,11 @@ public class ObjectData : MonoBehaviour
         if (positionCamera)
         {
             player.Travel(positionCamera);
+        }
+
+        if (interactSFX)
+        {
+            interactSFX.Play();
         }
 
         switch (interactType)
