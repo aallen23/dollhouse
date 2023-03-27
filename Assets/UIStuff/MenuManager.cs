@@ -48,6 +48,8 @@ public class MenuManager : MonoBehaviour
 
     private DialogueRunner dialog;
 
+    private CreditsScroll scrollScript;
+
     public void Awake()
     {
         audioManager = audioBox.GetComponent<AudioManager>();
@@ -116,6 +118,15 @@ public class MenuManager : MonoBehaviour
     {
         SetAllInactive();
         gameUI.SetActive(true);
+    }
+
+    public void ResetCreditsScroll()
+    {
+        scrollScript = credits.GetComponent<CreditsScroll>();
+        if (scrollScript != null)
+        {
+            scrollScript.ResetScroll();
+        }
     }
 
     public void StartButton()
@@ -288,6 +299,10 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            if (credits.activeSelf == true)
+            {
+                ResetCreditsScroll();
+            }
             //audioManager.TurnOffMusic();
             //audioManager.MenuMusic();
             SetAllInactive();
