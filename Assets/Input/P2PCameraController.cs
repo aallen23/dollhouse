@@ -41,6 +41,7 @@ public class P2PCameraController : MonoBehaviour
 
     public bool overUI;
     [Tooltip("All Drawing Objects.")] public Drawing[] drawingObjects;
+    public Transform draggingObject;
 
     public ObjectData rotateAroundObject;
     private void Awake()
@@ -391,6 +392,11 @@ public class P2PCameraController : MonoBehaviour
             rotateAroundObject.GetComponent<ObjectData>().functioninteract.Invoke();
             rotateAroundObject = null;
         }
+        if (draggingObject)
+        {
+            draggingObject.GetComponent<Collider>().isTrigger = false;
+            draggingObject = null;
+        }
     }
 
     void Update()
@@ -425,6 +431,24 @@ public class P2PCameraController : MonoBehaviour
             rotateAroundObject.lookPoint = hit.point;
             rotateAroundObject.mouseDelta = inputMap.PointToPoint.MouseDelta.ReadValue<Vector2>();
         }
+        if (draggingObject)
+        {
+            if (draggingObject.GetComponent<ObjectData>().requiredDraggingSurface) { 
+                if (draggingObject.GetComponent<ObjectData>().requiredDraggingSurface == hit.transform.gameObject)
+                {
+                    draggingObject.position = hit.point + Vector3.up * 2;
+                }
+                else
+                {
+                    draggingObject.GetComponent<Collider>().isTrigger = false;
+                    draggingObject = null;
+                }
+            }
+            else
+            {
+                draggingObject.position = hit.point + Vector3.up * 2;
+            }
+        }
 
         //We need to change object layers if they are interactable, so we can later apply the interact shader based on the layer
         bool hitAnObject = false;
@@ -440,7 +464,7 @@ public class P2PCameraController : MonoBehaviour
                 {
                     mouseCursorImage.sprite = curExamine;
                 }
-                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem || od.interactType == InteractType.BlankHand)
+                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem || od.interactType == InteractType.BlankHand || od.interactType == InteractType.Dragging)
                 {
                     mouseCursorImage.sprite = curHand;
                 }
