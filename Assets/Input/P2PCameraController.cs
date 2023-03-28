@@ -39,6 +39,7 @@ public class P2PCameraController : MonoBehaviour
     public Sprite curLook;
     public Sprite curExamine;
 
+    public bool overUI;
     [Tooltip("All Drawing Objects.")] public Drawing[] drawingObjects;
 
     public ObjectData rotateAroundObject;
@@ -107,13 +108,11 @@ public class P2PCameraController : MonoBehaviour
         if (obj.control.device.name == "Mouse")
         {
             //gamepadMouse.SetActive(false);
-            //Cursor.visible = true;
             FindObjectOfType<GamepadCursor>().lastDevice = "Mouse";
         }
         else if (Application.isFocused)
         {
             //gamepadMouse.SetActive(true);
-            Cursor.visible = false;
             FindObjectOfType<GamepadCursor>().lastDevice = "Gamepad";
         }
         else if (!Application.isFocused)
@@ -320,8 +319,9 @@ public class P2PCameraController : MonoBehaviour
         }
         if (!dialog.IsDialogueRunning)
         {
+            //Debug.Log(hit.transform.gameObject.TryGetComponent<ObjectData>(out ObjectData ff));
             hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
-            if (hitObject && !EventSystem.current.IsPointerOverGameObject()) //First, we check if there is an Object at that positon, and we are not over a UI element
+            if (hitObject && !overUI) //First, we check if there is an Object at that positon, and we are not over a UI element
             {
                 if (!(hitObject.disableInteractAtPosition && curPos == hitObject.positionCamera)) //Then, we check if the Object is not disabled at our current Position
                 {
@@ -335,7 +335,7 @@ public class P2PCameraController : MonoBehaviour
                     }
                 }
             }
-            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !EventSystem.current.IsPointerOverGameObject()) //If there's no Object, we check if we are clicking on the NavMesh
+            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI) //If there's no Object, we check if we are clicking on the NavMesh
             {
                 //Debug.Log("Walk");
                 doll.GetComponent<DollBehavior>().od = null;
@@ -395,7 +395,7 @@ public class P2PCameraController : MonoBehaviour
 
     void Update()
     {
-
+        overUI = EventSystem.current.IsPointerOverGameObject();
         //Lerping our rotation, the hard way (otherwise, it gets confused when going over 360 and below 0 degrees)
         if (curPos.obeyRotation)
         {
@@ -414,7 +414,7 @@ public class P2PCameraController : MonoBehaviour
         Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         //Debug.Log(inputMap.PointToPoint.MousePos.ReadValue<Vector2>());
         Physics.Raycast(ray, out hit);
-        
+
         foreach (Drawing draw in drawingObjects)
         {
             draw.mousePos = hit.point;
@@ -440,7 +440,7 @@ public class P2PCameraController : MonoBehaviour
                 {
                     mouseCursorImage.sprite = curExamine;
                 }
-                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem)
+                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem || od.interactType == InteractType.BlankHand)
                 {
                     mouseCursorImage.sprite = curHand;
                 }

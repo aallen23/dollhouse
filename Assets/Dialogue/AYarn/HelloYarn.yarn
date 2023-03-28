@@ -12,7 +12,7 @@ tags:
 ...: Poor thing. They deserved a better mother.
 Grandma: Well, no surprise there.
 ...: She hadn’t come home in a long time, had she?
-Grandma: No. Not since the child was born.
+Grandma: No. Not since their father died.
 ...: What a tragedy… At least now, they have you to take care of them…
 <<fadeOut UI>>
 <<wait 1>>
@@ -87,6 +87,9 @@ tags:
 <<activate BigBoy>>
 <<if !$BBfed>>
 BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
+Cece: Aren't you made of paper? Why are you hungry?
+BigBoy: Someone used to feed real food, but they disappeared long ago. I have never forgotten the taste. I have been eating paper nothings for years and years...
+Cece: I'll see if I can find anything. I'm hungry too.
 <<endif>>
 <<if $BBfed>>
 BigBoy: FOOD! REAL FOOD! I have been eating paper nothings for years and years… Someone used to feed me, but they disappeared long ago. Thank you, thank you. The taste of this food reminds me of the past.
@@ -97,6 +100,7 @@ BigBoy: FOOD! REAL FOOD! I have been eating paper nothings for years and years�
 title: BirdMan
 tags:
 ---
+<<activate Talon>>
 Talon: ...
 Cece: Hello? Mr. Bird Man?
 Talon: My name is... Talon.
@@ -107,4 +111,19 @@ Cece: Hello, Mr. Talon.
 	Talon: You hardly seem tempting enough to try.
 -> Cece: Why is everything here so frightening?
 	Talon: Is it? I have known nothing else.
+<<deactivate Talon>>
+===
+
+title: Ariadne
+tags:
+---
+<<activate Ariadne>>
+Ariadne: Hello, my name is Ariadne.
+Cece: Why are you talking to me?
+Ariadne: I recognize you. Do not be afraid.
+Cece: I'm terrified of everything in this house.
+Ariadne: This is not what you should be afraid of... There is worse to come...
+Cece: What do you mean?
+Ariadne: If you wish to understand what is happening here, you must keep exploring. But be careful. You may regret what you discover.
+<<deactivate Ariadne>>
 ===

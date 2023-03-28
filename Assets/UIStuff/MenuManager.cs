@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Yarn.Unity;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
@@ -47,6 +48,8 @@ public class MenuManager : MonoBehaviour
 
     private DialogueRunner dialog;
 
+    private CreditsScroll scrollScript;
+
     public void Awake()
     {
         audioManager = audioBox.GetComponent<AudioManager>();
@@ -59,6 +62,7 @@ public class MenuManager : MonoBehaviour
         flicker = true;
         bloomBool = true;
         vgBool = true;
+        //SetAllInactive();
     }
 
     [YarnCommand("fadeIn")]
@@ -102,9 +106,9 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu1.SetActive(false);
         mainMenu2.SetActive(false);
+        pause.SetActive(false);
         gameUI.SetActive(false);
         credits.SetActive(false);
-        pause.SetActive(false);
         quitFrame.SetActive(false);
         optionsFrame.SetActive(false);
     }
@@ -116,9 +120,19 @@ public class MenuManager : MonoBehaviour
         gameUI.SetActive(true);
     }
 
+    public void ResetCreditsScroll()
+    {
+        scrollScript = credits.GetComponent<CreditsScroll>();
+        if (scrollScript != null)
+        {
+            scrollScript.ResetScroll();
+        }
+    }
+
     public void StartButton()
     {
         SetAllInactive();
+        audioManager.TurnOffMusic();
         audioManager.Ambience();
         FadeIn();
         dialog.StartDialogue("StartGame");
@@ -265,15 +279,41 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
+        if (Time.timeScale == 1f)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
         pause.SetActive(!pause.activeSelf);
     }
 
     public void ReturnToMain()
     {
-        //audioManager.TurnOffMusic();
-        //audioManager.MenuMusic();
-        SetAllInactive();
-        mainMenu1.SetActive(true);
+        if (FindObjectOfType<P2PCameraController>().gameStarted)
+        {
+            optionsFrame.SetActive(false);
+            pause.SetActive(true);
+        }
+        else
+        {
+            if (credits.activeSelf == true)
+            {
+                ResetCreditsScroll();
+            }
+            //audioManager.TurnOffMusic();
+            //audioManager.MenuMusic();
+            SetAllInactive();
+            mainMenu1.SetActive(true);
+        }
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     public void QuitButton()
