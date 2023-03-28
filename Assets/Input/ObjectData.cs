@@ -13,7 +13,8 @@ public enum InteractType
     RotateAround,
     Teleport,
     AddItem,
-    BlankHand
+    BlankHand,
+    Dragging
 }
 
 public enum ObjectUseType
@@ -98,6 +99,10 @@ public class ObjectData : MonoBehaviour
 
     public ObjectData addItemDestination;
     public ItemScriptableObject addItemItem;
+
+    public CameraPosition allowedDraggingCamera;
+    public GameObject requiredDraggingSurface;
+    public float respawnY;
 
     [Tooltip("(Optional) What function to call after using an Item")]
     public UnityEvent functionItem;
@@ -184,6 +189,11 @@ public class ObjectData : MonoBehaviour
             desiredPos = defaultPos;
         }
 
+
+        if (interactType == InteractType.Dragging && transform.localPosition.y <= respawnY)
+        {
+            transform.localPosition = defaultPos;
+        }
         /*transform.localEulerAngles = new Vector3(
              Mathf.LerpAngle(transform.localEulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
              Mathf.LerpAngle(transform.localEulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
@@ -243,6 +253,13 @@ public class ObjectData : MonoBehaviour
                 if (yarnExamine != "" && yarnExamine != null)
                 {
                     dialog.StartDialogue(yarnExamine); //Trigger yarn
+                }
+                break;
+            case InteractType.Dragging:
+                if (allowedDraggingCamera == player.curPos)
+                {
+                    player.draggingObject = gameObject.transform;
+                    GetComponent<Collider>().isTrigger = true;
                 }
                 break;
         }
