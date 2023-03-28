@@ -17,9 +17,12 @@ public class GamepadCursor : MonoBehaviour
     private Camera mainCamera;
 
     private bool previousMouseState;
+    public bool freshSwitch;
+    public string lastDevice;
 
     private void OnEnable()
     {
+        lastDevice = "Mouse";
         mainCamera = Camera.main;
 
         //If we don't have a virtualMouse, create it and add the device.
@@ -55,19 +58,34 @@ public class GamepadCursor : MonoBehaviour
     {
         if (virtualMouse == null || Gamepad.current == null)
         {
+            
             return;
         }
-
         //Delta 
         Vector2 stickValue = Gamepad.current.leftStick.ReadValue();
         //Debug.Log(stickValue.magnitude);
         if (stickValue.magnitude > 0.5f)
         {
             stickValue *= cursorSpeed * Time.deltaTime;
+            if (lastDevice == "Mouse")
+            {
+                InputState.Change(virtualMouse.position, Mouse.current.position.ReadValue());
+                freshSwitch = true;
+            }
         }
         else
         {
             stickValue = Vector2.zero;
+            if (lastDevice == "Gamepad")
+            {
+                Mouse.current.WarpCursorPosition(virtualMouse.position.ReadValue());
+                freshSwitch = false;
+            }
+            else if (lastDevice == "Mouse")
+            {
+                AnchorCursor(Mouse.current.position.ReadValue());
+                return;
+            }
         }
 
         Vector2 currentPositon = virtualMouse.position.ReadValue();
@@ -93,7 +111,7 @@ public class GamepadCursor : MonoBehaviour
         AnchorCursor(newPosition);
     }
 
-    private void AnchorCursor(Vector2 position)
+    public void AnchorCursor(Vector2 position)
     {
         Vector2 anchoredPosition;
 
