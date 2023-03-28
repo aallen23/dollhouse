@@ -13,11 +13,13 @@ public class DollBehavior : MonoBehaviour
     [Tooltip("Player Controller.")] public P2PCameraController player;
     [Tooltip("The Doll Camera GameObject. Will move to the current camera position to save the position in the Dollhouse.")] public CameraPosition dollCamera;
     public Transform destinationIndicator;
+    [Tooltip("Audio Source.")] public AudioSource footstepAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
+        footstepAudio = gameObject.GetComponent<AudioSource>();
         dialog = FindObjectOfType<DialogueRunner>();
         player = FindObjectOfType<P2PCameraController>();
     }
@@ -38,7 +40,14 @@ public class DollBehavior : MonoBehaviour
 
         destinationIndicator.position = agent.destination;
 
-
+        if (agent.remainingDistance > 0)
+        {
+            footstepAudio.Play();
+        }
+        else
+        {
+            footstepAudio.Stop();
+        }
     }
 
     public void GoToObject(ObjectData newOD)
