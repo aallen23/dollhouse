@@ -27,7 +27,7 @@ public class DollBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (agent.remainingDistance <= 1 && od != null)
+        if (agent.remainingDistance <= 1f && od != null)
         {
             od.Interact();
             od = null;
@@ -40,14 +40,15 @@ public class DollBehavior : MonoBehaviour
 
         destinationIndicator.position = agent.destination;
 
-        if (agent.remainingDistance > 0)
+        if (agent.remainingDistance > 0f && !footstepAudio.isPlaying)
         {
             footstepAudio.Play();
         }
-        else
+        else if (agent.remainingDistance == 0f)
         {
             footstepAudio.Stop();
         }
+        Debug.Log(footstepAudio.isPlaying);
     }
 
     public void GoToObject(ObjectData newOD)
