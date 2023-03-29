@@ -259,7 +259,8 @@ public class ObjectData : MonoBehaviour
                 if (allowedDraggingCamera == player.curPos)
                 {
                     player.draggingObject = gameObject.transform;
-                    GetComponent<Collider>().isTrigger = true;
+                    GetComponent<Collider>().enabled = false;
+                    GetComponent<Rigidbody>().useGravity = false;
                 }
                 break;
         }

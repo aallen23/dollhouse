@@ -282,11 +282,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9095409130666439711, guid: f89e129f85e45ae40a5fbe83f3c60e40, type: 3}
   m_PrefabInstance: {fileID: 1427167794}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &84239237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1152866002871847023, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
-  m_PrefabInstance: {fileID: 233804914754469575}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &147385611
 GameObject:
   m_ObjectHideFlags: 0
@@ -6833,6 +6828,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curSong: 
   desiredSong: 654323456
+--- !u!1 &1547081433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1660856931, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+  m_PrefabInstance: {fileID: 233804914754469575}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1656951299
 GameObject:
   m_ObjectHideFlags: 0
@@ -8321,14 +8321,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1660856936, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
-      propertyPath: respawnY
-      value: 0.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 1660856936, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
-      propertyPath: requiredDraggingSurface
-      value: 
-      objectReference: {fileID: 84239237}
     - target: {fileID: 233804913690777407, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
       propertyPath: cam
       value: 
@@ -8409,6 +8401,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 841979894}
+    - target: {fileID: 3322772755566584347, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: SugarCube
+      value: 
+      objectReference: {fileID: 1547081433}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
 --- !u!4 &543450652598774408

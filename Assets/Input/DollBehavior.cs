@@ -48,7 +48,7 @@ public class DollBehavior : MonoBehaviour
         {
             footstepAudio.Stop();
         }
-        Debug.Log(footstepAudio.isPlaying);
+        //Debug.Log(footstepAudio.isPlaying);
     }
 
     public void GoToObject(ObjectData newOD)
