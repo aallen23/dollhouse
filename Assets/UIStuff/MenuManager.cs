@@ -80,7 +80,6 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator Fade(bool fadeToBlack)
     {
-        Color c = blackscreen.GetComponent<Image>().color;
 
         if (fadeToBlack)
         {
@@ -102,6 +101,47 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    [YarnCommand("Blink")]
+    public void StartBlink()
+    {
+        StartCoroutine(Blink());
+    }
+
+    IEnumerator Blink()
+    {
+        for (float i = 0; i <= 1; i += Time.deltaTime * 25)
+        {
+            blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, i);
+            yield return null;
+        }
+        blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 1);
+
+        yield return new WaitForSeconds(0.05f);
+
+        for (float i = 1; i >= 0; i -= Time.deltaTime * 10)
+        {
+            blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, i);
+            yield return null;
+        }
+        blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        //yield return new WaitForSeconds(Random.Range(0.0f, 0.25f));
+        for (float i = 0; i <= 1; i += Time.deltaTime * 15)
+        {
+            blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, i);
+            yield return null;
+        }
+        blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 1);
+
+        yield return new WaitForSeconds(0.1f);
+        for (float i = 1; i >= 0; i -= Time.deltaTime * 5)
+        {
+            blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, i);
+            yield return null;
+        }
+        blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    }
+
     public void SetAllInactive()
     {
         mainMenu1.SetActive(false);
@@ -118,6 +158,11 @@ public class MenuManager : MonoBehaviour
     {
         SetAllInactive();
         gameUI.SetActive(true);
+    }
+
+    public void ResetDialogue()
+    {
+        //fill this in once custom variable storage is built
     }
 
     public void ResetCreditsScroll()
