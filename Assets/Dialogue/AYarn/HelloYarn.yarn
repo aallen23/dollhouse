@@ -5,7 +5,7 @@ tags:
 <<set $BBfed to false>>
 <<set $Music to false>>
 <<set $Tintro to true>>
-<<set $ea to false>>
+<<set $Tea to false>>
 ===
 
 title: StartGame
@@ -19,6 +19,7 @@ Grandma: No. Not since their father died.
 ...: What a tragedy… At least now, they have you to take care of them…
 <<fadeOut UI>>
 <<wait 1>>
+<<Blink UI>>
 <<ActivateUI UI>>
 <<enable_controls P2PPlayer>>
 ===
