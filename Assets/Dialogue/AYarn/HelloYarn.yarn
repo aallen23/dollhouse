@@ -58,10 +58,24 @@ This is a very ornate cuckoo clock.
 title: Deposit
 tags:
 ---
+<<use_item Wardrobe {$itemUsed}>>
 You deposit the Chair into the Wardrobe. Where did it go?
 ===
 
 title: Withdraw
+tags:
+---
+You withdraw the Chair from the Wardrobe. It is now life-sized.
+===
+
+title: LilDeposit
+tags:
+---
+<<use_item LilWardrobe {$itemUsed}>>
+You deposit the Chair into the Wardrobe. Where did it go?
+===
+
+title: LilWithdraw
 tags:
 ---
 You withdraw the Chair from the Wardrobe. It is now life-sized.

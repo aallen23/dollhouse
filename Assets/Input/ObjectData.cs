@@ -207,6 +207,7 @@ public class ObjectData : MonoBehaviour
         //If it has a camera position, go there first.
         if (positionCamera)
         {
+            //Debug.Log(player.gameObject.name);
             player.Travel(positionCamera);
         }
 
@@ -236,23 +237,27 @@ public class ObjectData : MonoBehaviour
                 break;
             case InteractType.AddItem:
                 InventorySystem inv = FindObjectOfType<InventorySystem>();
-                inv.inv.Add(addedItem);
-                inv.UpdateInventory();
-                if (addItemHideObject)
+                if (addedItem)
                 {
-                    addItemHideObject.SetActive(false);
-                }
-                if (itemEnabledToggleObject)
-                {
-                    itemEnabledToggleObject.itemEnabled = !itemEnabledToggleObject.itemEnabled;
-                }
-                if (!addItemIsInfinite)
-                {
-                    addedItem = null;
-                }
-                if (yarnExamine != "" && yarnExamine != null)
-                {
-                    dialog.StartDialogue(yarnExamine); //Trigger yarn
+
+                    inv.inv.Add(addedItem);
+                    inv.UpdateInventory();
+                    if (addItemHideObject)
+                    {
+                        addItemHideObject.SetActive(false);
+                    }
+                    if (itemEnabledToggleObject)
+                    {
+                        itemEnabledToggleObject.itemEnabled = !itemEnabledToggleObject.itemEnabled;
+                    }
+                    if (!addItemIsInfinite)
+                    {
+                        addedItem = null;
+                    }
+                    if (yarnExamine != "" && yarnExamine != null)
+                    {
+                        dialog.StartDialogue(yarnExamine); //Trigger yarn
+                    }
                 }
                 break;
             case InteractType.Dragging:
@@ -305,7 +310,14 @@ public class ObjectData : MonoBehaviour
                 }
                 break;
             case ObjectUseType.AddItemElsewhere:
-                addItemDestination.addedItem = addItemItem;
+                if (addItemItem)
+                {
+                    addItemDestination.addedItem = addItemItem;
+                }
+                else
+                {
+                    addItemDestination.addedItem = item[it];
+                }
                 break;
         }
         functionItem.Invoke();
