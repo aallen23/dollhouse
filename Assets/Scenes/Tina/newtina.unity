@@ -2188,14 +2188,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cecilia Doll
       objectReference: {fileID: 0}
-    - target: {fileID: 5964903420643166950, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 039f353ddfa4e914caf56f60a0b23ca3, type: 3}
-    - target: {fileID: 5964903420643166950, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 1098888376455090242, guid: a7e0d59747a99324aa09811e5c0b9f41, type: 2}
     - target: {fileID: 5964903420643166953, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
       propertyPath: dollCamera
       value: 
@@ -2250,6 +2242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+--- !u!1 &446321951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6920093981626586358, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+  m_PrefabInstance: {fileID: 446321950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &484114054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3086,39 +3083,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 326.85
+      value: 322.52
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -73.5
+      value: -51.74
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -53.86
+      value: -48.63
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9082738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.90827465
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.41837642
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.41837448
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -49.464
       objectReference: {fileID: 0}
     - target: {fileID: 6591070046268366686, guid: bc3e520e2b8c69a4a8ab6023c9c91426, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -6500,10 +6497,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 918698944, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5901120336347237424, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6607,7 +6600,7 @@ PrefabInstance:
     - target: {fileID: 6077036836173029554, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: dollLantern
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 446321951}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
 --- !u!1001 &1531650989
