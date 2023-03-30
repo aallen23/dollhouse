@@ -39,7 +39,7 @@ public class ObjectData : MonoBehaviour
     public bool disableInteractAtPosition;
 
 
-    [Header("Clicking Settings")]
+    [Header("Interact Settings")]
     [Tooltip("What happens when this object is clicked.")]
     public InteractType interactType;
 
@@ -63,15 +63,24 @@ public class ObjectData : MonoBehaviour
     [Tooltip("For AddItem type objects, add this item to your inventory")]
     public ItemScriptableObject addedItem;
     [Tooltip("For AddItem type objects, is this multiUse or one-time only?")]
-    public ItemScriptableObject addItemIsInfinite;
+    public bool addItemIsInfinite;
     [Tooltip("(Optional) For AddItem type objects, hide this GameObject.")]
     public GameObject addItemHideObject;
     [Tooltip("(Optional) For AddItem type objects, toggle Item Enabled on this object after adding.")]
     public ObjectData itemEnabledToggleObject;
 
+
+    [Space(10)]
+    [Tooltip("For Dragging Type objects, at what y-value should we reset the objects position?")]
+    public float respawnY;
+    [Tooltip("(Optional) For Dragging Type objects, what camera position should we allow dragging at? If null you can always drag the object.")]
+    public CameraPosition allowedDraggingCamera;
+    [Tooltip("(Optional) For Dragging Type objects, what object should we restrict dragging on? If null, you can drag the object anywhere.")]
+    public GameObject requiredDraggingSurface;
+
+    [Space(10)]
     [Tooltip("(Optional) What function to call after interacting.")]
     public UnityEvent functioninteract;
-
 
     [Header("Item Interaction Settings")]
     [Tooltip("What ItemScriptableObject can be used on this object.")]
@@ -86,27 +95,30 @@ public class ObjectData : MonoBehaviour
     public string yarnItem;
 
     [Space(20)]
-    [Tooltip("For ShowObject Type objects, show this GameObject.")]
+    [Tooltip("For ShowObject Type item uses, show this GameObject.")]
     public GameObject shownObject;
-    [Tooltip("For ShowObject Type objects, modify the color.")]
+    [Tooltip("For ShowObject Type item uses, modify the color.")]
     public bool shownObjectModColor;
-    [Tooltip("For ShowObject Type objects, modify the Add Item Hide Object value with the Item. (Useful for dropping an item, or similar)")]
+    [Tooltip("For ShowObject Type item uses, modify the Add Item Hide Object value with the Item. (Useful for dropping an item, or similar)")]
     public bool shownObjectItemOverride;
-    [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
+    [Tooltip("For ShowObject Type item uses, should Shown Object start visible?")]
     public bool startVisible;
 
+    [Tooltip("For AddItem Type item uses, add this item to your inventory")]
     public ItemScriptableObject itemAddItem;
 
+    [Tooltip("For AddItemElsewhere Type item uses, where to add the item")]
     public ObjectData addItemDestination;
+    [Tooltip("For AddItemElsewhere Type item uses, add this item to the Destination")]
     public ItemScriptableObject addItemItem;
 
-    public CameraPosition allowedDraggingCamera;
-    public GameObject requiredDraggingSurface;
-    public float respawnY;
+
+    
 
     [Tooltip("(Optional) What function to call after using an Item")]
     public UnityEvent functionItem;
 
+    [Header("Debug Variables")]
     //Private variables for calling fucntions
     private DialogueRunner dialog;
     private P2PCameraController player;

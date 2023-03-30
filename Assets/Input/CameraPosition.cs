@@ -15,6 +15,7 @@ public class CameraPosition : MonoBehaviour
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
     public List<GameObject> enableAtPosition;
 
+    [Tooltip("What GameObject to rotate around.")]
     public GameObject rotateAround;
 
     private void Start()
