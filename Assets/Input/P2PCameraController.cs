@@ -394,7 +394,8 @@ public class P2PCameraController : MonoBehaviour
         }
         if (draggingObject)
         {
-            draggingObject.GetComponent<Collider>().isTrigger = false;
+            draggingObject.GetComponent<Collider>().enabled = true;
+            draggingObject.GetComponent<Rigidbody>().useGravity = true;
             draggingObject = null;
         }
     }
@@ -433,21 +434,33 @@ public class P2PCameraController : MonoBehaviour
         }
         if (draggingObject)
         {
-            if (draggingObject.GetComponent<ObjectData>().requiredDraggingSurface) { 
-                if (draggingObject.GetComponent<ObjectData>().requiredDraggingSurface == hit.transform.gameObject)
-                {
-                    draggingObject.position = hit.point + Vector3.up * 2;
-                }
-                else
-                {
-                    draggingObject.GetComponent<Collider>().isTrigger = false;
-                    draggingObject = null;
-                }
+            if (draggingObject.GetComponent<ObjectData>().allowedDraggingCamera != curPos)
+            {
+                draggingObject.GetComponent<Collider>().enabled = true;
+                draggingObject.GetComponent<Rigidbody>().useGravity = true;
+                draggingObject = null;
             }
             else
             {
-                draggingObject.position = hit.point + Vector3.up * 2;
+                if (draggingObject.GetComponent<ObjectData>().requiredDraggingSurface)
+                {
+                    if (draggingObject.GetComponent<ObjectData>().requiredDraggingSurface == hit.transform.gameObject)
+                    {
+                        draggingObject.position = hit.point + Vector3.up * 2;
+                    }
+                    else
+                    {
+                        draggingObject.GetComponent<Collider>().enabled = true;
+                        draggingObject.GetComponent<Rigidbody>().useGravity = true;
+                        draggingObject = null;
+                    }
+                }
+                else
+                {
+                    draggingObject.position = hit.point + Vector3.up * 2;
+                }
             }
+            
         }
 
         //We need to change object layers if they are interactable, so we can later apply the interact shader based on the layer
