@@ -162,7 +162,12 @@ public class MenuManager : MonoBehaviour
 
     public void ResetDialogue()
     {
-        //fill this in once custom variable storage is built
+        //update with each new added variable storage in the dialogue
+        dialog.VariableStorage.SetValue("$itemUsed", 0);
+        dialog.VariableStorage.SetValue("$BBfed", false);
+        dialog.VariableStorage.SetValue("$Music", false);
+        dialog.VariableStorage.SetValue("$Tintro", true);
+        dialog.VariableStorage.SetValue("$Tea", false);
     }
 
     public void ResetCreditsScroll()
@@ -350,6 +355,7 @@ public class MenuManager : MonoBehaviour
             }
             //audioManager.TurnOffMusic();
             //audioManager.MenuMusic();
+            ResetDialogue();
             SetAllInactive();
             mainMenu1.SetActive(true);
         }
