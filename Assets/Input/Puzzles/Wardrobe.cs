@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Wardrobe : MonoBehaviour
 {
-    public ItemScriptableObject curItem;
+    public GameObject Chair;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Chair.SetActive(false);
     }
 
     // Update is called once per frame
