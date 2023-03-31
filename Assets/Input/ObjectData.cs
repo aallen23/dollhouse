@@ -289,7 +289,8 @@ public class ObjectData : MonoBehaviour
             case InteractType.WardrobeWithdraw:
                 if (addedItem)
                 {
-                    if (wardrobeObjects.ContainsKey(addedItem.displayName))
+                    //Very sad this doesn't work, if only I could access dictionary from inspector
+                    /*if (wardrobeObjects.ContainsKey(addedItem.displayName))
                     {
                         wardrobeObjects[addedItem.displayName].SetActive(true);
                     }
@@ -297,6 +298,11 @@ public class ObjectData : MonoBehaviour
                     {
                         inv.inv.Add(wardrobeItems[addedItem.displayName]);
                         inv.UpdateInventory();
+                    }*/
+
+                    if (addedItem.displayName == "Chair")
+                    {
+                        GetComponent<Wardrobe>().Chair.SetActive(true);
                     }
 
                     addedItem = null;
