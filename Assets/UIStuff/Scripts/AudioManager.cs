@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     private AudioSource menu,
-        ambience1;
+        UI_hover,
+        UI_click;
 
     public void Awake()
     {
@@ -31,17 +32,17 @@ public class AudioManager : MonoBehaviour
     public void Ambience()
     {
         //make this play through ambience sounds randomly
-        ambience1.Play();
+        //ambience1.Play();
     }
 
     public void OnButtonHover()
     {
-        //play hover sound using onpointer event data
+        UI_hover.Play();
     }
 
     public void OnButtonClick()
     {
-        
+        UI_click.Play();
     }
 
 }
