@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField]
     private AudioManager audioManager;
 
     void Start()
