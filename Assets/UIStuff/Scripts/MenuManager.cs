@@ -213,6 +213,10 @@ public class MenuManager : MonoBehaviour
     public void OptionsButton()
     {
         SetAllInactive();
+        if (FindObjectOfType<P2PCameraController>().gameStarted)
+        {
+            gameUI.SetActive(true);
+        }
         optionsFrame.SetActive(true);
         audioFrame.SetActive(false);
         controlsFrame.SetActive(false);
