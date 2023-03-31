@@ -9114,7 +9114,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11158,6 +11158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dollLantern: {fileID: 0}
+  ceceFace: {fileID: 3837592434776882165}
   mainMenu1: {fileID: 6077036837904097241}
   mainMenu2: {fileID: 6077036836844844858}
   gameUI: {fileID: 6077036837594665955}
@@ -14705,7 +14706,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.00012207031, y: 0.000061035156}
-  m_SizeDelta: {x: 0, y: 40}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6077036836748534675
 MonoBehaviour:
@@ -17529,7 +17530,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22659,11 +22660,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e78e66e2222255042bf941dfa1e96da3, type: 3}
+--- !u!95 &3837592434776882155 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3837592434838746219, guid: e78e66e2222255042bf941dfa1e96da3, type: 3}
+  m_PrefabInstance: {fileID: 80744320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3837592434776882164 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3837592434838746228, guid: e78e66e2222255042bf941dfa1e96da3, type: 3}
   m_PrefabInstance: {fileID: 80744320}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3837592434776882165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3837592434838746229, guid: e78e66e2222255042bf941dfa1e96da3, type: 3}
+  m_PrefabInstance: {fileID: 80744320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1591064036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3837592434776882165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e23657606737546af00d03b3d8c2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 3837592434776882155}
 --- !u!1001 &5379270293999938183
 PrefabInstance:
   m_ObjectHideFlags: 0
