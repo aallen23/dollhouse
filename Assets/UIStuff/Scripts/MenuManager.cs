@@ -167,7 +167,7 @@ public class MenuManager : MonoBehaviour
         ceceFace.SetActive(true);
     }
 
-    [YarnCommand("DectivateCece")]
+    [YarnCommand("DeactivateCece")]
     public void DeactivateCece()
     {
         ceceFace.SetActive(false);
