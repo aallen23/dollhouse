@@ -14,7 +14,8 @@ public enum InteractType
     Teleport,
     AddItem,
     BlankHand,
-    Dragging
+    Dragging,
+    WardrobeWithdraw
 }
 
 public enum ObjectUseType
@@ -22,7 +23,7 @@ public enum ObjectUseType
     None,
     ShowObject,
     AddItem,
-    AddItemElsewhere
+    AddItemElsewhere,
 }
 
 //Stores an Interactable Object's Data
@@ -79,6 +80,10 @@ public class ObjectData : MonoBehaviour
     public GameObject requiredDraggingSurface;
 
     [Space(10)]
+    public Dictionary<string, GameObject> wardrobeObjects;
+    public Dictionary<string, ItemScriptableObject> wardrobeItems;
+
+    [Space(10)]
     [Tooltip("(Optional) What function to call after interacting.")]
     public UnityEvent functioninteract;
 
@@ -131,6 +136,7 @@ public class ObjectData : MonoBehaviour
     public Vector3 secondPos;
     public float animSpeed;
     public AudioSource interactSFX;
+    private InventorySystem inv;
 
     void Start()
     {
@@ -139,6 +145,7 @@ public class ObjectData : MonoBehaviour
         //Find specific GameObjects to be called alter.
         dialog = FindObjectOfType<DialogueRunner>();
         player = FindObjectOfType<P2PCameraController>();
+        inv = FindObjectOfType<InventorySystem>();
         desiredRotation = transform.eulerAngles;
 
         //If an Item would show an GameObject, we want it to start hidden
@@ -248,7 +255,6 @@ public class ObjectData : MonoBehaviour
                 doll.Warp(teleportPoint.position);
                 break;
             case InteractType.AddItem:
-                InventorySystem inv = FindObjectOfType<InventorySystem>();
                 if (addedItem)
                 {
 
@@ -278,6 +284,26 @@ public class ObjectData : MonoBehaviour
                     player.draggingObject = gameObject.transform;
                     GetComponent<Collider>().enabled = false;
                     GetComponent<Rigidbody>().useGravity = false;
+                }
+                break;
+            case InteractType.WardrobeWithdraw:
+                if (addedItem)
+                {
+                    if (wardrobeObjects.ContainsKey(addedItem.displayName))
+                    {
+                        wardrobeObjects[addedItem.displayName].SetActive(true);
+                    }
+                    else if (wardrobeItems.ContainsKey(addedItem.displayName))
+                    {
+                        inv.inv.Add(wardrobeItems[addedItem.displayName]);
+                        inv.UpdateInventory();
+                    }
+
+                    addedItem = null;
+                    if (yarnExamine != "" && yarnExamine != null)
+                    {
+                        dialog.StartDialogue(yarnExamine); //Trigger yarn
+                    }
                 }
                 break;
         }
