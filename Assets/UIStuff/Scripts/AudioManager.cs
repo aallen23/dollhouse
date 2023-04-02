@@ -6,33 +6,54 @@ public class AudioManager : MonoBehaviour
 {
     private AudioSource[] songs;
 
+    private bool playAmbience;
+
     [SerializeField]
     private AudioSource menu,
+        ambience,
         UI_hover,
-        UI_click;
+        UI_click,
+        currentSound;
 
     public void Awake()
     {
-        songs = GetComponentsInChildren<AudioSource>();
+        songs = ambience.GetComponentsInChildren<AudioSource>();
+        playAmbience = false;
+        currentSound = null;
+    }
+
+    public void Update()
+    {
+        if (currentSound != null && !currentSound.isPlaying && playAmbience == true)
+        {
+            GetNewAmbience();
+        }
     }
 
     public void TurnOffMusic()
     {
-        for (int i = 0; i < songs.Length; i++)
-        {
-            songs[i].Stop();
-        }
+        menu.Stop();
+        //for (int i = 0; i < songs.Length; i++)
+        //{
+        //    songs[i].Stop();
+        //}
+    }
+
+    public void GetNewAmbience()
+    {
+        currentSound = songs[Random.Range(0, songs.Length - 1)];
+        currentSound.Play();
+    }
+
+    public void StartAmbience()
+    {
+        playAmbience = true;
+        GetNewAmbience();
     }
 
     public void MenuMusic()
     {
         menu.Play();
-    }
-
-    public void Ambience()
-    {
-        //make this play through ambience sounds randomly
-        //ambience1.Play();
     }
 
     public void OnButtonHover()
@@ -46,3 +67,5 @@ public class AudioManager : MonoBehaviour
     }
 
 }
+
+

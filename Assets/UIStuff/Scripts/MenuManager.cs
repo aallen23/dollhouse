@@ -167,7 +167,7 @@ public class MenuManager : MonoBehaviour
         ceceFace.SetActive(true);
     }
 
-    [YarnCommand("DectivateCece")]
+    [YarnCommand("DeactivateCece")]
     public void DeactivateCece()
     {
         ceceFace.SetActive(false);
@@ -196,7 +196,7 @@ public class MenuManager : MonoBehaviour
     {
         SetAllInactive();
         audioManager.TurnOffMusic();
-        audioManager.Ambience();
+        audioManager.StartAmbience();
         FadeIn();
         dialog.StartDialogue("StartGame");
     }
