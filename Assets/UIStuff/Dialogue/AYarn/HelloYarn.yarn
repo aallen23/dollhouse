@@ -127,17 +127,13 @@ tags:
 <<activate BigBoySprite>>
 <<if !$BBfed>>
 BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
-<<deactivate BigBoySprite>>
 <<ActivateCece UI>>
 <<Disgusted Cecelia>>
 Cece: Aren't you made of paper? Why are you hungry?
 <<DeactivateCece UI>>
-<<activate BigBoySprite>>
 BigBoy: Someone used to feed real food, but they disappeared long ago. I have never forgotten the taste. I have been eating paper nothings for years and years...
-<<deactivate BigBoySprite>>
 <<ActivateCece UI>>
 Cece: I'll see if I can find anything. I'm hungry too.
-<<DeactivateCece UI>>
 <<endif>>
 <<if $BBfed>>
 <<activate BigBoySprite>>
@@ -164,14 +160,10 @@ Cece: Hello, Mr. Talon.
 <<deactivate TalonSprite>>
 <<set $Tintro to false>>
 <<elseif $Tea == false && $Tintro == false>>
-<<activate TalonSprite>>
 Cece: Can I do anything to cheer you up?
 Talon: A good cup of tea... that would be nice.
-<<deactivate TalonSprite>>
 <<elseif $Tea == true && $Tintro == false>>
-<<activate TalonSprite>>
 Talon: Be cautious, little one. There is much you still don't understand.
-<<deactivate TalonSprite>>
 <<endif>>
 ===
 
@@ -181,15 +173,36 @@ tags:
 <<if $Music>>
 <<activate AriadneSprite>>
 Ariadne: Hello, my name is Ariadne.
+<<deactivate AriadneSprite>>
+<<ActivateCece UI>>
+<<Terrified Cecelia>>
 Cece: Why are you talking to me?
+<<DeactivateCece UI>>
+<<activate AriadneSprite>>
 Ariadne: I recognize that music. Do not be afraid.
+<<deactivate AriadneSprite>>
+<<ActivateCece UI>>
+<<Terrified Cecelia>>
 Cece: I'm terrified of everything in this house.
+<<DeactivateCece UI>>
+<<activate AriadneSprite>>
 Ariadne: This is not what you should be afraid of... There is worse to come...
+<<deactivate AriadneSprite>>
+<<ActivateCece UI>>
+<<Terrified Cecelia>>
 Cece: What do you mean?
+<<DeactivateCece UI>>
+<<activate AriadneSprite>>
 Ariadne: If you wish to understand what is happening here, you must keep exploring. But be careful. You may regret what you discover.
+<<deactivate AriadneSprite>>
+<<ActivateCece UI>>
 -> Cece: I have to keep going.
+	<<DeactivateCece UI>>
+	<<activate AriadneSprite>>
 	Ariadne: Very well. Thank you for playing your music for me. It reminded me of who I am. I hope you find something that will do the same for you.
 -> Cece: Is there another way out of this?
+	<<DeactivateCece UI>>
+	<<activate AriadneSprite>>
 	Ariadne: I'm afraid not. They only way through is forward. There are still memories for you to uncover.
 <<deactivate AriadneSprite>>
 <<else>>
