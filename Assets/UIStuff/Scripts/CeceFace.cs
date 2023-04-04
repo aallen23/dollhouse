@@ -37,4 +37,10 @@ public class CeceFace : MonoBehaviour
     {
         animator.Play("Terrified");
     }
+
+    [YarnCommand("Neutral")]
+    public void NeutralFace()
+    {
+        animator.Play("Blank");
+    }
 }

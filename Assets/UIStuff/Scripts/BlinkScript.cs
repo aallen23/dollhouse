@@ -11,8 +11,20 @@ public class BlinkScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        blinking = true;
         StartCoroutine("Blink");
+    }
+
+    void Update()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Blank"))
+        {
+            blinking = true;
+        }
+
+        else
+        {
+            blinking = false;
+        }
     }
 
 
