@@ -7,6 +7,34 @@ public class CeceFace : MonoBehaviour
 {
     [SerializeField]
     private Animator animator;
+    private bool blinking;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Neutral") && !blinking)
+        {
+            blinking = true;
+            StartCoroutine("Blink");
+        }
+    }
+
+    IEnumerator Blink()
+    {
+
+        while (blinking)
+        {
+            animator.SetTrigger("isBlink");
+
+            yield return new WaitForSeconds(Random.Range(1.0f, 5.0f));
+            blinking = false;
+        }
+    }
 
     [YarnCommand("Disgusted")]
     public void Disgusted()
@@ -41,6 +69,7 @@ public class CeceFace : MonoBehaviour
     [YarnCommand("Neutral")]
     public void NeutralFace()
     {
-        animator.Play("Blank");
+        animator.Play("Neutral");
     }
+
 }

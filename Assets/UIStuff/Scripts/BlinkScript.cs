@@ -16,7 +16,7 @@ public class BlinkScript : MonoBehaviour
 
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Blank"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Neutral"))
         {
             blinking = true;
         }
@@ -32,8 +32,8 @@ public class BlinkScript : MonoBehaviour
     {
         while (blinking)
         {
-            animator.SetTrigger("isBlink");
             yield return new WaitForSeconds(Random.Range(2.0f, 8.0f));
+            animator.SetTrigger("isBlink");
         }
     }
 
