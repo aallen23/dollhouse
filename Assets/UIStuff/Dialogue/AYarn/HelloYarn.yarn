@@ -124,24 +124,33 @@ Perfect for rolling.
 title: BigBoy
 tags:
 ---
-<<activate BigBoy>>
+<<activate BigBoySprite>>
 <<if !$BBfed>>
 BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
+<<deactivate BigBoySprite>>
+<<ActivateCece UI>>
+<<Disgusted Cecelia>>
 Cece: Aren't you made of paper? Why are you hungry?
+<<DeactivateCece UI>>
+<<activate BigBoySprite>>
 BigBoy: Someone used to feed real food, but they disappeared long ago. I have never forgotten the taste. I have been eating paper nothings for years and years...
+<<deactivate BigBoySprite>>
+<<ActivateCece UI>>
 Cece: I'll see if I can find anything. I'm hungry too.
+<<DeactivateCece UI>>
 <<endif>>
 <<if $BBfed>>
+<<activate BigBoySprite>>
 BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The taste of this food reminds me of the past.
 <<endif>>
-<<deactivate BigBoy>>
+<<deactivate BigBoySprite>>
 ===
 
 title: BirdMan
 tags:
 ---
 <<if $Tintro == true>>
-<<activate Talon>>
+<<activate TalonSprite>>
 Talon: ...
 Cece: Hello? Mr. Bird Man?
 Talon: My name is... Talon.
@@ -152,17 +161,17 @@ Cece: Hello, Mr. Talon.
 	Talon: You hardly seem tempting enough to try.
 -> Cece: Why is everything here so frightening?
 	Talon: Is it? I have known nothing else.
-<<deactivate Talon>>
+<<deactivate TalonSprite>>
 <<set $Tintro to false>>
 <<elseif $Tea == false && $Tintro == false>>
-<<activate Talon>>
+<<activate TalonSprite>>
 Cece: Can I do anything to cheer you up?
 Talon: A good cup of tea... that would be nice.
-<<deactivate Talon>>
+<<deactivate TalonSprite>>
 <<elseif $Tea == true && $Tintro == false>>
-<<activate Talon>>
+<<activate TalonSprite>>
 Talon: Be cautious, little one. There is much you still don't understand.
-<<deactivate Talon>>
+<<deactivate TalonSprite>>
 <<endif>>
 ===
 
@@ -170,7 +179,7 @@ title: Ariadne
 tags:
 ---
 <<if $Music>>
-<<activate Ariadne>>
+<<activate AriadneSprite>>
 Ariadne: Hello, my name is Ariadne.
 Cece: Why are you talking to me?
 Ariadne: I recognize that music. Do not be afraid.
@@ -182,7 +191,7 @@ Ariadne: If you wish to understand what is happening here, you must keep explori
 	Ariadne: Very well. Thank you for playing your music for me. It reminded me of who I am. I hope you find something that will do the same for you.
 -> Cece: Is there another way out of this?
 	Ariadne: I'm afraid not. They only way through is forward. There are still memories for you to uncover.
-<<deactivate Ariadne>>
+<<deactivate AriadneSprite>>
 <<else>>
 ...
 <<endif>>
