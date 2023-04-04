@@ -19,7 +19,7 @@ Grandma: No. Not since their father died.
 ...: What a tragedy… At least now, they have you to take care of them…
 <<fadeOut UI>>
 <<wait 1>>
-<<Blink UI>>
+<<BlinkSequence UI>>
 <<ActivateUI UI>>
 <<enable_controls P2PPlayer>>
 <<jump Intro>>
@@ -29,7 +29,9 @@ title: Intro
 tags:
 ---
 <<wait 3>>
+<<ActivateCece UI>>
 ???: Hello?
+<<DeactivateCece UI>>
 <<wait 2>>
 ???: Is someone there?
 ===
@@ -58,10 +60,24 @@ This is a very ornate cuckoo clock.
 title: Deposit
 tags:
 ---
+<<use_item Wardrobe {$itemUsed}>>
 You deposit the Chair into the Wardrobe. Where did it go?
 ===
 
 title: Withdraw
+tags:
+---
+You withdraw the Chair from the Wardrobe. It is now life-sized.
+===
+
+title: LilDeposit
+tags:
+---
+<<use_item LilWardrobe {$itemUsed}>>
+You deposit the Chair into the Wardrobe. Where did it go?
+===
+
+title: LilWithdraw
 tags:
 ---
 You withdraw the Chair from the Wardrobe. It is now life-sized.

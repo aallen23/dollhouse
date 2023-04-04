@@ -9,12 +9,12 @@ public class CharacterSprite : MonoBehaviour
     [YarnCommand("activate")]
     public void ActivateSprite()
     {
-        GetComponent<RawImage>().enabled = true;
+        GetComponent<Image>().enabled = true;
     }
 
     [YarnCommand("deactivate")]
     public void DeActivateSprite()
     {
-        GetComponent<RawImage>().enabled = false;
+        GetComponent<Image>().enabled = false;
     }
 }
