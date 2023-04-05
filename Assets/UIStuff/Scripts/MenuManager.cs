@@ -165,11 +165,13 @@ public class MenuManager : MonoBehaviour
     public void ActivateCece()
     {
         ceceFace.SetActive(true);
+        ceceFace.GetComponent<CeceFace>().PlayCurrentEmote();
     }
 
     [YarnCommand("DeactivateCece")]
     public void DeactivateCece()
     {
+        ceceFace.GetComponent<CeceFace>().SetBlinkFalse();
         ceceFace.SetActive(false);
     }
 

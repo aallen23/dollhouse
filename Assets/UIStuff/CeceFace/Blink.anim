@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Neutral
+  m_Name: Blink
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,6 +21,16 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -640923042360758676, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - time: 0.083333336
+      value: {fileID: -8566236172431152134, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - time: 0.16666667
+      value: {fileID: 1385842964138201716, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - time: 0.25
+      value: {fileID: -4879356290682541624, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - time: 0.33333334
+      value: {fileID: -267114934645446961, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - time: 0.41666666
+      value: {fileID: -2670933052350401070, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -41,12 +51,17 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: -640923042360758676, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - {fileID: -8566236172431152134, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - {fileID: 1385842964138201716, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - {fileID: -4879356290682541624, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - {fileID: -267114934645446961, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
+    - {fileID: -2670933052350401070, guid: d4d915fa6e01ee3409ed4bc701a8b384, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.083333336
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
