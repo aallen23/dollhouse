@@ -2003,6 +2003,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f6d89a7a15a204a875efd6098dcdad, type: 3}
+--- !u!114 &523315694 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6077036836173029554, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+  m_PrefabInstance: {fileID: 1510324831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b15cd5a07653674d91bf02aeec39618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &530966322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2032,6 +2043,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
+--- !u!114 &554142417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 233804915639514785, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+  m_PrefabInstance: {fileID: 233804914754469575}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &557216572
 GameObject:
   m_ObjectHideFlags: 0
@@ -4461,7 +4483,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ad5e132d30b25dd4b97c707efb4d0305, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4500,7 +4522,7 @@ Transform:
   m_GameObject: {fileID: 1335396926}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.0735, y: 0.1053, z: 0.0131}
-  m_LocalScale: {x: 0.009999997, y: 0.01, z: 0.009999997}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1764023567}
@@ -5093,6 +5115,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1464664502, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 523315694}
+    - target: {fileID: 1464664502, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Pause
+      objectReference: {fileID: 0}
     - target: {fileID: 92697137590298401, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5167,6 +5197,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4046761655558997890, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622834815697563425, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5901120336347237424, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
@@ -5277,6 +5311,10 @@ PrefabInstance:
       propertyPath: dollLantern
       value: 
       objectReference: {fileID: 1739038547}
+    - target: {fileID: 6077036837594665955, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6277483702195445647, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6818,6 +6856,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 987251202, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: positions.Array.data[2]
+      value: 
+      objectReference: {fileID: 554142417}
     - target: {fileID: 233804913690777407, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
       propertyPath: cam
       value: 

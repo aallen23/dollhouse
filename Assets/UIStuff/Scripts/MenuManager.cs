@@ -48,7 +48,7 @@ public class MenuManager : MonoBehaviour
     private Resolution r;
 
     private DialogueRunner dialog;
-
+    public bool isPaused;
     private CreditsScroll scrollScript;
 
     public void Awake()
@@ -348,15 +348,26 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
-        if (Time.timeScale == 1f)
+        if (optionsFrame.activeSelf)
         {
-            Time.timeScale = 0f;
+            pause.SetActive(true);
+            optionsFrame.SetActive(false);
         }
         else
         {
-            Time.timeScale = 1f;
+            if (!isPaused && !optionsFrame.activeSelf)
+            {
+                isPaused = true;
+                Time.timeScale = 0f;
+                pause.SetActive(true);
+            }
+            else
+            {
+                isPaused = false;
+                Time.timeScale = 1f;
+                pause.SetActive(false);
+            }
         }
-        pause.SetActive(!pause.activeSelf);
     }
 
     public void ReturnToMain()
