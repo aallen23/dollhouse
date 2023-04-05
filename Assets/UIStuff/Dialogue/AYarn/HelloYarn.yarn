@@ -146,6 +146,7 @@ BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The tas
 title: BirdMan
 tags:
 ---
+<<PlaySound talon>>
 <<if $Tintro == true>>
 <<activate TalonSprite>>
 Talon: ...
@@ -188,6 +189,7 @@ Talon: Be cautious, little one. There is much you still don't understand.
 title: Ariadne
 tags:
 ---
+<<PlaySound ariadne>>
 <<if $Music>>
 <<activate AriadneSprite>>
 Ariadne: Hello, my name is Ariadne.
