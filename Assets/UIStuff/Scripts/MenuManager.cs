@@ -64,6 +64,7 @@ public class MenuManager : MonoBehaviour
         bloomBool = true;
         vgBool = true;
         //SetAllInactive();
+        //Screen.SetResolution(2560, 1080, true);
     }
 
     [YarnCommand("fadeIn")]
@@ -242,13 +243,13 @@ public class MenuManager : MonoBehaviour
         TMP_Dropdown dropdown = videoFrame.transform.GetComponentInChildren<TMP_Dropdown>(true);
         if (dropdown.value == 1)
         {
-            r = Screen.currentResolution;
+            //r = Screen.currentResolution;
             Screen.fullScreen = false;
         }
         else
         {
             Screen.fullScreen = true;
-            Screen.SetResolution(r.width, r.height, true);
+            //Screen.SetResolution(r.width, r.height, true);
         }
     }
 
