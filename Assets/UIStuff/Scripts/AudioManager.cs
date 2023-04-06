@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
         ambience,
         UI_hover,
         UI_click,
+        puzzle,
+        memory,
         currentSound;
 
     public void Awake()
@@ -54,6 +56,16 @@ public class AudioManager : MonoBehaviour
     public void MenuMusic()
     {
         menu.Play();
+    }
+
+    public void PlayMemorySound()
+    {
+        memory.Play();
+    }
+
+    public void PlayPuzzleSound()
+    {
+        puzzle.Play();
     }
 
     public void OnButtonHover()
