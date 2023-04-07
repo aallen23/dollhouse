@@ -166,6 +166,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: -0.05, z: 0}
   animSpeed: 40
   interactSFX: {fileID: 160423294}
+  inv: {fileID: 0}
 --- !u!82 &160423294
 AudioSource:
   m_ObjectHideFlags: 0
@@ -185,11 +186,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -222,7 +223,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -609,6 +610,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: -0.05, z: 0}
   animSpeed: 40
   interactSFX: {fileID: 231092748}
+  inv: {fileID: 0}
 --- !u!82 &231092748
 AudioSource:
   m_ObjectHideFlags: 0
@@ -628,11 +630,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -665,7 +667,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -858,6 +860,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &706359008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,6 +1196,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: -0.05, z: 0}
   animSpeed: 40
   interactSFX: {fileID: 895846483}
+  inv: {fileID: 0}
 --- !u!82 &895846483
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1212,11 +1216,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1249,7 +1253,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1442,6 +1446,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: -0.05, z: 0}
   animSpeed: 40
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &987251201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,7 +1494,7 @@ MonoBehaviour:
   positions:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 2047674268}
+  - {fileID: 233804915639514785}
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
@@ -1661,6 +1666,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: -0.05, z: 0}
   animSpeed: 40
   interactSFX: {fileID: 1191556688}
+  inv: {fileID: 0}
 --- !u!82 &1191556688
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1680,11 +1686,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1717,7 +1723,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2316,6 +2322,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!114 &1531707859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2610,6 +2617,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: -0.05, z: 0}
   animSpeed: 40
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &1979097589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,6 +2784,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: -0.05, z: 0}
   animSpeed: 40
   interactSFX: {fileID: 1979097595}
+  inv: {fileID: 0}
 --- !u!82 &1979097595
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2795,11 +2804,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2832,7 +2841,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5481,6 +5490,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804914141021554
 GameObject:
   m_ObjectHideFlags: 0
@@ -5800,6 +5810,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804914159819850
 GameObject:
   m_ObjectHideFlags: 0
@@ -6510,6 +6521,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804914290418526
 GameObject:
   m_ObjectHideFlags: 0
@@ -8156,6 +8168,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804914644554171
 GameObject:
   m_ObjectHideFlags: 0
@@ -8651,6 +8664,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804914766561937
 GameObject:
   m_ObjectHideFlags: 0
@@ -9265,6 +9279,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804914856799646
 GameObject:
   m_ObjectHideFlags: 0
@@ -9555,6 +9570,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804914905030979
 GameObject:
   m_ObjectHideFlags: 0
@@ -10433,6 +10449,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804915077049017
 GameObject:
   m_ObjectHideFlags: 0
@@ -10700,6 +10717,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804915101314248
 GameObject:
   m_ObjectHideFlags: 0
@@ -11408,6 +11426,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!208 &233804915183065970
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -13884,6 +13903,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804915458112701
 GameObject:
   m_ObjectHideFlags: 0
@@ -14171,6 +14191,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &233804915510333820
 GameObject:
   m_ObjectHideFlags: 0
@@ -15316,6 +15337,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!208 &233804914754469580
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -15646,6 +15668,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!64 &3066516882213459648
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15825,6 +15848,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &2361293276868696534
 GameObject:
   m_ObjectHideFlags: 0
@@ -15990,6 +16014,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &2505269580698320201
 GameObject:
   m_ObjectHideFlags: 0
@@ -16220,6 +16245,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!64 &71984847506144351
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16845,6 +16871,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!64 &7768341850618926627
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17247,6 +17274,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &7426088128340108384
 GameObject:
   m_ObjectHideFlags: 0
@@ -17417,6 +17445,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1 &7524972273278862292
 GameObject:
   m_ObjectHideFlags: 0
@@ -17557,6 +17586,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!64 &993805373764468230
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17728,6 +17758,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!208 &233804914754469581
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -17885,6 +17916,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!136 &7790520667071454620
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18784,6 +18816,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1001 &233804914564076314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18972,6 +19005,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1001 &233804914606494090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19160,6 +19194,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1001 &233804915380012168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19715,6 +19750,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
 --- !u!1001 &2256871837122155233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20007,3 +20043,4 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  inv: {fileID: 0}
