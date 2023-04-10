@@ -138,6 +138,9 @@ public class ObjectData : MonoBehaviour
     public AudioSource interactSFX;
     public InventorySystem inv;
 
+    public bool rotationAnimation;
+    public Vector3 defaultRotation, secondRotation;
+
     void Start()
     {
         defaultPos = transform.localPosition;
@@ -146,7 +149,8 @@ public class ObjectData : MonoBehaviour
         dialog = FindObjectOfType<DialogueRunner>(true);
         player = FindObjectOfType<P2PCameraController>(true);
         inv = FindObjectOfType<InventorySystem>(true);
-        desiredRotation = transform.eulerAngles;
+        defaultRotation = transform.localEulerAngles;
+        desiredRotation = defaultRotation;
 
         //If an Item would show an GameObject, we want it to start hidden
         if (!startVisible)
@@ -183,7 +187,24 @@ public class ObjectData : MonoBehaviour
         //Rotates object (uses Quaternion.Lerp isntead of below to avoid Gimbal Lock) :)
         if (lookPoint == Vector3.zero)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+            if (rotationAnimation)
+            {
+                if (transform.localEulerAngles != desiredRotation)
+                {
+                    Debug.Log("Doing shit");
+                    transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(desiredRotation), Time.deltaTime * animSpeed);
+                }
+                else if (desiredRotation != defaultRotation)
+                {
+                    desiredRotation = defaultRotation;
+                }
+            }
+            else
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+            }
+            
+           
         }
         else
         {
@@ -316,6 +337,11 @@ public class ObjectData : MonoBehaviour
         if (secondPos != Vector3.zero || secondPos != null)
         {
             desiredPos = defaultPos + secondPos;
+        }
+        if (secondRotation != Vector3.zero)
+        {
+            desiredRotation = desiredRotation + secondRotation;
+            Debug.Log("Do shit");
         }
         functioninteract.Invoke();
     }
