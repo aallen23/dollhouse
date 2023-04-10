@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
@@ -51,6 +52,8 @@ public class MenuManager : MonoBehaviour
     public bool isPaused;
     private CreditsScroll scrollScript;
 
+    private int offsetx, offsety;
+
     public void Awake()
     {
         audioManager = audioBox.GetComponent<AudioManager>();
@@ -64,7 +67,34 @@ public class MenuManager : MonoBehaviour
         bloomBool = true;
         vgBool = true;
         //SetAllInactive();
-        //Screen.SetResolution(2560, 1080, true);
+        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true);
+    }
+
+    private void Update()
+    {
+
+        //Debug.Log(Screen.width + " " + Screen.height);
+        if (Keyboard.current.equalsKey.wasPressedThisFrame)
+        {
+            //Debug.Log("yah");
+            offsetx = 10;
+            Screen.SetResolution(Screen.width + offsetx, Screen.height, true);
+        }
+        if (Keyboard.current.minusKey.wasPressedThisFrame)
+        {
+            offsetx = 10;
+            Screen.SetResolution(Screen.width - offsetx, Screen.height, true);
+        }
+        if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
+        {
+            offsety = 10;
+            Screen.SetResolution(Screen.width, Screen.height + offsety, true);
+        }
+        if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
+        {
+            offsety = 10;
+            Screen.SetResolution(Screen.width, Screen.height - offsety, true);
+        }
     }
 
     [YarnCommand("fadeIn")]
