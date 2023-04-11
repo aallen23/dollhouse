@@ -160,6 +160,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &7607407
 Transform:
@@ -779,6 +780,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 160423294}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &160423291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1536,6 +1540,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 231092748}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &231092745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2205,6 +2212,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &359259800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,6 +2704,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &484114056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3068,6 +3081,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &528560413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3264,6 +3280,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &557216574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3651,6 +3670,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!23 &678788479 stripped
 MeshRenderer:
@@ -3694,6 +3714,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &704241690
 Transform:
@@ -3758,6 +3779,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &745870911
 Transform:
@@ -3929,6 +3951,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &771057922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,6 +3991,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &771057926
 Transform:
@@ -4040,15 +4066,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2172756603192930527, guid: 16f6d89a7a15a204a875efd6098dcdad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 379
+      value: 386.15
       objectReference: {fileID: 0}
     - target: {fileID: 2172756603192930527, guid: 16f6d89a7a15a204a875efd6098dcdad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -136
+      value: -92.02248
       objectReference: {fileID: 0}
     - target: {fileID: 2172756603192930527, guid: 16f6d89a7a15a204a875efd6098dcdad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 297
+      value: 295.4
       objectReference: {fileID: 0}
     - target: {fileID: 2172756603192930527, guid: 16f6d89a7a15a204a875efd6098dcdad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4368,6 +4394,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 895846483}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &895846480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4630,6 +4659,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &907357816
 Transform:
@@ -4737,6 +4767,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &918491000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4937,6 +4970,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &987251203
 Transform:
@@ -5005,6 +5039,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &1066218868
 GameObject:
@@ -5332,6 +5367,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!64 &1135070567
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5671,6 +5709,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 1191556688}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1191556685
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5962,6 +6003,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &1210232849
 Transform:
@@ -6332,6 +6374,7 @@ MonoBehaviour:
   quickSwitch: 0
   enableAtPosition:
   - {fileID: 1836919063}
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &1275557727
 GameObject:
@@ -6503,6 +6546,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &1283929142
 Transform:
@@ -7256,6 +7300,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!64 &1491458138
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7729,6 +7776,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1531707855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8241,6 +8291,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1795154499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8291,6 +8344,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 73024397}
 --- !u!4 &1811577676
 Transform:
@@ -8855,6 +8909,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1968991776
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9022,6 +9079,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 1979097595}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1979097592
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9357,6 +9417,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &2068534573
 GameObject:
@@ -9510,6 +9571,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &2124370675
 Transform:
@@ -10484,6 +10546,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &8883912632345983858
 BoxCollider:
   m_ObjectHideFlags: 0
