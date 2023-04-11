@@ -14,15 +14,22 @@ public class UmbrellaPuzzle : MonoBehaviour
     public ItemScriptableObject umbYellow;
     public ItemScriptableObject umbGreen;
 
+    public GameObject objBlue, objRed, objYellow, objGreen;
+
     private void Start()
     {
         GetComponent<Collider>().enabled = false;
         GetComponent<MeshRenderer>().enabled = false;
     }
 
+    public void SwapUmbrella(ItemScriptableObject umb, ObjectData stand)
+    {
+
+    }
+
     public void Check()
     {
-        Debug.Log((umbLeft.addedItem == umbYellow) + " " + (umbMidLeft.addedItem == umbRed) + " " + (umbMidRight.addedItem == umbBlue) + " " + (umbRight.addedItem == umbGreen));
+        //Debug.Log((umbLeft.addedItem == umbYellow) + " " + (umbMidLeft.addedItem == umbRed) + " " + (umbMidRight.addedItem == umbBlue) + " " + (umbRight.addedItem == umbGreen));
         if (umbLeft.addedItem == umbYellow && 
             umbMidLeft.addedItem == umbRed && 
             umbMidRight.addedItem == umbBlue && 
