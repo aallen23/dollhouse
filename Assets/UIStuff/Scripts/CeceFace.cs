@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Yarn.Unity;
 
 public class CeceFace : MonoBehaviour
 {
+    [SerializeField]
+    private Sprite NeutralSprite;
     [SerializeField]
     private Animator animator;
     [SerializeField]
@@ -84,11 +87,23 @@ public class CeceFace : MonoBehaviour
     [YarnCommand("Neutral")]
     public void Neutral()
     {
+        SetAllAnimsFalse();
+        GetComponent<Image>().sprite = NeutralSprite;
+        Debug.Log("sprite set to neutral");
         animator.Play("Neutral");
         currentEmote = Emotes.Neutral;
         blinking = true;
-        StartCoroutine("Blink");
     }
+
+    public void SetAllAnimsFalse()
+    {
+        animator.SetBool("isDisgusted", false);
+        animator.SetBool("isSad", false);
+        animator.SetBool("isAngry", false);
+        animator.SetBool("isScared", false);
+        animator.SetBool("isTerrified", false);
+    }
+
 
     public void PlayCurrentEmote()
     {
