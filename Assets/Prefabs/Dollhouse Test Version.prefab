@@ -167,6 +167,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 160423294}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!82 &160423294
 AudioSource:
   m_ObjectHideFlags: 0
@@ -611,6 +614,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 231092748}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!82 &231092748
 AudioSource:
   m_ObjectHideFlags: 0
@@ -861,6 +867,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &706359008
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +923,7 @@ MonoBehaviour:
   quickSwitch: 0
   enableAtPosition:
   - {fileID: 233804915520878413}
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &804580940
 GameObject:
@@ -1197,6 +1207,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 895846483}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!82 &895846483
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1447,6 +1460,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &987251201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,6 +1515,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &1191556682
 GameObject:
@@ -1667,6 +1684,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 1191556688}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!82 &1191556688
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1816,6 +1836,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &1284492278
 GameObject:
@@ -2323,6 +2344,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &1531707859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2618,6 +2642,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &1979097589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,6 +2812,9 @@ MonoBehaviour:
   animSpeed: 40
   interactSFX: {fileID: 1979097595}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!82 &1979097595
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2934,6 +2964,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804913556659975
 GameObject:
@@ -3427,6 +3458,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804913643360565
 GameObject:
@@ -3480,6 +3512,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804913668482698
 GameObject:
@@ -3827,6 +3860,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804913761152349
 GameObject:
@@ -4269,6 +4303,7 @@ MonoBehaviour:
   quickSwitch: 0
   enableAtPosition:
   - {fileID: 233804915520878413}
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804913924511893
 GameObject:
@@ -4458,6 +4493,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804913983999728
 GameObject:
@@ -4871,6 +4907,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914044780611
 GameObject:
@@ -5051,6 +5088,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914057431152
 GameObject:
@@ -5334,6 +5372,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914138772826
 GameObject:
@@ -5491,6 +5530,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804914141021554
 GameObject:
   m_ObjectHideFlags: 0
@@ -5544,6 +5586,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914141862120
 GameObject:
@@ -5597,6 +5640,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914145759645
 GameObject:
@@ -5650,6 +5694,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914151254013
 GameObject:
@@ -5811,6 +5856,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804914159819850
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,6 +6046,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914221956047
 GameObject:
@@ -6178,6 +6227,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914275067021
 GameObject:
@@ -6232,6 +6282,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914282738844
 GameObject:
@@ -6522,6 +6573,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804914290418526
 GameObject:
   m_ObjectHideFlags: 0
@@ -7387,6 +7441,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914512449515
 GameObject:
@@ -7440,6 +7495,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914517134286
 GameObject:
@@ -7493,6 +7549,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914531961480
 GameObject:
@@ -8169,6 +8226,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804914644554171
 GameObject:
   m_ObjectHideFlags: 0
@@ -8665,6 +8725,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804914766561937
 GameObject:
   m_ObjectHideFlags: 0
@@ -8799,6 +8862,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914800713630
 GameObject:
@@ -9280,6 +9344,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804914856799646
 GameObject:
   m_ObjectHideFlags: 0
@@ -9413,6 +9480,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804914897956232
 GameObject:
@@ -9571,6 +9639,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804914905030979
 GameObject:
   m_ObjectHideFlags: 0
@@ -10451,6 +10522,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804915077049017
 GameObject:
   m_ObjectHideFlags: 0
@@ -10719,6 +10793,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804915101314248
 GameObject:
   m_ObjectHideFlags: 0
@@ -11428,6 +11505,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!208 &233804915183065970
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -11578,6 +11658,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804915199771445
 GameObject:
@@ -12153,6 +12234,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804915240815235
 GameObject:
@@ -13189,6 +13271,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804915344943255
 GameObject:
@@ -13536,6 +13619,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804915374286214
 GameObject:
@@ -13905,6 +13989,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804915458112701
 GameObject:
   m_ObjectHideFlags: 0
@@ -13958,6 +14045,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804915485827465
 GameObject:
@@ -14193,6 +14281,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &233804915510333820
 GameObject:
   m_ObjectHideFlags: 0
@@ -14246,6 +14337,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804915516917158
 GameObject:
@@ -14531,6 +14623,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &233804915563928568
 GameObject:
@@ -15126,6 +15219,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 1
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &903413801590742280
 GameObject:
@@ -15180,6 +15274,7 @@ MonoBehaviour:
   quickSwitch: 0
   enableAtPosition:
   - {fileID: 233804915520878413}
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &1515027116260443092
 GameObject:
@@ -15339,6 +15434,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!208 &233804914754469580
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -15709,6 +15807,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!64 &3066516882213459648
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15889,6 +15990,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2361293276868696534
 GameObject:
   m_ObjectHideFlags: 0
@@ -16055,6 +16159,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2505269580698320201
 GameObject:
   m_ObjectHideFlags: 0
@@ -16286,6 +16393,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!64 &71984847506144351
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16912,6 +17022,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!64 &7768341850618926627
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17159,6 +17272,7 @@ MonoBehaviour:
   quickSwitch: 0
   enableAtPosition:
   - {fileID: 233804914088930109}
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &7033138370890273244
 GameObject:
@@ -17315,6 +17429,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &7426088128340108384
 GameObject:
   m_ObjectHideFlags: 0
@@ -17486,6 +17603,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &7524972273278862292
 GameObject:
   m_ObjectHideFlags: 0
@@ -17627,6 +17747,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!64 &993805373764468230
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17799,6 +17922,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!208 &233804914754469581
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -17957,6 +18083,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!136 &7790520667071454620
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18133,6 +18262,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &9110115398335242562
 GameObject:
@@ -18238,6 +18368,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 233804915014680902}
     m_Modifications:
+    - target: {fileID: 7504965175790632251, guid: 702b3d64878f5ce46872c6181eace852, type: 3}
+      propertyPath: yarnItem
+      value: BirdManTea
+      objectReference: {fileID: 0}
     - target: {fileID: 7504965175790632251, guid: 702b3d64878f5ce46872c6181eace852, type: 3}
       propertyPath: itemEnabled
       value: 1
@@ -18869,6 +19003,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &233804914564076314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19058,6 +19195,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &233804914606494090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19247,6 +19387,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &233804915380012168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19803,6 +19946,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1539995854683477364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20482,6 +20628,9 @@ MonoBehaviour:
   animSpeed: 0
   interactSFX: {fileID: 0}
   inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &6434938498327682512
 PrefabInstance:
   m_ObjectHideFlags: 0
