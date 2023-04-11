@@ -149,7 +149,7 @@ tags:
 <<PlaySound talon>>
 <<if $Tintro == true>>
 <<activate TalonSprite>>
-Talon: ...
+???: ...
 <<deactivate TalonSprite>>
 <<ActivateCece UI>>
 {$PlayerName}: Hello? Mr. Bird Man?
@@ -184,6 +184,15 @@ Talon: A good cup of tea... that would be nice.
 Talon: Be cautious, little one. There is much you still don't understand.
 <<deactivate TalonSprite>>
 <<endif>>
+===
+
+title: BirdManTea
+tags: 
+---
+<<PlaySound talon>>
+<<activate TalonSprite>>
+Talon: Yummy yummy in my tummy.
+<<deactivate TalonSprite>>
 ===
 
 title: Ariadne

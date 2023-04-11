@@ -513,6 +513,13 @@ public class P2PCameraController : MonoBehaviour
                 obj.SetActive(false);
             }
         }
+        if (curPos.audioAtPosition.Count > 0)
+        {
+            foreach (AudioSource obj in curPos.audioAtPosition)
+            {
+                obj.enabled = false;
+            }
+        }
         curPos = newPosition;
         if (curPos.obeyRotation)
         {
@@ -537,6 +544,13 @@ public class P2PCameraController : MonoBehaviour
             foreach (GameObject obj in curPos.enableAtPosition)
             {
                 obj.SetActive(true);
+            }
+        }
+        if (curPos.audioAtPosition.Count > 0)
+        {
+            foreach (AudioSource obj in curPos.audioAtPosition)
+            {
+                obj.enabled = true;
             }
         }
     }

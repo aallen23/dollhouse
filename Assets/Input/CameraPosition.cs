@@ -15,6 +15,9 @@ public class CameraPosition : MonoBehaviour
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
     public List<GameObject> enableAtPosition;
 
+    [Tooltip("AudioSources to enable at this position, and hide otherwise.")]
+    public List<AudioSource> audioAtPosition;
+
     [Tooltip("What GameObject to rotate around.")]
     public GameObject rotateAround;
 
@@ -25,6 +28,13 @@ public class CameraPosition : MonoBehaviour
             foreach (GameObject obj in enableAtPosition)
             {
                 obj.SetActive(false);
+            }
+        }
+        if (audioAtPosition.Count > 0)
+        {
+            foreach (AudioSource obj in audioAtPosition)
+            {
+                obj.enabled = false;
             }
         }
     }

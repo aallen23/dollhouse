@@ -160,6 +160,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &7607407
 Transform:
@@ -1142,9 +1143,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344303578}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1053.7, y: 191, z: -129}
-  m_LocalScale: {x: 1, y: 231.42651, z: 342.17737}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 1053.7, y: 191, z: -129.0001}
+  m_LocalScale: {x: 1.0000006, y: 231.42653, z: 342.17746}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1066218869}
@@ -2521,6 +2522,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1001 &675463746
 PrefabInstance:
@@ -2659,6 +2661,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &704241690
 Transform:
@@ -2712,6 +2715,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &745870911
 Transform:
@@ -2923,6 +2927,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &771057926
 Transform:
@@ -3195,6 +3200,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &907357816
 Transform:
@@ -3353,6 +3359,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &1066218868
 GameObject:
@@ -3943,6 +3950,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &1210232849
 Transform:
@@ -4127,6 +4135,7 @@ MonoBehaviour:
   quickSwitch: 0
   enableAtPosition:
   - {fileID: 1836919063}
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1 &1275557727
 GameObject:
@@ -4298,6 +4307,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &1283929142
 Transform:
@@ -5186,8 +5196,12 @@ PrefabInstance:
       objectReference: {fileID: 1739038547}
     - target: {fileID: 6077036837753607061, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: inv.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6077036837753607061, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: inv.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 61931eddfb2c81b49a20f1ed82e772c1, type: 2}
     - target: {fileID: 6277483702195445647, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5625,6 +5639,7 @@ MonoBehaviour:
   obeyRotation: 1
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 73024397}
 --- !u!4 &1811577676
 Transform:
@@ -6252,6 +6267,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!1001 &2092308671
 PrefabInstance:
@@ -6264,38 +6280,6 @@ PrefabInstance:
       propertyPath: positions.Array.data[2]
       value: 
       objectReference: {fileID: 233804914754469579}
-    - target: {fileID: 2092308683, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2092308683, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 351851407322241215, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 351851407322241215, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698982283278672487, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698982283278672487, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3288998029790873443, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3288998029790873443, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3862197269014346597, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6344,14 +6328,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kalimba Body
       objectReference: {fileID: 0}
-    - target: {fileID: 4675243734043064774, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4675243734043064774, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb81b4428b55f8143a32d5e89cf553d4, type: 3}
 --- !u!1 &2124370671
@@ -6391,6 +6367,7 @@ MonoBehaviour:
   obeyRotation: 0
   quickSwitch: 0
   enableAtPosition: []
+  audioAtPosition: []
   rotateAround: {fileID: 0}
 --- !u!4 &2124370675
 Transform:
@@ -6506,6 +6483,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 841979894}
+    - target: {fileID: 7717017213551009873, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
+      propertyPath: yarnItem
+      value: BirdManTea
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
 --- !u!114 &233804914754469576 stripped
