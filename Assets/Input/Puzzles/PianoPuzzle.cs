@@ -27,7 +27,7 @@ public class PianoPuzzle : MonoBehaviour
     {
         if (curSong == desiredSong)
         {
-            Debug.Log("Played song");
+            GetComponent<AudioSource>().Play();
         }
     }
 
