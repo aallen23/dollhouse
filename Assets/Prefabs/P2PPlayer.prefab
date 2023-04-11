@@ -37,7 +37,7 @@ Transform:
   - {fileID: 7416810877228258478}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 90, z: 0}
 --- !u!20 &7416810876034418670
 Camera:
   m_ObjectHideFlags: 0
@@ -125,6 +125,9 @@ MonoBehaviour:
   drawingObjects: []
   draggingObject: {fileID: 0}
   rotateAroundObject: {fileID: 0}
+  tearLeft: {fileID: 0}
+  tearRight: {fileID: 0}
+  cryEnabled: 1
 --- !u!114 &7416810876034418667
 MonoBehaviour:
   m_ObjectHideFlags: 0

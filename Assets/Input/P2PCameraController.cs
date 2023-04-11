@@ -44,6 +44,9 @@ public class P2PCameraController : MonoBehaviour
     public Transform draggingObject;
 
     public ObjectData rotateAroundObject;
+
+    public ParticleSystem tearLeft, tearRight;
+    public bool cryEnabled;
     private void Awake()
     {
         //Load input map and connect to all the functions
@@ -296,11 +299,13 @@ public class P2PCameraController : MonoBehaviour
     
     private void Cry_performed(InputAction.CallbackContext obj)
     {
-        if (obj.ReadValue<float>() == 0)
+        if (obj.ReadValue<float>() == 0 || !cryEnabled)
         {
             return;
         }
         doll.GetComponent<AudioSource>().Play();
+        tearLeft.Play();
+        tearRight.Play();
     }
 
 
@@ -308,6 +313,8 @@ public class P2PCameraController : MonoBehaviour
     private void Cry_canceled(InputAction.CallbackContext obj)
     {
         doll.GetComponent<AudioSource>().Stop();
+        tearLeft.Stop();
+        tearRight.Stop();
     }
 
 

@@ -1592,6 +1592,22 @@ PrefabInstance:
       value: -89.3
       objectReference: {fileID: 0}
     - target: {fileID: 5964903420643166954, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964903420643166954, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964903420643166954, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964903420643166954, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964903420643166954, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -1605,19 +1621,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
---- !u!1 &446321951 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5964903420643166948, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
-  m_PrefabInstance: {fileID: 446321950}
-  m_PrefabAsset: {fileID: 0}
---- !u!81 &446321952
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446321951}
-  m_Enabled: 0
 --- !u!1 &484114054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2380,6 +2383,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &629451175 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6043723064836695463, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+  m_PrefabInstance: {fileID: 446321950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &646136809
 GameObject:
   m_ObjectHideFlags: 0
@@ -5264,6 +5272,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+--- !u!198 &1604458412 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1036776641, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+  m_PrefabInstance: {fileID: 446321950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1656951299
 GameObject:
   m_ObjectHideFlags: 0
@@ -7047,13 +7060,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1811577675}
     - target: {fileID: 7416810876034418668, guid: b23129a95590afe40a5a9a9fc2bc8de7, type: 3}
+      propertyPath: tearLeft
+      value: 
+      objectReference: {fileID: 629451175}
+    - target: {fileID: 7416810876034418668, guid: b23129a95590afe40a5a9a9fc2bc8de7, type: 3}
+      propertyPath: tearRight
+      value: 
+      objectReference: {fileID: 1604458412}
+    - target: {fileID: 7416810876034418668, guid: b23129a95590afe40a5a9a9fc2bc8de7, type: 3}
       propertyPath: mouseCursorImage
       value: 
       objectReference: {fileID: 62460230}
-    - target: {fileID: 7416810876034418669, guid: b23129a95590afe40a5a9a9fc2bc8de7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23129a95590afe40a5a9a9fc2bc8de7, type: 3}
 --- !u!4 &7578792463555012937
