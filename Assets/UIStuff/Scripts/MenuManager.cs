@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
@@ -48,8 +49,10 @@ public class MenuManager : MonoBehaviour
     private Resolution r;
 
     private DialogueRunner dialog;
-
+    public bool isPaused;
     private CreditsScroll scrollScript;
+
+    private int offsetx, offsety;
 
     public void Awake()
     {
@@ -64,6 +67,34 @@ public class MenuManager : MonoBehaviour
         bloomBool = true;
         vgBool = true;
         //SetAllInactive();
+        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true);
+    }
+
+    private void Update()
+    {
+
+        //Debug.Log(Screen.width + " " + Screen.height);
+        if (Keyboard.current.equalsKey.wasPressedThisFrame)
+        {
+            //Debug.Log("yah");
+            offsetx = 10;
+            Screen.SetResolution(Screen.width + offsetx, Screen.height, true);
+        }
+        if (Keyboard.current.minusKey.wasPressedThisFrame)
+        {
+            offsetx = 10;
+            Screen.SetResolution(Screen.width - offsetx, Screen.height, true);
+        }
+        if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
+        {
+            offsety = 10;
+            Screen.SetResolution(Screen.width, Screen.height + offsety, true);
+        }
+        if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
+        {
+            offsety = 10;
+            Screen.SetResolution(Screen.width, Screen.height - offsety, true);
+        }
     }
 
     [YarnCommand("fadeIn")]
@@ -165,11 +196,13 @@ public class MenuManager : MonoBehaviour
     public void ActivateCece()
     {
         ceceFace.SetActive(true);
+        ceceFace.GetComponent<CeceFace>().PlayCurrentEmote();
     }
 
     [YarnCommand("DeactivateCece")]
     public void DeactivateCece()
     {
+        ceceFace.GetComponent<CeceFace>().SetBlinkFalse();
         ceceFace.SetActive(false);
     }
 
@@ -240,13 +273,13 @@ public class MenuManager : MonoBehaviour
         TMP_Dropdown dropdown = videoFrame.transform.GetComponentInChildren<TMP_Dropdown>(true);
         if (dropdown.value == 1)
         {
-            r = Screen.currentResolution;
+            //r = Screen.currentResolution;
             Screen.fullScreen = false;
         }
         else
         {
             Screen.fullScreen = true;
-            Screen.SetResolution(r.width, r.height, true);
+            //Screen.SetResolution(r.width, r.height, true);
         }
     }
 
@@ -346,15 +379,26 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
-        if (Time.timeScale == 1f)
+        if (optionsFrame.activeSelf)
         {
-            Time.timeScale = 0f;
+            pause.SetActive(true);
+            optionsFrame.SetActive(false);
         }
         else
         {
-            Time.timeScale = 1f;
+            if (!isPaused && !optionsFrame.activeSelf)
+            {
+                isPaused = true;
+                Time.timeScale = 0f;
+                pause.SetActive(true);
+            }
+            else
+            {
+                isPaused = false;
+                Time.timeScale = 1f;
+                pause.SetActive(false);
+            }
         }
-        pause.SetActive(!pause.activeSelf);
     }
 
     public void ReturnToMain()

@@ -352,6 +352,7 @@ public class P2PCameraController : MonoBehaviour
         {
             //If dialog is running, pressing Interact should continue the dialog
             dialog.OnViewRequestedInterrupt();
+
             return;
         }
     }

@@ -11,8 +11,20 @@ public class BlinkScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        blinking = true;
         StartCoroutine("Blink");
+    }
+
+    void Update()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Neutral"))
+        {
+            blinking = true;
+        }
+
+        else
+        {
+            blinking = false;
+        }
     }
 
 
@@ -20,8 +32,8 @@ public class BlinkScript : MonoBehaviour
     {
         while (blinking)
         {
-            animator.SetTrigger("isBlink");
             yield return new WaitForSeconds(Random.Range(2.0f, 8.0f));
+            animator.SetTrigger("isBlink");
         }
     }
 

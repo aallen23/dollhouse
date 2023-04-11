@@ -136,16 +136,16 @@ public class ObjectData : MonoBehaviour
     public Vector3 secondPos;
     public float animSpeed;
     public AudioSource interactSFX;
-    private InventorySystem inv;
+    public InventorySystem inv;
 
     void Start()
     {
         defaultPos = transform.localPosition;
         desiredPos = defaultPos;
         //Find specific GameObjects to be called alter.
-        dialog = FindObjectOfType<DialogueRunner>();
-        player = FindObjectOfType<P2PCameraController>();
-        inv = FindObjectOfType<InventorySystem>();
+        dialog = FindObjectOfType<DialogueRunner>(true);
+        player = FindObjectOfType<P2PCameraController>(true);
+        inv = FindObjectOfType<InventorySystem>(true);
         desiredRotation = transform.eulerAngles;
 
         //If an Item would show an GameObject, we want it to start hidden
