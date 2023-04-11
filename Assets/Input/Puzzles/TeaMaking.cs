@@ -20,6 +20,7 @@ public class TeaMaking : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(false);
         if (potLiquid)
         {
             potLiquid.SetActive(false);
@@ -50,9 +51,10 @@ public class TeaMaking : MonoBehaviour
         yield return new WaitForSeconds(2f);
         pouring = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Debug.Log("Begin Pour Particles n Stuff");
+        GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+        Cup.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
-        //Stop particles
+        GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(false);
         cupLiquid.SetActive(true);
         potLiquid.transform.localScale = new Vector3 (0.03f, 0.01f, 0.03f);
         donePouring = true;

@@ -74,7 +74,7 @@ public class MenuManager : MonoBehaviour
     {
 
         //Debug.Log(Screen.width + " " + Screen.height);
-        if (Keyboard.current.equalsKey.wasPressedThisFrame)
+        /*if (Keyboard.current.equalsKey.wasPressedThisFrame)
         {
             //Debug.Log("yah");
             offsetx = 10;
@@ -94,7 +94,7 @@ public class MenuManager : MonoBehaviour
         {
             offsety = 10;
             Screen.SetResolution(Screen.width, Screen.height - offsety, true);
-        }
+        }*/
     }
 
     [YarnCommand("fadeIn")]
