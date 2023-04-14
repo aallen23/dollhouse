@@ -343,7 +343,7 @@ public class P2PCameraController : MonoBehaviour
                     }
                 }
             }
-            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI) //If there's no Object, we check if we are clicking on the NavMesh
+            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI && !(!curPos.quickSwitch && curPos.obeyRotation)) //If there's no Object, we check if we are clicking on the NavMesh
             {
                 //Debug.Log("Walk");
                 doll.GetComponent<DollBehavior>().od = null;

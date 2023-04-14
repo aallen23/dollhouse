@@ -192,7 +192,7 @@ public class ObjectData : MonoBehaviour
             {
                 if (transform.localEulerAngles != desiredRotation)
                 {
-                    Debug.Log("Doing shit");
+                    //Debug.Log("Doing shit");
                     transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(desiredRotation), Time.deltaTime * animSpeed);
                 }
                 else if (desiredRotation != defaultRotation)
@@ -342,7 +342,7 @@ public class ObjectData : MonoBehaviour
         if (secondRotation != Vector3.zero)
         {
             desiredRotation = desiredRotation + secondRotation;
-            Debug.Log("Do shit");
+            //Debug.Log("Do shit");
         }
         functioninteract.Invoke();
     }
