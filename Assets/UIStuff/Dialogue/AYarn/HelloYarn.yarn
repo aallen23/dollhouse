@@ -4,10 +4,13 @@ tags:
 <<set $itemUsed to 0>>
 <<set $BBfed to false>>
 <<set $Music to false>>
-<<set $Tintro to true>>
+<<set $Tintro to false>>
 <<set $Tea to false>>
 <<set $Flower to false>>
 <<set $PlayerName to "???">>
+<<set $memoryCount to 0>>
+<<set $AlluraTutorial to false>>
+<<set $AlluraIntro to false>>
 ===
 
 title: StartGame
@@ -123,8 +126,17 @@ Perfect for rolling.
 title: BigBoy
 tags:
 ---
+<<if $BBfed>>
+<<jump BigBoyQuestComplete>>
+<<else>>
+<<jump BigBoyIntro>>
+<<endif>>
+===
+
+title: BigBoyIntro
+tags:
+---
 <<activate BigBoySprite>>
-<<if !$BBfed>>
 BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
 <<ActivateCece UI>>
 <<Disgusted Cecelia>>
@@ -135,11 +147,22 @@ BigBoy: Someone used to feed real food, but they disappeared long ago. I have ne
 <<Neutral Cecelia>>
 {$PlayerName}: I'll see if I can find anything. I'm hungry too.
 <<DeactivateCece UI>>
-<<endif>>
-<<if $BBfed>>
+===
+
+title: BigBoyFed
+tags:
+---
+<<set $BBfed to true>>
 <<activate BigBoySprite>>
 BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The taste of this food reminds me of the past.
-<<endif>>
+<<deactivate BigBoySprite>>
+===
+
+title: BigBoyQuestComplete
+tags:
+---
+<<activate BigBoySprite>>
+BigBoy: Do you have another snack for me? An apple, some muffins, perhaps...
 <<deactivate BigBoySprite>>
 ===
 
@@ -147,15 +170,36 @@ title: BirdMan
 tags:
 ---
 <<PlaySound talon>>
-<<if $Tintro == true>>
+<<if !$Tea>>
+<<jump BirdMan2>>
+<<else>>
+<<jump BirdManQuestComplete>>
+<<endif>>
+===
+
+title: BirdMan2
+tags:
+---
+<<if !$Tintro>>
+<<jump BirdManIntro>>
+<<else>>
+<<jump BirdManDuringQuest>>
+<<endif>>
+===
+
+title: BirdManIntro
+tags:
+---
+<<set $Tintro to true>>
 <<activate TalonSprite>>
 ???: ...
 <<deactivate TalonSprite>>
 <<ActivateCece UI>>
+<<Neutral Cecelia>>
 {$PlayerName}: Hello? Mr. Bird Man?
 <<DeactivateCece UI>>
 <<activate TalonSprite>>
-Talon: My name is... Talon.
+???: My name is... Talon.
 <<deactivate TalonSprite>>
 <<ActivateCece UI>>
 {$PlayerName}: Hello, Mr. Talon.
@@ -170,8 +214,11 @@ Talon: My name is... Talon.
 	Talon: Is it? I have known nothing else.
 <<deactivate TalonSprite>>
 <<DeactivateCece UI>>
-<<set $Tintro to false>>
-<<elseif $Tea == false && $Tintro == false>>
+===
+
+title: BirdManDuringQuest
+tags:
+---
 <<ActivateCece UI>>
 <<Neutral Cecelia>>
 {$PlayerName}: Can I do anything to cheer you up?
@@ -179,19 +226,23 @@ Talon: My name is... Talon.
 <<activate TalonSprite>>
 Talon: A good cup of tea... that would be nice.
 <<deactivate TalonSprite>>
-<<elseif $Tea == true && $Tintro == false>>
-<<activate TalonSprite>>
-Talon: Be cautious, little one. There is much you still don't understand.
-<<deactivate TalonSprite>>
-<<endif>>
 ===
 
 title: BirdManTea
 tags: 
 ---
+<<set $Tea to true>>
 <<PlaySound talon>>
 <<activate TalonSprite>>
 Talon: Yummy yummy in my tummy.
+<<deactivate TalonSprite>>
+===
+
+title: BirdManQuestComplete
+tags:
+---
+<<activate TalonSprite>>
+Talon: Be cautious, little one. There is much you still don't understand.
 <<deactivate TalonSprite>>
 ===
 
@@ -200,6 +251,19 @@ tags:
 ---
 <<PlaySound ariadne>>
 <<if $Music>>
+<<jump AriadneQuestComplete>>
+<<else>>
+<<ActivateCece UI>>
+<<Terrified Cecelia>>
+{$PlayerName}: I hate spiders. I don't want to go anywhere near this one!
+<<DeactivateCece UI>>
+<<endif>>
+===
+
+title: AriadneMusic
+tags:
+---
+<<set $Music to true>>
 <<activate AriadneSprite>>
 Ariadne: Hello, my name is Ariadne.
 <<deactivate AriadneSprite>>
@@ -234,17 +298,140 @@ Ariadne: If you wish to understand what is happening here, you must keep explori
 	<<activate AriadneSprite>>
 	Ariadne: I'm afraid not. They only way through is forward. There are still memories for you to uncover.
 <<deactivate AriadneSprite>>
-<<else>>
-<<ActivateCece UI>>
-<<Terrified Cecelia>>
-{$PlayerName}: I hate spiders. I don't want to go anywhere near this one!
-<<DeactivateCece UI>>
-<<endif>>
+===
+
+title: AriadneQuestComplete
+tags:
+---
+<<activate AriadneSprite>>
+Ariadne: Thank you for playing your music for me.
+<<deactivate AriadneSprite>>
 ===
 
 title: Allura
 tags:
 ---
-<<if $Flower>>
+<<if !$Flower>>
+<<jump Allura2>>
+<<else>>
+<<jump AlluraQuestComplete>>
 <<endif>>
+===
+
+title: Allura2
+tags:
+---
+<<if !$AlluraIntro>>
+<<jump AlluraIntro>>
+<<elseif !$AlluraTutorial>>
+<<jump AlluraTutorial>>
+<<else>>
+<<jump AlluraDuringQuest>>
+<<endif>>
+===
+
+title: AlluraIntro
+tags:
+---
+<<set $AlluraIntro to true>>
+<<activate AlluraSprite>>
+Allura: Hello, little one. Who are you?
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+<<Scared Cecelia>>
+{$PlayerName}: That's what I'm trying to figure out.
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Don't you know who you are?
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+<<Sad Cecelia>>
+{$PlayerName}: No. I think I've forgotten.
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Interesting. Do you remember anything about yourself?
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+<<if $memoryCount > 0>>
+	{$PlayerName}: I've found a few things.
+<<else>>
+	{$PlayerName}: No. It feels like I just woke up from a very long nap.
+<<DeactivateCece UI>>
+<<endif>>
+<<activate AlluraSprite>>
+Allura: I may be able to help you.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+<<Neutral Cecelia>>
+-> {$PlayerName}: Really? How could you help?
+	<<activate AlluraSprite>>
+	Allura: Maybe, if you did something for me, I could help you remember something.
+-> {$PlayerName}: Why would you help me?
+	<<activate AlluraSprite>>
+	Allura: I remember a little one just like you from a long time ago. They were my friend. Maybe we could be friends, too.
+-> {$PlayerName}: I don't know if I trust you.
+	<<activate AlluraSprite>>
+	Allura: You're smart enough to know what's good for you. I wouldn't trust any of these other cutouts, if I were smart like you.
+<<DeactivateCece UI>>
+<<deactivate AlluraSprite>>
+===
+
+title: AlluraTutorial
+tags:
+---
+<<set $AlluraTutorial to true>>
+<<activate AlluraSprite>>
+Allura: If you want my help, I just need a little something from you first.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: What do you want?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: I simply adore flowers. If you can bring me a flower, I'll let you in on a secret.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: Where do I find a flower?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Why, you'll have to grow one. With your tears, of course.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: My tears?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Don't you know how to cry, little one? Don't worry... I'll teach you.
+<<deactivate AlluraSprite>>
+Now, you can make the paper doll cry. Press C to cry.
+===
+
+title: AlluraDuringQuest
+tags:
+---
+<<activate AlluraSprite>>
+Allura: Bring me a flower, and I'll tell you a secret.
+<<deactivate AlluraSprite>>
+===
+
+title: AlluraQuestComplete
+tags:
+---
+<<ActivateCece UI>>
+{$PlayerName}: I brought you a flower.
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: How... Beautiful! And I can taste your tears on its petals. Delightful. Thank you, child.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: What's the secret you talked about?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Here is my secret: I remember you. Your name is Cecelia. I haven't seen you in many years... And oh, how I missed you.
+<<deactivate AlluraSprite>>
+<<set $PlayerName to "Cecelia">>
+<<ActivateCece UI>>
+{$PlayerName}: Then you know what happened to me! Please, can you tell me?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Now, now. I only promised you one secret.
+<<deactivate AlluraSprite>>
 ===
