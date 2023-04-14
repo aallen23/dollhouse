@@ -31,6 +31,10 @@ public class CeceFace : MonoBehaviour
             blinking = true;
             StartCoroutine("Blink");
         }
+        else if (currentEmote == Emotes.Disgusted)
+        {
+            blinking = false;
+        }
     }
 
     public void SetBlinkFalse()
@@ -40,7 +44,6 @@ public class CeceFace : MonoBehaviour
 
     IEnumerator Blink()
     {
-
         while (blinking)
         {
             animator.SetTrigger("isBlink");
@@ -92,7 +95,7 @@ public class CeceFace : MonoBehaviour
         Debug.Log("sprite set to neutral");
         animator.Play("Neutral");
         currentEmote = Emotes.Neutral;
-        blinking = true;
+        //blinking = true;
     }
 
     public void SetAllAnimsFalse()

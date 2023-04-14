@@ -3891,7 +3891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233804913761152349}
   m_LocalRotation: {x: 0.21340746, y: 0.40607458, z: 0.36221737, w: 0.8113935}
-  m_LocalPosition: {x: -9.39, y: 3.08, z: 53.5}
+  m_LocalPosition: {x: -8.1, y: 1, z: 51.5}
   m_LocalScale: {x: 12.82221, y: 59.963, z: 14.27032}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4755,7 +4755,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233804914008549449}
   m_LocalRotation: {x: -0.2355206, y: 0.38253516, z: -0.34237602, w: 0.8252124}
-  m_LocalPosition: {x: -27.8, y: -14.1, z: 71.2}
+  m_LocalPosition: {x: -31.07, y: -8.95, z: 74.45}
   m_LocalScale: {x: 27.76993, y: 11.17881, z: 43.05789}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6936,7 +6936,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233804914312171143}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18080,6 +18080,10 @@ MonoBehaviour:
   umbRed: {fileID: 11400000, guid: 977ac46e926be3a47a28c75e0723b2a7, type: 2}
   umbYellow: {fileID: 11400000, guid: d69f7c512906fb6469d855700c7e01be, type: 2}
   umbGreen: {fileID: 11400000, guid: 096bf00e6ed2e4f479067e891e4488e7, type: 2}
+  objBlue: {fileID: 0}
+  objRed: {fileID: 0}
+  objYellow: {fileID: 0}
+  objGreen: {fileID: 0}
 --- !u!1 &8912338512653006036
 GameObject:
   m_ObjectHideFlags: 0
@@ -18354,7 +18358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7689349189956848599, guid: 702b3d64878f5ce46872c6181eace852, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.180023
+      value: 38.02
       objectReference: {fileID: 0}
     - target: {fileID: 7689349189956848599, guid: 702b3d64878f5ce46872c6181eace852, type: 3}
       propertyPath: m_LocalPosition.y
