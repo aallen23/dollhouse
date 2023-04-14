@@ -234,7 +234,7 @@ tags:
 <<set $Tea to true>>
 <<PlaySound talon>>
 <<activate TalonSprite>>
-Talon: Yummy yummy in my tummy.
+Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don’t know who might be sleeping here, or what you may remember…
 <<deactivate TalonSprite>>
 ===
 
@@ -264,6 +264,7 @@ title: AriadneMusic
 tags:
 ---
 <<set $Music to true>>
+<<PlaySound ariadne>>
 <<activate AriadneSprite>>
 Ariadne: Hello, my name is Ariadne.
 <<deactivate AriadneSprite>>
