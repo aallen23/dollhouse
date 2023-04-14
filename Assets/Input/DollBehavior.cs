@@ -34,8 +34,8 @@ public class DollBehavior : MonoBehaviour
         }
         else if (agent.remainingDistance == 0f && player.curPos.quickSwitch)
         {
-            dollCamera.transform.position = player.curPos.transform.position;
-            dollCamera.transform.rotation = player.curPos.transform.rotation;
+            //dollCamera.transform.position = player.curPos.transform.position;
+            //dollCamera.transform.rotation = player.curPos.transform.rotation;
         }
 
         destinationIndicator.position = agent.destination;

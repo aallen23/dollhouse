@@ -21,8 +21,10 @@ public class CameraSwitcher : MonoBehaviour
         if (other.gameObject == doll.gameObject && pcamera.gameStarted)
         {
             pcamera.Travel(GetComponentInParent<CameraPosition>());
+            doll.dollCamera.transform.position = GetComponentInParent<CameraPosition>().gameObject.transform.position;
+            doll.dollCamera.transform.rotation = GetComponentInParent<CameraPosition>().gameObject.transform.rotation;
         }
-        else if (other.gameObject == doll.gameObject)
+        else if (other.gameObject == doll.gameObject) //Delete if you want the camera to start not in dollhouse (mostly)
         {
             doll.dollCamera.transform.position = GetComponentInParent<CameraPosition>().gameObject.transform.position;
             doll.dollCamera.transform.rotation = GetComponentInParent<CameraPosition>().gameObject.transform.rotation;
