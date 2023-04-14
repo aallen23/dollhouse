@@ -6,6 +6,7 @@ public class TeaMaking : MonoBehaviour
 {
     public GameObject SugarCube;
     public GameObject TeaBag;
+    public GameObject TeaBagString;
     public GameObject Cup;
     public bool addedSugar;
     public bool addedBag;
@@ -29,6 +30,10 @@ public class TeaMaking : MonoBehaviour
         {
             cupLiquid.SetActive(false);
         }
+        if (TeaBagString)
+        {
+            TeaBagString.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -36,14 +41,16 @@ public class TeaMaking : MonoBehaviour
     {
         if (pouring)
         {
-            gameObject.GetComponent<ObjectData>().enabled = false;
+            gameObject.GetComponent<ObjectData>().interactType = InteractType.Examine;
+            Cup.GetComponent<ObjectData>().interactType = InteractType.Examine;
             StartCoroutine(WaterParticles());
             transform.rotation = Quaternion.Lerp(transform.rotation, PotPos.rotation, Time.deltaTime * rotateSpeed);
         }
         if (donePouring)
         {
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * rotateSpeed * 2);
-            gameObject.GetComponent<ObjectData>().enabled = true;
+            gameObject.GetComponent<ObjectData>().interactType = InteractType.Dragging;
+            Cup.GetComponent<ObjectData>().interactType = InteractType.Dragging;
         }
     }
 
@@ -88,6 +95,7 @@ public class TeaMaking : MonoBehaviour
         if (addedBag && gameObject.name == "Teapot")
         {
             potLiquid.SetActive(true);
+            TeaBagString.SetActive(true);
         }
     }
 }
