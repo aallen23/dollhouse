@@ -24,6 +24,7 @@ public enum ObjectUseType
     ShowObject,
     AddItem,
     AddItemElsewhere,
+    UmbrellaToggleType
 }
 
 //Stores an Interactable Object's Data
@@ -388,6 +389,10 @@ public class ObjectData : MonoBehaviour
                 {
                     addItemDestination.addedItem = item[it];
                 }
+                break;
+            case ObjectUseType.UmbrellaToggleType:
+                GetComponent<UmbrellaModelSwitcher>().SwitchModel(it);
+                itemEnabled = false;
                 break;
         }
         functionItem.Invoke();

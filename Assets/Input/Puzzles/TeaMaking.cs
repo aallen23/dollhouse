@@ -36,12 +36,14 @@ public class TeaMaking : MonoBehaviour
     {
         if (pouring)
         {
+            gameObject.GetComponent<ObjectData>().enabled = false;
             StartCoroutine(WaterParticles());
             transform.rotation = Quaternion.Lerp(transform.rotation, PotPos.rotation, Time.deltaTime * rotateSpeed);
         }
         if (donePouring)
         {
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * rotateSpeed * 2);
+            gameObject.GetComponent<ObjectData>().enabled = true;
         }
     }
 
