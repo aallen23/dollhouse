@@ -15,7 +15,8 @@ public enum InteractType
     AddItem,
     BlankHand,
     Dragging,
-    WardrobeWithdraw
+    WardrobeWithdraw,
+    DollGoTo
 }
 
 public enum ObjectUseType
@@ -83,6 +84,10 @@ public class ObjectData : MonoBehaviour
     [Space(10)]
     public Dictionary<string, GameObject> wardrobeObjects;
     public Dictionary<string, ItemScriptableObject> wardrobeItems;
+
+    [Space(10)]
+    public List<Transform> MoveDollTo;
+    public int MoveDollToIndex;
 
     [Space(10)]
     [Tooltip("(Optional) What function to call after interacting.")]
@@ -332,6 +337,17 @@ public class ObjectData : MonoBehaviour
                     {
                         dialog.StartDialogue(yarnExamine); //Trigger yarn
                     }
+                }
+                break;
+            case InteractType.DollGoTo:
+                FindObjectOfType<NavMeshAgent>().destination = MoveDollTo[MoveDollToIndex].position;
+                if (MoveDollToIndex < MoveDollTo.Count - 1)
+                {
+                    MoveDollToIndex++;
+                }
+                else
+                {
+                    MoveDollToIndex = 0;
                 }
                 break;
         }

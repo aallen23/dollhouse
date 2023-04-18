@@ -43,10 +43,12 @@ public class DollBehavior : MonoBehaviour
         if (agent.remainingDistance > 0f && !footstepAudio.isPlaying)
         {
             footstepAudio.Play();
+            destinationIndicator.GetComponent<MeshRenderer>().enabled = true;
         }
         else if (agent.remainingDistance == 0f)
         {
             footstepAudio.Stop();
+            destinationIndicator.GetComponent<MeshRenderer>().enabled = false;
         }
         //Debug.Log(footstepAudio.isPlaying);
     }

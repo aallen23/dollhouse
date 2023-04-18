@@ -13,12 +13,9 @@ public class UmbrellaPuzzle : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Collider>().enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
-        stand1 = umbBlue;
-        stand2 = umbRed;
-        stand3 = umbYellow;
-        stand4 = umbGreen;
+        //GetComponent<Collider>().enabled = false;
+        //GetComponent<MeshRenderer>().enabled = false;
+        gameObject.SetActive(false);
     }
 
     public void UpdateUmbrellas(string inStand, ItemScriptableObject umbrellaColor)
@@ -38,6 +35,7 @@ public class UmbrellaPuzzle : MonoBehaviour
                 stand4 = umbrellaColor;
                 break;
         }
+        Check();
     }
 
     public void Check()
@@ -48,8 +46,9 @@ public class UmbrellaPuzzle : MonoBehaviour
             stand3 == umbBlue &&
             stand4 == umbGreen)
         {
-            GetComponent<Collider>().enabled = true;
-            GetComponent<MeshRenderer>().enabled = true;
+            //GetComponent<Collider>().enabled = true;
+            //GetComponent<MeshRenderer>().enabled = true;
+            gameObject.SetActive(true);
         }
     }
 }
