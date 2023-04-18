@@ -6,7 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     private AudioSource[] songs;
 
-    private bool playAmbience;
+    private bool playAmbience,
+        paused;
 
     [SerializeField]
     private AudioSource menu,
@@ -22,12 +23,13 @@ public class AudioManager : MonoBehaviour
     {
         songs = ambience.GetComponentsInChildren<AudioSource>();
         playAmbience = false;
+        paused = false;
         currentSound = null;
     }
 
     public void Update()
     {
-        if (currentSound != null && !currentSound.isPlaying && playAmbience == true)
+        if (currentSound != null && !currentSound.isPlaying && playAmbience == true && paused == false)
         {
             GetNewAmbience();
         }
@@ -54,6 +56,18 @@ public class AudioManager : MonoBehaviour
         GetNewAmbience();
     }
 
+    public void PauseAmbience()
+    {
+        paused = true;
+        currentSound.Pause();
+    }
+
+    public void UnpauseAmbience()
+    {
+        paused = false;
+        currentSound.Play();
+    }
+
     public void MenuMusic()
     {
         menu.Play();
@@ -62,11 +76,15 @@ public class AudioManager : MonoBehaviour
     public void PlayMemorySound()
     {
         memory.Play();
+        float clipLength = memory.clip.length;
+        StartCoroutine(WaitForMusic(clipLength));
     }
 
     public void PlayPuzzleSound()
     {
         puzzle.Play();
+        float clipLength = puzzle.clip.length;
+        StartCoroutine(WaitForMusic(clipLength));
     }
 
     public void OnButtonHover()
@@ -82,6 +100,12 @@ public class AudioManager : MonoBehaviour
     public void PageFlip()
     {
         pageFlip.Play();
+    }
+
+    IEnumerator WaitForMusic(float time)
+    {
+        yield return new WaitForSeconds(time);
+        UnpauseAmbience();
     }
 
 }
