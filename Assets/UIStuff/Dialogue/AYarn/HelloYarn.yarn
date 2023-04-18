@@ -143,6 +143,7 @@ BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
 {$PlayerName}: Aren't you made of paper? Why are you hungry?
 <<DeactivateCece UI>>
 BigBoy: Someone used to feed real food, but they disappeared long ago. I have never forgotten the taste. I have been eating paper nothings for years and years...
+<<deactivate BigBoySprite>>
 <<ActivateCece UI>>
 <<Neutral Cecelia>>
 {$PlayerName}: I'll see if I can find anything. I'm hungry too.
@@ -155,6 +156,7 @@ tags:
 <<set $BBfed to true>>
 <<activate BigBoySprite>>
 BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The taste of this food reminds me of the past.
+<<memoryTriggered GluttonyMemory>>
 <<deactivate BigBoySprite>>
 ===
 

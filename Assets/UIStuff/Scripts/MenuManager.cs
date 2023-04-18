@@ -208,15 +208,16 @@ public class MenuManager : MonoBehaviour
         ceceFace.SetActive(false);
     }
 
-    public void ResetDialogue()
-    {
-        //update with each new added variable storage in the dialogue
-        dialog.VariableStorage.SetValue("$itemUsed", 0);
-        dialog.VariableStorage.SetValue("$BBfed", false);
-        dialog.VariableStorage.SetValue("$Music", false);
-        dialog.VariableStorage.SetValue("$Tintro", true);
-        dialog.VariableStorage.SetValue("$Tea", false);
-    }
+    //public void ResetDialogue()
+    //{
+    //    //update with each new added variable storage in the dialogue
+
+    //    dialog.VariableStorage.SetValue("$itemUsed", 0);
+    //    dialog.VariableStorage.SetValue("$BBfed", false);
+    //    dialog.VariableStorage.SetValue("$Music", false);
+    //    dialog.VariableStorage.SetValue("$Tintro", true);
+    //    dialog.VariableStorage.SetValue("$Tea", false);
+    //}
 
     public void ResetCreditsScroll()
     {
@@ -260,12 +261,6 @@ public class MenuManager : MonoBehaviour
         {
             mainPanel.SetActive(true);
         }
-
-
-        //optionsFrame.SetActive(true);
-        //audioFrame.SetActive(false);
-        //controlsFrame.SetActive(false);
-        //videoFrame.SetActive(true);
     }
 
     public void BrightnessSlide(float brightLvl)
@@ -367,13 +362,6 @@ public class MenuManager : MonoBehaviour
     {
         masterMixer.SetFloat("musicVol", Mathf.Log10(musicLvl) * 20);
     }
-
-    //public void ControlsButton()
-    //{
-    //    videoFrame.SetActive(false);
-    //    audioFrame.SetActive(false);
-    //    controlsFrame.SetActive(true);
-    //}
 
     public void Page1Button()
     {
