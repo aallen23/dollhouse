@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
         UI_click,
         puzzle,
         memory,
+        pageFlip,
         currentSound;
 
     public void Awake()
@@ -76,6 +77,11 @@ public class AudioManager : MonoBehaviour
     public void OnButtonClick()
     {
         UI_click.Play();
+    }
+
+    public void PageFlip()
+    {
+        pageFlip.Play();
     }
 
 }
