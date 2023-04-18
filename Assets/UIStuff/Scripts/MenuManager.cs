@@ -23,8 +23,15 @@ public class MenuManager : MonoBehaviour
         pause,
         quitFrame,
         optionsFrame,
-        videoFrame,
+        journal,
+        page1,
+        page2,
+        page3,
+        page4,
+        mainPanel,
+        pausePanel,
         audioFrame,
+        videoFrame,
         controlsFrame,
         lighting,
         filterVol,
@@ -178,11 +185,12 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu1.SetActive(false);
         mainMenu2.SetActive(false);
+        journal.SetActive(false);
         pause.SetActive(false);
         gameUI.SetActive(false);
         credits.SetActive(false);
         quitFrame.SetActive(false);
-        optionsFrame.SetActive(false);
+        //optionsFrame.SetActive(false);
     }
 
     [YarnCommand("ActivateUI")]
@@ -250,17 +258,15 @@ public class MenuManager : MonoBehaviour
         {
             gameUI.SetActive(true);
         }
-        optionsFrame.SetActive(true);
-        audioFrame.SetActive(false);
-        controlsFrame.SetActive(false);
-        videoFrame.SetActive(true);
-    }
 
-    public void VideoButton()
-    {
-        audioFrame.SetActive(false);
-        controlsFrame.SetActive(false);
-        videoFrame.SetActive(true);
+        journal.SetActive(true);
+        mainPanel.SetActive(true);
+
+
+        //optionsFrame.SetActive(true);
+        //audioFrame.SetActive(false);
+        //controlsFrame.SetActive(false);
+        //videoFrame.SetActive(true);
     }
 
     public void BrightnessSlide(float brightLvl)
@@ -348,13 +354,6 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void AudioButton()
-    {
-        videoFrame.SetActive(false);
-        controlsFrame.SetActive(false);
-        audioFrame.SetActive(true);
-    }
-
     public void SetMasterLvl(float masterLvl)
     {
         masterMixer.SetFloat("masterVol", Mathf.Log10(masterLvl) * 20);
@@ -370,11 +369,31 @@ public class MenuManager : MonoBehaviour
         masterMixer.SetFloat("musicVol", Mathf.Log10(musicLvl) * 20);
     }
 
-    public void ControlsButton()
+    //public void ControlsButton()
+    //{
+    //    videoFrame.SetActive(false);
+    //    audioFrame.SetActive(false);
+    //    controlsFrame.SetActive(true);
+    //}
+
+    public void Page1Button()
     {
-        videoFrame.SetActive(false);
-        audioFrame.SetActive(false);
-        controlsFrame.SetActive(true);
+        page1.SetActive(true);
+    }
+
+    public void Page2Button()
+    {
+        page2.SetActive(true);
+    }
+
+    public void Page3Button()
+    {
+        page3.SetActive(true);
+    }
+
+    public void Page4Button()
+    {
+        page4.SetActive(true);
     }
 
     public void Pause()
