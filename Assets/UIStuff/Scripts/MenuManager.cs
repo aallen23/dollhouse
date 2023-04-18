@@ -20,9 +20,7 @@ public class MenuManager : MonoBehaviour
         mainMenu2,
         gameUI,
         credits,
-        pause,
         quitFrame,
-        optionsFrame,
         journal,
         page1,
         page2,
@@ -30,9 +28,6 @@ public class MenuManager : MonoBehaviour
         page4,
         mainPanel,
         pausePanel,
-        audioFrame,
-        videoFrame,
-        controlsFrame,
         lighting,
         filterVol,
         blackscreen,
@@ -186,7 +181,6 @@ public class MenuManager : MonoBehaviour
         mainMenu1.SetActive(false);
         mainMenu2.SetActive(false);
         journal.SetActive(false);
-        pause.SetActive(false);
         gameUI.SetActive(false);
         credits.SetActive(false);
         quitFrame.SetActive(false);
@@ -254,13 +248,18 @@ public class MenuManager : MonoBehaviour
     public void OptionsButton()
     {
         SetAllInactive();
+        journal.SetActive(true);
+        Page1Button();
         if (FindObjectOfType<P2PCameraController>().gameStarted)
         {
             gameUI.SetActive(true);
+            pausePanel.SetActive(true);
+            Page4Button();
         }
-
-        journal.SetActive(true);
-        mainPanel.SetActive(true);
+        else 
+        {
+            mainPanel.SetActive(true);
+        }
 
 
         //optionsFrame.SetActive(true);
@@ -276,7 +275,7 @@ public class MenuManager : MonoBehaviour
 
     public void ChangeDisplay()
     {
-        TMP_Dropdown dropdown = videoFrame.transform.GetComponentInChildren<TMP_Dropdown>(true);
+        TMP_Dropdown dropdown = page4.transform.GetComponentInChildren<TMP_Dropdown>(true);
         if (dropdown.value == 1)
         {
             //r = Screen.currentResolution;
@@ -378,67 +377,103 @@ public class MenuManager : MonoBehaviour
 
     public void Page1Button()
     {
+        SetPagesInactive();
         page1.SetActive(true);
     }
 
     public void Page2Button()
     {
+        SetPagesInactive();
         page2.SetActive(true);
     }
 
     public void Page3Button()
     {
+        SetPagesInactive();
         page3.SetActive(true);
     }
 
     public void Page4Button()
     {
+        SetPagesInactive();
         page4.SetActive(true);
+    }
+
+    public void SetPagesInactive()
+    {
+        page1.SetActive(false);
+        page2.SetActive(false);
+        page3.SetActive(false);
+        page4.SetActive(false);
     }
 
     public void Pause()
     {
-        if (optionsFrame.activeSelf)
+        if (!isPaused && !journal.activeSelf)
         {
-            pause.SetActive(true);
-            optionsFrame.SetActive(false);
+            isPaused = true;
+            Time.timeScale = 0f;
+            journal.SetActive(true);
+            Page1Button();
+            pausePanel.SetActive(true);
         }
         else
         {
-            if (!isPaused && !optionsFrame.activeSelf)
-            {
-                isPaused = true;
-                Time.timeScale = 0f;
-                pause.SetActive(true);
-            }
-            else
-            {
-                isPaused = false;
-                Time.timeScale = 1f;
-                pause.SetActive(false);
-            }
+            isPaused = false;
+            Time.timeScale = 1f;
+            journal.SetActive(false);
         }
+
+        //if (optionsFrame.activeSelf)
+        //{
+        //    pause.SetActive(true);
+        //    optionsFrame.SetActive(false);
+        //}
+        //else
+        //{
+        //    if (!isPaused && !optionsFrame.activeSelf)
+        //    {
+        //        isPaused = true;
+        //        Time.timeScale = 0f;
+        //        pause.SetActive(true);
+        //    }
+        //    else
+        //    {
+        //        isPaused = false;
+        //        Time.timeScale = 1f;
+        //        journal.SetActive(true);
+        //    }
+        //}
     }
 
     public void ReturnToMain()
     {
-        if (FindObjectOfType<P2PCameraController>().gameStarted)
+        if (credits.activeSelf)
         {
-            optionsFrame.SetActive(false);
-            pause.SetActive(true);
+            ResetCreditsScroll();
         }
-        else
-        {
-            if (credits.activeSelf == true)
-            {
-                ResetCreditsScroll();
-            }
-            //audioManager.TurnOffMusic();
-            //audioManager.MenuMusic();
-            ResetDialogue();
-            SetAllInactive();
-            mainMenu1.SetActive(true);
-        }
+        //audioManager.TurnOffMusic();
+        //audioManager.MenuMusic();
+        SetAllInactive();
+        mainMenu1.SetActive(true);
+
+        //if (FindObjectOfType<P2PCameraController>().gameStarted)
+        //{
+        //    optionsFrame.SetActive(false);
+        //    pause.SetActive(true);
+        //}
+        //else
+        //{
+        //    if (credits.activeSelf)
+        //    {
+        //        ResetCreditsScroll();
+        //    }
+        //    //audioManager.TurnOffMusic();
+        //    //audioManager.MenuMusic();
+        //    ResetDialogue();
+        //    SetAllInactive();
+        //    mainMenu1.SetActive(true);
+        //}
     }
 
     public void Restart()
