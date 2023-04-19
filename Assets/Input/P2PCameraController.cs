@@ -432,7 +432,7 @@ public class P2PCameraController : MonoBehaviour
 
         foreach (Drawing draw in drawingObjects)
         {
-            draw.mousePos = hit.point;
+			draw.mousePos = hit.point;
             draw.mouseTransform = hit.transform;
         }
         if (rotateAroundObject)

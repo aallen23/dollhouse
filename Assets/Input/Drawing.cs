@@ -22,7 +22,10 @@ public class Drawing : MonoBehaviour
     private int numDrawn;
     public CameraPosition DrawPos;
 
-    public GameObject objectToDestroy;
+
+	public Vector3 drawOffset;
+
+	public GameObject objectToDestroy;
     public ItemScriptableObject itemToAdd;
 
     private void Start()
@@ -91,7 +94,7 @@ public class Drawing : MonoBehaviour
         //Debug.Log(mousePos);
         if (mousePos != lastPos && curLineRenderer && FindObjectOfType<P2PCameraController>().curPos == DrawPos)
         {
-            AddAPoint(mousePos);
+            AddAPoint(mousePos + drawOffset);
             lastPos = mousePos;
         }
     }
