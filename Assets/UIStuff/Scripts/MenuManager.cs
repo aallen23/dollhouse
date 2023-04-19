@@ -56,6 +56,8 @@ public class MenuManager : MonoBehaviour
 
     private int offsetx, offsety;
 
+	public Slider sliderMain, sliderMusic, sliderSFX;
+
     public void Awake()
     {
         audioManager = audioBox.GetComponent<AudioManager>();
@@ -70,7 +72,21 @@ public class MenuManager : MonoBehaviour
         vgBool = true;
         //SetAllInactive();
         Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true);
-    }
+
+		masterMixer.GetFloat("masterVol", out float volMaster);
+		sliderMain.value = undoLog(volMaster);
+		masterMixer.GetFloat("musicVol", out float volMusic);
+		sliderMusic.value = undoLog(volMusic);
+		masterMixer.GetFloat("sfxVol", out float volSFX);
+		sliderSFX.value = undoLog(volSFX);
+	}
+
+	private float undoLog(float num)
+	{
+		float newNum = num / 20;
+		newNum = Mathf.Pow(10, num);
+		return newNum;
+	}
 
     private void Update()
     {
@@ -350,17 +366,17 @@ public class MenuManager : MonoBehaviour
 
     public void SetMasterLvl(float masterLvl)
     {
-        masterMixer.SetFloat("masterVol", Mathf.Log10(masterLvl) * 20);
+        masterMixer.SetFloat("masterVol", Mathf.Log10(sliderMain.value) * 20);
     }
 
     public void SetSFXLvl(float sfxLvl)
     {
-        masterMixer.SetFloat("sfxVol", Mathf.Log10(sfxLvl) * 20);
+        masterMixer.SetFloat("sfxVol", Mathf.Log10(sliderSFX.value) * 20);
     }
 
     public void SetMusicLvl(float musicLvl)
     {
-        masterMixer.SetFloat("musicVol", Mathf.Log10(musicLvl) * 20);
+        masterMixer.SetFloat("musicVol", Mathf.Log10(sliderMusic.value) * 20);
     }
 
     public void Page1Button()
