@@ -9,9 +9,9 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler
 
     void Start()
     {
-        if(GameObject.Find("/Audio") != null)
+        if(GameObject.Find("Audio") != null)
         {
-            audioManager = GameObject.Find("/Audio").GetComponent<AudioManager>();
+            audioManager = GameObject.Find("Audio").GetComponent<AudioManager>();
         }
     }
 
