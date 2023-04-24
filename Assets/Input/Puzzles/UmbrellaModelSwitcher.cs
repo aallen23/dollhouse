@@ -9,7 +9,7 @@ public class UmbrellaModelSwitcher : MonoBehaviour
 
 	private void Start()
 	{
-		puzzle = FindObjectOfType<UmbrellaPuzzle>();
+		puzzle = FindObjectOfType<UmbrellaPuzzle>(true);
 	}
 
 	public void SwitchModel(int item)
