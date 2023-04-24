@@ -3367,6 +3367,7 @@ GameObject:
   - component: {fileID: 1284492281}
   - component: {fileID: 1284492280}
   - component: {fileID: 233804914754469579}
+  - component: {fileID: 288818267}
   m_Layer: 0
   m_Name: Door Closed
   m_TagString: Untagged
@@ -3382,8 +3383,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284492278}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 69.55955, y: -12.98, z: 24.423311}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 69.55955, y: -12.98, z: 24.09}
+  m_LocalScale: {x: 186.70413, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1334187972}
@@ -3420,7 +3421,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 921fe0d2a102b4c488d5c59a2789723e, type: 2}
-  - {fileID: 2100000, guid: 3fa6bbd8e0e7ff34d9b2b97f9e91db8d, type: 2}
+  - {fileID: 2100000, guid: b5a7992f9facdd74cbea89e237e17246, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3471,6 +3472,67 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.0050000004, y: 0.125, z: -0.09}
   m_TimeToStationary: 0.5
+--- !u!114 &288818267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284492278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDollObject: 0
+  positionDoll: {fileID: 0}
+  positionCamera: {fileID: 0}
+  disableInteractAtPosition: 0
+  interactType: 0
+  yarnExamine: LockedDoor
+  rotateAmount: {x: 0, y: 0, z: 0}
+  desiredRotation: {x: 0, y: 0, z: 0}
+  rotationSpeed: 0
+  rotateObject: {fileID: 0}
+  teleportPoint: {fileID: 0}
+  addedItem: {fileID: 0}
+  addItemIsInfinite: 0
+  addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
+  respawnY: 0
+  allowedDraggingCamera: {fileID: 0}
+  requiredDraggingSurface: {fileID: 0}
+  MoveDollTo: []
+  MoveDollToIndex: 0
+  functioninteract:
+    m_PersistentCalls:
+      m_Calls: []
+  item: []
+  itemEnabled: 0
+  objectUseType: 0
+  yarnItem: 
+  shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
+  startVisible: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
+  functionItem:
+    m_PersistentCalls:
+      m_Calls: []
+  lookPoint: {x: 0, y: 0, z: 0}
+  mouseDelta: {x: 0, y: 0}
+  rotateAroundModAngle: {x: 0, y: 0, z: 0}
+  rotateAroundForceAngle: {x: 0, y: 0, z: 0}
+  desiredPos: {x: 0, y: 0, z: 0}
+  secondPos: {x: 0, y: 0, z: 0}
+  animSpeed: 0
+  interactSFX: {fileID: 0}
+  inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &1334187971
 GameObject:
   m_ObjectHideFlags: 0
@@ -7898,7 +7960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233804914138772826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -93.009995, y: -42.37, z: -19.580002}
+  m_LocalPosition: {x: -93.009995, y: -46.2, z: -19.580002}
   m_LocalScale: {x: 1, y: 10, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8111,7 +8173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233804914141862120}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -76.759995, y: -41.179996, z: -19.580002}
+  m_LocalPosition: {x: -76.759995, y: -45.01, z: -19.580002}
   m_LocalScale: {x: 1, y: 10, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8315,7 +8377,7 @@ MonoBehaviour:
   positionCamera: {fileID: 233804914512449514}
   disableInteractAtPosition: 1
   interactType: 0
-  yarnExamine: 
+  yarnExamine: Safe
   rotateAmount: {x: 0, y: 0, z: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
   rotationSpeed: 0
