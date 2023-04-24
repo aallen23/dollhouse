@@ -7,7 +7,12 @@ public class UmbrellaModelSwitcher : MonoBehaviour
     public List<GameObject> umbrellaModels;
     public UmbrellaPuzzle puzzle;
 
-    public void SwitchModel(int item)
+	private void Start()
+	{
+		puzzle = FindObjectOfType<UmbrellaPuzzle>();
+	}
+
+	public void SwitchModel(int item)
     {
         foreach (GameObject umb in umbrellaModels)
         {

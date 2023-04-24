@@ -438,7 +438,6 @@ public class P2PCameraController : MonoBehaviour
         if (rotateAroundObject)
         {
             rotateAroundObject.lookPoint = hit.point;
-            rotateAroundObject.mouseDelta = inputMap.PointToPoint.MouseDelta.ReadValue<Vector2>();
         }
         if (draggingObject)
         {
