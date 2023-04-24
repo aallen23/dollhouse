@@ -47,6 +47,8 @@ public class P2PCameraController : MonoBehaviour
 
     public ParticleSystem tearLeft, tearRight;
     public bool cryEnabled;
+
+	public bool forceSmoothSwitch;
     private void Awake()
     {
         //Load input map and connect to all the functions
@@ -343,7 +345,7 @@ public class P2PCameraController : MonoBehaviour
                     }
                 }
             }
-            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI && !(!curPos.quickSwitch && curPos.obeyRotation)) //If there's no Object, we check if we are clicking on the NavMesh
+            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI && (!(curPos.quickSwitch == false && curPos.obeyRotation == true)) || forceSmoothSwitch) //If there's no Object, we check if we are clicking on the NavMesh
             {
                 //Debug.Log("Walk");
                 doll.GetComponent<DollBehavior>().od = null;
@@ -535,7 +537,7 @@ public class P2PCameraController : MonoBehaviour
         {
             desiredRotation.x = 12;
         }
-        if (curPos.quickSwitch)
+        if (curPos.quickSwitch && !forceSmoothSwitch)
         {
             rotationSpeed = 256;
             moveSpeed = 256;

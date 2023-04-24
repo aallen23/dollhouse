@@ -7,6 +7,7 @@ public class CameraSwitcher : MonoBehaviour
 {
     private P2PCameraController pcamera;
     private DollBehavior doll;
+	public bool forceSmooth;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class CameraSwitcher : MonoBehaviour
         //Debug.Log(other.gameObject.name);
         if (other.gameObject == doll.gameObject && pcamera.gameStarted)
         {
+			pcamera.forceSmoothSwitch = forceSmooth;
             pcamera.Travel(GetComponentInParent<CameraPosition>());
             doll.dollCamera.transform.position = GetComponentInParent<CameraPosition>().gameObject.transform.position;
             doll.dollCamera.transform.rotation = GetComponentInParent<CameraPosition>().gameObject.transform.rotation;
