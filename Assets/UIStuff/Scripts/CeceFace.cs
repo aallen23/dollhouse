@@ -91,8 +91,6 @@ public class CeceFace : MonoBehaviour
     public void Neutral()
     {
         SetAllAnimsFalse();
-        GetComponent<Image>().sprite = NeutralSprite;
-        Debug.Log("sprite set to neutral");
         animator.Play("Neutral");
         currentEmote = Emotes.Neutral;
         //blinking = true;
