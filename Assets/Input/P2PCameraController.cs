@@ -306,7 +306,8 @@ public class P2PCameraController : MonoBehaviour
             return;
         }
         doll.GetComponent<AudioSource>().Play();
-        tearLeft.Play();
+		doll.GetComponent<DollBehavior>().checkCry.SetActive(true);
+		tearLeft.Play();
         tearRight.Play();
     }
 
@@ -315,7 +316,8 @@ public class P2PCameraController : MonoBehaviour
     private void Cry_canceled(InputAction.CallbackContext obj)
     {
         doll.GetComponent<AudioSource>().Stop();
-        tearLeft.Stop();
+		doll.GetComponent<DollBehavior>().checkCry.SetActive(false);
+		tearLeft.Stop();
         tearRight.Stop();
     }
 

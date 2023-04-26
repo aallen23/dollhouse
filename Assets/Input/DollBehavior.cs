@@ -14,6 +14,7 @@ public class DollBehavior : MonoBehaviour
     [Tooltip("The Doll Camera GameObject. Will move to the current camera position to save the position in the Dollhouse.")] public CameraPosition dollCamera;
     public Transform destinationIndicator;
     [Tooltip("Audio Source.")] public AudioSource footstepAudio;
+	public GameObject checkCry;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,8 @@ public class DollBehavior : MonoBehaviour
         footstepAudio = gameObject.GetComponent<AudioSource>();
         dialog = FindObjectOfType<DialogueRunner>();
         player = FindObjectOfType<P2PCameraController>();
-    }
+		checkCry.SetActive(false);
+	}
 
     // Update is called once per frame
     void Update()
@@ -53,7 +55,7 @@ public class DollBehavior : MonoBehaviour
         //Debug.Log(footstepAudio.isPlaying);
     }
 
-    public void GoToObject(ObjectData newOD)
+	public void GoToObject(ObjectData newOD)
     {
         od = newOD;
         agent.destination = od.positionDoll.position;
