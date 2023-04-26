@@ -7,10 +7,11 @@ tags:
 <<set $Tintro to false>>
 <<set $Tea to false>>
 <<set $Flower to false>>
-<<set $PlayerName to "???">>
-<<set $memoryCount to 0>>
 <<set $AlluraTutorial to false>>
 <<set $AlluraIntro to false>>
+<<set $PlayerName to "???">>
+<<set $memoryCount to 0>>
+<<set $crank to false>>
 ===
 
 title: StartGame
@@ -158,6 +159,7 @@ BigBoy: Someone used to feed real food, but they disappeared long ago. I have ne
 title: BigBoyFed
 tags:
 ---
+<<set $memoryCount = $memoryCount + 1>>
 <<set $BBfed to true>>
 <<activate BigBoySprite>>
 BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The taste of this food reminds me of the past.
@@ -238,6 +240,7 @@ Talon: A good cup of tea... that would be nice.
 title: BirdManTea
 tags: 
 ---
+<<set $memoryCount = $memoryCount + 1>>
 <<set $Tea to true>>
 <<PlaySound talon>>
 <<activate TalonSprite>>
@@ -270,6 +273,7 @@ tags:
 title: AriadneMusic
 tags:
 ---
+<<set $memoryCount = $memoryCount + 1>>
 <<set $Music to true>>
 <<PlaySound ariadne>>
 <<activate AriadneSprite>>
@@ -420,9 +424,10 @@ Allura: Bring me a flower, and I'll tell you a secret.
 <<deactivate AlluraSprite>>
 ===
 
-title: AlluraQuestComplete
+title: AlluraFlower
 tags:
 ---
+<<set $memoryCount = $memoryCount + 1>>
 <<ActivateCece UI>>
 {$PlayerName}: I brought you a flower.
 <<DeactivateCece UI>>
@@ -442,4 +447,32 @@ Allura: Here is my secret: I remember you. Your name is Cecelia. I haven't seen 
 <<activate AlluraSprite>>
 Allura: Now, now. I only promised you one secret.
 <<deactivate AlluraSprite>>
+===
+
+title: AlluraQuestComplete
+tags:
+---
+<<activate AlluraSprite>>
+Allura: You're such a beautiful child. Please come back to visit me.
+<<deactivate AlluraSprite>>
+===
+
+title: Herb
+tags:
+---
+<<if !$crank>>
+	<<if $memoryCount < 4>>
+		Collect 4 memories to interact with the Jack-in-the-Box. You currently have {$memoryCount} memories.
+	<<else>>
+		<<jump HerbFinale>>
+	<<endif>>
+<<else>>
+	Looks like this box needs a crank.
+<<endif>>
+===
+
+title: HerbFinale
+tags:
+---
+wow, you finished the game. looks like the devs haven't made it this far yet.
 ===
