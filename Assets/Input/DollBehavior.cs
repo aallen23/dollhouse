@@ -51,6 +51,7 @@ public class DollBehavior : MonoBehaviour
         {
             footstepAudio.Stop();
             destinationIndicator.GetComponent<MeshRenderer>().enabled = false;
+			player.forceSmoothSwitch = false;
         }
         //Debug.Log(footstepAudio.isPlaying);
     }

@@ -6,6 +6,7 @@ public class UmbrellaModelSwitcher : MonoBehaviour
 {
     public List<GameObject> umbrellaModels;
     public UmbrellaPuzzle puzzle;
+	public AudioSource putdownAudio;
 
 	private void Start()
 	{
@@ -20,6 +21,7 @@ public class UmbrellaModelSwitcher : MonoBehaviour
             {
                 umb.SetActive(true);
                 puzzle.UpdateUmbrellas(gameObject.name, umb.GetComponent<ObjectData>().addedItem);
+				putdownAudio.Play();
             }
             else
             {
