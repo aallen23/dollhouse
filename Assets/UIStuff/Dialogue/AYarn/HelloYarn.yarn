@@ -431,6 +431,7 @@ title: AlluraFlower
 tags:
 ---
 <<set $memoryCount = $memoryCount + 1>>
+<<set $Flower to true>>
 <<ActivateCece UI>>
 {$PlayerName}: I brought you a flower.
 <<DeactivateCece UI>>
@@ -450,6 +451,7 @@ Allura: Here is my secret: I remember you. Your name is Cecelia. I haven't seen 
 <<activate AlluraSprite>>
 Allura: Now, now. I only promised you one secret.
 <<deactivate AlluraSprite>>
+<<memoryTriggered LustMemory>>
 ===
 
 title: AlluraQuestComplete

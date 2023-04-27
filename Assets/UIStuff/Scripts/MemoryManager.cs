@@ -36,7 +36,7 @@ public class MemoryManager : MonoBehaviour
 
     IEnumerator Fade()
     {
-        for (float i = 5; i >= 0; i -= Time.deltaTime * -10)
+        for (float i = 1; i >= 0; i -= Time.deltaTime * -10)
         {
             paper.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, i);
             sprite2.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, i);
