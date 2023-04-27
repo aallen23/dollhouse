@@ -192,7 +192,9 @@ public class P2PCameraController : MonoBehaviour
         //First we check that there is a valid camera positon in that direction, and we are not mid dialog
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
-            if (curPos.enableAtPosition.Count > 0)
+			bool forceSmoothie = curPos.obeyRotation && !curPos.quickSwitch;
+			float houseYRotation = curPos.houseYRotation;
+			if (curPos.enableAtPosition.Count > 0)
             {
                 foreach (GameObject obj in curPos.enableAtPosition)
                 {
@@ -208,10 +210,12 @@ public class P2PCameraController : MonoBehaviour
             }
             else
             {
+				desiredRotation.y = houseYRotation;
+				desiredRotation.z = 0;
                 desiredRotation.x = 12;
             }
             //Debug.Log(curPos.quickSwitch);
-            if (curPos.quickSwitch) {
+            if (curPos.quickSwitch && !forceSmoothie) {
                 //If it's a quick switch (so far exclusively inside the Dollhouse, we want the transition to be virtually instant
                 rotationSpeed = 256;
                 moveSpeed = 256;
@@ -305,7 +309,7 @@ public class P2PCameraController : MonoBehaviour
         {
             return;
         }
-        doll.GetComponent<AudioSource>().Play();
+        doll.GetComponent<DollBehavior>().cryAudio.Play();
 		doll.GetComponent<DollBehavior>().checkCry.SetActive(true);
 		tearLeft.Play();
         tearRight.Play();
@@ -314,8 +318,8 @@ public class P2PCameraController : MonoBehaviour
 
 
     private void Cry_canceled(InputAction.CallbackContext obj)
-    {
-        doll.GetComponent<AudioSource>().Stop();
+	{
+		doll.GetComponent<DollBehavior>().cryAudio.Stop();
 		doll.GetComponent<DollBehavior>().checkCry.SetActive(false);
 		tearLeft.Stop();
         tearRight.Stop();

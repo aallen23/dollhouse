@@ -271,7 +271,8 @@ public class MenuManager : MonoBehaviour
         if (FindObjectOfType<P2PCameraController>().gameStarted)
         {
             gameUI.SetActive(true);
-            pausePanel.SetActive(true);
+			mainPanel.SetActive(false);
+			pausePanel.SetActive(true);
             Page4Button();
         }
         else 
@@ -419,7 +420,8 @@ public class MenuManager : MonoBehaviour
             isPaused = true;
             Time.timeScale = 0f;
             journal.SetActive(true);
-            Page1Button();
+			mainPanel.SetActive(false);
+			Page1Button();
             pausePanel.SetActive(true);
         }
         else

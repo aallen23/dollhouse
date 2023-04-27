@@ -85,6 +85,7 @@ MonoBehaviour:
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
+  houseYRotation: -90
   enableAtPosition: []
   audioAtPosition: []
   rotateAround: {fileID: 0}
@@ -139,6 +140,7 @@ MonoBehaviour:
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
+  houseYRotation: 180
   enableAtPosition: []
   audioAtPosition: []
   rotateAround: {fileID: 0}
@@ -436,6 +438,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9193423423217749864}
     m_Modifications:
+    - target: {fileID: 630745690, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+      propertyPath: houseYRotation
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 630745690, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
       propertyPath: positions.Array.data[2]
       value: 
