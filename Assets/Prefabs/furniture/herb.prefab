@@ -34,6 +34,7 @@ Transform:
   - {fileID: 3955331555461340610}
   - {fileID: 3955331555418081650}
   - {fileID: 3955331554111080226}
+  - {fileID: 9193423423788160935}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDollObject: 0
   positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
+  positionCamera: {fileID: 9193423423788160928}
   disableInteractAtPosition: 1
   interactType: 0
   yarnExamine: Herb
@@ -111,6 +112,61 @@ MonoBehaviour:
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
+--- !u!1 &9193423423788160929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9193423423788160935}
+  - component: {fileID: 9193423423788160928}
+  m_Layer: 0
+  m_Name: Cam_Herb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9193423423788160935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9193423423788160929}
+  m_LocalRotation: {x: 0.02988752, y: 0.953002, z: -0.10016452, w: 0.28436077}
+  m_LocalPosition: {x: -72.1, y: 78.5, z: 246.1}
+  m_LocalScale: {x: 0.5, y: 0.50000006, z: 0.50000006}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4617858452188785753}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 12, y: 180, z: 0}
+--- !u!114 &9193423423788160928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9193423423788160929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  obeyRotation: 1
+  quickSwitch: 0
+  houseYRotation: -90
+  enableAtPosition: []
+  audioAtPosition: []
+  rotateAround: {fileID: 0}
 --- !u!1001 &3561943142643837674
 PrefabInstance:
   m_ObjectHideFlags: 0
