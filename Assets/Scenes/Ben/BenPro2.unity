@@ -159,6 +159,7 @@ MonoBehaviour:
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
+  houseYRotation: 180
   enableAtPosition: []
   audioAtPosition: []
   rotateAround: {fileID: 0}
@@ -569,13 +570,25 @@ PrefabInstance:
       value: NurseryFurniture 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193423423788160928, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
+      propertyPath: houseYRotation
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193423423788160928, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
       propertyPath: positions.Array.data[2]
       value: 
       objectReference: {fileID: 1522384503}
     - target: {fileID: 9193423424280920415, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
+      propertyPath: houseYRotation
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193423424280920415, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
       propertyPath: positions.Array.data[2]
       value: 
       objectReference: {fileID: 1522384503}
+    - target: {fileID: 9193423424527593399, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
+      propertyPath: houseYRotation
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 9193423424527593399, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
       propertyPath: positions.Array.data[2]
       value: 
@@ -2434,38 +2447,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1134627065, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134627065, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134627065, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134627065, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134627065, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134627065, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134627065, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134627066, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
-      propertyPath: positions.Array.data[2]
-      value: 
-      objectReference: {fileID: 1243661452}
     - target: {fileID: 8551968685527995347, guid: adbc9dfdab6b49646a94f4fc5b08309a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2961,6 +2942,7 @@ MonoBehaviour:
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
+  houseYRotation: 0
   enableAtPosition: []
   audioAtPosition: []
   rotateAround: {fileID: 0}
@@ -3594,6 +3576,7 @@ MonoBehaviour:
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
+  houseYRotation: 0
   enableAtPosition: []
   audioAtPosition: []
   rotateAround: {fileID: 0}
@@ -4266,17 +4249,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!114 &1243661452 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 435174565, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
-  m_PrefabInstance: {fileID: 233804914754469575}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1248489413
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,6 +4300,7 @@ MonoBehaviour:
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
+  houseYRotation: -90
   enableAtPosition:
   - {fileID: 1836919063}
   audioAtPosition: []
@@ -5370,6 +5343,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 939245632, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 939245632, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 92697137590298401, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5550,6 +5531,14 @@ PrefabInstance:
       propertyPath: dollLantern
       value: 
       objectReference: {fileID: 1739038547}
+    - target: {fileID: 6077036836844844858, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077036837753607063, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
     - target: {fileID: 6277483702195445647, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6015,6 +6004,7 @@ MonoBehaviour:
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
+  houseYRotation: 0
   enableAtPosition: []
   audioAtPosition: []
   rotateAround: {fileID: 73024397}

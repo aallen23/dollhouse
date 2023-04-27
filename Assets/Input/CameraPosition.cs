@@ -13,6 +13,7 @@ public class CameraPosition : MonoBehaviour
     public bool quickSwitch;
 	//[Tooltip("Should the Camera move away smoothly?")]
 	//public bool forceSmooth;
+	public float houseYRotation;
 
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
     public List<GameObject> enableAtPosition;

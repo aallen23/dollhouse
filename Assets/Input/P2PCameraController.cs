@@ -193,7 +193,8 @@ public class P2PCameraController : MonoBehaviour
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
 			bool forceSmoothie = curPos.obeyRotation && !curPos.quickSwitch;
-            if (curPos.enableAtPosition.Count > 0)
+			float houseYRotation = curPos.houseYRotation;
+			if (curPos.enableAtPosition.Count > 0)
             {
                 foreach (GameObject obj in curPos.enableAtPosition)
                 {
@@ -209,6 +210,8 @@ public class P2PCameraController : MonoBehaviour
             }
             else
             {
+				desiredRotation.y = houseYRotation;
+				desiredRotation.z = 0;
                 desiredRotation.x = 12;
             }
             //Debug.Log(curPos.quickSwitch);
