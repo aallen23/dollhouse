@@ -125,6 +125,7 @@ public class MenuManager : MonoBehaviour
     public void FadeOut()
     {
         FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().firstPos);
+		//FindObjectOfType<P2PCameraController>().desiredRotation.y = 180f; //disable if firstpos is in dollhouse
         StartCoroutine(Fade(false));
     }
 

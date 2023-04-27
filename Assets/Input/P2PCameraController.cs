@@ -18,7 +18,7 @@ public class P2PCameraController : MonoBehaviour
     [Tooltip("Current CameraPosition.")] public CameraPosition curPos;
     [Tooltip("The NavMeshAgent of the Doll")] public NavMeshAgent doll;
 
-    [Tooltip("Our Desired Rotation.")] [SerializeField] private Vector3 desiredRotation;
+    [Tooltip("Our Desired Rotation.")] public Vector3 desiredRotation;
     [Tooltip("Our Desired FOV.")] [SerializeField] float desiredFOV = 60f;
 
     [Tooltip("The current rotation speed.")] public float rotationSpeed;
