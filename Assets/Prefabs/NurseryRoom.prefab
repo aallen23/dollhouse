@@ -513,7 +513,7 @@ Transform:
   - {fileID: 771057926}
   - {fileID: 2068377423}
   m_Father: {fileID: 2172756603192930527}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068377422
 GameObject:
@@ -659,6 +659,7 @@ Transform:
   - {fileID: 2803647181240109992}
   - {fileID: 646136814}
   - {fileID: 1811577676}
+  - {fileID: 3654511697161200122}
   - {fileID: 1965155245}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -684,6 +685,60 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &8923157280714333655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3654511697161200122}
+  - component: {fileID: 6929426717058594965}
+  m_Layer: 0
+  m_Name: Cam_Bed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3654511697161200122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923157280714333655}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 165, y: 84.4, z: -1027.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2172756603192930527}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6929426717058594965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923157280714333655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {fileID: 0}
+  - {fileID: 1283929139}
+  - {fileID: 0}
+  - {fileID: 704241687}
+  obeyRotation: 0
+  quickSwitch: 0
+  enableAtPosition: []
+  audioAtPosition: []
+  rotateAround: {fileID: 0}
 --- !u!1001 &719461842
 PrefabInstance:
   m_ObjectHideFlags: 0

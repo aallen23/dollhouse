@@ -249,7 +249,7 @@ public class MenuManager : MonoBehaviour
     {
         SetAllInactive();
         audioManager.TurnOffMusic();
-        audioManager.StartAmbience();
+        //audioManager.StartAmbience();
         FadeIn();
         dialog.StartDialogue("StartGame");
     }

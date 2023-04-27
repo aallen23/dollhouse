@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class AudioManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class AudioManager : MonoBehaviour
         puzzle,
         memory,
         pageFlip,
+        carScene,
+        memoryFinale,
         currentSound;
 
     public void Awake()
@@ -50,6 +53,7 @@ public class AudioManager : MonoBehaviour
         currentSound.Play();
     }
 
+    [YarnCommand("StartAmbience")]
     public void StartAmbience()
     {
         playAmbience = true;
@@ -75,6 +79,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMemorySound()
     {
+        PauseAmbience();
         memory.Play();
         float clipLength = memory.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
@@ -82,9 +87,16 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPuzzleSound()
     {
+        PauseAmbience();
         puzzle.Play();
         float clipLength = puzzle.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
+    }
+
+    [YarnCommand("PlayCarIntro")]
+    public void PlayCarScene()
+    {
+        carScene.Play();
     }
 
     public void OnButtonHover()
