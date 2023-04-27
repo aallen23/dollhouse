@@ -1,5 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1184456991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1184456992}
+  - component: {fileID: 1184456993}
+  m_Layer: 0
+  m_Name: Cam_BB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1184456992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184456991}
+  m_LocalRotation: {x: -0, y: 0.99999326, z: -0, w: 0.0036894376}
+  m_LocalPosition: {x: 1.59, y: 3.54, z: 8.79}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 258609208479720215}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 179.577, z: 0}
+--- !u!114 &1184456993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184456991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  obeyRotation: 1
+  quickSwitch: 0
+  houseYRotation: 0
+  enableAtPosition: []
+  audioAtPosition: []
+  rotateAround: {fileID: 0}
 --- !u!1 &258609208479720213
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +85,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1184456992}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -113,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDollObject: 0
   positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
+  positionCamera: {fileID: 1184456993}
   disableInteractAtPosition: 0
   interactType: 0
   yarnExamine: BigBoy
@@ -123,16 +179,22 @@ MonoBehaviour:
   rotateObject: {fileID: 0}
   teleportPoint: {fileID: 0}
   addedItem: {fileID: 0}
-  addItemIsInfinite: {fileID: 0}
+  addItemIsInfinite: 0
   addItemHideObject: {fileID: 0}
   itemEnabledToggleObject: {fileID: 0}
+  respawnY: 0
+  allowedDraggingCamera: {fileID: 0}
+  requiredDraggingSurface: {fileID: 0}
+  MoveDollTo: []
+  MoveDollToIndex: 0
   functioninteract:
     m_PersistentCalls:
       m_Calls: []
-  item: []
-  itemEnabled: 0
+  item:
+  - {fileID: 11400000, guid: da1e23547ed4c02418e56b9ead3c0ad8, type: 2}
+  itemEnabled: 1
   objectUseType: 0
-  yarnItem: 
+  yarnItem: BigBoyFed
   shownObject: {fileID: 0}
   shownObjectModColor: 0
   shownObjectItemOverride: 0
@@ -147,3 +209,11 @@ MonoBehaviour:
   mouseDelta: {x: 0, y: 0}
   rotateAroundModAngle: {x: 0, y: 0, z: 0}
   rotateAroundForceAngle: {x: 0, y: 0, z: 0}
+  desiredPos: {x: 0, y: 0, z: 0}
+  secondPos: {x: 0, y: 0, z: 0}
+  animSpeed: 0
+  interactSFX: {fileID: 0}
+  inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}

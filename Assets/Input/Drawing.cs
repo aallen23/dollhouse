@@ -27,6 +27,7 @@ public class Drawing : MonoBehaviour
 
 	public GameObject objectToDestroy;
     public ItemScriptableObject itemToAdd;
+	public AudioSource audioToPlay;
 
     private void Start()
     {
@@ -57,6 +58,10 @@ public class Drawing : MonoBehaviour
             else
             {
                 Debug.Log("Draw Success");
+				if (audioToPlay)
+				{
+					audioToPlay.Play();
+				}
                 if (objectToDestroy)
                 {
                     FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().curPos.positions[2]);
