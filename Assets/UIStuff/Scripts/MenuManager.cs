@@ -265,19 +265,29 @@ public class MenuManager : MonoBehaviour
 
     public void OptionsButton()
     {
-        SetAllInactive();
-        journal.SetActive(true);
-        Page1Button();
-        if (FindObjectOfType<P2PCameraController>().gameStarted)
+
+        if (journal.activeSelf)
         {
-            gameUI.SetActive(true);
-			mainPanel.SetActive(false);
-			pausePanel.SetActive(true);
-            Page4Button();
+            if (FindObjectOfType<P2PCameraController>().gameStarted)
+            {
+                //gameUI.SetActive(true);
+                //mainPanel.SetActive(false);
+                pausePanel.SetActive(true);
+                Page4Button();
+            }
+            else
+            {
+                //mainPanel.SetActive(true);
+                Page4Button();
+            }
         }
-        else 
+        else
         {
+            SetAllInactive();
+            journal.SetActive(true);
             mainPanel.SetActive(true);
+            Page1Button();
+
         }
     }
 
