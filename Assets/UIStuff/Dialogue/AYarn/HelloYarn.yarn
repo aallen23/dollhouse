@@ -41,6 +41,7 @@ tags:
 {$PlayerName}: Hello?
 {$PlayerName}: Is someone there?
 <<DeactivateCece UI>>
+Search for the source of the voice.
 ===
 
 title: Cece
@@ -66,7 +67,7 @@ This is a very ornate cuckoo clock.
 
 title: CookieTin
 ---
-These look yummy.
+These cookies look yummy.
 ===
 
 title: Deposit
@@ -130,6 +131,12 @@ title: Die
 tags:
 ---
 Perfect for rolling.
+===
+
+title: FlowerPot
+tags:
+---
+It looks like there’s a seed in here…. Too bad you don’t have a watering can.
 ===
 
 title: BigBoy
@@ -465,9 +472,13 @@ Allura: You're such a beautiful child. Please come back to visit me.
 title: Herb
 tags:
 ---
-<<if !$crank>>
+<<if $crank>>
 	<<if $memoryCount < 4>>
-		Collect 4 memories to interact with the Jack-in-the-Box. You currently have {$memoryCount} memories.
+		<<if $memoryCount == 1>>
+			Collect 4 memories to interact with the Jack-in-the-Box. You currently have {$memoryCount} memory.
+		<<else>>
+			Collect 4 memories to interact with the Jack-in-the-Box. You currently have {$memoryCount} memories.
+		<<endif>>
 	<<else>>
 		<<jump HerbFinale>>
 	<<endif>>
