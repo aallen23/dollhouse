@@ -17,6 +17,8 @@ public class MemoryManager : MonoBehaviour
     [SerializeField]
     private AudioManager audio;
 
+	public float fadeSpeed = 1f;
+
     [YarnCommand("memoryTriggered")]
     public void MemoryActive()
     {
@@ -36,12 +38,13 @@ public class MemoryManager : MonoBehaviour
 
     IEnumerator Fade()
     {
-		float i = 255;
+		float i = 1;
 		while (i > 0)
 		{
+			i -= Time.deltaTime * fadeSpeed;
             paper.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, i);
             sprite2.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, i);
-			yield return new WaitForSeconds(1f / 255f);
+			yield return new WaitForSeconds(0.1f);
         }
         paper.SetActive(false);
         sprite2.SetActive(false);
