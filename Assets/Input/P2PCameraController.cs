@@ -208,9 +208,12 @@ public class P2PCameraController : MonoBehaviour
                 //If we must obeyRotation, then we take our desired Rotation from the camera positions rotation
                 desiredRotation = curPos.transform.eulerAngles;
             }
-            else
+            else if (!curPos.obeyRotation && !curPos.quickSwitch)
             {
-				desiredRotation.y = houseYRotation;
+				if (forceSmoothie)
+				{
+					desiredRotation.y = houseYRotation;
+				}
 				desiredRotation.z = 0;
                 desiredRotation.x = 12;
             }
@@ -520,7 +523,9 @@ public class P2PCameraController : MonoBehaviour
     //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object) Redudant.
     public void Travel(CameraPosition newPosition)
     {
-        if (curPos.enableAtPosition.Count > 0)
+		bool forceSmoothie = curPos.obeyRotation && !curPos.quickSwitch;
+		float houseYRotation = curPos.houseYRotation;
+		if (curPos.enableAtPosition.Count > 0)
         {
             foreach (GameObject obj in curPos.enableAtPosition)
             {
@@ -539,11 +544,16 @@ public class P2PCameraController : MonoBehaviour
         {
             desiredRotation = curPos.transform.eulerAngles;
         }
-        else
-        {
-            desiredRotation.x = 12;
-        }
-        if (curPos.quickSwitch && !forceSmoothSwitch)
+		else if (!curPos.obeyRotation && !curPos.quickSwitch)
+		{
+			if (forceSmoothie)
+			{
+				desiredRotation.y = houseYRotation;
+			}
+			desiredRotation.z = 0;
+			desiredRotation.x = 12;
+		}
+        if (curPos.quickSwitch && !forceSmoothie)
         {
             rotationSpeed = 256;
             moveSpeed = 256;
