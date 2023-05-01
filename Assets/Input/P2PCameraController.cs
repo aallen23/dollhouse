@@ -202,7 +202,14 @@ public class P2PCameraController : MonoBehaviour
                 }
             }
 
-            curPos = curPos.positions[i]; //Update the current camera positon
+			if (curPos.audioAtPosition.Count > 0)
+			{
+				foreach (AudioSource obj in curPos.audioAtPosition)
+				{
+					obj.enabled = false;
+				}
+			}
+			curPos = curPos.positions[i]; //Update the current camera positon
             if (curPos.obeyRotation)
             {
                 //If we must obeyRotation, then we take our desired Rotation from the camera positions rotation
@@ -242,7 +249,14 @@ public class P2PCameraController : MonoBehaviour
                     obj.SetActive(true);
                 }
             }
-        }
+			if (curPos.audioAtPosition.Count > 0)
+			{
+				foreach (AudioSource obj in curPos.audioAtPosition)
+				{
+					obj.enabled = true;
+				}
+			}
+		}
     }
 
     
