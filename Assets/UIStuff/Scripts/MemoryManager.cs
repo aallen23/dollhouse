@@ -19,6 +19,8 @@ public class MemoryManager : MonoBehaviour
 
 	public float fadeSpeed = 1f;
 
+	private bool fading;
+
     [YarnCommand("memoryTriggered")]
     public void MemoryActive()
     {
@@ -31,9 +33,13 @@ public class MemoryManager : MonoBehaviour
 
     public void MemoryClicked()
     {
-        audio.PauseAmbience();
-        audio.PlayMemorySound();
-        StartCoroutine("Fade");
+		if (!fading)
+		{
+			fading = true;
+			audio.PauseAmbience();
+			audio.PlayMemorySound();
+			StartCoroutine("Fade");
+		}
     }
 
     IEnumerator Fade()
