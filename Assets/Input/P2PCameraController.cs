@@ -218,7 +218,12 @@ public class P2PCameraController : MonoBehaviour
                 desiredRotation.x = 12;
             }
             //Debug.Log(curPos.quickSwitch);
-            if (curPos.quickSwitch && !forceSmoothie) {
+			if (forceSmoothSwitch)
+			{
+				rotationSpeed = 16;
+				moveSpeed = 16;
+			}
+            else if (curPos.quickSwitch && !forceSmoothie) {
                 //If it's a quick switch (so far exclusively inside the Dollhouse, we want the transition to be virtually instant
                 rotationSpeed = 256;
                 moveSpeed = 256;
@@ -354,7 +359,7 @@ public class P2PCameraController : MonoBehaviour
                     }
                 }
             }
-            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI && (!(curPos.quickSwitch == false && curPos.obeyRotation == true)) || forceSmoothSwitch) //If there's no Object, we check if we are clicking on the NavMesh
+            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI && (!(curPos.quickSwitch == false && curPos.obeyRotation == true) || forceSmoothSwitch)) //If there's no Object, we check if we are clicking on the NavMesh
             {
                 //Debug.Log("Walk");
                 doll.GetComponent<DollBehavior>().od = null;
@@ -553,17 +558,24 @@ public class P2PCameraController : MonoBehaviour
 			desiredRotation.z = 0;
 			desiredRotation.x = 12;
 		}
-        if (curPos.quickSwitch && !forceSmoothie)
-        {
-            rotationSpeed = 256;
-            moveSpeed = 256;
-        }
-        else
-        {
-            rotationSpeed = 16;
-            moveSpeed = 16;
-        }
-        if (curPos.enableAtPosition.Count > 0)
+		if (forceSmoothSwitch)
+		{
+			rotationSpeed = 16;
+			moveSpeed = 16;
+		}
+		else if (curPos.quickSwitch && !forceSmoothie)
+		{
+			//If it's a quick switch (so far exclusively inside the Dollhouse, we want the transition to be virtually instant
+			rotationSpeed = 256;
+			moveSpeed = 256;
+		}
+		else
+		{
+			//Otherwise, it's cool to see the camera move a bit.
+			rotationSpeed = 16;
+			moveSpeed = 16;
+		}
+		if (curPos.enableAtPosition.Count > 0)
         {
             foreach (GameObject obj in curPos.enableAtPosition)
             {

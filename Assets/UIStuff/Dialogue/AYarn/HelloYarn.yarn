@@ -12,6 +12,7 @@ tags:
 <<set $PlayerName to "???">>
 <<set $memoryCount to 0>>
 <<set $crank to false>>
+<<set $duckPlaced to false>>
 ===
 
 title: StartGame
@@ -63,6 +64,29 @@ title: GrandfatherClock
 tags:
 ---
 This is a very ornate grandfather clock.
+===
+
+title: Popsicles
+tags:
+---
+A cup of popsicle sticks...
+===
+
+title: Duck
+---
+<<if $duckPlaced is false>>
+This is a suspicious spot.
+<<else>>
+He's just sittin' there.
+<<endif>>
+===
+
+title: DuckPlace
+---
+<<use_item duck_model {$itemUsed}>>
+You place the proud fowl in his rightful place.
+From his mouth comes out a little slip of paper.
+<<set $duckPlaced to true>>
 ===
 
 title: CuckooClock
