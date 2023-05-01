@@ -18,8 +18,9 @@ public class CameraPosition : MonoBehaviour
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
     public List<GameObject> enableAtPosition;
 
-    [Tooltip("AudioSources to enable at this position, and hide otherwise.")]
-    public List<AudioSource> audioAtPosition;
+	[Tooltip("AudioSources to enable at this position, and hide otherwise.")]
+	public List<AudioSource> audioAtPosition;
+	public bool playFromStart;
 
     [Tooltip("What GameObject to rotate around.")]
     public GameObject rotateAround;
