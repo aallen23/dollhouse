@@ -143,6 +143,7 @@ public class ObjectData : MonoBehaviour
     public Vector3 secondPos;
     public float animSpeed;
     public AudioSource interactSFX;
+	public AudioSource itemSFX;
     public InventorySystem inv;
 
     public bool rotationAnimation;
@@ -372,6 +373,11 @@ public class ObjectData : MonoBehaviour
     [YarnCommand("use_item")]
     public void UseItem(float i)
     {
+		if (itemSFX)
+		{
+			itemSFX.Play();
+		}
+
         int it = (int)i;
         switch (objectUseType)
         {

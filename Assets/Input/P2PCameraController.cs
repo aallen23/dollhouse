@@ -206,7 +206,7 @@ public class P2PCameraController : MonoBehaviour
 			{
 				foreach (AudioSource obj in curPos.audioAtPosition)
 				{
-					obj.enabled = false;
+					obj.Pause();
 				}
 			}
 			curPos = curPos.positions[i]; //Update the current camera positon
@@ -253,7 +253,7 @@ public class P2PCameraController : MonoBehaviour
 			{
 				foreach (AudioSource obj in curPos.audioAtPosition)
 				{
-					obj.enabled = true;
+					obj.Play();
 				}
 			}
 		}
@@ -555,7 +555,7 @@ public class P2PCameraController : MonoBehaviour
         {
             foreach (AudioSource obj in curPos.audioAtPosition)
             {
-                obj.enabled = false;
+                obj.Pause();
             }
         }
         curPos = newPosition;
@@ -600,7 +600,7 @@ public class P2PCameraController : MonoBehaviour
         {
             foreach (AudioSource obj in curPos.audioAtPosition)
             {
-                obj.enabled = true;
+                obj.Play();
             }
         }
     }

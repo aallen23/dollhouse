@@ -33,13 +33,13 @@ public class CameraPosition : MonoBehaviour
                 obj.SetActive(false);
             }
         }
-        if (audioAtPosition.Count > 0)
+        /*if (audioAtPosition.Count > 0)
         {
             foreach (AudioSource obj in audioAtPosition)
             {
                 obj.enabled = false;
             }
-        }
+        }*/
     }
 
     private void Update()
