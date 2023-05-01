@@ -114,6 +114,7 @@ public class ObjectData : MonoBehaviour
     public bool shownObjectItemOverride;
     [Tooltip("For ShowObject Type item uses, should Shown Object start visible?")]
     public bool startVisible;
+	public bool startMeshDisabled;
 
     [Tooltip("For AddItem Type item uses, add this item to your inventory")]
     public ItemScriptableObject itemAddItem;
@@ -163,6 +164,10 @@ public class ObjectData : MonoBehaviour
         {
             StartCoroutine(HideShownObject());
         }
+		if (startMeshDisabled)
+		{
+			shownObject.GetComponent<Renderer>().enabled = false;
+		}
         if (positionDoll)
         {
             if (positionDoll.TryGetComponent(out MeshRenderer mesh))
@@ -372,6 +377,7 @@ public class ObjectData : MonoBehaviour
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
+				shownObject.GetComponent<Renderer>().enabled = true;
                 if (shownObjectModColor)
                 {
                     shownObject.GetComponent<Renderer>().material = item[it].displayMaterial;
