@@ -6821,11 +6821,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8883912632345983856}
   m_Mesh: {fileID: -119534183815337105, guid: 0cad4aa3117919146b8d29e13141ffe6, type: 3}
---- !u!1 &4788575696413995675 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4788575696413995675, guid: cbb43c17782bf1b478de995c2ec14fed, type: 3}
-  m_PrefabInstance: {fileID: 233804914754469575}
-  m_PrefabAsset: {fileID: 0}
 --- !u!33 &5402712156310103108
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6985,81 +6980,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61fe6a8de02208c44b42330be5c1e68e, type: 3}
---- !u!114 &6207134171750824938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4788575696413995675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDollObject: 0
-  positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
-  disableInteractAtPosition: 0
-  interactType: 0
-  yarnExamine: Popsicles
-  rotateAmount: {x: 0, y: 0, z: 0}
-  desiredRotation: {x: 0, y: 0, z: 0}
-  rotationSpeed: 0
-  rotateObject: {fileID: 0}
-  teleportPoint: {fileID: 0}
-  addedItem: {fileID: 0}
-  addItemIsInfinite: 0
-  addItemHideObject: {fileID: 0}
-  itemEnabledToggleObject: {fileID: 0}
-  respawnY: 0
-  allowedDraggingCamera: {fileID: 0}
-  requiredDraggingSurface: {fileID: 0}
-  MoveDollTo: []
-  MoveDollToIndex: 0
-  functioninteract:
-    m_PersistentCalls:
-      m_Calls: []
-  item: []
-  itemEnabled: 0
-  objectUseType: 0
-  yarnItem: 
-  shownObject: {fileID: 0}
-  shownObjectModColor: 0
-  shownObjectItemOverride: 0
-  startVisible: 0
-  itemAddItem: {fileID: 0}
-  addItemDestination: {fileID: 0}
-  addItemItem: {fileID: 0}
-  functionItem:
-    m_PersistentCalls:
-      m_Calls: []
-  lookPoint: {x: 0, y: 0, z: 0}
-  mouseDelta: {x: 0, y: 0}
-  rotateAroundModAngle: {x: 0, y: 0, z: 0}
-  rotateAroundForceAngle: {x: 0, y: 0, z: 0}
-  desiredPos: {x: 0, y: 0, z: 0}
-  secondPos: {x: 0, y: 0, z: 0}
-  animSpeed: 0
-  interactSFX: {fileID: 0}
-  inv: {fileID: 0}
-  rotationAnimation: 0
-  defaultRotation: {x: 0, y: 0, z: 0}
-  secondRotation: {x: 0, y: 0, z: 0}
---- !u!64 &6207134171750824939
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4788575696413995675}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4679180914943268741, guid: 59845f44c589c104391c0a7676524bf8, type: 3}
 --- !u!4 &6269917968769671795
 Transform:
   m_ObjectHideFlags: 0

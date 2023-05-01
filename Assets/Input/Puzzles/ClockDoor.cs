@@ -17,8 +17,8 @@ public class ClockDoor : MonoBehaviour
 
     public void Check()
     {
-        Debug.Log(handSmall.transform.eulerAngles + " " + handSmall.transform.localEulerAngles);
-        Debug.Log(Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) + " " + Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f));
+        //Debug.Log(handSmall.transform.eulerAngles + " " + handSmall.transform.localEulerAngles);
+        Debug.Log(Mathf.Abs(handBig.transform.localEulerAngles.z - 300f).ToString("0.0") + " " + Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f).ToString("0.0"));
         //Debug.Log(((int)handBig.desiredlocalEulerAngles.z == (int)compareHandBig.desiredlocalEulerAngles.z) + " " + ((int)handSmall.desiredlocalEulerAngles.z == (int)compareHandSmall.desiredlocalEulerAngles.z));
         if (Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) < 15f && Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f) < 15f)
         {
