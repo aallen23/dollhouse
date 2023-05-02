@@ -20,6 +20,8 @@ public class AudioManager : MonoBehaviour
         pageFlip,
         carScene,
         memoryFinale,
+        drawerOpen,
+        drawerClosed,
         currentSound;
 
     public void Awake()
@@ -85,6 +87,15 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(WaitForMusic(clipLength));
     }
 
+    [YarnCommand("PlayFinalMusic")]
+    public void PlayMemoryHerb()
+    {
+        PauseAmbience();
+        memoryFinale.Play();
+        float clipLength = memoryFinale.clip.length;
+        StartCoroutine(WaitForMusic(clipLength));
+    }
+
     public void PlayPuzzleSound()
     {
         PauseAmbience();
@@ -112,6 +123,16 @@ public class AudioManager : MonoBehaviour
     public void PageFlip()
     {
         pageFlip.Play();
+    }
+
+    public void PlayDrawerOpen()
+    {
+        drawerOpen.Play();
+    }
+
+    public void PlayDrawerClosed()
+    {
+        drawerClosed.Play();
     }
 
     IEnumerator WaitForMusic(float time)
