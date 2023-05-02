@@ -526,10 +526,6 @@ PrefabInstance:
       propertyPath: positions.Array.data[2]
       value: 
       objectReference: {fileID: 1522384503}
-    - target: {fileID: 690581905819476115, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
-      propertyPath: m_Name
-      value: duck_model
-      objectReference: {fileID: 0}
     - target: {fileID: 9193423423217749864, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -583,33 +579,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 516457421}
     - target: {fileID: 9193423424280920415, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
-      propertyPath: playFromStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193423424280920415, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
       propertyPath: positions.Array.data[2]
       value: 
       objectReference: {fileID: 1522384503}
-    - target: {fileID: 9193423424280920415, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
-      propertyPath: audioAtPosition.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193423424280920415, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
-      propertyPath: audioAtPosition.Array.data[0]
-      value: 
-      objectReference: {fileID: 2030605650}
-    - target: {fileID: 9193423424943034462, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
-      propertyPath: rolloffMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193423424943034462, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193423424943034462, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
 --- !u!1 &205355082
@@ -6418,11 +6390,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &2030605650 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 9193423424943034462, guid: c5a1273f257a2e143a0118ae91b734bb, type: 3}
-  m_PrefabInstance: {fileID: 189780017}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2119866697 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6164844562274937490, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}

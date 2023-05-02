@@ -491,6 +491,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -505,6 +506,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -649,6 +651,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9193423423217749864}
     m_Modifications:
+    - target: {fileID: 249658203, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 249658203, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 249658203, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 630745690, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+      propertyPath: playFromStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 630745690, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+      propertyPath: audioAtPosition.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 630745690, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+      propertyPath: audioAtPosition.Array.data[0]
+      value: 
+      objectReference: {fileID: 9193423424943034462}
     - target: {fileID: 1361270684, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -705,6 +731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CuckooClock
       objectReference: {fileID: 0}
+    - target: {fileID: 8503052767063165846, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+      propertyPath: m_Name
+      value: duck_model
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
 --- !u!1 &690581905819476115 stripped
@@ -712,94 +742,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8503052767063165846, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
   m_PrefabInstance: {fileID: 9193423424911665925}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &28907628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690581905819476115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDollObject: 0
-  positionDoll: {fileID: 0}
-  positionCamera: {fileID: 0}
-  disableInteractAtPosition: 0
-  interactType: 0
-  yarnExamine: Duck
-  rotateAmount: {x: 0, y: 0, z: 0}
-  desiredRotation: {x: 0, y: 0, z: 0}
-  rotationSpeed: 0
-  rotateObject: {fileID: 0}
-  teleportPoint: {fileID: 0}
-  addedItem: {fileID: 0}
-  addItemIsInfinite: 0
-  addItemHideObject: {fileID: 0}
-  itemEnabledToggleObject: {fileID: 0}
-  respawnY: 0
-  allowedDraggingCamera: {fileID: 0}
-  requiredDraggingSurface: {fileID: 0}
-  MoveDollTo: []
-  MoveDollToIndex: 0
-  functioninteract:
-    m_PersistentCalls:
-      m_Calls: []
-  item:
-  - {fileID: 11400000, guid: 3b70baa96dc280f4f96bccefebd27271, type: 2}
-  itemEnabled: 1
-  objectUseType: 1
-  yarnItem: DuckPlace
-  shownObject: {fileID: 690581905819476115}
-  shownObjectModColor: 0
-  shownObjectItemOverride: 0
-  startVisible: 1
-  startMeshDisabled: 1
-  itemAddItem: {fileID: 0}
-  addItemDestination: {fileID: 0}
-  addItemItem: {fileID: 0}
-  functionItem:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 28907629}
-        m_TargetAssemblyTypeName: Duck, Assembly-CSharp
-        m_MethodName: ShowNote
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  lookPoint: {x: 0, y: 0, z: 0}
-  mouseDelta: {x: 0, y: 0}
-  rotateAroundModAngle: {x: 0, y: 0, z: 0}
-  rotateAroundForceAngle: {x: 0, y: 0, z: 0}
-  desiredPos: {x: 0, y: 0, z: 0}
-  secondPos: {x: 0, y: 0, z: 0}
-  animSpeed: 0
-  interactSFX: {fileID: 7864934387754123332}
-  inv: {fileID: 0}
-  rotationAnimation: 0
-  defaultRotation: {x: 0, y: 0, z: 0}
-  secondRotation: {x: 0, y: 0, z: 0}
---- !u!114 &28907629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690581905819476115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 471a7c356744b0f4e87d89f9a8126284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  note: {fileID: 2622433412434883662}
 --- !u!82 &7864934387754123332
 AudioSource:
   m_ObjectHideFlags: 0
@@ -896,6 +838,112 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &28907628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690581905819476115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDollObject: 0
+  positionDoll: {fileID: 0}
+  positionCamera: {fileID: 0}
+  disableInteractAtPosition: 0
+  interactType: 0
+  yarnExamine: Duck
+  rotateAmount: {x: 0, y: 0, z: 0}
+  desiredRotation: {x: 0, y: 0, z: 0}
+  rotationSpeed: 0
+  rotateObject: {fileID: 0}
+  teleportPoint: {fileID: 0}
+  addedItem: {fileID: 0}
+  addItemIsInfinite: 0
+  addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
+  respawnY: 0
+  allowedDraggingCamera: {fileID: 0}
+  requiredDraggingSurface: {fileID: 0}
+  MoveDollTo: []
+  MoveDollToIndex: 0
+  functioninteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 28907629}
+        m_TargetAssemblyTypeName: Duck, Assembly-CSharp
+        m_MethodName: Quack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  item:
+  - {fileID: 11400000, guid: 3b70baa96dc280f4f96bccefebd27271, type: 2}
+  itemEnabled: 1
+  objectUseType: 1
+  yarnItem: DuckPlace
+  shownObject: {fileID: 690581905819476115}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
+  startVisible: 1
+  startMeshDisabled: 1
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
+  functionItem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 28907629}
+        m_TargetAssemblyTypeName: Duck, Assembly-CSharp
+        m_MethodName: ShowNote
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  lookPoint: {x: 0, y: 0, z: 0}
+  mouseDelta: {x: 0, y: 0}
+  rotateAroundModAngle: {x: 0, y: 0, z: 0}
+  rotateAroundForceAngle: {x: 0, y: 0, z: 0}
+  desiredPos: {x: 0, y: 0, z: 0}
+  secondPos: {x: 0, y: 0, z: 0}
+  animSpeed: 0
+  interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
+  inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &28907629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690581905819476115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471a7c356744b0f4e87d89f9a8126284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  note: {fileID: 2622433412434883662}
+  honks:
+  - {fileID: 8300000, guid: cfc7a20ff32ac4742b6c464c6421d884, type: 3}
+  - {fileID: 8300000, guid: 9d6055d013831ea4cb29265afcdc8915, type: 3}
+  - {fileID: 8300000, guid: 941bfbf8f1ea4b8438b6eb6ba9180f8f, type: 3}
+  source: {fileID: 7864934387754123332}
 --- !u!4 &2026699705256366272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7184878860757679045, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
@@ -917,3 +965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &9193423424943034462 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 249658203, guid: 16e63d8d31c0f894c8349b4d1cb246eb, type: 3}
+  m_PrefabInstance: {fileID: 9193423424911665925}
+  m_PrefabAsset: {fileID: 0}
