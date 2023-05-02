@@ -13,7 +13,9 @@ public class InventorySystem : MonoBehaviour
     [Tooltip("Prefab template for Inventory Items.")] public GameObject itemDisplayTemplate;
 
 	private float desiredX = 1600;
+	public float drawerSpeed;
 	private RectTransform trans;
+	public AudioManager audios;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,7 @@ public class InventorySystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		trans.anchoredPosition = new Vector2(Mathf.Lerp(trans.anchoredPosition.x, desiredX, Time.deltaTime * 8), trans.anchoredPosition.y);
+		trans.anchoredPosition = new Vector2(Mathf.Lerp(trans.anchoredPosition.x, desiredX, Time.deltaTime * drawerSpeed), trans.anchoredPosition.y);
     }
 
 	public void Rearrange(ItemScriptableObject heldItem, ItemScriptableObject hoverItem)
@@ -56,10 +58,12 @@ public class InventorySystem : MonoBehaviour
 		if (desiredX == 1600)
 		{
 			desiredX = 800;
+			audios.PlayDrawerOpen();
 		}
 		else
 		{
 			desiredX = 1600;
+			audios.PlayDrawerClosed();
 		}
 	}
 }
