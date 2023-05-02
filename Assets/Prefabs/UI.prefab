@@ -19507,7 +19507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6077036837594665956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20241,8 +20241,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 0}
+  m_AnchoredPosition: {x: 1600, y: 0}
+  m_SizeDelta: {x: 1920, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &6077036837753607048
 CanvasRenderer:
@@ -20272,9 +20272,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d7fe5b6aea6fefe4a97392f104521f83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf4bf879a7990e4408e385b251721c1d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -20294,7 +20294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab1cbb479747fb4b886054cb44e07e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inv: []
+  inv:
+  - {fileID: 11400000, guid: 2c0a3db82cefe74468bb22936260e28b, type: 2}
   contentParent: {fileID: 6077036837753607059}
   itemDisplayTemplate: {fileID: 2304000651514052403, guid: ed12ba90cefec4d4cbd97bfe612b3c3f, type: 3}
 --- !u!114 &939245632
@@ -20310,15 +20311,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 15
+    m_Left: 170
     m_Right: 15
-    m_Top: 15
-    m_Bottom: 15
+    m_Top: 60
+    m_Bottom: 60
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 1
   m_CellSize: {x: 150, y: 150}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &6077036837805260638
