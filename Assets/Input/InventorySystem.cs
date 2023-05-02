@@ -12,17 +12,30 @@ public class InventorySystem : MonoBehaviour
     [Tooltip("GameObject to Instantiate Inventory Items into.")] public GameObject contentParent;
     [Tooltip("Prefab template for Inventory Items.")] public GameObject itemDisplayTemplate;
 
+	private float desiredX = 1600;
+	private RectTransform trans;
+
     // Start is called before the first frame update
     void Start()
     {
+		trans = GetComponent<RectTransform>();
         UpdateInventory();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+		trans.anchoredPosition = new Vector2(Mathf.Lerp(trans.anchoredPosition.x, desiredX, Time.deltaTime * 8), trans.anchoredPosition.y);
     }
+
+	public void Rearrange(ItemScriptableObject heldItem, ItemScriptableObject hoverItem)
+	{
+		int heldItemIndex = inv.IndexOf(heldItem);
+		int hoverItemIndex = inv.IndexOf(hoverItem);
+		inv[heldItemIndex] = hoverItem;
+		inv[hoverItemIndex] = heldItem;
+		UpdateInventory();
+	}
 
     public void UpdateInventory()
     {
@@ -38,5 +51,15 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    
+    public void ToggleInventory()
+	{
+		if (desiredX == 1600)
+		{
+			desiredX = 800;
+		}
+		else
+		{
+			desiredX = 1600;
+		}
+	}
 }

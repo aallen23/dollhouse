@@ -49,6 +49,7 @@ public class P2PCameraController : MonoBehaviour
     public bool cryEnabled;
 
 	public bool forceSmoothSwitch;
+	public ItemScriptableObject hoverItem;
     private void Awake()
     {
         //Load input map and connect to all the functions
@@ -427,6 +428,10 @@ public class P2PCameraController : MonoBehaviour
                 }
             }
         }
+		else if (heldItem && hoverItem)
+		{
+			invSystem.Rearrange(heldItem, hoverItem);
+		}
         //No matter what, we want to remove the item from our cursor
         heldItem = null;
         Destroy(cursorSprite);

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
 //An Inventory Item (for Prefab)
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private GameObject cursorSprite;
     public GameObject cursorSpritePrefab;
@@ -43,4 +43,14 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         //player.heldItem = null;
         Destroy(cursorSprite);
     }
+
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		player.hoverItem = item;
+	}
+
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		player.hoverItem = null;
+	}
 }
