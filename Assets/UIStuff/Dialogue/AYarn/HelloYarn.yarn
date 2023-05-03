@@ -172,6 +172,7 @@ It looks like there’s a seed in here…. Too bad you don’t have a watering c
 title: BigBoy
 tags:
 ---
+<<PlaySound bigboy>>
 <<if $BBfed>>
 <<jump BigBoyQuestComplete>>
 <<else>>
@@ -363,6 +364,7 @@ Ariadne: Thank you for playing your music for me.
 title: Allura
 tags:
 ---
+<<PlaySound allura>>
 <<if !$Flower>>
 <<jump Allura2>>
 <<else>>
