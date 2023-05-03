@@ -162,6 +162,7 @@ MonoBehaviour:
   houseYRotation: 0
   enableAtPosition: []
   audioAtPosition: []
+  playFromStart: 0
   rotateAround: {fileID: 0}
 --- !u!4 &7607407
 Transform:
@@ -352,6 +353,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -1053,6 +1055,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -1762,6 +1765,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -2148,6 +2152,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -2886,6 +2891,7 @@ MonoBehaviour:
   enableAtPosition:
   - {fileID: 1836919063}
   audioAtPosition: []
+  playFromStart: 0
   rotateAround: {fileID: 0}
 --- !u!114 &1283929139 stripped
 MonoBehaviour:
@@ -3484,6 +3490,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -3748,6 +3755,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+--- !u!114 &1510324832 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6164844562274937490, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+  m_PrefabInstance: {fileID: 1510324831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d948c933ae93e642b8a3cb712e83fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &1604458412 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1036776641, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
@@ -4071,6 +4089,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Memories
       objectReference: {fileID: 0}
+    - target: {fileID: 6981676395869076725, guid: be799a31b40491a4086afbcb4f745f00, type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 1510324832}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be799a31b40491a4086afbcb4f745f00, type: 3}
 --- !u!114 &1785844895 stripped

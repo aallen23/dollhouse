@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
         memoryFinale,
         drawerOpen,
         drawerClosed,
+        endCredits,
         currentSound;
 
     public void Awake()
@@ -102,6 +103,17 @@ public class AudioManager : MonoBehaviour
         puzzle.Play();
         float clipLength = puzzle.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
+    }
+
+    public void PlayCreditsMusic()
+    {
+        menu.Stop();
+        endCredits.Play();
+    }
+
+    public void StopCreditsMusic()
+    {
+        endCredits.Stop();
     }
 
     [YarnCommand("PlayCarIntro")]
