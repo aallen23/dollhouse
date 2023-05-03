@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeaMaking : MonoBehaviour
 {
-    public GameObject SugarCube;
+    public List<GameObject> SugarCube;
     public GameObject TeaBag;
     public GameObject TeaBagString;
     public GameObject Cup;
@@ -72,7 +72,7 @@ public class TeaMaking : MonoBehaviour
 	}
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == SugarCube && gameObject.name == "Cup" && cupLiquid.activeSelf == true)
+        if (SugarCube.Contains(collision.gameObject) && gameObject.name == "Cup" && cupLiquid.activeSelf == true)
         {
 			audioSource.Play();
             collision.gameObject.SetActive(false);

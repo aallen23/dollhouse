@@ -161,6 +161,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -175,6 +176,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -342,7 +344,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899239704446650587}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -548,6 +550,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -562,6 +565,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -807,6 +811,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -821,6 +826,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -879,6 +885,7 @@ MonoBehaviour:
   houseYRotation: 0
   enableAtPosition: []
   audioAtPosition: []
+  playFromStart: 0
   rotateAround: {fileID: 0}
 --- !u!1 &2091477560665212571
 GameObject:
@@ -1014,7 +1021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c634b39ca11fcea4c8f1371ea23f013b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SugarCube: {fileID: 919132149129419097}
+  SugarCube:
+  - {fileID: 0}
   TeaBag: {fileID: 919132147654018352}
   TeaBagString: {fileID: 919132148681220971}
   Cup: {fileID: 8010910211166042988}
@@ -1070,6 +1078,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -1084,6 +1093,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 1859237051}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -1414,7 +1424,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c634b39ca11fcea4c8f1371ea23f013b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SugarCube: {fileID: 919132149129419097}
+  SugarCube:
+  - {fileID: 1628646802590051474}
+  - {fileID: 1628646801773169832}
+  - {fileID: 1628646802809763445}
+  - {fileID: 1628646802066358441}
+  - {fileID: 1628646801921894033}
+  - {fileID: 1628646801498723304}
+  - {fileID: 1628646802463163760}
+  - {fileID: 1628646801954383949}
+  - {fileID: 1628646803171831944}
   TeaBag: {fileID: 0}
   TeaBagString: {fileID: 0}
   Cup: {fileID: 0}
@@ -1470,6 +1489,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -1484,6 +1504,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 5560624660328996202}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -1935,6 +1956,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -1949,6 +1971,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -2199,6 +2222,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -2213,6 +2237,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -2467,6 +2492,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -2481,6 +2507,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -2740,6 +2767,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -2754,6 +2782,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -3013,6 +3042,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -3027,6 +3057,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -3286,6 +3317,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -3300,6 +3332,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -3559,6 +3592,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -3573,6 +3607,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -3768,7 +3803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c634b39ca11fcea4c8f1371ea23f013b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SugarCube: {fileID: 1899239704784895801}
+  SugarCube:
+  - {fileID: 0}
   TeaBag: {fileID: 0}
   TeaBagString: {fileID: 0}
   Cup: {fileID: 0}
@@ -4036,6 +4072,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -4050,6 +4087,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -4309,6 +4347,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -4323,6 +4362,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -4582,6 +4622,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -4596,6 +4637,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -4917,6 +4959,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -4931,6 +4974,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}

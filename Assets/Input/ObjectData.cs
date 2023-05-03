@@ -213,12 +213,12 @@ public class ObjectData : MonoBehaviour
             }
             else
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+                //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
             }
             
            
         }
-        else
+        else if (player.rotateAroundObject && lookPoint != Vector3.zero)
         {
             //lookPoint.y = 0;
             //transform.LookAt(new Vector3(lookPoint.x, lookPoint.y, transform.position.z));

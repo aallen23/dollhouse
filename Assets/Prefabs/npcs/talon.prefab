@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2912468587096552822}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -119,7 +119,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4099063162943057346
 Transform:
@@ -128,7 +128,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3722537997597177720}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.029945, y: -48.98, z: 37.110935}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 0
@@ -535,6 +535,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -549,6 +550,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -619,6 +621,7 @@ MonoBehaviour:
   houseYRotation: 0
   enableAtPosition: []
   audioAtPosition: []
+  playFromStart: 0
   rotateAround: {fileID: 0}
 --- !u!1 &5087578451042539300
 GameObject:

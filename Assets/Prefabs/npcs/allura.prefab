@@ -54,6 +54,7 @@ MonoBehaviour:
   houseYRotation: 0
   enableAtPosition: []
   audioAtPosition: []
+  playFromStart: 0
   rotateAround: {fileID: 0}
 --- !u!1 &7395395027470239302
 GameObject:
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7395395027470239302}
-  m_LocalRotation: {x: -0, y: 0.30939728, z: -0, w: 0.95093286}
+  m_LocalRotation: {x: 0, y: 0.30939877, z: 0, w: 0.9509324}
   m_LocalPosition: {x: 98.8, y: 0.7, z: 9.5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -190,6 +191,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -204,6 +206,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
