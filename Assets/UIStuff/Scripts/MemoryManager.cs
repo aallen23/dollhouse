@@ -15,7 +15,7 @@ public class MemoryManager : MonoBehaviour
     private GameObject memoryUI;
 
     [SerializeField]
-    private AudioManager audios;
+    private AudioManager audio;
 
 	public float fadeSpeed = 1f;
 
@@ -36,8 +36,8 @@ public class MemoryManager : MonoBehaviour
 		if (!fading)
 		{
 			fading = true;
-			audios.PauseAmbience();
-			audios.PlayMemorySound();
+			audio.PauseAmbience();
+			audio.PlayMemorySound();
 			StartCoroutine("Fade");
 		}
     }

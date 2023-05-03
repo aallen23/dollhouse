@@ -468,6 +468,8 @@ public class MenuManager : MonoBehaviour
         if (credits.activeSelf)
         {
             ResetCreditsScroll();
+            audioManager.StopCreditsMusic();
+            audioManager.MenuMusic();
         }
         //audioManager.TurnOffMusic();
         //audioManager.MenuMusic();
