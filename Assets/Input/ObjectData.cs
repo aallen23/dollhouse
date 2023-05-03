@@ -149,6 +149,8 @@ public class ObjectData : MonoBehaviour
     public bool rotationAnimation;
     public Vector3 defaultRotation, secondRotation;
 
+	public bool rotateAroundX;
+
     void Start()
     {
         defaultPos = transform.localPosition;
@@ -225,7 +227,15 @@ public class ObjectData : MonoBehaviour
             Vector3 dir = lookPoint - transform.position;
             //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion rotationQ = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
-            transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+			if (rotateAroundX)
+			{
+				transform.rotation = new Quaternion(rotationQ.x, 0, 0, rotationQ.w);
+				//transform.localEulerAngles = new Vector3(transform.localRotation.x, 180f, transform.localRotation.z);
+			}
+			else
+			{
+				transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+			}
             //transform.eulerAngles += rotateAroundModAngle;
             //Debug.Log(transform.eulerAngles.z);
             //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90f);

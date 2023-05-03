@@ -511,6 +511,7 @@ MonoBehaviour:
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
+  rotateAroundX: 0
 --- !u!4 &8655672847063676903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 632a1119b3607d94882d23b09bb3a3c4, type: 3}
@@ -575,7 +576,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2058263126, guid: df9fa677c3d992b42a0f843138351a02, type: 3}
+    - {fileID: 2058263127, guid: df9fa677c3d992b42a0f843138351a02, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df9fa677c3d992b42a0f843138351a02, type: 3}
 --- !u!4 &4575784966454713671 stripped
 Transform:
@@ -926,6 +929,7 @@ MonoBehaviour:
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
+  rotateAroundX: 0
 --- !u!114 &28907629
 MonoBehaviour:
   m_ObjectHideFlags: 0
