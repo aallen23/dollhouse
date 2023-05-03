@@ -2569,8 +2569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -931.44055, y: 0}
-  m_SizeDelta: {x: 160, y: 350}
+  m_AnchoredPosition: {x: -893.3, y: 0}
+  m_SizeDelta: {x: 80, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &602894166
 CanvasRenderer:
@@ -21125,7 +21125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -21153,9 +21153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab1cbb479747fb4b886054cb44e07e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inv:
-  - {fileID: 11400000, guid: 2c0a3db82cefe74468bb22936260e28b, type: 2}
-  - {fileID: 11400000, guid: e752535cf661bed4cb2df686e0759005, type: 2}
+  inv: []
   contentParent: {fileID: 6770010646267094182}
   itemDisplayTemplate: {fileID: 2304000651514052403, guid: ed12ba90cefec4d4cbd97bfe612b3c3f, type: 3}
   drawerSpeed: 8
