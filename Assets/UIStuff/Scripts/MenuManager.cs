@@ -428,7 +428,7 @@ public class MenuManager : MonoBehaviour
         if (!isPaused && !journal.activeSelf)
         {
             isPaused = true;
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             journal.SetActive(true);
 			mainPanel.SetActive(false);
 			Page1Button();
