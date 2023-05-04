@@ -393,8 +393,13 @@ public class ObjectData : MonoBehaviour
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
-				shownObject.GetComponent<Renderer>().enabled = true;
-                if (shownObjectModColor)
+				shownObject.TryGetComponent(out Renderer rend);
+				if (rend)
+				{
+					rend.enabled = true;
+
+				}
+				if (shownObjectModColor)
                 {
                     shownObject.GetComponent<Renderer>().material = item[it].displayMaterial;
                     

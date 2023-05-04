@@ -501,6 +501,12 @@ Allura: You're such a beautiful child. Please come back to visit me.
 <<deactivate AlluraSprite>>
 ===
 
+title: CrankInstall
+---
+<<set $crank to true>>
+<<use_item herb {$itemUsed}>>
+===
+
 title: Herb
 tags:
 ---
@@ -523,5 +529,5 @@ title: HerbFinale
 tags:
 ---
 <<PlayFinalMusic Audio>>
-wow, you finished the game. looks like the devs haven't made it this far yet.
+Wow, you finished the game. looks like the devs haven't made it this far yet.
 ===
