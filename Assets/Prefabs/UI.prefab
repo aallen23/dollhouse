@@ -16830,6 +16830,7 @@ MonoBehaviour:
   sliderMain: {fileID: 6077036837324605189}
   sliderMusic: {fileID: 6865515988748013490}
   sliderSFX: {fileID: 3429605517860903324}
+  showFPS: 0
   fps: {fileID: 298440227}
 --- !u!223 &7440955082863732341
 Canvas:
@@ -22522,6 +22523,7 @@ GameObject:
   - component: {fileID: 6077036837671224191}
   - component: {fileID: 6077036837671224177}
   - component: {fileID: 6077036837671224176}
+  - component: {fileID: 212692135}
   m_Layer: 5
   m_Name: GamepadMouse
   m_TagString: Untagged
@@ -22588,6 +22590,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &212692135
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077036837671224190}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 32767
+  m_TargetDisplay: 0
 --- !u!1 &6077036837702788559
 GameObject:
   m_ObjectHideFlags: 0
