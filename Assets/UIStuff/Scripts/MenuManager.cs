@@ -58,6 +58,9 @@ public class MenuManager : MonoBehaviour
 
 	public Slider sliderMain, sliderMusic, sliderSFX;
 
+	public bool showFPS;
+	public TMP_Text fps;
+
     public void Awake()
     {
         audioManager = audioBox.GetComponent<AudioManager>();
@@ -79,6 +82,10 @@ public class MenuManager : MonoBehaviour
 		sliderMusic.value = undoLog(volMusic);
 		masterMixer.GetFloat("sfxVol", out float volSFX);
 		sliderSFX.value = undoLog(volSFX);
+		if (!showFPS)
+		{
+			fps.gameObject.SetActive(false);
+		}
 	}
 
 	private float undoLog(float num)
@@ -91,8 +98,8 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
 
-        //Debug.Log(Screen.width + " " + Screen.height);
-        /*if (Keyboard.current.equalsKey.wasPressedThisFrame)
+		//Debug.Log(Screen.width + " " + Screen.height);
+		/*if (Keyboard.current.equalsKey.wasPressedThisFrame)
         {
             //Debug.Log("yah");
             offsetx = 10;
@@ -113,7 +120,9 @@ public class MenuManager : MonoBehaviour
             offsety = 10;
             Screen.SetResolution(Screen.width, Screen.height - offsety, true);
         }*/
-    }
+
+		fps.text = (1f / Time.unscaledDeltaTime).ToString("0.0");
+	}
 
     [YarnCommand("fadeIn")]
     public void FadeIn()
@@ -512,4 +521,10 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+	public void ChangeQuality()
+	{
+		TMP_Dropdown dropdown = GameObject.Find("QualityDropdown").GetComponent<TMP_Dropdown>();
+		QualitySettings.SetQualityLevel(dropdown.value);
+		Debug.Log(QualitySettings.GetQualityLevel());
+	}
 }
