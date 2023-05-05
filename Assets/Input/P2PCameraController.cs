@@ -264,6 +264,12 @@ public class P2PCameraController : MonoBehaviour
 					obj.Play();
 				}
 			}
+
+			if (curPos.runYarn != "" && !(curPos.runYarnOnce && curPos.ranYarn))
+			{
+				dialog.StartDialogue(curPos.runYarn);
+				curPos.ranYarn = true;
+			}
 		}
     }
 
@@ -622,6 +628,11 @@ public class P2PCameraController : MonoBehaviour
                 obj.Play();
             }
         }
+		if (curPos.runYarn != "" && !(curPos.runYarnOnce && curPos.ranYarn))
+		{
+			dialog.StartDialogue(curPos.runYarn);
+			curPos.ranYarn = true;
+		}
     }
 
     [YarnCommand("enable_controls")]

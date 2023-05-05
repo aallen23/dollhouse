@@ -25,8 +25,13 @@ public class CameraPosition : MonoBehaviour
     [Tooltip("What GameObject to rotate around.")]
     public GameObject rotateAround;
 
+	public string runYarn;
+	public bool runYarnOnce;
+	public bool ranYarn;
+	private P2PCameraController player;
     private void Start()
     {
+		player = FindObjectOfType<P2PCameraController>();
         if (enableAtPosition.Count > 0)
         {
             foreach (GameObject obj in enableAtPosition)
@@ -45,7 +50,7 @@ public class CameraPosition : MonoBehaviour
 
     private void Update()
     {
-        if (rotateAround)
+        if (rotateAround && !player.gameStarted)
         {
             transform.RotateAround(rotateAround.transform.position, Vector3.up, 10 * Time.deltaTime);
             transform.LookAt(rotateAround.transform);

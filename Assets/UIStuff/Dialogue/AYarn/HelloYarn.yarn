@@ -38,20 +38,20 @@ Grandma: No. Not since their father died.
 title: Intro
 tags:
 ---
-<<ActivateCece UI>>
 {$PlayerName}: Hello?
 {$PlayerName}: Is someone there?
-<<DeactivateCece UI>>
 Search for the source of the voice.
 ===
 
 title: Cece
 tags:
 ---
+<<ActivateCece UI>>
 {$PlayerName}: Who are you?
-Who are *you*?
+-> Who are *you*?
 {$PlayerName}: I don't remember... I think I've lost my memories. Maybe you can help me look for them.
 {$PlayerName}: Just point where you think I should go.
+<<DeactivateCece UI>>
 ===
 
 title: NurseryDoor
@@ -63,7 +63,7 @@ Seems like the door is locked.
 title: GrandfatherClock
 tags:
 ---
-This is a very ornate grandfather clock.
+A very ornate Grandfather clock.
 ===
 
 title: Popsicles
@@ -78,6 +78,7 @@ title: Duck
 This is a suspicious spot.
 <<else>>
 He's just sittin' there.
+Menacingly.
 <<endif>>
 ===
 
@@ -92,7 +93,8 @@ From his mouth comes out a little slip of paper.
 title: CuckooClock
 tags:
 ---
-This is a very ornate cuckoo clock.
+An ornate cuckoo clock.
+Doesn't seem to be running.
 ===
 
 title: CookieTin
@@ -123,13 +125,13 @@ You deposit the Chair into the Wardrobe. Where did it go?
 title: LilWithdraw
 tags:
 ---
-You withdraw the Chair from the Wardrobe. It is now life-sized.
+You withdraw the Chair from the Wardrobe. It is now doll-sized.
 ===
 
 title: Mirror
 tags:
 ---
-It's you!
+Despite everything, it's still you.
 ===
 
 title: PullTooth
@@ -148,7 +150,7 @@ You fix the clock.
 title: Chair
 tags:
 ---
-This is a very nice chair.
+A sturdy chair with a plush seat.
 ===
 
 title: Safe
@@ -157,16 +159,10 @@ tags:
 This safe looks tough to crack. Maybe the code is written down somewhere.
 ===
 
-title: Die
-tags:
----
-Perfect for rolling.
-===
-
 title: FlowerPot
 tags:
 ---
-It looks like there’s a seed in here…. Too bad you don’t have a watering can.
+It looks like there's a seed in here…. Too bad you don't have a watering can.
 ===
 
 title: BigBoy
@@ -285,7 +281,7 @@ tags:
 <<set $Tea to true>>
 <<PlaySound talon>>
 <<activate TalonSprite>>
-Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don’t know who might be sleeping here, or what you may remember…
+Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don't know who might be sleeping here, or what you may remember…
 <<deactivate TalonSprite>>
 ===
 
