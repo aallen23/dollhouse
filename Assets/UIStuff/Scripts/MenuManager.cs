@@ -480,6 +480,10 @@ public class MenuManager : MonoBehaviour
             audioManager.StopCreditsMusic();
             audioManager.MenuMusic();
         }
+		else if (FindObjectOfType<P2PCameraController>().gameStarted)
+		{
+			Restart();
+		}
         //audioManager.TurnOffMusic();
         //audioManager.MenuMusic();
         SetAllInactive();
