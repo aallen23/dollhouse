@@ -28,6 +28,9 @@ public class CameraPosition : MonoBehaviour
 	public string runYarn;
 	public bool runYarnOnce;
 	public bool ranYarn;
+
+	public bool inDollhouse;
+
 	private P2PCameraController player;
     private void Start()
     {

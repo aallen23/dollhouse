@@ -36,6 +36,7 @@ public class P2PCameraController : MonoBehaviour
     public Image mouseCursorImage;
     public Sprite curDefault;
     public Sprite curHand;
+	public Sprite curDollHand;
     public Sprite curLook;
     public Sprite curExamine;
 
@@ -537,7 +538,14 @@ public class P2PCameraController : MonoBehaviour
                 }
                 else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem || od.interactType == InteractType.BlankHand || od.interactType == InteractType.Dragging || od.interactType == InteractType.WardrobeWithdraw)
                 {
-                    mouseCursorImage.sprite = curHand;
+					if (curPos.inDollhouse)
+					{
+						mouseCursorImage.sprite = curDollHand;
+					}
+					else
+					{
+						mouseCursorImage.sprite = curHand;
+					}
                 }
                 else
                 {
