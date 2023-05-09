@@ -360,7 +360,7 @@ Ariadne: Thank you for playing your music for me.
 title: Allura
 tags:
 ---
-<<PlaySound allura>>
+<<PlaySound Allura_new>>
 <<if !$Flower>>
 <<jump Allura2>>
 <<else>>
@@ -452,6 +452,7 @@ Allura: Why, you'll have to grow one. With your tears, of course.
 Allura: Don't you know how to cry, little one? Don't worry... I'll teach you.
 <<deactivate AlluraSprite>>
 Now, you can make the paper doll cry. Press C to cry.
+<<enable_cry P2PPlayer>>
 ===
 
 title: AlluraDuringQuest

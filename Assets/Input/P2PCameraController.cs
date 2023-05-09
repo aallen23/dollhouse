@@ -69,6 +69,9 @@ public class P2PCameraController : MonoBehaviour
         inputMap.PointToPoint.Cry.performed += Cry_performed;
         inputMap.PointToPoint.Cry.canceled += Cry_canceled;
     }
+
+	
+
     void Start()
     {
         //Load Objects into an array that we can iterate through later.
@@ -84,7 +87,7 @@ public class P2PCameraController : MonoBehaviour
         invSystem = FindObjectOfType<InventorySystem>(true);
         dialog = FindObjectOfType<DialogueRunner>();
         gamepadMouse = GameObject.Find("GamepadMouse");
-
+		cryEnabled = false;
 
         gamepadMouse.SetActive(true);
         Cursor.visible = false;
@@ -641,5 +644,11 @@ public class P2PCameraController : MonoBehaviour
         gameStarted = true;
         //Travel(firstPos);
     }
+
+	[YarnCommand("enable_cry")]
+	public void EnableCry()
+	{
+		cryEnabled = true;
+	}
 
 }

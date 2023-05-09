@@ -9,6 +9,8 @@ public class ClockDoor : MonoBehaviour
 
 	public GameObject cup, stairs, navBlocker;
 
+	private bool completed;
+
     private void Start()
     {
 		stairs.SetActive(false);
@@ -20,8 +22,9 @@ public class ClockDoor : MonoBehaviour
         //Debug.Log(handSmall.transform.eulerAngles + " " + handSmall.transform.localEulerAngles);
         Debug.Log(Mathf.Abs(handBig.transform.localEulerAngles.z - 300f).ToString("0.0") + " " + Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f).ToString("0.0"));
         //Debug.Log(((int)handBig.desiredlocalEulerAngles.z == (int)compareHandBig.desiredlocalEulerAngles.z) + " " + ((int)handSmall.desiredlocalEulerAngles.z == (int)compareHandSmall.desiredlocalEulerAngles.z));
-        if (Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) < 15f && Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f) < 15f)
+        if (Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) < 15f && Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f) < 15f && !completed)
         {
+			completed = true;
 			//GetComponent<MeshRenderer>().enabled = true;
 			//GetComponent<Collider>().enabled = true;
 			stairs.SetActive(true);
@@ -29,7 +32,7 @@ public class ClockDoor : MonoBehaviour
 			Material cupMat = cup.GetComponent<MeshRenderer>().materials[0];
 			cup.GetComponent<MeshRenderer>().materials = new Material[1];
 			cup.GetComponent<MeshRenderer>().materials[0] = cupMat;
-
+			GetComponent<AudioSource>().Play();
 		}
     }
 }

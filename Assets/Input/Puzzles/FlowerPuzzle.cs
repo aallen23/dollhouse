@@ -25,6 +25,7 @@ public class FlowerPuzzle : MonoBehaviour
 		{
 			Flower.SetActive(true);
 			grown = false;
+			GetComponent<AudioSource>().Play();
 		}
 	}
 
