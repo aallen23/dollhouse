@@ -283,6 +283,7 @@ tags:
 <<activate TalonSprite>>
 Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don't know who might be sleeping here, or what you may remember…
 <<deactivate TalonSprite>>
+<<memoryTriggered GraveMemory>>
 ===
 
 title: BirdManQuestComplete
@@ -347,6 +348,7 @@ Ariadne: If you wish to understand what is happening here, you must keep explori
 	<<activate AriadneSprite>>
 	Ariadne: I'm afraid not. They only way through is forward. There are still memories for you to uncover.
 <<deactivate AriadneSprite>>
+<<memoryTriggered SpiderMemory>>
 ===
 
 title: AriadneQuestComplete
@@ -360,7 +362,7 @@ Ariadne: Thank you for playing your music for me.
 title: Allura
 tags:
 ---
-<<PlaySound Allura_new>>
+<<PlaySound allura>>
 <<if !$Flower>>
 <<jump Allura2>>
 <<else>>
