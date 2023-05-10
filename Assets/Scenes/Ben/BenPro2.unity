@@ -965,6 +965,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &322336262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8554923217532000863, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+  m_PrefabInstance: {fileID: 1510324831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &323981657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1678,7 +1683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5964903420643166954, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -83.8
+      value: -81.01
       objectReference: {fileID: 0}
     - target: {fileID: 5964903420643166954, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3198,6 +3203,16 @@ MonoBehaviour:
   runYarnOnce: 0
   ranYarn: 0
   inDollhouse: 0
+--- !u!1 &1033536835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 939618800425529873, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+  m_PrefabInstance: {fileID: 1510324831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1049442953 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 657575064462043211, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
+  m_PrefabInstance: {fileID: 446321950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1066218868
 GameObject:
   m_ObjectHideFlags: 0
@@ -4623,6 +4638,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 298440225, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 92697137590298401, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4868,11 +4887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &1604458412 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1036776641, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
-  m_PrefabInstance: {fileID: 446321950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1656951299
 GameObject:
   m_ObjectHideFlags: 0
@@ -5914,6 +5928,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 633660543, guid: be799a31b40491a4086afbcb4f745f00, type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 2119866697}
+    - target: {fileID: 633660543, guid: be799a31b40491a4086afbcb4f745f00, type: 3}
+      propertyPath: memoryUI
+      value: 
+      objectReference: {fileID: 322336262}
+    - target: {fileID: 1258480847, guid: be799a31b40491a4086afbcb4f745f00, type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 2119866697}
+    - target: {fileID: 1258480847, guid: be799a31b40491a4086afbcb4f745f00, type: 3}
+      propertyPath: memoryUI
+      value: 
+      objectReference: {fileID: 1033536835}
     - target: {fileID: 1053378672168436026, guid: be799a31b40491a4086afbcb4f745f00, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -6381,7 +6411,7 @@ PrefabInstance:
     - target: {fileID: 7416810876034418668, guid: b23129a95590afe40a5a9a9fc2bc8de7, type: 3}
       propertyPath: tearRight
       value: 
-      objectReference: {fileID: 1604458412}
+      objectReference: {fileID: 1049442953}
     - target: {fileID: 7416810876034418668, guid: b23129a95590afe40a5a9a9fc2bc8de7, type: 3}
       propertyPath: mouseCursorImage
       value: 

@@ -13,6 +13,7 @@ tags:
 <<set $memoryCount to 0>>
 <<set $crank to false>>
 <<set $duckPlaced to false>>
+<<set $stairs to false>>
 ===
 
 title: StartGame
@@ -69,7 +70,11 @@ A very ornate Grandfather clock.
 title: Popsicles
 tags:
 ---
+<<if $stairs>>
+An empty cup.
+<<else>>
 A cup of popsicle sticks... maybe you could make something with these.
+<<endif>>
 ===
 
 title: Duck
@@ -200,8 +205,9 @@ tags:
 <<set $BBfed to true>>
 <<activate BigBoySprite>>
 BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The taste of this food reminds me of the past.
-<<memoryTriggered GluttonyMemory>>
 <<deactivate BigBoySprite>>
+<<memoryTriggered GluttonyMemory>>
+You unlocked a new memory.
 ===
 
 title: BigBoyQuestComplete
@@ -284,6 +290,7 @@ tags:
 Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don't know who might be sleeping here, or what you may remember…
 <<deactivate TalonSprite>>
 <<memoryTriggered GraveMemory>>
+You unlocked a new memory.
 ===
 
 title: BirdManQuestComplete
@@ -349,6 +356,7 @@ Ariadne: If you wish to understand what is happening here, you must keep explori
 	Ariadne: I'm afraid not. They only way through is forward. There are still memories for you to uncover.
 <<deactivate AriadneSprite>>
 <<memoryTriggered SpiderMemory>>
+You unlocked a new memory.
 ===
 
 title: AriadneQuestComplete
@@ -490,6 +498,7 @@ Allura: Here is my secret: I remember you. Your name is Cecelia. I haven't seen 
 Allura: Now, now. I only promised you one secret.
 <<deactivate AlluraSprite>>
 <<memoryTriggered LustMemory>>
+You unlocked a new memory.
 ===
 
 title: AlluraQuestComplete
