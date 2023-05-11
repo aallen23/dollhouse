@@ -6,6 +6,7 @@ using Yarn.Unity;
 public class Herb : MonoBehaviour
 {
 	public Animator crank, body, lid;
+	private bool cranked;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,12 @@ public class Herb : MonoBehaviour
 	[YarnCommand("OpenHerb")]
 	public void PlayHerb()
 	{
-		crank.SetTrigger("Crank");
-		body.SetTrigger("Herb");
-		lid.SetTrigger("FlipLid");
+		if (!cranked)
+		{
+			cranked = true;
+			crank.SetTrigger("Crank");
+			body.SetTrigger("Herb");
+			lid.SetTrigger("FlipLid");
+		}
 	}
 }
