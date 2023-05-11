@@ -26,10 +26,10 @@ public class MemoryManager : MonoBehaviour
     [YarnCommand("memoryTriggered")]
     public void MemoryActive()
     {
-        audio.PauseAmbience();
-        audio.PlayMemorySound();
         if (!triggerEndGame)
         {
+            audio.PauseAmbience();
+            audio.PlayMemorySound();
             sprite1.GetComponent<SpriteRenderer>().enabled = false;
             sprite1.SetActive(false);
             sprite2.GetComponent<SpriteRenderer>().enabled = true;
@@ -56,9 +56,13 @@ public class MemoryManager : MonoBehaviour
             sprite2.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, i);
 			yield return new WaitForSeconds(0.1f);
         }
+        if (!triggerEndGame)
+        {
+            memoryUI.SetActive(true);
+        }
         paper.SetActive(false);
         sprite2.SetActive(false);
-        memoryUI.SetActive(true);
+        
 
 		if (triggerEndGame)
 		{
