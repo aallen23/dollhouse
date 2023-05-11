@@ -14,6 +14,7 @@ tags:
 <<set $crank to false>>
 <<set $duckPlaced to false>>
 <<set $stairs to false>>
+<<set $flowerGrown to false>>
 ===
 
 title: StartGame
@@ -167,7 +168,11 @@ This safe looks tough to crack. Maybe the code is written down somewhere.
 title: FlowerPot
 tags:
 ---
+<<if $flowerGrown>>
+An old fashioned flower pot.
+<<else>>
 It looks like there's a seed in here…. Too bad you don't have a watering can.
+<<endif>>
 ===
 
 title: BigBoy
