@@ -26,11 +26,15 @@ public class MemoryManager : MonoBehaviour
     [YarnCommand("memoryTriggered")]
     public void MemoryActive()
     {
-
-        sprite1.GetComponent<SpriteRenderer>().enabled = false;
-        sprite1.SetActive(false);
-        sprite2.GetComponent<SpriteRenderer>().enabled = true;
-        sprite2.GetComponent<BoxCollider>().enabled = true;
+        audio.PauseAmbience();
+        audio.PlayMemorySound();
+        if (!triggerEndGame)
+        {
+            sprite1.GetComponent<SpriteRenderer>().enabled = false;
+            sprite1.SetActive(false);
+            sprite2.GetComponent<SpriteRenderer>().enabled = true;
+            sprite2.GetComponent<BoxCollider>().enabled = true;
+        }
     }
 
     public void MemoryClicked()
@@ -38,10 +42,8 @@ public class MemoryManager : MonoBehaviour
 		if (!fading)
 		{
 			fading = true;
-			audio.PauseAmbience();
-			audio.PlayMemorySound();
-			StartCoroutine("Fade");
-		}
+            StartCoroutine("Fade");
+        }
     }
 
     IEnumerator Fade()
