@@ -16,6 +16,7 @@ public class DollBehavior : MonoBehaviour
     [Tooltip("Footstep Audio Source.")] public AudioSource footstepAudio;
 	[Tooltip("Crying Audio Source.")] public AudioSource cryAudio;
 	public GameObject checkCry;
+	public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -45,12 +46,14 @@ public class DollBehavior : MonoBehaviour
         if (agent.remainingDistance > 0f && !footstepAudio.isPlaying)
         {
             footstepAudio.Play();
+			animator.SetBool("walk", true);
             destinationIndicator.GetComponent<MeshRenderer>().enabled = true;
         }
         else if (agent.remainingDistance == 0f)
         {
             footstepAudio.Stop();
-            destinationIndicator.GetComponent<MeshRenderer>().enabled = false;
+			animator.SetBool("walk", false);
+			destinationIndicator.GetComponent<MeshRenderer>().enabled = false;
 			player.forceSmoothSwitch = false;
         }
         //Debug.Log(footstepAudio.isPlaying);
