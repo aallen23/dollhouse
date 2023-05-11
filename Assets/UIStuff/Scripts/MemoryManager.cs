@@ -69,6 +69,8 @@ public class MemoryManager : MonoBehaviour
 			CameraPosition dollCam = GameObject.Find("DollCameraPos").GetComponent<CameraPosition>();
 			dollCam.runYarn = "EndGame";
 			dollCam.ranYarn = false;
+			dollCam.transform.position = GameObject.Find("Cam_CeceEndGame").transform.position;
+			dollCam.transform.rotation = GameObject.Find("Cam_CeceEndGame").transform.rotation;
 		}
 	}
 }
