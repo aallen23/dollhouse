@@ -33,8 +33,8 @@ public class MemoryManager : MonoBehaviour
             sprite1.GetComponent<SpriteRenderer>().enabled = false;
             sprite1.SetActive(false);
             sprite2.GetComponent<SpriteRenderer>().enabled = true;
-            sprite2.GetComponent<BoxCollider>().enabled = true;
         }
+        sprite2.GetComponent<BoxCollider>().enabled = true;
     }
 
     public void MemoryClicked()
