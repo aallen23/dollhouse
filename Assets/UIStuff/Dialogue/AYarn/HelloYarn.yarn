@@ -515,9 +515,11 @@ title: CrankInstall
 <<use_item herb {$itemUsed}>>
 ===
 
+
 title: Herb
 tags:
 ---
+<<set $memoryCount to 4>>
 <<if $crank>>
 	<<if $memoryCount < 4>>
 		<<if $memoryCount == 1>>
@@ -537,5 +539,13 @@ title: HerbFinale
 tags:
 ---
 <<PlayFinalMusic Audio>>
+<<OpenHerb herb>>
 Wow, you finished the game. looks like the devs haven't made it this far yet.
+===
+
+title: EndGame
+---
+Wow, what the fuck Cece?
+Who the fuck.
+Why the fuck.
 ===

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class Herb : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Herb : MonoBehaviour
         
     }
 
+	[YarnCommand("OpenHerb")]
 	public void PlayHerb()
 	{
 		crank.SetTrigger("Crank");

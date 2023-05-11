@@ -21,6 +21,8 @@ public class MemoryManager : MonoBehaviour
 
 	private bool fading;
 
+	public bool triggerEndGame;
+
     [YarnCommand("memoryTriggered")]
     public void MemoryActive()
     {
@@ -55,5 +57,12 @@ public class MemoryManager : MonoBehaviour
         paper.SetActive(false);
         sprite2.SetActive(false);
         memoryUI.SetActive(true);
+
+		if (triggerEndGame)
+		{
+			CameraPosition dollCam = GameObject.Find("DollCameraPos").GetComponent<CameraPosition>();
+			dollCam.runYarn = "EndGame";
+			dollCam.ranYarn = false;
+		}
 	}
 }
