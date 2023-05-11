@@ -23,7 +23,8 @@ public class AudioManager : MonoBehaviour
         drawerOpen,
         drawerClosed,
         endCredits,
-        currentSound;
+        currentSound,
+        currentMusic;
 
     public void Awake()
     {
@@ -77,12 +78,15 @@ public class AudioManager : MonoBehaviour
 
     public void MenuMusic()
     {
+        currentMusic = menu;
         menu.Play();
     }
 
     public void PlayMemorySound()
     {
         PauseAmbience();
+        currentMusic.Stop();
+        currentMusic = memory;
         memory.Play();
         float clipLength = memory.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
@@ -92,6 +96,8 @@ public class AudioManager : MonoBehaviour
     public void PlayMemoryHerb()
     {
         PauseAmbience();
+        currentMusic.Stop();
+        currentMusic = memoryFinale;
         memoryFinale.Play();
         float clipLength = memoryFinale.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
@@ -100,6 +106,7 @@ public class AudioManager : MonoBehaviour
     public void PlayPuzzleSound()
     {
         PauseAmbience();
+        currentMusic.Stop();
         puzzle.Play();
         float clipLength = puzzle.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
@@ -107,7 +114,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlayCreditsMusic()
     {
-        menu.Stop();
+        currentMusic.Stop();
+        currentMusic = endCredits;
         endCredits.Play();
     }
 
