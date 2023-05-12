@@ -12,6 +12,7 @@ tags:
 <<set $PlayerName to "???">>
 <<set $memoryCount to 0>>
 <<set $crank to false>>
+<<set $cranked to false>>
 <<set $duckPlaced to false>>
 <<set $stairs to false>>
 <<set $flowerGrown to false>>
@@ -534,7 +535,12 @@ tags:
 	<<else>>
 		<<jump HerbFinale>>
 	<<endif>>
-<<else>>
+<<endif>>
+===
+
+title: HerbBox
+---
+<<if $crank is false>>
 	Looks like this box needs a crank.
 <<endif>>
 ===
@@ -542,10 +548,13 @@ tags:
 title: HerbFinale
 tags:
 ---
-<<PlayFinalMusic Audio>>
-<<OpenHerb herb>>
-<<memoryTriggered StabMemory>>
-What's this? Another memory?
+<<if $cranked is false>>
+	<<set $cranked to true>>
+	<<PlayFinalMusic Audio>>
+	<<OpenHerb herb>>
+	<<memoryTriggered StabMemory>>
+	What's this? Another memory?
+<<endif>>
 ===
 
 title: EndGame
