@@ -17948,6 +17948,7 @@ MonoBehaviour:
   sliderSFX: {fileID: 3429605517860903324}
   showFPS: 0
   fps: {fileID: 298440227}
+  CeceCrumple: {fileID: 0}
 --- !u!223 &7440955082863732341
 Canvas:
   m_ObjectHideFlags: 0
@@ -29283,6 +29284,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: a266bdad792b45b4c815530cf35f8d75, type: 3}
+    - target: {fileID: 6164844560992837236, guid: b02227d6828bc4d44977aae8b8858200, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6164844561370730684, guid: b02227d6828bc4d44977aae8b8858200, type: 3}
       propertyPath: m_Name
       value: Audio

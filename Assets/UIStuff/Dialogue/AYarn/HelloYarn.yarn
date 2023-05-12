@@ -570,6 +570,14 @@ No it wasn't. You stabbed my dad. And now I'm here, all alone.
 {$PlayerName}: I'm looking out for you, I've helped you uncover all of these memories…
 Maybe you shouldn't have. Because now, I remember you.
 <<DeactivateCece UI>>
+<<fadeIn UI>>
+<<wait 1>>
+<<rip UI>>
+<<wait 3>>
+<<fadeOutEnd UI>>
+<<wait 5>>
+<<ActivateCredits UI>>
+
 ===
 
 title: AlternateEndGame

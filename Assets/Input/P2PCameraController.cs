@@ -15,6 +15,7 @@ public class P2PCameraController : MonoBehaviour
     [Tooltip("The Input Map we are using.")] public Controls inputMap;
     [Tooltip("Starting CameraPosition.")] public CameraPosition startPos;
     public CameraPosition firstPos;
+	public CameraPosition lastPos;
     [Tooltip("Current CameraPosition.")] public CameraPosition curPos;
     [Tooltip("The NavMeshAgent of the Doll")] public NavMeshAgent doll;
 
