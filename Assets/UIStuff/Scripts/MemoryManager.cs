@@ -8,7 +8,8 @@ public class MemoryManager : MonoBehaviour
 
     [SerializeField]
     private GameObject sprite1,
-        sprite2;
+        sprite2,
+        paper;
 
     [SerializeField]
     private GameObject memoryUI;
@@ -16,32 +17,60 @@ public class MemoryManager : MonoBehaviour
     [SerializeField]
     private AudioManager audio;
 
+	public float fadeSpeed = 1f;
+
+	private bool fading;
+
+	public bool triggerEndGame;
+
     [YarnCommand("memoryTriggered")]
     public void MemoryActive()
     {
-
-        sprite1.GetComponent<SpriteRenderer>().enabled = false;
-        sprite1.SetActive(false);
-        sprite2.GetComponent<SpriteRenderer>().enabled = true;
+        if (!triggerEndGame)
+        {
+            audio.PauseAmbience();
+            audio.PlayMemorySound();
+            sprite1.GetComponent<SpriteRenderer>().enabled = false;
+            sprite1.SetActive(false);
+            sprite2.GetComponent<SpriteRenderer>().enabled = true;
+        }
         sprite2.GetComponent<BoxCollider>().enabled = true;
     }
 
     public void MemoryClicked()
     {
-        audio.PauseAmbience();
-        audio.PlayMemorySound();
-        memoryUI.SetActive(true);
-        StartCoroutine("Fade");
+		if (!fading)
+		{
+			fading = true;
+            StartCoroutine("Fade");
+        }
     }
 
     IEnumerator Fade()
     {
-        for (float i = 1; i >= 0; i -= Time.deltaTime * -10)
-        {
-            sprite2.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, i);
-            yield return null;
+		float i = 1;
+		while (i > 0)
+		{
+			i -= Time.deltaTime * fadeSpeed;
+            paper.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, i);
+            sprite2.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, i);
+			yield return new WaitForSeconds(0.1f);
         }
-        sprite2.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        if (!triggerEndGame)
+        {
+            memoryUI.SetActive(true);
+        }
+        paper.SetActive(false);
         sprite2.SetActive(false);
-    }
+        
+
+		if (triggerEndGame)
+		{
+			CameraPosition dollCam = GameObject.Find("DollCameraPos").GetComponent<CameraPosition>();
+			dollCam.runYarn = "EndGame";
+			dollCam.ranYarn = false;
+			dollCam.transform.position = GameObject.Find("Cam_CeceEndGame").transform.position;
+			dollCam.transform.rotation = GameObject.Find("Cam_CeceEndGame").transform.rotation;
+		}
+	}
 }

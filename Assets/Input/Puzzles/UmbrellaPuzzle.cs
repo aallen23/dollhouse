@@ -49,6 +49,7 @@ public class UmbrellaPuzzle : MonoBehaviour
             //GetComponent<Collider>().enabled = true;
             //GetComponent<MeshRenderer>().enabled = true;
             gameObject.SetActive(true);
+			GetComponent<AudioSource>().Play();
         }
     }
 }

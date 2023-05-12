@@ -6,6 +6,7 @@ public class CreditsScroll : MonoBehaviour
 {
     [SerializeField]
     private GameObject creditsText;
+    [SerializeField]
     private float scrollTime,
         timeElapsed;
     private Vector3 from,
@@ -14,8 +15,8 @@ public class CreditsScroll : MonoBehaviour
     public void Awake()
     {
         from = creditsText.transform.position;
-        to = new Vector3(from.x, 10000, from.z);
-        scrollTime = 40.0f;
+        to = new Vector3(from.x, 20000, from.z);
+        scrollTime = 75.0f;
         timeElapsed = 0.0f;
     }
 

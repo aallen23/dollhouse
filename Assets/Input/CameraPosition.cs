@@ -11,18 +11,30 @@ public class CameraPosition : MonoBehaviour
     public bool obeyRotation;
     [Tooltip("Should the Camera move here quickly?")]
     public bool quickSwitch;
+	//[Tooltip("Should the Camera move away smoothly?")]
+	//public bool forceSmooth;
+	public float houseYRotation;
 
     [Tooltip("GameObjects to show at this position, and hide otherwise.")]
     public List<GameObject> enableAtPosition;
 
-    [Tooltip("AudioSources to enable at this position, and hide otherwise.")]
-    public List<AudioSource> audioAtPosition;
+	[Tooltip("AudioSources to enable at this position, and hide otherwise.")]
+	public List<AudioSource> audioAtPosition;
+	public bool playFromStart;
 
     [Tooltip("What GameObject to rotate around.")]
     public GameObject rotateAround;
 
+	public string runYarn;
+	public bool runYarnOnce;
+	public bool ranYarn;
+
+	public bool inDollhouse;
+
+	private P2PCameraController player;
     private void Start()
     {
+		player = FindObjectOfType<P2PCameraController>();
         if (enableAtPosition.Count > 0)
         {
             foreach (GameObject obj in enableAtPosition)
@@ -30,18 +42,18 @@ public class CameraPosition : MonoBehaviour
                 obj.SetActive(false);
             }
         }
-        if (audioAtPosition.Count > 0)
+        /*if (audioAtPosition.Count > 0)
         {
             foreach (AudioSource obj in audioAtPosition)
             {
                 obj.enabled = false;
             }
-        }
+        }*/
     }
 
     private void Update()
     {
-        if (rotateAround)
+        if (rotateAround && !player.gameStarted)
         {
             transform.RotateAround(rotateAround.transform.position, Vector3.up, 10 * Time.deltaTime);
             transform.LookAt(rotateAround.transform);

@@ -8,7 +8,7 @@ public class PianoPuzzle : MonoBehaviour
 {
     public string curSong;
     public string desiredSong;
-    public Transform ariadnePos;
+    public ObjectData ariadne;
     private bool done = false;
 
 
@@ -42,7 +42,8 @@ public class PianoPuzzle : MonoBehaviour
         {
             done = true;
             yield return new WaitForSeconds(0.1f);
-            FindObjectOfType<NavMeshAgent>().destination = ariadnePos.position;
+			FindObjectOfType<NavMeshAgent>().destination = ariadne.positionDoll.position;
+			FindObjectOfType<P2PCameraController>().curPos = ariadne.positionCamera;
             FindObjectOfType<DialogueRunner>().StartDialogue("AriadneMusic");
         }
     }

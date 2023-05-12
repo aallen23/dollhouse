@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class AudioManager : MonoBehaviour
 {
@@ -17,7 +18,13 @@ public class AudioManager : MonoBehaviour
         puzzle,
         memory,
         pageFlip,
-        currentSound;
+        carScene,
+        memoryFinale,
+        drawerOpen,
+        drawerClosed,
+        endCredits,
+        currentSound,
+        currentMusic;
 
     public void Awake()
     {
@@ -25,6 +32,7 @@ public class AudioManager : MonoBehaviour
         playAmbience = false;
         paused = false;
         currentSound = null;
+		MenuMusic();
     }
 
     public void Update()
@@ -50,6 +58,7 @@ public class AudioManager : MonoBehaviour
         currentSound.Play();
     }
 
+    [YarnCommand("StartAmbience")]
     public void StartAmbience()
     {
         playAmbience = true;
@@ -70,21 +79,63 @@ public class AudioManager : MonoBehaviour
 
     public void MenuMusic()
     {
+        currentMusic = menu;
         menu.Play();
     }
 
     public void PlayMemorySound()
     {
+        PauseAmbience();
+        currentMusic.Stop();
+        currentMusic = memory;
         memory.Play();
         float clipLength = memory.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
     }
 
+    [YarnCommand("PlayFinalMusic")]
+    public void PlayMemoryHerb()
+    {
+        PauseAmbience();
+        currentMusic.Stop();
+        currentMusic = memoryFinale;
+        memoryFinale.Play();
+        float clipLength = memoryFinale.clip.length;
+        StartCoroutine(WaitForMusic(clipLength));
+    }
+
     public void PlayPuzzleSound()
     {
+        PauseAmbience();
+        currentMusic.Stop();
         puzzle.Play();
         float clipLength = puzzle.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
+    }
+
+    public void PlayCreditsMusic()
+    {
+		if (currentMusic)
+		{
+			currentMusic.Stop();
+		}
+		if (paused == false)
+		{
+			PauseAmbience();
+		}
+		currentMusic = endCredits;
+        endCredits.Play();
+    }
+
+    public void StopCreditsMusic()
+    {
+        endCredits.Stop();
+    }
+
+    [YarnCommand("PlayCarIntro")]
+    public void PlayCarScene()
+    {
+        carScene.Play();
     }
 
     public void OnButtonHover()
@@ -100,6 +151,16 @@ public class AudioManager : MonoBehaviour
     public void PageFlip()
     {
         pageFlip.Play();
+    }
+
+    public void PlayDrawerOpen()
+    {
+        drawerOpen.Play();
+    }
+
+    public void PlayDrawerClosed()
+    {
+        drawerClosed.Play();
     }
 
     IEnumerator WaitForMusic(float time)

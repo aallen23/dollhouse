@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeaMaking : MonoBehaviour
 {
-    public GameObject SugarCube;
+    public List<GameObject> SugarCube;
     public GameObject TeaBag;
     public GameObject TeaBagString;
     public GameObject Cup;
@@ -17,6 +17,7 @@ public class TeaMaking : MonoBehaviour
     public GameObject cupLiquid;
     public Transform PotPos;
     public float rotateSpeed;
+	public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -41,16 +42,11 @@ public class TeaMaking : MonoBehaviour
     {
         if (pouring)
         {
-            gameObject.GetComponent<ObjectData>().interactType = InteractType.Examine;
-            Cup.GetComponent<ObjectData>().interactType = InteractType.Examine;
-            StartCoroutine(WaterParticles());
             transform.rotation = Quaternion.Lerp(transform.rotation, PotPos.rotation, Time.deltaTime * rotateSpeed);
         }
         if (donePouring)
         {
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * rotateSpeed * 2);
-            gameObject.GetComponent<ObjectData>().interactType = InteractType.Dragging;
-            Cup.GetComponent<ObjectData>().interactType = InteractType.Dragging;
         }
     }
 
@@ -62,6 +58,7 @@ public class TeaMaking : MonoBehaviour
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
         Cup.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+		audioSource.Play();
         yield return new WaitForSeconds(2f);
         GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(false);
         cupLiquid.SetActive(true);
@@ -70,11 +67,14 @@ public class TeaMaking : MonoBehaviour
         yield return new WaitForSeconds(2f);
         donePouring = false;
         GetComponent<Rigidbody>().useGravity = true;
-    }
+		gameObject.GetComponent<ObjectData>().interactType = InteractType.Dragging;
+		Cup.GetComponent<ObjectData>().interactType = InteractType.Dragging;
+	}
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == SugarCube && gameObject.name == "Cup" && cupLiquid.activeSelf == true)
+        if (SugarCube.Contains(collision.gameObject) && gameObject.name == "Cup" && cupLiquid.activeSelf == true)
         {
+			audioSource.Play();
             collision.gameObject.SetActive(false);
             addedSugar = true;
             GetComponent<ObjectData>().interactType = InteractType.AddItem;
@@ -90,7 +90,10 @@ public class TeaMaking : MonoBehaviour
             GetComponent<Rigidbody>().useGravity = false;
             gameObject.transform.position = PotPos.position;
             pouring = true;
-        }
+			gameObject.GetComponent<ObjectData>().interactType = InteractType.Examine;
+			Cup.GetComponent<ObjectData>().interactType = InteractType.Examine;
+			StartCoroutine(WaterParticles());
+		}
 
         if (addedBag && gameObject.name == "Teapot")
         {

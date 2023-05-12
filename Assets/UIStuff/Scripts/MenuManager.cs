@@ -58,6 +58,13 @@ public class MenuManager : MonoBehaviour
 
 	public Slider sliderMain, sliderMusic, sliderSFX;
 
+	public bool showFPS;
+	public TMP_Text fps;
+
+	private bool game_ended;
+	private static bool restart_game = false;
+	public AudioSource CeceCrumple;
+
     public void Awake()
     {
         audioManager = audioBox.GetComponent<AudioManager>();
@@ -79,6 +86,20 @@ public class MenuManager : MonoBehaviour
 		sliderMusic.value = undoLog(volMusic);
 		masterMixer.GetFloat("sfxVol", out float volSFX);
 		sliderSFX.value = undoLog(volSFX);
+		if (!showFPS)
+		{
+			fps.gameObject.SetActive(false);
+		}
+	}
+
+	private void Start()
+	{
+		CeceCrumple.gameObject.SetActive(false);
+		if (restart_game)
+		{
+			restart_game = false;
+			StartButton();
+		}
 	}
 
 	private float undoLog(float num)
@@ -91,8 +112,8 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
 
-        //Debug.Log(Screen.width + " " + Screen.height);
-        /*if (Keyboard.current.equalsKey.wasPressedThisFrame)
+		//Debug.Log(Screen.width + " " + Screen.height);
+		/*if (Keyboard.current.equalsKey.wasPressedThisFrame)
         {
             //Debug.Log("yah");
             offsetx = 10;
@@ -113,7 +134,9 @@ public class MenuManager : MonoBehaviour
             offsety = 10;
             Screen.SetResolution(Screen.width, Screen.height - offsety, true);
         }*/
-    }
+
+		fps.text = (1f / Time.unscaledDeltaTime).ToString("0.0");
+	}
 
     [YarnCommand("fadeIn")]
     public void FadeIn()
@@ -125,10 +148,28 @@ public class MenuManager : MonoBehaviour
     public void FadeOut()
     {
         FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().firstPos);
+		//FindObjectOfType<P2PCameraController>().desiredRotation.y = 180f; //disable if firstpos is in dollhouse
         StartCoroutine(Fade(false));
     }
 
-    IEnumerator Fade(bool fadeToBlack)
+	[YarnCommand("rip")]
+	public void Rip()
+	{
+		FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().lastPos);
+		SetAllInactive();
+		CeceCrumple.gameObject.SetActive(true);
+		CeceCrumple.Play();
+	}
+
+	[YarnCommand("fadeOutEnd")]
+	public void FadeInEnd()
+	{
+		//FindObjectOfType<P2PCameraController>().desiredRotation.y = 180f; //disable if firstpos is in dollhouse
+		StartCoroutine(Fade(false));
+		game_ended = true;
+	}
+
+	IEnumerator Fade(bool fadeToBlack)
     {
 
         if (fadeToBlack)
@@ -210,6 +251,13 @@ public class MenuManager : MonoBehaviour
         gameUI.SetActive(true);
     }
 
+	[YarnCommand("ActivateCredits")]
+	public void Credits()
+	{
+		CreditsButton();
+		audioManager.PlayCreditsMusic();
+	}
+
     [YarnCommand("ActivateCece")]
     public void ActivateCece()
     {
@@ -246,9 +294,14 @@ public class MenuManager : MonoBehaviour
 
     public void StartButton()
     {
+		if (game_ended)
+		{
+			restart_game = true;
+			Restart();
+		}
         SetAllInactive();
         audioManager.TurnOffMusic();
-        audioManager.StartAmbience();
+        //audioManager.StartAmbience();
         FadeIn();
         dialog.StartDialogue("StartGame");
     }
@@ -264,18 +317,29 @@ public class MenuManager : MonoBehaviour
 
     public void OptionsButton()
     {
-        SetAllInactive();
-        journal.SetActive(true);
-        Page1Button();
-        if (FindObjectOfType<P2PCameraController>().gameStarted)
+
+        if (journal.activeSelf)
         {
-            gameUI.SetActive(true);
-            pausePanel.SetActive(true);
-            Page4Button();
+            if (FindObjectOfType<P2PCameraController>().gameStarted)
+            {
+                //gameUI.SetActive(true);
+                //mainPanel.SetActive(false);
+                pausePanel.SetActive(true);
+                Page4Button();
+            }
+            else
+            {
+                //mainPanel.SetActive(true);
+                Page4Button();
+            }
         }
-        else 
+        else
         {
+            SetAllInactive();
+            journal.SetActive(true);
             mainPanel.SetActive(true);
+            Page1Button();
+
         }
     }
 
@@ -416,9 +480,10 @@ public class MenuManager : MonoBehaviour
         if (!isPaused && !journal.activeSelf)
         {
             isPaused = true;
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             journal.SetActive(true);
-            Page1Button();
+			mainPanel.SetActive(false);
+			Page1Button();
             pausePanel.SetActive(true);
         }
         else
@@ -455,7 +520,13 @@ public class MenuManager : MonoBehaviour
         if (credits.activeSelf)
         {
             ResetCreditsScroll();
+            audioManager.StopCreditsMusic();
+            audioManager.MenuMusic();
         }
+		else if (FindObjectOfType<P2PCameraController>().gameStarted)
+		{
+			Restart();
+		}
         //audioManager.TurnOffMusic();
         //audioManager.MenuMusic();
         SetAllInactive();
@@ -496,5 +567,13 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+	public void ChangeQuality()
+	{
+		TMP_Dropdown dropdown = GameObject.Find("QualityDropdown").GetComponent<TMP_Dropdown>();
+		QualitySettings.SetQualityLevel(dropdown.value);
+		Debug.Log(QualitySettings.GetQualityLevel());
+	}
+
 
 }

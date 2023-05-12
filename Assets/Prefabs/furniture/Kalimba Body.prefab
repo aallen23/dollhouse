@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583082755}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -148,8 +148,10 @@ MonoBehaviour:
   - {fileID: 0}
   obeyRotation: 1
   quickSwitch: 0
+  houseYRotation: 0
   enableAtPosition: []
   audioAtPosition: []
+  playFromStart: 0
   rotateAround: {fileID: 0}
 --- !u!1 &4526846981999763935
 GameObject:
@@ -356,7 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curSong: 
   desiredSong: 35124
-  ariadnePos: {fileID: 0}
+  ariadne: {fileID: 0}
 --- !u!114 &1148442320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +402,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -414,6 +417,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 0
   interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -719,6 +723,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -733,6 +738,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 50
   interactSFX: {fileID: 2092308683}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 1
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -1034,6 +1040,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -1048,6 +1055,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 50
   interactSFX: {fileID: 351851407322241215}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 1
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -1344,6 +1352,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -1358,6 +1367,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 50
   interactSFX: {fileID: 2698982283278672487}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 1
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -1649,6 +1659,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -1663,6 +1674,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 50
   interactSFX: {fileID: 4675243734043064774}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 1
   defaultRotation: {x: 0, y: 0, z: 0}
@@ -1959,6 +1971,7 @@ MonoBehaviour:
   shownObjectModColor: 0
   shownObjectItemOverride: 0
   startVisible: 0
+  startMeshDisabled: 0
   itemAddItem: {fileID: 0}
   addItemDestination: {fileID: 0}
   addItemItem: {fileID: 0}
@@ -1973,6 +1986,7 @@ MonoBehaviour:
   secondPos: {x: 0, y: 0, z: 0}
   animSpeed: 50
   interactSFX: {fileID: 3288998029790873443}
+  itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 1
   defaultRotation: {x: 0, y: 0, z: 0}

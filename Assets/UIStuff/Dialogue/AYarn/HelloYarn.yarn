@@ -7,10 +7,14 @@ tags:
 <<set $Tintro to false>>
 <<set $Tea to false>>
 <<set $Flower to false>>
-<<set $PlayerName to "???">>
-<<set $memoryCount to 0>>
 <<set $AlluraTutorial to false>>
 <<set $AlluraIntro to false>>
+<<set $PlayerName to "???">>
+<<set $memoryCount to 0>>
+<<set $crank to false>>
+<<set $duckPlaced to false>>
+<<set $stairs to false>>
+<<set $flowerGrown to false>>
 ===
 
 title: StartGame
@@ -22,6 +26,9 @@ Grandma: Well, no surprise there.
 ...: She hadn’t come home in a long time, had she?
 Grandma: No. Not since their father died.
 ...: What a tragedy… At least now, they have you to take care of them…
+//<<PlayCarIntro Audio>>
+//<<wait 15>>
+<<StartAmbience Audio>>
 <<fadeOut UI>>
 <<wait 1>>
 <<BlinkSequence UI>>
@@ -33,31 +40,72 @@ Grandma: No. Not since their father died.
 title: Intro
 tags:
 ---
-<<ActivateCece UI>>
 {$PlayerName}: Hello?
 {$PlayerName}: Is someone there?
-<<DeactivateCece UI>>
+Search for the source of the voice.
 ===
 
 title: Cece
 tags:
 ---
+<<ActivateCece UI>>
 {$PlayerName}: Who are you?
-Who are *you*?
+-> Who are *you*?
 {$PlayerName}: I don't remember... I think I've lost my memories. Maybe you can help me look for them.
 {$PlayerName}: Just point where you think I should go.
+<<DeactivateCece UI>>
+===
+
+title: NurseryDoor
+tags:
+---
+Seems like the door is locked.
 ===
 
 title: GrandfatherClock
 tags:
 ---
-This is a very ornate grandfather clock.
+A very ornate Grandfather clock.
+===
+
+title: Popsicles
+tags:
+---
+<<if $stairs>>
+An empty cup.
+<<else>>
+A cup of popsicle sticks... maybe you could make something with these.
+<<endif>>
+===
+
+title: Duck
+---
+<<if $duckPlaced is false>>
+This is a suspicious spot.
+<<else>>
+He's just sittin' there.
+Menacingly.
+<<endif>>
+===
+
+title: DuckPlace
+---
+<<use_item duck_model {$itemUsed}>>
+You place the proud fowl in his rightful place.
+From his mouth comes out a little slip of paper.
+<<set $duckPlaced to true>>
 ===
 
 title: CuckooClock
 tags:
 ---
-This is a very ornate cuckoo clock.
+An ornate cuckoo clock.
+Doesn't seem to be running.
+===
+
+title: CookieTin
+---
+These cookies look yummy.
 ===
 
 title: Deposit
@@ -83,13 +131,13 @@ You deposit the Chair into the Wardrobe. Where did it go?
 title: LilWithdraw
 tags:
 ---
-You withdraw the Chair from the Wardrobe. It is now life-sized.
+You withdraw the Chair from the Wardrobe. It is now doll-sized.
 ===
 
 title: Mirror
 tags:
 ---
-It's you!
+Despite everything, it's still you.
 ===
 
 title: PullTooth
@@ -108,7 +156,7 @@ You fix the clock.
 title: Chair
 tags:
 ---
-This is a very nice chair.
+A sturdy chair with a plush seat.
 ===
 
 title: Safe
@@ -117,15 +165,20 @@ tags:
 This safe looks tough to crack. Maybe the code is written down somewhere.
 ===
 
-title: Die
+title: FlowerPot
 tags:
 ---
-Perfect for rolling.
+<<if $flowerGrown>>
+An old fashioned flower pot.
+<<else>>
+It looks like there's a seed in here…. Too bad you don't have a watering can.
+<<endif>>
 ===
 
 title: BigBoy
 tags:
 ---
+<<PlaySound bigboy>>
 <<if $BBfed>>
 <<jump BigBoyQuestComplete>>
 <<else>>
@@ -153,11 +206,13 @@ BigBoy: Someone used to feed real food, but they disappeared long ago. I have ne
 title: BigBoyFed
 tags:
 ---
+<<set $memoryCount = $memoryCount + 1>>
 <<set $BBfed to true>>
 <<activate BigBoySprite>>
 BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The taste of this food reminds me of the past.
-<<memoryTriggered GluttonyMemory>>
 <<deactivate BigBoySprite>>
+<<memoryTriggered GluttonyMemory>>
+You unlocked a new memory.
 ===
 
 title: BigBoyQuestComplete
@@ -233,11 +288,14 @@ Talon: A good cup of tea... that would be nice.
 title: BirdManTea
 tags: 
 ---
+<<set $memoryCount = $memoryCount + 1>>
 <<set $Tea to true>>
 <<PlaySound talon>>
 <<activate TalonSprite>>
-Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don’t know who might be sleeping here, or what you may remember…
+Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don't know who might be sleeping here, or what you may remember…
 <<deactivate TalonSprite>>
+<<memoryTriggered GraveMemory>>
+You unlocked a new memory.
 ===
 
 title: BirdManQuestComplete
@@ -265,6 +323,7 @@ tags:
 title: AriadneMusic
 tags:
 ---
+<<set $memoryCount = $memoryCount + 1>>
 <<set $Music to true>>
 <<PlaySound ariadne>>
 <<activate AriadneSprite>>
@@ -301,6 +360,8 @@ Ariadne: If you wish to understand what is happening here, you must keep explori
 	<<activate AriadneSprite>>
 	Ariadne: I'm afraid not. They only way through is forward. There are still memories for you to uncover.
 <<deactivate AriadneSprite>>
+<<memoryTriggered SpiderMemory>>
+You unlocked a new memory.
 ===
 
 title: AriadneQuestComplete
@@ -314,6 +375,7 @@ Ariadne: Thank you for playing your music for me.
 title: Allura
 tags:
 ---
+<<PlaySound allura>>
 <<if !$Flower>>
 <<jump Allura2>>
 <<else>>
@@ -405,6 +467,7 @@ Allura: Why, you'll have to grow one. With your tears, of course.
 Allura: Don't you know how to cry, little one? Don't worry... I'll teach you.
 <<deactivate AlluraSprite>>
 Now, you can make the paper doll cry. Press C to cry.
+<<enable_cry P2PPlayer>>
 ===
 
 title: AlluraDuringQuest
@@ -415,9 +478,11 @@ Allura: Bring me a flower, and I'll tell you a secret.
 <<deactivate AlluraSprite>>
 ===
 
-title: AlluraQuestComplete
+title: AlluraFlower
 tags:
 ---
+<<set $memoryCount = $memoryCount + 1>>
+<<set $Flower to true>>
 <<ActivateCece UI>>
 {$PlayerName}: I brought you a flower.
 <<DeactivateCece UI>>
@@ -432,9 +497,92 @@ Allura: Here is my secret: I remember you. Your name is Cecelia. I haven't seen 
 <<deactivate AlluraSprite>>
 <<set $PlayerName to "Cecelia">>
 <<ActivateCece UI>>
+<<Sad Cecelia>>
 {$PlayerName}: Then you know what happened to me! Please, can you tell me?
 <<DeactivateCece UI>>
 <<activate AlluraSprite>>
 Allura: Now, now. I only promised you one secret.
 <<deactivate AlluraSprite>>
+<<memoryTriggered LustMemory>>
+You unlocked a new memory.
+===
+
+title: AlluraQuestComplete
+tags:
+---
+<<activate AlluraSprite>>
+Allura: You're such a beautiful child. Please come back to visit me.
+<<deactivate AlluraSprite>>
+===
+
+title: CrankInstall
+---
+<<set $crank to true>>
+<<use_item herb {$itemUsed}>>
+===
+
+title: Herb
+tags:
+---
+<<if $crank>>
+	<<if $memoryCount < 4>>
+		<<if $memoryCount == 1>>
+			Collect 4 memories to interact with the Jack-in-the-Box. You currently have {$memoryCount} memory.
+		<<else>>
+			Collect 4 memories to interact with the Jack-in-the-Box. You currently have {$memoryCount} memories.
+		<<endif>>
+	<<else>>
+		<<jump HerbFinale>>
+	<<endif>>
+<<else>>
+	Looks like this box needs a crank.
+<<endif>>
+===
+
+title: HerbFinale
+tags:
+---
+<<PlayFinalMusic Audio>>
+<<OpenHerb herb>>
+<<memoryTriggered StabMemory>>
+What's this? Another memory?
+===
+
+title: EndGame
+---
+<<ActivateCece UI>>
+{$PlayerName}: You came back.
+I found another memory. In the nursery.
+{$PlayerName}: What was it this time?
+I think… I think it was a murder.
+<<Sad Cecelia>>
+{$PlayerName}: It was an accident.
+What do you know about it? You don’t know anything. You’re just a paper doll.
+{$PlayerName}: I didn’t know anything when you met me, but you’ve been helping me remember things. And I’ve been helping you.
+Who are you?
+{$PlayerName}: don’t you recognize the name? You knew a Cecelia once.
+My… mother?
+{$PlayerName}: she used to live here when she was a child. … I used to live here. I am all that’s left of her now. She made all of us… and left us here. Just like you.
+That was you. In the memory… you killed someone.
+<<Angry Cecelia>>
+{$PlayerName}: I told you, it was an accident.
+No it wasn't. You stabbed my dad. And now I'm here, all alone.
+{$PlayerName}: I'm looking out for you, I've helped you uncover all of these memories…
+Maybe you shouldn't have. Because now, I remember you.
+<<DeactivateCece UI>>
+<<fadeIn UI>>
+<<wait 1>>
+<<rip UI>>
+<<wait 3>>
+<<fadeOutEnd UI>>
+<<wait 5>>
+<<ActivateCredits UI>>
+
+===
+
+title: AlternateEndGame
+---
+Wow, what the fuck Cece?
+Who the fuck.
+Why the fuck.
 ===

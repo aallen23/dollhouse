@@ -114,6 +114,7 @@ public class ObjectData : MonoBehaviour
     public bool shownObjectItemOverride;
     [Tooltip("For ShowObject Type item uses, should Shown Object start visible?")]
     public bool startVisible;
+	public bool startMeshDisabled;
 
     [Tooltip("For AddItem Type item uses, add this item to your inventory")]
     public ItemScriptableObject itemAddItem;
@@ -142,10 +143,13 @@ public class ObjectData : MonoBehaviour
     public Vector3 secondPos;
     public float animSpeed;
     public AudioSource interactSFX;
+	public AudioSource itemSFX;
     public InventorySystem inv;
 
     public bool rotationAnimation;
     public Vector3 defaultRotation, secondRotation;
+
+	public bool rotateAroundX;
 
     void Start()
     {
@@ -163,6 +167,10 @@ public class ObjectData : MonoBehaviour
         {
             StartCoroutine(HideShownObject());
         }
+		if (startMeshDisabled)
+		{
+			shownObject.GetComponent<Renderer>().enabled = false;
+		}
         if (positionDoll)
         {
             if (positionDoll.TryGetComponent(out MeshRenderer mesh))
@@ -207,19 +215,27 @@ public class ObjectData : MonoBehaviour
             }
             else
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+                //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
             }
             
            
         }
-        else
+        else if (player.rotateAroundObject && lookPoint != Vector3.zero)
         {
             //lookPoint.y = 0;
             //transform.LookAt(new Vector3(lookPoint.x, lookPoint.y, transform.position.z));
             Vector3 dir = lookPoint - transform.position;
             //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion rotationQ = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
-            transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+			if (rotateAroundX)
+			{
+				transform.rotation = new Quaternion(rotationQ.x, 0, 0, rotationQ.w);
+				//transform.localEulerAngles = new Vector3(transform.localRotation.x, 180f, transform.localRotation.z);
+			}
+			else
+			{
+				transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+			}
             //transform.eulerAngles += rotateAroundModAngle;
             //Debug.Log(transform.eulerAngles.z);
             //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90f);
@@ -367,12 +383,23 @@ public class ObjectData : MonoBehaviour
     [YarnCommand("use_item")]
     public void UseItem(float i)
     {
+		if (itemSFX)
+		{
+			itemSFX.Play();
+		}
+
         int it = (int)i;
         switch (objectUseType)
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
-                if (shownObjectModColor)
+				shownObject.TryGetComponent(out Renderer rend);
+				if (rend)
+				{
+					rend.enabled = true;
+
+				}
+				if (shownObjectModColor)
                 {
                     shownObject.GetComponent<Renderer>().material = item[it].displayMaterial;
                     
