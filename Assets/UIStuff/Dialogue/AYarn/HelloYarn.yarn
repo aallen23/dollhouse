@@ -497,6 +497,7 @@ Allura: Here is my secret: I remember you. Your name is Cecelia. I haven't seen 
 <<deactivate AlluraSprite>>
 <<set $PlayerName to "Cecelia">>
 <<ActivateCece UI>>
+<<Sad Cecelia>>
 {$PlayerName}: Then you know what happened to me! Please, can you tell me?
 <<DeactivateCece UI>>
 <<activate AlluraSprite>>
@@ -519,7 +520,6 @@ title: CrankInstall
 <<set $crank to true>>
 <<use_item herb {$itemUsed}>>
 ===
-
 
 title: Herb
 tags:
@@ -545,10 +545,34 @@ tags:
 <<PlayFinalMusic Audio>>
 <<OpenHerb herb>>
 <<memoryTriggered StabMemory>>
-Wow, you finished the game. looks like the devs haven't made it this far yet.
+What's this? Another memory?
 ===
 
 title: EndGame
+---
+<<ActivateCece UI>>
+{$PlayerName}: You came back.
+I found another memory. In the nursery.
+{$PlayerName}: What was it this time?
+I think… I think it was a murder.
+<<Sad Cecelia>>
+{$PlayerName}: It was an accident.
+What do you know about it? You don’t know anything. You’re just a paper doll.
+{$PlayerName}: I didn’t know anything when you met me, but you’ve been helping me remember things. And I’ve been helping you.
+Who are you?
+{$PlayerName}: don’t you recognize the name? You knew a Cecelia once.
+My… mother?
+{$PlayerName}: she used to live here when she was a child. … I used to live here. I am all that’s left of her now. She made all of us… and left us here. Just like you.
+That was you. In the memory… you killed someone.
+<<Angry Cecelia>>
+{$PlayerName}: I told you, it was an accident.
+No it wasn't. You stabbed my dad. And now I'm here, all alone.
+{$PlayerName}: I'm looking out for you, I've helped you uncover all of these memories…
+Maybe you shouldn't have. Because now, I remember you.
+<<DeactivateCece UI>>
+===
+
+title: AlternateEndGame
 ---
 Wow, what the fuck Cece?
 Who the fuck.
