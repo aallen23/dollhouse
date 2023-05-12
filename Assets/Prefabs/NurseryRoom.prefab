@@ -60,6 +60,66 @@ MonoBehaviour:
   runYarnOnce: 0
   ranYarn: 0
   inDollhouse: 0
+--- !u!1 &428931958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 428931960}
+  - component: {fileID: 428931959}
+  m_Layer: 0
+  m_Name: East (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &428931960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428931958}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 750, y: 0, z: 185}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1965155245}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &428931959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428931958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {fileID: 1764023189}
+  - {fileID: 0}
+  - {fileID: 1063392863}
+  - {fileID: 907357813}
+  obeyRotation: 0
+  quickSwitch: 0
+  houseYRotation: 0
+  enableAtPosition: []
+  audioAtPosition: []
+  playFromStart: 0
+  rotateAround: {fileID: 0}
+  runYarn: 
+  runYarnOnce: 0
+  ranYarn: 0
+  inDollhouse: 0
 --- !u!1 &491973073
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,9 +504,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positions:
   - {fileID: 2068377426}
+  - {fileID: 428931959}
+  - {fileID: 1283929139}
+  - {fileID: 1204705348}
+  obeyRotation: 0
+  quickSwitch: 0
+  houseYRotation: 0
+  enableAtPosition: []
+  audioAtPosition: []
+  playFromStart: 0
+  rotateAround: {fileID: 0}
+  runYarn: 
+  runYarnOnce: 0
+  ranYarn: 0
+  inDollhouse: 0
+--- !u!1 &1063392862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1063392864}
+  - component: {fileID: 1063392863}
+  m_Layer: 0
+  m_Name: SouthEast (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1063392864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063392862}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 750, y: 0, z: -65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1965155245}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1063392863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063392862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {fileID: 428931959}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 1283929139}
-  - {fileID: 0}
   obeyRotation: 0
   quickSwitch: 0
   houseYRotation: 0
@@ -624,9 +744,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positions:
   - {fileID: 907357813}
-  - {fileID: 0}
+  - {fileID: 1063392863}
   - {fileID: 0}
   - {fileID: 326855623}
+  obeyRotation: 0
+  quickSwitch: 0
+  houseYRotation: 0
+  enableAtPosition: []
+  audioAtPosition: []
+  playFromStart: 0
+  rotateAround: {fileID: 0}
+  runYarn: 
+  runYarnOnce: 0
+  ranYarn: 0
+  inDollhouse: 0
+--- !u!1 &1764023187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1764023188}
+  - component: {fileID: 1764023189}
+  m_Layer: 0
+  m_Name: NorthEast (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1764023188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764023187}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 750, y: 0, z: 435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1965155245}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1764023189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764023187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c00468df6de5ee45aa52053c2f57d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 428931959}
+  - {fileID: 2068377426}
   obeyRotation: 0
   quickSwitch: 0
   houseYRotation: 0
@@ -737,6 +917,9 @@ Transform:
   - {fileID: 326855624}
   - {fileID: 491973074}
   - {fileID: 1204705349}
+  - {fileID: 1764023188}
+  - {fileID: 428931960}
+  - {fileID: 1063392864}
   m_Father: {fileID: 2172756603192930527}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -786,7 +969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positions:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1764023189}
   - {fileID: 907357813}
   - {fileID: 491973075}
   obeyRotation: 0

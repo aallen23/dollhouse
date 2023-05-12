@@ -12,6 +12,7 @@ tags:
 <<set $PlayerName to "???">>
 <<set $memoryCount to 0>>
 <<set $crank to false>>
+<<set $cranked to false>>
 <<set $duckPlaced to false>>
 <<set $stairs to false>>
 <<set $flowerGrown to false>>
@@ -27,7 +28,7 @@ Grandma: Well, no surprise there.
 Grandma: No. Not since their father died.
 ...: What a tragedy… At least now, they have you to take care of them…
 //<<PlayCarIntro Audio>>
-//<<wait 15>> temp
+//<<wait 15>>
 <<StartAmbience Audio>>
 <<fadeOut UI>>
 <<wait 1>>
@@ -534,7 +535,12 @@ tags:
 	<<else>>
 		<<jump HerbFinale>>
 	<<endif>>
-<<else>>
+<<endif>>
+===
+
+title: HerbBox
+---
+<<if $crank is false>>
 	Looks like this box needs a crank.
 <<endif>>
 ===
@@ -542,10 +548,13 @@ tags:
 title: HerbFinale
 tags:
 ---
-<<PlayFinalMusic Audio>>
-<<OpenHerb herb>>
-<<memoryTriggered StabMemory>>
-What's this? Another memory?
+<<if $cranked is false>>
+	<<set $cranked to true>>
+	<<PlayFinalMusic Audio>>
+	<<OpenHerb herb>>
+	<<memoryTriggered StabMemory>>
+	What's this? Another memory?
+<<endif>>
 ===
 
 title: EndGame
@@ -570,6 +579,14 @@ No it wasn't. You stabbed my dad. And now I'm here, all alone.
 {$PlayerName}: I'm looking out for you, I've helped you uncover all of these memories…
 Maybe you shouldn't have. Because now, I remember you.
 <<DeactivateCece UI>>
+<<fadeIn UI>>
+<<wait 1>>
+<<rip UI>>
+<<wait 3>>
+<<fadeOutEnd UI>>
+<<wait 5>>
+<<ActivateCredits UI>>
+
 ===
 
 title: AlternateEndGame

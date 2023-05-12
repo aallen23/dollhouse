@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
         playAmbience = false;
         paused = false;
         currentSound = null;
+		MenuMusic();
     }
 
     public void Update()
@@ -114,8 +115,15 @@ public class AudioManager : MonoBehaviour
 
     public void PlayCreditsMusic()
     {
-        currentMusic.Stop();
-        currentMusic = endCredits;
+		if (currentMusic)
+		{
+			currentMusic.Stop();
+		}
+		if (paused == false)
+		{
+			PauseAmbience();
+		}
+		currentMusic = endCredits;
         endCredits.Play();
     }
 

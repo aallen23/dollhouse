@@ -61,6 +61,10 @@ public class MenuManager : MonoBehaviour
 	public bool showFPS;
 	public TMP_Text fps;
 
+	private bool game_ended;
+	private static bool restart_game = false;
+	public AudioSource CeceCrumple;
+
     public void Awake()
     {
         audioManager = audioBox.GetComponent<AudioManager>();
@@ -85,6 +89,16 @@ public class MenuManager : MonoBehaviour
 		if (!showFPS)
 		{
 			fps.gameObject.SetActive(false);
+		}
+	}
+
+	private void Start()
+	{
+		CeceCrumple.gameObject.SetActive(false);
+		if (restart_game)
+		{
+			restart_game = false;
+			StartButton();
 		}
 	}
 
@@ -138,7 +152,24 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(Fade(false));
     }
 
-    IEnumerator Fade(bool fadeToBlack)
+	[YarnCommand("rip")]
+	public void Rip()
+	{
+		FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().lastPos);
+		SetAllInactive();
+		CeceCrumple.gameObject.SetActive(true);
+		CeceCrumple.Play();
+	}
+
+	[YarnCommand("fadeOutEnd")]
+	public void FadeInEnd()
+	{
+		//FindObjectOfType<P2PCameraController>().desiredRotation.y = 180f; //disable if firstpos is in dollhouse
+		StartCoroutine(Fade(false));
+		game_ended = true;
+	}
+
+	IEnumerator Fade(bool fadeToBlack)
     {
 
         if (fadeToBlack)
@@ -220,6 +251,13 @@ public class MenuManager : MonoBehaviour
         gameUI.SetActive(true);
     }
 
+	[YarnCommand("ActivateCredits")]
+	public void Credits()
+	{
+		CreditsButton();
+		audioManager.PlayCreditsMusic();
+	}
+
     [YarnCommand("ActivateCece")]
     public void ActivateCece()
     {
@@ -256,6 +294,11 @@ public class MenuManager : MonoBehaviour
 
     public void StartButton()
     {
+		if (game_ended)
+		{
+			restart_game = true;
+			Restart();
+		}
         SetAllInactive();
         audioManager.TurnOffMusic();
         //audioManager.StartAmbience();
@@ -531,4 +574,6 @@ public class MenuManager : MonoBehaviour
 		QualitySettings.SetQualityLevel(dropdown.value);
 		Debug.Log(QualitySettings.GetQualityLevel());
 	}
+
+
 }
