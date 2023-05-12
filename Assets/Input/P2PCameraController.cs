@@ -650,8 +650,10 @@ public class P2PCameraController : MonoBehaviour
     public void EnableControls()
     {
         gameStarted = true;
-        //Travel(firstPos);
-    }
+		doll.GetComponent<DollBehavior>().dollCamera.transform.position = GameObject.Find("Cam_CeceEndGame").transform.position;
+		doll.GetComponent<DollBehavior>().dollCamera.transform.rotation = GameObject.Find("Cam_CeceEndGame").transform.rotation;
+		//Travel(firstPos);
+	}
 
 	[YarnCommand("enable_cry")]
 	public void EnableCry()
