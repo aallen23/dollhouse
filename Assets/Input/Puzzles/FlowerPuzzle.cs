@@ -26,6 +26,8 @@ public class FlowerPuzzle : MonoBehaviour
 			Flower.SetActive(true);
 			grown = false;
 			GetComponent<AudioSource>().Play();
+
+			FindObjectOfType<P2PCameraController>().dialog.VariableStorage.SetValue("$flowerGrown", true);
 		}
 	}
 

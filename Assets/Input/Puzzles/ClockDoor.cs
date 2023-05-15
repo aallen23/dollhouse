@@ -7,14 +7,13 @@ public class ClockDoor : MonoBehaviour
     public ObjectData handBig;
     public ObjectData handSmall;
 
-	public GameObject cup, stairs, navBlocker;
+	public GameObject cup, stairs;
 
 	private bool completed;
 
     private void Start()
     {
 		stairs.SetActive(false);
-		navBlocker.SetActive(true);
 	}
 
     public void Check()
@@ -28,10 +27,12 @@ public class ClockDoor : MonoBehaviour
 			//GetComponent<MeshRenderer>().enabled = true;
 			//GetComponent<Collider>().enabled = true;
 			stairs.SetActive(true);
-			navBlocker.SetActive(false);
-			Material cupMat = cup.GetComponent<MeshRenderer>().materials[0];
-			cup.GetComponent<MeshRenderer>().materials = new Material[1];
-			cup.GetComponent<MeshRenderer>().materials[0] = cupMat;
+			//navBlocker.SetActive(false);
+			//Material cupMat = cup.GetComponent<MeshRenderer>().materials[0];
+			//cup.GetComponent<MeshRenderer>().materials = new Material[1];
+			//cup.GetComponent<MeshRenderer>().materials[0] = cupMat;
+			cup.SetActive(false);
+			FindObjectOfType<P2PCameraController>().dialog.VariableStorage.SetValue("$stairs", true);
 			GetComponent<AudioSource>().Play();
 		}
     }
