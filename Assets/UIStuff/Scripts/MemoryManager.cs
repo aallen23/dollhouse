@@ -62,7 +62,12 @@ public class MemoryManager : MonoBehaviour
         }
         paper.SetActive(false);
         sprite2.SetActive(false);
-        
+
+		FindObjectOfType<P2PCameraController>().dialog.VariableStorage.TryGetValue("$memoryCount", out float memoryCount);
+		if (memoryCount <= 1)
+		{
+			FindObjectOfType<P2PCameraController>().dialog.StartDialogue("MemoryTutorial");
+		}
 
 		if (triggerEndGame)
 		{

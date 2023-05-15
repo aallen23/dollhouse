@@ -65,6 +65,8 @@ public class MenuManager : MonoBehaviour
 	private static bool restart_game = false;
 	public AudioSource CeceCrumple;
 
+	public Button page1_right, page4_left;
+
     public void Awake()
     {
         audioManager = audioBox.GetComponent<AudioManager>();
@@ -304,7 +306,11 @@ public class MenuManager : MonoBehaviour
         //audioManager.StartAmbience();
         FadeIn();
         dialog.StartDialogue("StartGame");
-    }
+		page1_right.onClick.RemoveListener(Page4Button);
+		page1_right.onClick.AddListener(Page2Button);
+		page4_left.onClick.RemoveListener(Page1Button);
+		page4_left.onClick.AddListener(Page2Button);
+	}
 
     public void CreditsButton()
     {

@@ -1,4 +1,4 @@
-﻿title: Start
+title: Start
 tags:
 ---
 <<set $itemUsed to 0>>
@@ -44,6 +44,7 @@ tags:
 {$PlayerName}: Hello?
 {$PlayerName}: Is someone there?
 Search for the source of the voice.
+Use WASD or the D Pad to walk around.
 ===
 
 title: Cece
@@ -467,7 +468,7 @@ Allura: Why, you'll have to grow one. With your tears, of course.
 <<activate AlluraSprite>>
 Allura: Don't you know how to cry, little one? Don't worry... I'll teach you.
 <<deactivate AlluraSprite>>
-Now, you can make the paper doll cry. Press C to cry.
+Press the C Key or the X Button to force the doll to cry.
 <<enable_cry P2PPlayer>>
 ===
 
@@ -507,6 +508,7 @@ Allura: Now, now. I only promised you one secret.
 <<memoryTriggered LustMemory>>
 You unlocked a new memory.
 ===
+
 
 title: AlluraQuestComplete
 tags:
@@ -594,4 +596,9 @@ title: AlternateEndGame
 Wow, what the fuck Cece?
 Who the fuck.
 Why the fuck.
+===
+
+title: MemoryTutorial
+---
+You can view found memories in the pause menu.
 ===
