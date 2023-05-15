@@ -34,6 +34,120 @@ Transform:
   m_Father: {fileID: 8551968685527995347}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1091637691595319276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4731755219995640737}
+  - component: {fileID: 5106529728998919819}
+  - component: {fileID: 3917595401016719587}
+  - component: {fileID: 9037426892060327248}
+  - component: {fileID: 471717977125312530}
+  m_Layer: 0
+  m_Name: HallwayBlocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
+  m_IsActive: 1
+--- !u!4 &4731755219995640737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091637691595319276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.23, y: 21.6, z: 60.52}
+  m_LocalScale: {x: 71.6967, y: 6.1303, z: 14.809457}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8551968685527995347}
+  m_RootOrder: 48
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5106529728998919819
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091637691595319276}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3917595401016719587
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091637691595319276}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9037426892060327248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091637691595319276}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &471717977125312530
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091637691595319276}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4804379866739624107
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +389,8 @@ Transform:
   - {fileID: 9116822920323688412}
   - {fileID: 2342851152376478902}
   - {fileID: 8461259735521008905}
+  - {fileID: 669599988903718086}
+  - {fileID: 4731755219995640737}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -458,6 +574,146 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e6276e02927fbc24092246e994e3dae9, type: 3}
   m_PrefabInstance: {fileID: 441829814}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1151584221
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8551968685527995347}
+    m_Modifications:
+    - target: {fileID: 144454974584500641, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_Name
+      value: CrunchyWardrobe (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144454974584500641, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144454974584500641, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_RootOrder
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 34.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 78.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+--- !u!1 &144454975597475452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 144454974584500641, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+  m_PrefabInstance: {fileID: 1151584221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1527128305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144454975597475452}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDollObject: 1
+  positionDoll: {fileID: 0}
+  positionCamera: {fileID: 0}
+  disableInteractAtPosition: 0
+  interactType: 7
+  yarnExamine: LilWithdraw
+  rotateAmount: {x: 0, y: 0, z: 0}
+  desiredRotation: {x: 0, y: 0, z: 0}
+  rotationSpeed: 0
+  rotateObject: {fileID: 0}
+  teleportPoint: {fileID: 0}
+  addedItem: {fileID: 0}
+  addItemIsInfinite: 0
+  addItemHideObject: {fileID: 0}
+  itemEnabledToggleObject: {fileID: 0}
+  respawnY: 0
+  allowedDraggingCamera: {fileID: 0}
+  requiredDraggingSurface: {fileID: 0}
+  MoveDollTo: []
+  MoveDollToIndex: 0
+  functioninteract:
+    m_PersistentCalls:
+      m_Calls: []
+  item:
+  - {fileID: 11400000, guid: 5cccbce57df85d246b41e8382a414da6, type: 2}
+  itemEnabled: 1
+  objectUseType: 3
+  yarnItem: LilDeposit
+  shownObject: {fileID: 0}
+  shownObjectModColor: 0
+  shownObjectItemOverride: 0
+  startVisible: 0
+  startMeshDisabled: 0
+  itemAddItem: {fileID: 0}
+  addItemDestination: {fileID: 0}
+  addItemItem: {fileID: 0}
+  functionItem:
+    m_PersistentCalls:
+      m_Calls: []
+  lookPoint: {x: 0, y: 0, z: 0}
+  mouseDelta: {x: 0, y: 0}
+  rotateAroundModAngle: {x: 0, y: 0, z: 0}
+  rotateAroundForceAngle: {x: 0, y: 0, z: 0}
+  desiredPos: {x: 0, y: 0, z: 0}
+  secondPos: {x: 0, y: 0, z: 0}
+  animSpeed: 0
+  interactSFX: {fileID: 0}
+  itemSFX: {fileID: 0}
+  inv: {fileID: 0}
+  rotationAnimation: 0
+  defaultRotation: {x: 0, y: 0, z: 0}
+  secondRotation: {x: 0, y: 0, z: 0}
+  rotateAroundX: 0
+--- !u!4 &669599988903718086 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+  m_PrefabInstance: {fileID: 1151584221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1341587825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -640,6 +896,10 @@ PrefabInstance:
     - target: {fileID: 3594594405189966211, guid: 4dc4fc3a7d04231458b7a25cd8e882fa, type: 3}
       propertyPath: m_Name
       value: Paper_FineChina (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594594405189966211, guid: 4dc4fc3a7d04231458b7a25cd8e882fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4226980358455034681, guid: 4dc4fc3a7d04231458b7a25cd8e882fa, type: 3}
       propertyPath: m_RootOrder
@@ -1403,6 +1663,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper_Shelf (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4867622992341950151, guid: 51bcedfee0e509743ae49a5afb20a3a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5244043737589384317, guid: 51bcedfee0e509743ae49a5afb20a3a6, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -1599,6 +1863,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper_BookShelf (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5307190532237428793, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
 --- !u!4 &7222491529263775121 stripped
@@ -1766,6 +2034,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 416484a8d7b766b4287eee8187ec9c52, type: 3}
       propertyPath: m_Name
       value: PaperRoundTable (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 416484a8d7b766b4287eee8187ec9c52, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 416484a8d7b766b4287eee8187ec9c52, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2135,6 +2407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper_BookShelf (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5307190532237428793, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
 --- !u!4 &89190789888239115 stripped
@@ -2152,6 +2428,10 @@ PrefabInstance:
     - target: {fileID: 3594594405189966211, guid: 4dc4fc3a7d04231458b7a25cd8e882fa, type: 3}
       propertyPath: m_Name
       value: Paper_FineChina
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594594405189966211, guid: 4dc4fc3a7d04231458b7a25cd8e882fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4226980358455034681, guid: 4dc4fc3a7d04231458b7a25cd8e882fa, type: 3}
       propertyPath: m_RootOrder
@@ -2262,6 +2542,10 @@ PrefabInstance:
     - target: {fileID: 5307190532237428793, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
       propertyPath: m_Name
       value: Paper_BookShelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307190532237428793, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
@@ -2547,6 +2831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper_FineChina (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3594594405189966211, guid: 4dc4fc3a7d04231458b7a25cd8e882fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4226980358455034681, guid: 4dc4fc3a7d04231458b7a25cd8e882fa, type: 3}
       propertyPath: m_RootOrder
       value: 46
@@ -2829,6 +3117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper_BookShelf (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5307190532237428793, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448c55e1ef9f6324db58ed3f8baeae3d, type: 3}
 --- !u!4 &1477788429894536556 stripped
@@ -2937,6 +3229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper_Shelf (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4867622992341950151, guid: 51bcedfee0e509743ae49a5afb20a3a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5244043737589384317, guid: 51bcedfee0e509743ae49a5afb20a3a6, type: 3}
       propertyPath: m_RootOrder
       value: 38
@@ -3002,6 +3298,14 @@ PrefabInstance:
     - target: {fileID: 144454974584500641, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
       propertyPath: m_Name
       value: CrunchyWardrobe
+      objectReference: {fileID: 0}
+    - target: {fileID: 144454974584500641, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144454974584500641, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 669599987903359771, guid: 1080597ecaa07a441bb2069a266ae639, type: 3}
       propertyPath: m_RootOrder
@@ -3220,6 +3524,10 @@ PrefabInstance:
     - target: {fileID: 4867622992341950151, guid: 51bcedfee0e509743ae49a5afb20a3a6, type: 3}
       propertyPath: m_Name
       value: Paper_Shelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 4867622992341950151, guid: 51bcedfee0e509743ae49a5afb20a3a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5244043737589384317, guid: 51bcedfee0e509743ae49a5afb20a3a6, type: 3}
       propertyPath: m_RootOrder
@@ -3678,6 +3986,10 @@ PrefabInstance:
     - target: {fileID: 6848669246310066496, guid: 51b9b6adf67a8f74da4bd9a7bff04f85, type: 3}
       propertyPath: m_Name
       value: Paper_Rug
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848669246310066496, guid: 51b9b6adf67a8f74da4bd9a7bff04f85, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b9b6adf67a8f74da4bd9a7bff04f85, type: 3}
@@ -4292,6 +4604,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 416484a8d7b766b4287eee8187ec9c52, type: 3}
       propertyPath: m_Name
       value: PaperRoundTable (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 416484a8d7b766b4287eee8187ec9c52, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 416484a8d7b766b4287eee8187ec9c52, type: 3}
       propertyPath: m_StaticEditorFlags
