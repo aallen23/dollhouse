@@ -565,8 +565,14 @@ public class P2PCameraController : MonoBehaviour
         //Eventually will be replaced by our pause system, in the meantime we will want to quit the game this way
         if (Keyboard.current.escapeKey.wasPressedThisFrame && gameStarted)
         {
-            FindObjectOfType<MenuManager>().Pause();
-            //Application.Quit();
+			if (gameStarted)
+			{
+				FindObjectOfType<MenuManager>().Pause();
+			}
+			else
+			{
+				FindObjectOfType<MenuManager>().ReturnToMain();
+			}
         }
     }
     //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object) Redudant.
