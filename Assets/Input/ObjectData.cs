@@ -147,6 +147,8 @@ public class ObjectData : MonoBehaviour
     public InventorySystem inv;
 
     public bool rotationAnimation;
+	public Animator animationToPlay;
+	public string animationParameter;
     public Vector3 defaultRotation, secondRotation;
 
 	public bool rotateAroundX;
@@ -277,6 +279,10 @@ public class ObjectData : MonoBehaviour
         {
             interactSFX.Play();
         }
+		if (animationToPlay)
+		{
+			animationToPlay.SetTrigger(animationParameter);
+		}
 
         switch (interactType)
         {
@@ -373,7 +379,7 @@ public class ObjectData : MonoBehaviour
         }
         if (secondRotation != Vector3.zero)
         {
-            desiredRotation = desiredRotation + secondRotation;
+            desiredRotation = secondRotation;
             //Debug.Log("Do shit");
         }
         functioninteract.Invoke();
