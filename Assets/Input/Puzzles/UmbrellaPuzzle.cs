@@ -11,6 +11,8 @@ public class UmbrellaPuzzle : MonoBehaviour
 
     public ItemScriptableObject stand1, stand2, stand3, stand4;
 
+	public AudioSource audioComplete;
+
     private void Start()
     {
         //GetComponent<Collider>().enabled = false;
@@ -49,7 +51,7 @@ public class UmbrellaPuzzle : MonoBehaviour
             //GetComponent<Collider>().enabled = true;
             //GetComponent<MeshRenderer>().enabled = true;
             gameObject.SetActive(true);
-			GetComponent<AudioSource>().Play();
+			audioComplete.Play();
         }
     }
 }
