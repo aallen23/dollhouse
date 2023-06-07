@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlowerPuzzle : MonoBehaviour
 {
-	public GameObject Flower;
+	[Tooltip("The flower GameObject to show.")] public GameObject Flower;
 	private bool grown = false;
 
     // Start is called before the first frame update
@@ -19,15 +19,16 @@ public class FlowerPuzzle : MonoBehaviour
         
     }
 
+	//Called by CheckCry.cs when Cry Trigger collides with the FlowerPot GameObject
 	public void Grow()
 	{
 		if (!grown)
 		{
 			Flower.SetActive(true);
-			grown = false;
-			GetComponent<AudioSource>().Play();
+			grown = true;
+			GetComponent<AudioSource>().Play(); //Puzzle Complete music
 
-			FindObjectOfType<P2PCameraController>().dialog.VariableStorage.SetValue("$flowerGrown", true);
+			FindObjectOfType<P2PCameraController>().dialog.VariableStorage.SetValue("$flowerGrown", true); //Update text for the flower pot interaction.
 		}
 	}
 

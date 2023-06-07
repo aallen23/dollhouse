@@ -5,7 +5,7 @@ using Yarn.Unity;
 
 public class Herb : MonoBehaviour
 {
-	public Animator crank, body, lid;
+	[Tooltip("The Animators we need to call.")] public Animator crank, body, lid;
 	private bool cranked;
 
     // Start is called before the first frame update

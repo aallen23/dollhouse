@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Duck : MonoBehaviour
 {
-	public GameObject note;
-	public List<AudioClip> honks;
-	public AudioSource source;
+	[Tooltip("The note, to show when He shows up.")] public GameObject note;
+	[Tooltip("A list of honks that we can cycle through.")] public List<AudioClip> honks;
+	[Tooltip("AudioSource for honks.")] public AudioSource source;
 
 	private void Start()
 	{

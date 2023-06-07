@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ClockAudio : MonoBehaviour
 {
-	public AudioClip fixedAudio;
-	public AudioSource sourcePlop;
-	public AudioSource source;
+	[Tooltip("Ambient clock sounds to switch to and play when it is fixed.")] public AudioClip fixedAudio;
+	[Tooltip("Clock hand placing sound effect Source to play.")] public AudioSource sourcePlop;
+	[Tooltip("Ambient clock sound effect Source.")] public AudioSource source;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class ClockAudio : MonoBehaviour
 	public void Fix()
 	{
 		sourcePlop.Play();
-		source.clip = fixedAudio;
+		source.clip = fixedAudio; //source initial Clip is the broken one, now we're switching to the fixed version.
 		source.Play();
 	}
 }
