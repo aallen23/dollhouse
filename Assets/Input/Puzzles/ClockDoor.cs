@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class ClockDoor : MonoBehaviour
 {
-    public ObjectData handBig;
-    public ObjectData handSmall;
+    [Tooltip("The Big Hand. We'll compare it to a desired value.")] public ObjectData handBig;
+	[Tooltip("The Small Hand. We'll compare it to a desired value.")] public ObjectData handSmall;
 
-    public ObjectData compareHandBig;
-    public ObjectData compareHandSmall;
+	[Tooltip("Popsicles, we'll disable it when we make a desired comparison.")] public GameObject cup;
+	[Tooltip("The Stairs, we'll enable it when we make a desired comparison.")] public GameObject stairs;
+
+	[Tooltip("Whether the time has been successfully set. If it already has, we won't do anything.")] private bool completed;
 
     private void Start()
     {
-        GetComponent<Collider>().enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
-    }
+		stairs.SetActive(false); //Stairs should start hidden.
+	}
 
     public void Check()
     {
-        Debug.Log(handSmall.transform.eulerAngles + " " + handSmall.transform.localEulerAngles);
-        Debug.Log(Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) + " " + Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f));
-        //Debug.Log(((int)handBig.desiredlocalEulerAngles.z == (int)compareHandBig.desiredlocalEulerAngles.z) + " " + ((int)handSmall.desiredlocalEulerAngles.z == (int)compareHandSmall.desiredlocalEulerAngles.z));
-        if (Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) < 15f && Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f) < 15f)
+        Debug.Log(Mathf.Abs(handBig.transform.localEulerAngles.z - 300f).ToString("0.0") + " " + Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f).ToString("0.0"));
+
+        if (Mathf.Abs(handBig.transform.localEulerAngles.z - 300f) < 15f && Mathf.Abs(handSmall.transform.localEulerAngles.z - 240f) < 15f && !completed) //If the hands are close to our desired values (which is the time 2:20)
         {
-            GetComponent<MeshRenderer>().enabled = true;
-            GetComponent<Collider>().enabled = true;
-        }
+			completed = true;
+			stairs.SetActive(true);
+			cup.SetActive(false);
+			FindObjectOfType<P2PCameraController>().dialog.VariableStorage.SetValue("$stairs", true);
+			GetComponent<AudioSource>().Play();
+		}
     }
 }

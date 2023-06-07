@@ -15,7 +15,8 @@ public enum InteractType
     AddItem,
     BlankHand,
     Dragging,
-    WardrobeWithdraw
+    WardrobeWithdraw,
+    DollGoTo
 }
 
 public enum ObjectUseType
@@ -24,6 +25,7 @@ public enum ObjectUseType
     ShowObject,
     AddItem,
     AddItemElsewhere,
+    UmbrellaToggleType
 }
 
 //Stores an Interactable Object's Data
@@ -84,6 +86,10 @@ public class ObjectData : MonoBehaviour
     public Dictionary<string, ItemScriptableObject> wardrobeItems;
 
     [Space(10)]
+    public List<Transform> MoveDollTo;
+    public int MoveDollToIndex;
+
+    [Space(10)]
     [Tooltip("(Optional) What function to call after interacting.")]
     public UnityEvent functioninteract;
 
@@ -108,6 +114,7 @@ public class ObjectData : MonoBehaviour
     public bool shownObjectItemOverride;
     [Tooltip("For ShowObject Type item uses, should Shown Object start visible?")]
     public bool startVisible;
+	public bool startMeshDisabled;
 
     [Tooltip("For AddItem Type item uses, add this item to your inventory")]
     public ItemScriptableObject itemAddItem;
@@ -136,23 +143,36 @@ public class ObjectData : MonoBehaviour
     public Vector3 secondPos;
     public float animSpeed;
     public AudioSource interactSFX;
-    private InventorySystem inv;
+	public AudioSource itemSFX;
+    public InventorySystem inv;
+
+    public bool rotationAnimation;
+	public Animator animationToPlay;
+	public string animationParameter;
+    public Vector3 defaultRotation, secondRotation;
+
+	public bool rotateAroundX;
 
     void Start()
     {
         defaultPos = transform.localPosition;
         desiredPos = defaultPos;
         //Find specific GameObjects to be called alter.
-        dialog = FindObjectOfType<DialogueRunner>();
-        player = FindObjectOfType<P2PCameraController>();
-        inv = FindObjectOfType<InventorySystem>();
-        desiredRotation = transform.eulerAngles;
+        dialog = FindObjectOfType<DialogueRunner>(true);
+        player = FindObjectOfType<P2PCameraController>(true);
+        inv = FindObjectOfType<InventorySystem>(true);
+        defaultRotation = transform.localEulerAngles;
+        desiredRotation = defaultRotation;
 
         //If an Item would show an GameObject, we want it to start hidden
         if (!startVisible)
         {
             StartCoroutine(HideShownObject());
         }
+		if (startMeshDisabled)
+		{
+			shownObject.GetComponent<Renderer>().enabled = false;
+		}
         if (positionDoll)
         {
             if (positionDoll.TryGetComponent(out MeshRenderer mesh))
@@ -183,16 +203,41 @@ public class ObjectData : MonoBehaviour
         //Rotates object (uses Quaternion.Lerp isntead of below to avoid Gimbal Lock) :)
         if (lookPoint == Vector3.zero)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+            if (rotationAnimation)
+            {
+                if (transform.localEulerAngles != desiredRotation)
+                {
+                    //Debug.Log("Doing shit");
+                    transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(desiredRotation), Time.deltaTime * animSpeed);
+                }
+                else if (desiredRotation != defaultRotation)
+                {
+                    desiredRotation = defaultRotation;
+                }
+            }
+            else
+            {
+                //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+            }
+            
+           
         }
-        else
+        else if (player.rotateAroundObject && lookPoint != Vector3.zero)
         {
             //lookPoint.y = 0;
             //transform.LookAt(new Vector3(lookPoint.x, lookPoint.y, transform.position.z));
             Vector3 dir = lookPoint - transform.position;
             //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion rotationQ = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
-            transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+			if (rotateAroundX)
+			{
+				transform.rotation = new Quaternion(rotationQ.x, 0, 0, rotationQ.w);
+				//transform.localEulerAngles = new Vector3(transform.localRotation.x, 180f, transform.localRotation.z);
+			}
+			else
+			{
+				transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+			}
             //transform.eulerAngles += rotateAroundModAngle;
             //Debug.Log(transform.eulerAngles.z);
             //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90f);
@@ -234,6 +279,10 @@ public class ObjectData : MonoBehaviour
         {
             interactSFX.Play();
         }
+		if (animationToPlay)
+		{
+			animationToPlay.SetTrigger(animationParameter);
+		}
 
         switch (interactType)
         {
@@ -312,10 +361,26 @@ public class ObjectData : MonoBehaviour
                     }
                 }
                 break;
+            case InteractType.DollGoTo:
+                FindObjectOfType<NavMeshAgent>().destination = MoveDollTo[MoveDollToIndex].position;
+                if (MoveDollToIndex < MoveDollTo.Count - 1)
+                {
+                    MoveDollToIndex++;
+                }
+                else
+                {
+                    MoveDollToIndex = 0;
+                }
+                break;
         }
         if (secondPos != Vector3.zero || secondPos != null)
         {
             desiredPos = defaultPos + secondPos;
+        }
+        if (secondRotation != Vector3.zero)
+        {
+            desiredRotation = secondRotation;
+            //Debug.Log("Do shit");
         }
         functioninteract.Invoke();
     }
@@ -324,12 +389,23 @@ public class ObjectData : MonoBehaviour
     [YarnCommand("use_item")]
     public void UseItem(float i)
     {
+		if (itemSFX)
+		{
+			itemSFX.Play();
+		}
+
         int it = (int)i;
         switch (objectUseType)
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
-                if (shownObjectModColor)
+				shownObject.TryGetComponent(out Renderer rend);
+				if (rend)
+				{
+					rend.enabled = true;
+
+				}
+				if (shownObjectModColor)
                 {
                     shownObject.GetComponent<Renderer>().material = item[it].displayMaterial;
                     
@@ -362,6 +438,10 @@ public class ObjectData : MonoBehaviour
                 {
                     addItemDestination.addedItem = item[it];
                 }
+                break;
+            case ObjectUseType.UmbrellaToggleType:
+                GetComponent<UmbrellaModelSwitcher>().SwitchModel(it);
+                itemEnabled = false;
                 break;
         }
         functionItem.Invoke();

@@ -1,0 +1,604 @@
+title: Start
+tags:
+---
+<<set $itemUsed to 0>>
+<<set $BBfed to false>>
+<<set $Music to false>>
+<<set $Tintro to false>>
+<<set $Tea to false>>
+<<set $Flower to false>>
+<<set $AlluraTutorial to false>>
+<<set $AlluraIntro to false>>
+<<set $PlayerName to "???">>
+<<set $memoryCount to 0>>
+<<set $crank to false>>
+<<set $cranked to false>>
+<<set $duckPlaced to false>>
+<<set $stairs to false>>
+<<set $flowerGrown to false>>
+===
+
+title: StartGame
+tags:
+---
+<<wait 2>>
+...: Poor thing. They deserved a better mother.
+Grandma: Well, no surprise there.
+...: She hadn’t come home in a long time, had she?
+Grandma: No. Not since their father died.
+...: What a tragedy… At least now, they have you to take care of them…
+<<PlayCarIntro Audio>>
+<<wait 15>>
+<<StartAmbience Audio>>
+<<fadeOut UI>>
+<<wait 1>>
+<<BlinkSequence UI>>
+<<ActivateUI UI>>
+<<enable_controls P2PPlayer>>
+<<jump Intro>>
+===
+
+title: Intro
+tags:
+---
+{$PlayerName}: Hello?
+{$PlayerName}: Is someone there?
+Search for the source of the voice.
+Use WASD or the D Pad to walk around.
+===
+
+title: Cece
+tags:
+---
+<<ActivateCece UI>>
+{$PlayerName}: Who are you?
+-> Who are *you*?
+{$PlayerName}: I don't remember... I think I've lost my memories. Maybe you can help me look for them.
+{$PlayerName}: Just point where you think I should go.
+<<DeactivateCece UI>>
+===
+
+title: NurseryDoor
+tags:
+---
+Seems like the door is locked.
+===
+
+title: GrandfatherClock
+tags:
+---
+A very ornate Grandfather clock.
+===
+
+title: Popsicles
+tags:
+---
+<<if $stairs>>
+An empty cup.
+<<else>>
+A cup of popsicle sticks... maybe you could make something with these.
+<<endif>>
+===
+
+title: Duck
+---
+<<if $duckPlaced is false>>
+This is a suspicious spot.
+<<else>>
+He's just sittin' there.
+Menacingly.
+<<endif>>
+===
+
+title: DuckPlace
+---
+<<use_item duck_model {$itemUsed}>>
+You place the proud fowl in his rightful place.
+From his mouth comes out a little slip of paper.
+<<set $duckPlaced to true>>
+===
+
+title: CuckooClock
+tags:
+---
+An ornate cuckoo clock.
+Doesn't seem to be running.
+===
+
+title: CookieTin
+---
+These cookies look yummy.
+===
+
+title: Deposit
+tags:
+---
+<<use_item Wardrobe {$itemUsed}>>
+You deposit the Chair into the Wardrobe. Where did it go?
+===
+
+title: Withdraw
+tags:
+---
+You withdraw the Chair from the Wardrobe. It is now life-sized.
+===
+
+title: LilDeposit
+tags:
+---
+<<use_item LilWardrobe {$itemUsed}>>
+You deposit the Chair into the Wardrobe. Where did it go?
+===
+
+title: LilWithdraw
+tags:
+---
+You withdraw the Chair from the Wardrobe. It is now doll-sized.
+===
+
+title: Mirror
+tags:
+---
+Despite everything, it's still you.
+===
+
+title: PullTooth
+tags:
+---
+<<use_item Mirror {$itemUsed}>>
+You rip out one of your molars. Blood gushes from the wound.
+===
+
+title: PutInClockHand
+---
+<<use_item gc_model {$itemUsed}>>
+You fix the clock.
+===
+
+title: Chair
+tags:
+---
+A sturdy chair with a plush seat.
+===
+
+title: Safe
+tags:
+---
+This safe looks tough to crack. Maybe the code is written down somewhere.
+===
+
+title: FlowerPot
+tags:
+---
+<<if $flowerGrown>>
+An old fashioned flower pot.
+<<else>>
+It looks like there's a seed in here…. Too bad you don't have a watering can.
+<<endif>>
+===
+
+title: BigBoy
+tags:
+---
+<<PlaySound bigboy>>
+<<if $BBfed>>
+<<jump BigBoyQuestComplete>>
+<<else>>
+<<jump BigBoyIntro>>
+<<endif>>
+===
+
+title: BigBoyIntro
+tags:
+---
+<<activate BigBoySprite>>
+BigBoy: HUNGRY! I AM HUNGRY. FEED ME.
+<<ActivateCece UI>>
+<<Disgusted Cecelia>>
+{$PlayerName}: Aren't you made of paper? Why are you hungry?
+<<DeactivateCece UI>>
+BigBoy: Someone used to feed real food, but they disappeared long ago. I have never forgotten the taste. I have been eating paper nothings for years and years...
+<<deactivate BigBoySprite>>
+<<ActivateCece UI>>
+<<Neutral Cecelia>>
+{$PlayerName}: I'll see if I can find anything. I'm hungry too.
+<<DeactivateCece UI>>
+===
+
+title: BigBoyFed
+tags:
+---
+<<set $memoryCount = $memoryCount + 1>>
+<<set $BBfed to true>>
+<<activate BigBoySprite>>
+BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The taste of this food reminds me of the past.
+<<deactivate BigBoySprite>>
+<<memoryTriggered GluttonyMemory>>
+You unlocked a new memory.
+===
+
+title: BigBoyQuestComplete
+tags:
+---
+<<activate BigBoySprite>>
+BigBoy: Do you have another snack for me? An apple, some muffins, perhaps...
+<<deactivate BigBoySprite>>
+===
+
+title: BirdMan
+tags:
+---
+<<PlaySound talon>>
+<<if !$Tea>>
+<<jump BirdMan2>>
+<<else>>
+<<jump BirdManQuestComplete>>
+<<endif>>
+===
+
+title: BirdMan2
+tags:
+---
+<<if !$Tintro>>
+<<jump BirdManIntro>>
+<<else>>
+<<jump BirdManDuringQuest>>
+<<endif>>
+===
+
+title: BirdManIntro
+tags:
+---
+<<set $Tintro to true>>
+<<activate TalonSprite>>
+???: ...
+<<deactivate TalonSprite>>
+<<ActivateCece UI>>
+<<Neutral Cecelia>>
+{$PlayerName}: Hello? Mr. Bird Man?
+<<DeactivateCece UI>>
+<<activate TalonSprite>>
+???: My name is... Talon.
+<<deactivate TalonSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: Hello, Mr. Talon.
+-> {$PlayerName}: Why are you so quiet and sad?
+	<<activate TalonSprite>>
+	Talon: I have waited here alone for many years. Talking seemed a waste of breath.
+-> {$PlayerName}: Are you going to eat me?
+	<<activate TalonSprite>>
+	Talon: You hardly seem tempting enough to try.
+-> {$PlayerName}: Why is everything here so frightening?
+	<<activate TalonSprite>>
+	Talon: Is it? I have known nothing else.
+<<deactivate TalonSprite>>
+<<DeactivateCece UI>>
+===
+
+title: BirdManDuringQuest
+tags:
+---
+<<ActivateCece UI>>
+<<Neutral Cecelia>>
+{$PlayerName}: Can I do anything to cheer you up?
+<<DeactivateCece UI>>
+<<activate TalonSprite>>
+Talon: A good cup of tea... that would be nice.
+<<deactivate TalonSprite>>
+===
+
+title: BirdManTea
+tags: 
+---
+<<set $memoryCount = $memoryCount + 1>>
+<<set $Tea to true>>
+<<PlaySound talon>>
+<<activate TalonSprite>>
+Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don't know who might be sleeping here, or what you may remember…
+<<deactivate TalonSprite>>
+<<memoryTriggered GraveMemory>>
+You unlocked a new memory.
+===
+
+title: BirdManQuestComplete
+tags:
+---
+<<activate TalonSprite>>
+Talon: Be cautious, little one. There is much you still don't understand.
+<<deactivate TalonSprite>>
+===
+
+title: Ariadne
+tags:
+---
+<<PlaySound ariadne>>
+<<if $Music>>
+<<jump AriadneQuestComplete>>
+<<else>>
+<<ActivateCece UI>>
+<<Terrified Cecelia>>
+{$PlayerName}: I hate spiders. I don't want to go anywhere near this one!
+<<DeactivateCece UI>>
+<<endif>>
+===
+
+title: AriadneMusic
+tags:
+---
+<<set $memoryCount = $memoryCount + 1>>
+<<set $Music to true>>
+<<PlaySound ariadne>>
+<<activate AriadneSprite>>
+Ariadne: Hello, my name is Ariadne.
+<<deactivate AriadneSprite>>
+<<ActivateCece UI>>
+<<Terrified Cecelia>>
+{$PlayerName}: Why are you talking to me?
+<<DeactivateCece UI>>
+<<activate AriadneSprite>>
+Ariadne: I recognize that music. Do not be afraid.
+<<deactivate AriadneSprite>>
+<<ActivateCece UI>>
+<<Terrified Cecelia>>
+{$PlayerName}: I'm terrified of everything in this house.
+<<DeactivateCece UI>>
+<<activate AriadneSprite>>
+Ariadne: This is not what you should be afraid of... There is worse to come...
+<<deactivate AriadneSprite>>
+<<ActivateCece UI>>
+<<Terrified Cecelia>>
+{$PlayerName}: What do you mean?
+<<DeactivateCece UI>>
+<<activate AriadneSprite>>
+Ariadne: If you wish to understand what is happening here, you must keep exploring. But be careful. You may regret what you discover.
+<<deactivate AriadneSprite>>
+<<ActivateCece UI>>
+-> {$PlayerName}: I have to keep going.
+	<<DeactivateCece UI>>
+	<<activate AriadneSprite>>
+	Ariadne: Very well. Thank you for playing your music for me. It reminded me of who I am. I hope you find something that will do the same for you.
+-> {$PlayerName}: Is there another way out of this?
+	<<DeactivateCece UI>>
+	<<activate AriadneSprite>>
+	Ariadne: I'm afraid not. They only way through is forward. There are still memories for you to uncover.
+<<deactivate AriadneSprite>>
+<<memoryTriggered SpiderMemory>>
+You unlocked a new memory.
+===
+
+title: AriadneQuestComplete
+tags:
+---
+<<activate AriadneSprite>>
+Ariadne: Thank you for playing your music for me.
+<<deactivate AriadneSprite>>
+===
+
+title: Allura
+tags:
+---
+<<PlaySound allura>>
+<<if !$Flower>>
+<<jump Allura2>>
+<<else>>
+<<jump AlluraQuestComplete>>
+<<endif>>
+===
+
+title: Allura2
+tags:
+---
+<<if !$AlluraIntro>>
+<<jump AlluraIntro>>
+<<elseif !$AlluraTutorial>>
+<<jump AlluraTutorial>>
+<<else>>
+<<jump AlluraDuringQuest>>
+<<endif>>
+===
+
+title: AlluraIntro
+tags:
+---
+<<set $AlluraIntro to true>>
+<<activate AlluraSprite>>
+Allura: Hello, little one. Who are you?
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+<<Scared Cecelia>>
+{$PlayerName}: That's what I'm trying to figure out.
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Don't you know who you are?
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+<<Sad Cecelia>>
+{$PlayerName}: No. I think I've forgotten.
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Interesting. Do you remember anything about yourself?
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+<<if $memoryCount > 0>>
+	{$PlayerName}: I've found a few things.
+<<else>>
+	{$PlayerName}: No. It feels like I just woke up from a very long nap.
+<<DeactivateCece UI>>
+<<endif>>
+<<activate AlluraSprite>>
+Allura: I may be able to help you.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+<<Neutral Cecelia>>
+-> {$PlayerName}: Really? How could you help?
+	<<activate AlluraSprite>>
+	Allura: Maybe, if you did something for me, I could help you remember something.
+-> {$PlayerName}: Why would you help me?
+	<<activate AlluraSprite>>
+	Allura: I remember a little one just like you from a long time ago. They were my friend. Maybe we could be friends, too.
+-> {$PlayerName}: I don't know if I trust you.
+	<<activate AlluraSprite>>
+	Allura: You're smart enough to know what's good for you. I wouldn't trust any of these other cutouts, if I were smart like you.
+<<DeactivateCece UI>>
+<<deactivate AlluraSprite>>
+===
+
+title: AlluraTutorial
+tags:
+---
+<<set $AlluraTutorial to true>>
+<<activate AlluraSprite>>
+Allura: If you want my help, I just need a little something from you first.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: What do you want?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: I simply adore flowers. If you can bring me a flower, I'll let you in on a secret.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: Where do I find a flower?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Why, you'll have to grow one. With your tears, of course.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: My tears?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Don't you know how to cry, little one? Don't worry... I'll teach you.
+<<deactivate AlluraSprite>>
+Press the C Key or the X Button to force the doll to cry.
+<<enable_cry P2PPlayer>>
+===
+
+title: AlluraDuringQuest
+tags:
+---
+<<activate AlluraSprite>>
+Allura: Bring me a flower, and I'll tell you a secret.
+<<deactivate AlluraSprite>>
+===
+
+title: AlluraFlower
+tags:
+---
+<<set $memoryCount = $memoryCount + 1>>
+<<set $Flower to true>>
+<<ActivateCece UI>>
+{$PlayerName}: I brought you a flower.
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: How... Beautiful! And I can taste your tears on its petals. Delightful. Thank you, child.
+<<deactivate AlluraSprite>>
+<<ActivateCece UI>>
+{$PlayerName}: What's the secret you talked about?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Here is my secret: I remember you. Your name is Cecelia. I haven't seen you in many years... And oh, how I missed you.
+<<deactivate AlluraSprite>>
+<<set $PlayerName to "Cecelia">>
+<<ActivateCece UI>>
+<<Sad Cecelia>>
+{$PlayerName}: Then you know what happened to me! Please, can you tell me?
+<<DeactivateCece UI>>
+<<activate AlluraSprite>>
+Allura: Now, now. I only promised you one secret.
+<<deactivate AlluraSprite>>
+<<memoryTriggered LustMemory>>
+You unlocked a new memory.
+===
+
+
+title: AlluraQuestComplete
+tags:
+---
+<<activate AlluraSprite>>
+Allura: You're such a beautiful child. Please come back to visit me.
+<<deactivate AlluraSprite>>
+===
+
+title: CrankInstall
+---
+<<set $crank to true>>
+<<use_item herb {$itemUsed}>>
+===
+
+title: Herb
+tags:
+---
+<<if $crank>>
+	<<if $memoryCount < 4>>
+		<<if $memoryCount == 1>>
+			Collect 4 memories to interact with the Jack-in-the-Box. You currently have {$memoryCount} memory.
+		<<else>>
+			Collect 4 memories to interact with the Jack-in-the-Box. You currently have {$memoryCount} memories.
+		<<endif>>
+	<<else>>
+		<<jump HerbFinale>>
+	<<endif>>
+<<endif>>
+===
+
+title: HerbBox
+---
+<<if $crank is false>>
+	Looks like this box needs a crank.
+<<endif>>
+===
+
+title: HerbFinale
+tags:
+---
+<<if $cranked is false>>
+	<<set $cranked to true>>
+	<<PlayFinalMusic Audio>>
+	<<OpenHerb herb>>
+	<<memoryTriggered StabMemory>>
+	What's this? Another memory?
+<<endif>>
+===
+
+title: EndGame
+---
+<<ActivateCece UI>>
+{$PlayerName}: You came back.
+I found another memory. In the nursery.
+{$PlayerName}: What was it this time?
+I think… I think it was a murder.
+<<Sad Cecelia>>
+{$PlayerName}: It was an accident.
+What do you know about it? You don’t know anything. You’re just a paper doll.
+{$PlayerName}: I didn’t know anything when you met me, but you’ve been helping me remember things. And I’ve been helping you.
+Who are you?
+{$PlayerName}: don’t you recognize the name? You knew a Cecelia once.
+My… mother?
+{$PlayerName}: she used to live here when she was a child. … I used to live here. I am all that’s left of her now. She made all of us… and left us here. Just like you.
+That was you. In the memory… you killed someone.
+<<Angry Cecelia>>
+{$PlayerName}: I told you, it was an accident.
+No it wasn't. You stabbed my dad. And now I'm here, all alone.
+{$PlayerName}: I'm looking out for you, I've helped you uncover all of these memories…
+Maybe you shouldn't have. Because now, I remember you.
+<<DeactivateCece UI>>
+<<fadeIn UI>>
+<<wait 1>>
+<<rip UI>>
+<<wait 3>>
+<<fadeOutEnd UI>>
+<<wait 5>>
+<<ActivateCredits UI>>
+
+===
+
+title: AlternateEndGame
+---
+Wow, what the fuck Cece?
+Who the fuck.
+Why the fuck.
+===
+
+title: MemoryTutorial
+---
+You can view found memories in the pause menu.
+===
