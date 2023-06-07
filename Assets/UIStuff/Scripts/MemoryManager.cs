@@ -5,38 +5,53 @@ using Yarn.Unity;
 
 public class MemoryManager : MonoBehaviour
 {
-
+    //contains erratic sprite, normal sprite, and paper for memory
+    [Tooltip("Sprite1: erratic memory. Sprite2: normal memory. Paper: paper background")]
     [SerializeField]
     private GameObject sprite1,
         sprite2,
         paper;
 
+    //contains memory ui paper and sprite
+    [Tooltip("ui container for this memory")]
     [SerializeField]
     private GameObject memoryUI;
 
+    //contains audiomanager
+    [Tooltip("audio manager")]
     [SerializeField]
-    private AudioManager audio;
+    private AudioManager audios;
 
-	public float fadeSpeed = 1f;
+    //fadespeed for memory fade
+    [Tooltip("changes memory fade speed")]
+    public float fadeSpeed = 1f;
 
+    //set true or false based on if memory is fading
 	private bool fading;
 
+    //set based on if this memory is the last memory to trigger finale
 	public bool triggerEndGame;
 
+    //sets memory from erratic animation to normal and plays memory music
+    //triggered only from Yarnspinner script
     [YarnCommand("memoryTriggered")]
     public void MemoryActive()
     {
+        //if this is not the final memory, play audio and change sprites
         if (!triggerEndGame)
         {
-            audio.PauseAmbience();
-            audio.PlayMemorySound();
+            audios.PauseAmbience();
+            audios.PlayMemorySound();
             sprite1.GetComponent<SpriteRenderer>().enabled = false;
             sprite1.SetActive(false);
             sprite2.GetComponent<SpriteRenderer>().enabled = true;
         }
+        //enables memory clickability
         sprite2.GetComponent<BoxCollider>().enabled = true;
     }
 
+    //triggers when memory is clicked
+    //starts the fade coroutine
     public void MemoryClicked()
     {
 		if (!fading)
@@ -46,6 +61,9 @@ public class MemoryManager : MonoBehaviour
         }
     }
 
+    //coroutine to fade memory sprites
+    //if this is the first memory, trigger dialogue to view journal
+    //if this is the final memory, trigger finale dialogue
     IEnumerator Fade()
     {
 		float i = 1;
@@ -63,12 +81,14 @@ public class MemoryManager : MonoBehaviour
         paper.SetActive(false);
         sprite2.SetActive(false);
 
+        //if this is the first memory, trigger memory tutorial dialogue
 		FindObjectOfType<P2PCameraController>().dialog.VariableStorage.TryGetValue("$memoryCount", out float memoryCount);
 		if (memoryCount <= 1)
 		{
 			FindObjectOfType<P2PCameraController>().dialog.StartDialogue("MemoryTutorial");
 		}
 
+        //if game is ending, trigger doll dialogue sequence
 		if (triggerEndGame)
 		{
 			CameraPosition dollCam = GameObject.Find("DollCameraPos").GetComponent<CameraPosition>();

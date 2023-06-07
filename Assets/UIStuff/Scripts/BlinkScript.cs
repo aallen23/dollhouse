@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BlinkScript : MonoBehaviour
 {
+    //unused script
+    //absorbed by CeceFace script which controls all other Cece facial animations
+
+
     private Animator animator;
     private bool blinking;
 

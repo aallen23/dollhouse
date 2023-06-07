@@ -6,42 +6,49 @@ using Yarn.Unity;
 
 public class CeceFace : MonoBehaviour
 {
-    [SerializeField]
-    private Sprite NeutralSprite;
+    [Tooltip("The CeceFace animator")]
     [SerializeField]
     private Animator animator;
+    [Tooltip("is CeceFace blinking")]
     [SerializeField]
     private bool blinking;
 
-    enum Emotes { Neutral, Sad, Disgusted, Scared, Terrified, Angry };
-    Emotes currentEmote;
+    //controls current facial emotion
+    enum Emotes { Neutral, Sad, Disgusted, Scared, Terrified, Angry };      //contains all possible facial emotions
+    Emotes currentEmote;            //saves current emotion
 
     // Start is called before the first frame update
     void Start()
     {
+        //gets animator component from CeceFace
         animator = GetComponent<Animator>();
-        currentEmote = Emotes.Neutral;
+
+        //sets animator to neutral
         Neutral();
     }
 
     void Update()
     {
+        //sets coroutine to blink if face is neutral
         if (currentEmote == Emotes.Neutral && !blinking)
         {
             blinking = true;
             StartCoroutine("Blink");
         }
-        else if (currentEmote == Emotes.Disgusted)
+        else
         {
             blinking = false;
         }
     }
 
+    //turns off blinking
     public void SetBlinkFalse()
     {
         blinking = false;
     }
 
+
+    //coroutine to set blink animation
     IEnumerator Blink()
     {
         while (blinking)
@@ -52,6 +59,7 @@ public class CeceFace : MonoBehaviour
         }
     }
 
+    //sets animator to disgusted
     [YarnCommand("Disgusted")]
     public void Disgusted()
     {
@@ -59,6 +67,7 @@ public class CeceFace : MonoBehaviour
         currentEmote = Emotes.Disgusted;
     }
 
+    //sets animator to sad
     [YarnCommand("Sad")]
     public void Sad()
     {
@@ -66,6 +75,7 @@ public class CeceFace : MonoBehaviour
         currentEmote = Emotes.Sad;
     }
 
+    //sets animator to angry
     [YarnCommand("Angry")]
     public void Angry()
     {
@@ -73,6 +83,7 @@ public class CeceFace : MonoBehaviour
         currentEmote = Emotes.Angry;
     }
 
+    //sets animator to scared
     [YarnCommand("Scared")]
     public void Scared()
     {
@@ -80,6 +91,7 @@ public class CeceFace : MonoBehaviour
         currentEmote = Emotes.Scared;
     }
 
+    //sets animator to terrified
     [YarnCommand("Terrified")]
     public void Terrified()
     {
@@ -87,6 +99,7 @@ public class CeceFace : MonoBehaviour
         currentEmote = Emotes.Terrified;
     }
 
+    //sets animator to neutral
     [YarnCommand("Neutral")]
     public void Neutral()
     {
@@ -96,6 +109,7 @@ public class CeceFace : MonoBehaviour
         //blinking = true;
     }
 
+    //sets all animations to false in animator
     public void SetAllAnimsFalse()
     {
         animator.SetBool("isDisgusted", false);
@@ -105,7 +119,7 @@ public class CeceFace : MonoBehaviour
         animator.SetBool("isTerrified", false);
     }
 
-
+    //takes current emote and plays it - saves animation info across dialogue sections
     public void PlayCurrentEmote()
     {
         switch (currentEmote)
