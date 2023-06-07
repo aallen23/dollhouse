@@ -22,8 +22,12 @@ public class Drawing : MonoBehaviour
     private int numDrawn;
     public CameraPosition DrawPos;
 
-    public GameObject objectToDestroy;
+
+	public Vector3 drawOffset;
+
+	public GameObject objectToDestroy;
     public ItemScriptableObject itemToAdd;
+	public AudioSource audioToPlay;
 
     private void Start()
     {
@@ -54,6 +58,10 @@ public class Drawing : MonoBehaviour
             else
             {
                 Debug.Log("Draw Success");
+				if (audioToPlay)
+				{
+					audioToPlay.Play();
+				}
                 if (objectToDestroy)
                 {
                     FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().curPos.positions[2]);
@@ -91,7 +99,7 @@ public class Drawing : MonoBehaviour
         //Debug.Log(mousePos);
         if (mousePos != lastPos && curLineRenderer && FindObjectOfType<P2PCameraController>().curPos == DrawPos)
         {
-            AddAPoint(mousePos);
+            AddAPoint(mousePos + drawOffset);
             lastPos = mousePos;
         }
     }

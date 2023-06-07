@@ -15,10 +15,11 @@ public class P2PCameraController : MonoBehaviour
     [Tooltip("The Input Map we are using.")] public Controls inputMap;
     [Tooltip("Starting CameraPosition.")] public CameraPosition startPos;
     public CameraPosition firstPos;
+	public CameraPosition lastPos;
     [Tooltip("Current CameraPosition.")] public CameraPosition curPos;
     [Tooltip("The NavMeshAgent of the Doll")] public NavMeshAgent doll;
 
-    [Tooltip("Our Desired Rotation.")] [SerializeField] private Vector3 desiredRotation;
+    [Tooltip("Our Desired Rotation.")] public Vector3 desiredRotation;
     [Tooltip("Our Desired FOV.")] [SerializeField] float desiredFOV = 60f;
 
     [Tooltip("The current rotation speed.")] public float rotationSpeed;
@@ -36,13 +37,21 @@ public class P2PCameraController : MonoBehaviour
     public Image mouseCursorImage;
     public Sprite curDefault;
     public Sprite curHand;
+	public Sprite curDollHand;
     public Sprite curLook;
     public Sprite curExamine;
 
     public bool overUI;
     [Tooltip("All Drawing Objects.")] public Drawing[] drawingObjects;
+    public Transform draggingObject;
 
     public ObjectData rotateAroundObject;
+
+    public ParticleSystem tearLeft, tearRight;
+    public bool cryEnabled;
+
+	public bool forceSmoothSwitch;
+	public ItemScriptableObject hoverItem;
     private void Awake()
     {
         //Load input map and connect to all the functions
@@ -62,6 +71,9 @@ public class P2PCameraController : MonoBehaviour
         inputMap.PointToPoint.Cry.performed += Cry_performed;
         inputMap.PointToPoint.Cry.canceled += Cry_canceled;
     }
+
+	
+
     void Start()
     {
         //Load Objects into an array that we can iterate through later.
@@ -77,7 +89,7 @@ public class P2PCameraController : MonoBehaviour
         invSystem = FindObjectOfType<InventorySystem>(true);
         dialog = FindObjectOfType<DialogueRunner>();
         gamepadMouse = GameObject.Find("GamepadMouse");
-
+		cryEnabled = false;
 
         gamepadMouse.SetActive(true);
         Cursor.visible = false;
@@ -186,7 +198,9 @@ public class P2PCameraController : MonoBehaviour
         //First we check that there is a valid camera positon in that direction, and we are not mid dialog
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
-            if (curPos.enableAtPosition.Count > 0)
+			bool forceSmoothie = curPos.obeyRotation && !curPos.quickSwitch;
+			float houseYRotation = curPos.houseYRotation;
+			if (curPos.enableAtPosition.Count > 0)
             {
                 foreach (GameObject obj in curPos.enableAtPosition)
                 {
@@ -194,18 +208,42 @@ public class P2PCameraController : MonoBehaviour
                 }
             }
 
-            curPos = curPos.positions[i]; //Update the current camera positon
+			if (curPos.audioAtPosition.Count > 0)
+			{
+				foreach (AudioSource obj in curPos.audioAtPosition)
+				{
+					if (curPos.playFromStart)
+					{
+						obj.Stop();
+					}
+					else
+					{
+						obj.Pause();
+					}
+				}
+			}
+			curPos = curPos.positions[i]; //Update the current camera positon
             if (curPos.obeyRotation)
             {
                 //If we must obeyRotation, then we take our desired Rotation from the camera positions rotation
                 desiredRotation = curPos.transform.eulerAngles;
             }
-            else
+            else if (!curPos.obeyRotation && !curPos.quickSwitch)
             {
+				if (forceSmoothie)
+				{
+					desiredRotation.y = houseYRotation;
+				}
+				desiredRotation.z = 0;
                 desiredRotation.x = 12;
             }
             //Debug.Log(curPos.quickSwitch);
-            if (curPos.quickSwitch) {
+			if (forceSmoothSwitch)
+			{
+				rotationSpeed = 16;
+				moveSpeed = 16;
+			}
+            else if (curPos.quickSwitch && !forceSmoothie) {
                 //If it's a quick switch (so far exclusively inside the Dollhouse, we want the transition to be virtually instant
                 rotationSpeed = 256;
                 moveSpeed = 256;
@@ -224,7 +262,20 @@ public class P2PCameraController : MonoBehaviour
                     obj.SetActive(true);
                 }
             }
-        }
+			if (curPos.audioAtPosition.Count > 0)
+			{
+				foreach (AudioSource obj in curPos.audioAtPosition)
+				{
+					obj.Play();
+				}
+			}
+
+			if (curPos.runYarn != "" && !(curPos.runYarnOnce && curPos.ranYarn))
+			{
+				dialog.StartDialogue(curPos.runYarn);
+				curPos.ranYarn = true;
+			}
+		}
     }
 
     
@@ -295,18 +346,24 @@ public class P2PCameraController : MonoBehaviour
     
     private void Cry_performed(InputAction.CallbackContext obj)
     {
-        if (obj.ReadValue<float>() == 0)
+        if (obj.ReadValue<float>() == 0 || !cryEnabled)
         {
             return;
         }
-        doll.GetComponent<AudioSource>().Play();
+        doll.GetComponent<DollBehavior>().cryAudio.Play();
+		doll.GetComponent<DollBehavior>().checkCry.SetActive(true);
+		tearLeft.Play();
+        tearRight.Play();
     }
 
 
 
     private void Cry_canceled(InputAction.CallbackContext obj)
-    {
-        doll.GetComponent<AudioSource>().Stop();
+	{
+		doll.GetComponent<DollBehavior>().cryAudio.Stop();
+		doll.GetComponent<DollBehavior>().checkCry.SetActive(false);
+		tearLeft.Stop();
+        tearRight.Stop();
     }
 
 
@@ -335,7 +392,7 @@ public class P2PCameraController : MonoBehaviour
                     }
                 }
             }
-            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI) //If there's no Object, we check if we are clicking on the NavMesh
+            else if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, 5f, 1 << 0) && !overUI && (!(curPos.quickSwitch == false && curPos.obeyRotation == true) || forceSmoothSwitch)) //If there's no Object, we check if we are clicking on the NavMesh
             {
                 //Debug.Log("Walk");
                 doll.GetComponent<DollBehavior>().od = null;
@@ -351,6 +408,7 @@ public class P2PCameraController : MonoBehaviour
         {
             //If dialog is running, pressing Interact should continue the dialog
             dialog.OnViewRequestedInterrupt();
+
             return;
         }
     }
@@ -381,6 +439,10 @@ public class P2PCameraController : MonoBehaviour
                 }
             }
         }
+		else if (heldItem && hoverItem)
+		{
+			invSystem.Rearrange(heldItem, hoverItem);
+		}
         //No matter what, we want to remove the item from our cursor
         heldItem = null;
         Destroy(cursorSprite);
@@ -390,6 +452,12 @@ public class P2PCameraController : MonoBehaviour
             rotateAroundObject.GetComponent<ObjectData>().desiredRotation = rotateAroundObject.transform.eulerAngles;
             rotateAroundObject.GetComponent<ObjectData>().functioninteract.Invoke();
             rotateAroundObject = null;
+        }
+        if (draggingObject)
+        {
+            draggingObject.GetComponent<Collider>().enabled = true;
+            draggingObject.GetComponent<Rigidbody>().useGravity = true;
+            draggingObject = null;
         }
     }
 
@@ -417,13 +485,42 @@ public class P2PCameraController : MonoBehaviour
 
         foreach (Drawing draw in drawingObjects)
         {
-            draw.mousePos = hit.point;
+			draw.mousePos = hit.point;
             draw.mouseTransform = hit.transform;
         }
         if (rotateAroundObject)
         {
             rotateAroundObject.lookPoint = hit.point;
-            rotateAroundObject.mouseDelta = inputMap.PointToPoint.MouseDelta.ReadValue<Vector2>();
+        }
+        if (draggingObject)
+        {
+            if (draggingObject.GetComponent<ObjectData>().allowedDraggingCamera != curPos)
+            {
+                draggingObject.GetComponent<Collider>().enabled = true;
+                draggingObject.GetComponent<Rigidbody>().useGravity = true;
+                draggingObject = null;
+            }
+            else
+            {
+                if (draggingObject.GetComponent<ObjectData>().requiredDraggingSurface)
+                {
+                    if (draggingObject.GetComponent<ObjectData>().requiredDraggingSurface == hit.transform.gameObject)
+                    {
+                        draggingObject.position = hit.point + Vector3.up * 2;
+                    }
+                    else
+                    {
+                        draggingObject.GetComponent<Collider>().enabled = true;
+                        draggingObject.GetComponent<Rigidbody>().useGravity = true;
+                        draggingObject = null;
+                    }
+                }
+                else
+                {
+                    draggingObject.position = hit.point + Vector3.up * 2;
+                }
+            }
+            
         }
 
         //We need to change object layers if they are interactable, so we can later apply the interact shader based on the layer
@@ -440,9 +537,16 @@ public class P2PCameraController : MonoBehaviour
                 {
                     mouseCursorImage.sprite = curExamine;
                 }
-                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem || od.interactType == InteractType.BlankHand)
+                else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem || od.interactType == InteractType.BlankHand || od.interactType == InteractType.Dragging || od.interactType == InteractType.WardrobeWithdraw)
                 {
-                    mouseCursorImage.sprite = curHand;
+					if (curPos.inDollhouse)
+					{
+						mouseCursorImage.sprite = curDollHand;
+					}
+					else
+					{
+						mouseCursorImage.sprite = curHand;
+					}
                 }
                 else
                 {
@@ -461,53 +565,107 @@ public class P2PCameraController : MonoBehaviour
         //Eventually will be replaced by our pause system, in the meantime we will want to quit the game this way
         if (Keyboard.current.escapeKey.wasPressedThisFrame && gameStarted)
         {
-            FindObjectOfType<MenuManager>().Pause();
-            //Application.Quit();
+			if (gameStarted)
+			{
+				FindObjectOfType<MenuManager>().Pause();
+			}
+			else
+			{
+				FindObjectOfType<MenuManager>().ReturnToMain();
+			}
         }
     }
     //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object) Redudant.
     public void Travel(CameraPosition newPosition)
     {
-        if (curPos.enableAtPosition.Count > 0)
+		bool forceSmoothie = curPos.obeyRotation && !curPos.quickSwitch;
+		float houseYRotation = curPos.houseYRotation;
+		if (curPos.enableAtPosition.Count > 0)
         {
             foreach (GameObject obj in curPos.enableAtPosition)
             {
                 obj.SetActive(false);
             }
         }
+        if (curPos.audioAtPosition.Count > 0)
+        {
+            foreach (AudioSource obj in curPos.audioAtPosition)
+            {
+				if (curPos.playFromStart)
+				{
+					obj.Stop();
+				}
+				else
+				{
+					obj.Pause();
+				}
+			}
+        }
         curPos = newPosition;
         if (curPos.obeyRotation)
         {
             desiredRotation = curPos.transform.eulerAngles;
         }
-        else
-        {
-            desiredRotation.x = 12;
-        }
-        if (curPos.quickSwitch)
-        {
-            rotationSpeed = 256;
-            moveSpeed = 256;
-        }
-        else
-        {
-            rotationSpeed = 16;
-            moveSpeed = 16;
-        }
-        if (curPos.enableAtPosition.Count > 0)
+		else if (!curPos.obeyRotation && !curPos.quickSwitch)
+		{
+			if (forceSmoothie)
+			{
+				desiredRotation.y = houseYRotation;
+			}
+			desiredRotation.z = 0;
+			desiredRotation.x = 12;
+		}
+		if (forceSmoothSwitch)
+		{
+			rotationSpeed = 16;
+			moveSpeed = 16;
+		}
+		else if (curPos.quickSwitch && !forceSmoothie)
+		{
+			//If it's a quick switch (so far exclusively inside the Dollhouse, we want the transition to be virtually instant
+			rotationSpeed = 256;
+			moveSpeed = 256;
+		}
+		else
+		{
+			//Otherwise, it's cool to see the camera move a bit.
+			rotationSpeed = 16;
+			moveSpeed = 16;
+		}
+		if (curPos.enableAtPosition.Count > 0)
         {
             foreach (GameObject obj in curPos.enableAtPosition)
             {
                 obj.SetActive(true);
             }
         }
+        if (curPos.audioAtPosition.Count > 0)
+        {
+            foreach (AudioSource obj in curPos.audioAtPosition)
+            {
+                obj.Play();
+            }
+        }
+		if (curPos.runYarn != "" && !(curPos.runYarnOnce && curPos.ranYarn))
+		{
+			dialog.StartDialogue(curPos.runYarn);
+			curPos.ranYarn = true;
+		}
     }
 
     [YarnCommand("enable_controls")]
     public void EnableControls()
     {
         gameStarted = true;
-        //Travel(firstPos);
-    }
+		doll.GetComponent<DollBehavior>().dollCamera.transform.position = GameObject.Find("Cam_CeceEndGame").transform.position;
+		doll.GetComponent<DollBehavior>().dollCamera.transform.rotation = GameObject.Find("Cam_CeceEndGame").transform.rotation;
+		//Travel(firstPos);
+	}
+
+	[YarnCommand("enable_cry")]
+	public void EnableCry()
+	{
+		cryEnabled = true;
+	}
 
 }

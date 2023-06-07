@@ -13,7 +13,10 @@ public enum InteractType
     RotateAround,
     Teleport,
     AddItem,
-    BlankHand
+    BlankHand,
+    Dragging,
+    WardrobeWithdraw,
+    DollGoTo
 }
 
 public enum ObjectUseType
@@ -21,7 +24,8 @@ public enum ObjectUseType
     None,
     ShowObject,
     AddItem,
-    AddItemElsewhere
+    AddItemElsewhere,
+    UmbrellaToggleType
 }
 
 //Stores an Interactable Object's Data
@@ -38,7 +42,7 @@ public class ObjectData : MonoBehaviour
     public bool disableInteractAtPosition;
 
 
-    [Header("Clicking Settings")]
+    [Header("Interact Settings")]
     [Tooltip("What happens when this object is clicked.")]
     public InteractType interactType;
 
@@ -62,15 +66,32 @@ public class ObjectData : MonoBehaviour
     [Tooltip("For AddItem type objects, add this item to your inventory")]
     public ItemScriptableObject addedItem;
     [Tooltip("For AddItem type objects, is this multiUse or one-time only?")]
-    public ItemScriptableObject addItemIsInfinite;
+    public bool addItemIsInfinite;
     [Tooltip("(Optional) For AddItem type objects, hide this GameObject.")]
     public GameObject addItemHideObject;
     [Tooltip("(Optional) For AddItem type objects, toggle Item Enabled on this object after adding.")]
     public ObjectData itemEnabledToggleObject;
 
+
+    [Space(10)]
+    [Tooltip("For Dragging Type objects, at what y-value should we reset the objects position?")]
+    public float respawnY;
+    [Tooltip("(Optional) For Dragging Type objects, what camera position should we allow dragging at? If null you can always drag the object.")]
+    public CameraPosition allowedDraggingCamera;
+    [Tooltip("(Optional) For Dragging Type objects, what object should we restrict dragging on? If null, you can drag the object anywhere.")]
+    public GameObject requiredDraggingSurface;
+
+    [Space(10)]
+    public Dictionary<string, GameObject> wardrobeObjects;
+    public Dictionary<string, ItemScriptableObject> wardrobeItems;
+
+    [Space(10)]
+    public List<Transform> MoveDollTo;
+    public int MoveDollToIndex;
+
+    [Space(10)]
     [Tooltip("(Optional) What function to call after interacting.")]
     public UnityEvent functioninteract;
-
 
     [Header("Item Interaction Settings")]
     [Tooltip("What ItemScriptableObject can be used on this object.")]
@@ -85,23 +106,31 @@ public class ObjectData : MonoBehaviour
     public string yarnItem;
 
     [Space(20)]
-    [Tooltip("For ShowObject Type objects, show this GameObject.")]
+    [Tooltip("For ShowObject Type item uses, show this GameObject.")]
     public GameObject shownObject;
-    [Tooltip("For ShowObject Type objects, modify the color.")]
+    [Tooltip("For ShowObject Type item uses, modify the color.")]
     public bool shownObjectModColor;
-    [Tooltip("For ShowObject Type objects, modify the Add Item Hide Object value with the Item. (Useful for dropping an item, or similar)")]
+    [Tooltip("For ShowObject Type item uses, modify the Add Item Hide Object value with the Item. (Useful for dropping an item, or similar)")]
     public bool shownObjectItemOverride;
-    [Tooltip("For ShowObject Type objects, should Shown Object start visible?")]
+    [Tooltip("For ShowObject Type item uses, should Shown Object start visible?")]
     public bool startVisible;
+	public bool startMeshDisabled;
 
+    [Tooltip("For AddItem Type item uses, add this item to your inventory")]
     public ItemScriptableObject itemAddItem;
 
+    [Tooltip("For AddItemElsewhere Type item uses, where to add the item")]
     public ObjectData addItemDestination;
+    [Tooltip("For AddItemElsewhere Type item uses, add this item to the Destination")]
     public ItemScriptableObject addItemItem;
+
+
+    
 
     [Tooltip("(Optional) What function to call after using an Item")]
     public UnityEvent functionItem;
 
+    [Header("Debug Variables")]
     //Private variables for calling fucntions
     private DialogueRunner dialog;
     private P2PCameraController player;
@@ -114,21 +143,36 @@ public class ObjectData : MonoBehaviour
     public Vector3 secondPos;
     public float animSpeed;
     public AudioSource interactSFX;
+	public AudioSource itemSFX;
+    public InventorySystem inv;
+
+    public bool rotationAnimation;
+	public Animator animationToPlay;
+	public string animationParameter;
+    public Vector3 defaultRotation, secondRotation;
+
+	public bool rotateAroundX;
 
     void Start()
     {
         defaultPos = transform.localPosition;
         desiredPos = defaultPos;
         //Find specific GameObjects to be called alter.
-        dialog = FindObjectOfType<DialogueRunner>();
-        player = FindObjectOfType<P2PCameraController>();
-        desiredRotation = transform.eulerAngles;
+        dialog = FindObjectOfType<DialogueRunner>(true);
+        player = FindObjectOfType<P2PCameraController>(true);
+        inv = FindObjectOfType<InventorySystem>(true);
+        defaultRotation = transform.localEulerAngles;
+        desiredRotation = defaultRotation;
 
         //If an Item would show an GameObject, we want it to start hidden
         if (!startVisible)
         {
             StartCoroutine(HideShownObject());
         }
+		if (startMeshDisabled)
+		{
+			shownObject.GetComponent<Renderer>().enabled = false;
+		}
         if (positionDoll)
         {
             if (positionDoll.TryGetComponent(out MeshRenderer mesh))
@@ -159,16 +203,41 @@ public class ObjectData : MonoBehaviour
         //Rotates object (uses Quaternion.Lerp isntead of below to avoid Gimbal Lock) :)
         if (lookPoint == Vector3.zero)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+            if (rotationAnimation)
+            {
+                if (transform.localEulerAngles != desiredRotation)
+                {
+                    //Debug.Log("Doing shit");
+                    transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(desiredRotation), Time.deltaTime * animSpeed);
+                }
+                else if (desiredRotation != defaultRotation)
+                {
+                    desiredRotation = defaultRotation;
+                }
+            }
+            else
+            {
+                //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), Time.deltaTime * rotationSpeed);
+            }
+            
+           
         }
-        else
+        else if (player.rotateAroundObject && lookPoint != Vector3.zero)
         {
             //lookPoint.y = 0;
             //transform.LookAt(new Vector3(lookPoint.x, lookPoint.y, transform.position.z));
             Vector3 dir = lookPoint - transform.position;
             //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion rotationQ = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
-            transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+			if (rotateAroundX)
+			{
+				transform.rotation = new Quaternion(rotationQ.x, 0, 0, rotationQ.w);
+				//transform.localEulerAngles = new Vector3(transform.localRotation.x, 180f, transform.localRotation.z);
+			}
+			else
+			{
+				transform.rotation = new Quaternion(0, 0, rotationQ.z, rotationQ.w);
+			}
             //transform.eulerAngles += rotateAroundModAngle;
             //Debug.Log(transform.eulerAngles.z);
             //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90f);
@@ -184,6 +253,11 @@ public class ObjectData : MonoBehaviour
             desiredPos = defaultPos;
         }
 
+
+        if (interactType == InteractType.Dragging && transform.localPosition.y <= respawnY)
+        {
+            transform.localPosition = defaultPos;
+        }
         /*transform.localEulerAngles = new Vector3(
              Mathf.LerpAngle(transform.localEulerAngles.x, desiredRotation.x, Time.deltaTime * rotationSpeed),
              Mathf.LerpAngle(transform.localEulerAngles.y, desiredRotation.y, Time.deltaTime * rotationSpeed),
@@ -197,6 +271,7 @@ public class ObjectData : MonoBehaviour
         //If it has a camera position, go there first.
         if (positionCamera)
         {
+            //Debug.Log(player.gameObject.name);
             player.Travel(positionCamera);
         }
 
@@ -204,6 +279,10 @@ public class ObjectData : MonoBehaviour
         {
             interactSFX.Play();
         }
+		if (animationToPlay)
+		{
+			animationToPlay.SetTrigger(animationParameter);
+		}
 
         switch (interactType)
         {
@@ -225,30 +304,83 @@ public class ObjectData : MonoBehaviour
                 doll.Warp(teleportPoint.position);
                 break;
             case InteractType.AddItem:
-                InventorySystem inv = FindObjectOfType<InventorySystem>();
-                inv.inv.Add(addedItem);
-                inv.UpdateInventory();
-                if (addItemHideObject)
+                if (addedItem)
                 {
-                    addItemHideObject.SetActive(false);
+
+                    inv.inv.Add(addedItem);
+                    inv.UpdateInventory();
+                    if (addItemHideObject)
+                    {
+                        addItemHideObject.SetActive(false);
+                    }
+                    if (itemEnabledToggleObject)
+                    {
+                        itemEnabledToggleObject.itemEnabled = !itemEnabledToggleObject.itemEnabled;
+                    }
+                    if (!addItemIsInfinite)
+                    {
+                        addedItem = null;
+                    }
+                    if (yarnExamine != "" && yarnExamine != null)
+                    {
+                        dialog.StartDialogue(yarnExamine); //Trigger yarn
+                    }
                 }
-                if (itemEnabledToggleObject)
+                break;
+            case InteractType.Dragging:
+                if (allowedDraggingCamera == player.curPos)
                 {
-                    itemEnabledToggleObject.itemEnabled = !itemEnabledToggleObject.itemEnabled;
+                    player.draggingObject = gameObject.transform;
+                    GetComponent<Collider>().enabled = false;
+                    GetComponent<Rigidbody>().useGravity = false;
                 }
-                if (!addItemIsInfinite)
+                break;
+            case InteractType.WardrobeWithdraw:
+                if (addedItem)
                 {
+                    //Very sad this doesn't work, if only I could access dictionary from inspector
+                    /*if (wardrobeObjects.ContainsKey(addedItem.displayName))
+                    {
+                        wardrobeObjects[addedItem.displayName].SetActive(true);
+                    }
+                    else if (wardrobeItems.ContainsKey(addedItem.displayName))
+                    {
+                        inv.inv.Add(wardrobeItems[addedItem.displayName]);
+                        inv.UpdateInventory();
+                    }*/
+
+                    if (addedItem.displayName == "Chair")
+                    {
+                        GetComponent<Wardrobe>().Chair.SetActive(true);
+                    }
+
                     addedItem = null;
+                    if (yarnExamine != "" && yarnExamine != null)
+                    {
+                        dialog.StartDialogue(yarnExamine); //Trigger yarn
+                    }
                 }
-                if (yarnExamine != "" && yarnExamine != null)
+                break;
+            case InteractType.DollGoTo:
+                FindObjectOfType<NavMeshAgent>().destination = MoveDollTo[MoveDollToIndex].position;
+                if (MoveDollToIndex < MoveDollTo.Count - 1)
                 {
-                    dialog.StartDialogue(yarnExamine); //Trigger yarn
+                    MoveDollToIndex++;
+                }
+                else
+                {
+                    MoveDollToIndex = 0;
                 }
                 break;
         }
         if (secondPos != Vector3.zero || secondPos != null)
         {
             desiredPos = defaultPos + secondPos;
+        }
+        if (secondRotation != Vector3.zero)
+        {
+            desiredRotation = secondRotation;
+            //Debug.Log("Do shit");
         }
         functioninteract.Invoke();
     }
@@ -257,12 +389,23 @@ public class ObjectData : MonoBehaviour
     [YarnCommand("use_item")]
     public void UseItem(float i)
     {
+		if (itemSFX)
+		{
+			itemSFX.Play();
+		}
+
         int it = (int)i;
         switch (objectUseType)
         {
             case ObjectUseType.ShowObject:
                 shownObject.SetActive(true);
-                if (shownObjectModColor)
+				shownObject.TryGetComponent(out Renderer rend);
+				if (rend)
+				{
+					rend.enabled = true;
+
+				}
+				if (shownObjectModColor)
                 {
                     shownObject.GetComponent<Renderer>().material = item[it].displayMaterial;
                     
@@ -287,7 +430,18 @@ public class ObjectData : MonoBehaviour
                 }
                 break;
             case ObjectUseType.AddItemElsewhere:
-                addItemDestination.addedItem = addItemItem;
+                if (addItemItem)
+                {
+                    addItemDestination.addedItem = addItemItem;
+                }
+                else
+                {
+                    addItemDestination.addedItem = item[it];
+                }
+                break;
+            case ObjectUseType.UmbrellaToggleType:
+                GetComponent<UmbrellaModelSwitcher>().SwitchModel(it);
+                itemEnabled = false;
                 break;
         }
         functionItem.Invoke();
