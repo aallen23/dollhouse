@@ -77,7 +77,8 @@ public class AudioManager : MonoBehaviour
     public void PauseAmbience()
     {
         paused = true;
-        currentSound.Pause();
+        if(currentSound != null)
+            currentSound.Pause();
     }
 
     //unpauses current ambience
