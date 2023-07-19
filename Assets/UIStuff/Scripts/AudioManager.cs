@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
         UI_click,                   //contains button clicked sound effect
         puzzle,                     //contains puzzle solved sound effect
         memory,                     //contains base memory music
+        piano,                      //contains music for solving the piano puzzle
         pageFlip,                   //contains page flip sound effect
         carScene,                   //contains car scene audio
         memoryFinale,               //contains memory music finale version for end of game
@@ -77,7 +78,8 @@ public class AudioManager : MonoBehaviour
     public void PauseAmbience()
     {
         paused = true;
-        currentSound.Pause();
+        if(currentSound != null)
+            currentSound.Pause();
     }
 
     //unpauses current ambience
@@ -124,10 +126,23 @@ public class AudioManager : MonoBehaviour
     {
         PauseAmbience();
         currentMusic.Stop();
+        currentMusic = puzzle;
         puzzle.Play();
         float clipLength = puzzle.clip.length;
         StartCoroutine(WaitForMusic(clipLength));
     }
+
+    //plays music for solved piano puzzle
+    public void PlayPiano()
+    {
+        PauseAmbience();
+        currentMusic.Stop();
+        currentMusic = piano;
+        piano.Play();
+        float clipLength = piano.clip.length;
+        StartCoroutine(WaitForMusic(clipLength));
+    }
+
 
     //plays credits music while credits are running
     public void PlayCreditsMusic()
