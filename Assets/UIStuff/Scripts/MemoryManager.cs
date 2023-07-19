@@ -17,6 +17,11 @@ public class MemoryManager : MonoBehaviour
     [SerializeField]
     private GameObject memoryUI;
 
+    //contains ui to open journal memory page
+    [Tooltip("menu manager from ui")]
+    [SerializeField]
+    private MenuManager menuManager;
+
     //contains audiomanager
     [Tooltip("audio manager")]
     [SerializeField]
@@ -24,7 +29,7 @@ public class MemoryManager : MonoBehaviour
 
     //fadespeed for memory fade
     [Tooltip("changes memory fade speed")]
-    public float fadeSpeed = 1f;
+    public float fadeSpeed = 0.5f;
 
     //set true or false based on if memory is fading
 	private bool fading;
@@ -66,7 +71,7 @@ public class MemoryManager : MonoBehaviour
     //if this is the final memory, trigger finale dialogue
     IEnumerator Fade()
     {
-		float i = 1;
+		float i = 0.5f;
 		while (i > 0)
 		{
 			i -= Time.deltaTime * fadeSpeed;
@@ -77,16 +82,22 @@ public class MemoryManager : MonoBehaviour
         if (!triggerEndGame)
         {
             memoryUI.SetActive(true);
+            menuManager.Pause();
+            menuManager.Page2Button();
+            audios.PageFlip();
         }
         paper.SetActive(false);
         sprite2.SetActive(false);
 
-        //if this is the first memory, trigger memory tutorial dialogue
-		FindObjectOfType<P2PCameraController>().dialog.VariableStorage.TryGetValue("$memoryCount", out float memoryCount);
-		if (memoryCount <= 1)
-		{
-			FindObjectOfType<P2PCameraController>().dialog.StartDialogue("MemoryTutorial");
-		}
+
+        //tina: commmented this out with the addition of the open journal since dialogue box is mostly covered and tutorial seemed superfluous with the open journal.
+        //can be changed if disagreed with
+  //      //if this is the first memory, trigger memory tutorial dialogue
+		//FindObjectOfType<P2PCameraController>().dialog.VariableStorage.TryGetValue("$memoryCount", out float memoryCount);
+		//if (memoryCount <= 1)
+		//{
+		//	FindObjectOfType<P2PCameraController>().dialog.StartDialogue("MemoryTutorial");
+		//}
 
         //if game is ending, trigger doll dialogue sequence
 		if (triggerEndGame)

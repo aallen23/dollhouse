@@ -624,6 +624,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "d2049e71-da57-4470-90ed-c5c506944ba8",
+            "actions": [
+                {
+                    "name": "FastForward",
+                    "type": "Button",
+                    "id": "886ab84f-75c2-4769-9aa3-ed0301b63d00",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cf8a5b73-37cb-4649-9c25-412d5aba84e1",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Hold(duration=0.1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FastForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
