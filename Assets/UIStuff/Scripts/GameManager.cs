@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
 
     internal string currentGameLocation;
     internal bool inDollhouse = false;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     /// <summary>
@@ -34,5 +35,4 @@ public class GameManager : MonoBehaviour
                 FindObjectOfType<LocationName>().ShowLabel(false);
         }
     }
-
 }

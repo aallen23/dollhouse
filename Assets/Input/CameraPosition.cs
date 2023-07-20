@@ -66,10 +66,10 @@ public class CameraPosition : MonoBehaviour
     public void OnPositionMovement()
     {
         //If the camera position boolean is different than what the game has stored, change the variable
-        if (inDollhouse != GameManager.instance.inDollhouse)
+        if (inDollhouse != GameManager.Instance.inDollhouse)
         {
-            GameManager.instance.inDollhouse = inDollhouse;
-            GameManager.instance.OnSwitchPerspective();
+            GameManager.Instance.inDollhouse = inDollhouse;
+            GameManager.Instance.OnSwitchPerspective();
         }
     }
 
