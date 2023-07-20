@@ -29,6 +29,10 @@ public class QuestManager : MonoBehaviour
         //If the quest is found in the master list of quests, add it to the list
         if (newQuest != null)
             activeQuests.Add(newQuest);
+
+        Debug.Log("Quest Added: " + newQuest.ToString());
+
+        GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>New Quest Added.</size>\n" + newQuest.name.ToString());
     }
 
     /// <summary>
@@ -44,6 +48,10 @@ public class QuestManager : MonoBehaviour
         {
             completedQuests.Add(currentQuest);
             activeQuests.Remove(currentQuest);
+
+            Debug.Log("Quest Completed: " + currentQuest.ToString());
+
+            GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>Quest Completed.</size>\n" + currentQuest.name.ToString());
         }
     }
 

@@ -14,4 +14,9 @@ public class Quest
 
     public bool IsQuestCompleted() => completed;
     public void CompleteQuest() => completed = true;
+
+    public override string ToString()
+    {
+        return name + "\n" + description + "\n Sub-Quests Available: " + subQuests.Length; 
+    }
 }
