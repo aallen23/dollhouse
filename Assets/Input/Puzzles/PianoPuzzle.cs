@@ -6,29 +6,23 @@ using Yarn.Unity;
 
 public class PianoPuzzle : MonoBehaviour
 {
-    public string curSong;
-    public string desiredSong;
-    public ObjectData ariadne;
+    [Tooltip("The last five keys to be pressed.")] public string curSong;
+	[Tooltip("The desired combination of keys.")] public string desiredSong;
+	[Tooltip("The Spider NPC, who we'll go to the position of.")] public ObjectData ariadne;
     private bool done = false;
 
-
-    // Start is called before the first frame update
     void Start()
     {
+		//We want to fill curSong with dummy numbers
         for (int i = 0; i < desiredSong.Length; i++)
         {
             curSong += "0";
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void CheckSong()
     {
+		//If our current key combinations is the desired, then we play the music and start the Finish() coroutine.
         if (curSong == desiredSong)
         {
             GetComponent<AudioSource>().Play();
@@ -50,7 +44,7 @@ public class PianoPuzzle : MonoBehaviour
 
     public void KeyPress(string key)
     {
-        curSong = curSong.Substring(1) + key;
+        curSong = curSong.Substring(1) + key; //We exclude the oldest key press and append the new one to the string
         CheckSong();
     }
 
