@@ -195,6 +195,7 @@ public class P2PCameraController : MonoBehaviour
     //Actually sets the values we will be Lerping to. Similar to Travel(), and the two should probably be combined. TO FIX
     void StartMove(int i)
     {
+
         //First we check that there is a valid camera positon in that direction, and we are not mid dialog
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
@@ -275,6 +276,8 @@ public class P2PCameraController : MonoBehaviour
 				dialog.StartDialogue(curPos.runYarn);
 				curPos.ranYarn = true;
 			}
+
+            curPos.OnPositionMovement();
 		}
     }
 

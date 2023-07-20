@@ -78,4 +78,6 @@ public class LocationName : MonoBehaviour
             LeanTween.cancel(currentTween.id);
         currentTween = LeanTween.alphaCanvas(locationTextCanvasGroup, 1f, nameFadeDuration).setEase(nameFadeEaseType);
     }
+
+    public bool IsLabelShowing() => labelShowing;
 }
