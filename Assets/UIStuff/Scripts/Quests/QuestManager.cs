@@ -9,9 +9,8 @@ public class QuestManager : MonoBehaviour
 
     public static QuestManager Instance;
 
-
-    internal List<Quest> activeQuests = new List<Quest>();
-    internal List<Quest> completedQuests = new List<Quest>();
+    internal List<Quest> foundQuests = new List<Quest>();
+    private int activeQuestsNum;
 
     private void Awake()
     {
@@ -24,15 +23,20 @@ public class QuestManager : MonoBehaviour
     /// <param name="questName">The name of the master quest.</param>
     public void AddQuest(string questName)
     {
+        //If the quest has already been added, return
+        if (foundQuests.Contains(FindQuest(questName)))
+            return;
+
         Quest newQuest = FindQuest(questName);
 
         //If the quest is found in the master list of quests, add it to the list
         if (newQuest != null)
-            activeQuests.Add(newQuest);
-
-        Debug.Log("Quest Added: " + newQuest.ToString());
-
-        GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>New Quest Added.</size>\n" + newQuest.name.ToString());
+        {
+            foundQuests.Add(newQuest);
+            Debug.Log("Quest Added: " + newQuest.ToString());
+            GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>New Quest Added.</size>\n" + newQuest.name.ToString());
+            activeQuestsNum++;
+        }
     }
 
     /// <summary>
@@ -41,17 +45,18 @@ public class QuestManager : MonoBehaviour
     /// <param name="questName">The name of the main quest.</param>
     public void ProgressQuest(string questName)
     {
-        Quest currentQuest = Array.Find(activeQuests.ToArray(), quest => quest.name == questName);
+        Quest currentQuest = Array.Find(foundQuests.ToArray(), quest => quest.name == questName);
+
+        //If the current quest is already complete, return
+        if (currentQuest.IsQuestCompleted())
+            return;
 
         //If the quest is now complete, add to the list of completed quests, and remove from the list of active quests
         if (UpdateQuestCompletion(currentQuest))
         {
-            completedQuests.Add(currentQuest);
-            activeQuests.Remove(currentQuest);
-
             Debug.Log("Quest Completed: " + currentQuest.ToString());
-
             GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>Quest Completed.</size>\n" + currentQuest.name.ToString());
+            activeQuestsNum--;
         }
     }
 
@@ -61,9 +66,15 @@ public class QuestManager : MonoBehaviour
     /// <returns>The hint for the randomly chosen active quest.</returns>
     public string GetActiveQuestHint()
     {
-        UnityEngine.Random.InitState(DateTime.Now.Millisecond);  //Seeds the randomizer
-        int currentQuest = UnityEngine.Random.Range(0, activeQuests.Count);
+        //If there are no active quests, don't return anything
+        if (activeQuestsNum == 0)
+            return null;
 
+        UnityEngine.Random.InitState(DateTime.Now.Millisecond);  //Seeds the randomizer
+        Quest[] activeQuests = GetActiveQuests();
+
+        int currentQuest = UnityEngine.Random.Range(0, activeQuests.Length);
+        
         return GetQuestHint(activeQuests[currentQuest]);
     }
 
@@ -78,13 +89,13 @@ public class QuestManager : MonoBehaviour
             return null;
 
         //If there are sub quests present
-        if(currentQuest.subQuests != null)
+        if (currentQuest.subQuests != null)
         {
             //Check the list of sub quests for an incomplete sub quest
-            foreach(var subQuest in currentQuest.subQuests)
+            foreach (var subQuest in currentQuest.subQuests)
             {
                 string subQuestHint = GetQuestHint(subQuest);
-                if(subQuestHint != null)
+                if (subQuestHint != null)
                     return subQuestHint;
             }
         }
@@ -147,6 +158,30 @@ public class QuestManager : MonoBehaviour
     }
 
     public Quest[] GetMasterQuestList() => masterQuestList;
+    public Quest[] GetActiveQuests()
+    {
+        List<Quest> activeQuests = new List<Quest>();
+        foreach (var currentQuest in foundQuests)
+        {
+            if (!currentQuest.IsQuestCompleted())
+                activeQuests.Add(currentQuest);
+        }
+
+        return activeQuests.ToArray();
+    }
+    public Quest[] GetCompletedQuests()
+    {
+        List<Quest> completedQuests = new List<Quest>();
+        foreach (var currentQuest in foundQuests)
+        {
+            if (currentQuest.IsQuestCompleted())
+                completedQuests.Add(currentQuest);
+        }
+
+        return completedQuests.ToArray();
+    }
+
+    public int GetActiveQuestNumber() => activeQuestsNum;
 
     private Quest FindQuest(string name) => Array.Find(masterQuestList, quest => quest.name == name);
 }
