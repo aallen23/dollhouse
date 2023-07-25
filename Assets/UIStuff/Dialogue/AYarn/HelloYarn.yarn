@@ -284,6 +284,7 @@ tags:
 <<DeactivateCece UI>>
 <<activate TalonSprite>>
 Talon: A good cup of tea... that would be nice.
+<<addQuest YarnCommands "Cup of Tea">>
 <<deactivate TalonSprite>>
 ===
 
@@ -296,6 +297,7 @@ tags:
 <<activate TalonSprite>>
 Talon: Thank you. You remind me of someone… If you continue through this house, be careful. You don't know who might be sleeping here, or what you may remember…
 <<deactivate TalonSprite>>
+<<updateQuest YarnCommands "Cup of Tea">>
 <<memoryTriggered GraveMemory>>
 You unlocked a new memory.
 ===

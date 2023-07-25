@@ -60,6 +60,19 @@ public class CameraPosition : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks to see if the player is in or outside of the Doll House.
+    /// </summary>
+    public void OnPositionMovement()
+    {
+        //If the camera position boolean is different than what the game has stored, change the variable
+        if (inDollhouse != GameManager.Instance.inDollhouse)
+        {
+            GameManager.Instance.inDollhouse = inDollhouse;
+            GameManager.Instance.OnSwitchPerspective();
+        }
+    }
+
     private void OnDrawGizmos()
     {
 

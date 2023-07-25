@@ -48,7 +48,7 @@ public class LocationName : MonoBehaviour
     public void ChangeLocationName(string newName)
     {
         //If the new name for the location is already set, return
-        if(GameManager.instance != null && GameManager.instance.currentGameLocation == newName)
+        if(GameManager.Instance != null && GameManager.Instance.currentGameLocation == newName)
             return;
 
         //Show the label if it's hidden
@@ -72,10 +72,12 @@ public class LocationName : MonoBehaviour
     private void UpdateLocationText(string newName)
     {
         locationText.text = newName;
-        GameManager.instance.currentGameLocation = newName;
+        GameManager.Instance.currentGameLocation = newName;
         
         if (currentTween != null)
             LeanTween.cancel(currentTween.id);
         currentTween = LeanTween.alphaCanvas(locationTextCanvasGroup, 1f, nameFadeDuration).setEase(nameFadeEaseType);
     }
+
+    public bool IsLabelShowing() => labelShowing;
 }
