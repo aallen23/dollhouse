@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -45,7 +44,7 @@ public class QuestManager : MonoBehaviour
     /// <param name="questName">The name of the main quest.</param>
     public void ProgressQuest(string questName)
     {
-        Quest currentQuest = Array.Find(foundQuests.ToArray(), quest => quest.name == questName);
+        Quest currentQuest = System.Array.Find(foundQuests.ToArray(), quest => quest.name == questName);
 
         //If the current quest is already complete, return
         if (currentQuest.IsQuestCompleted())
@@ -70,7 +69,7 @@ public class QuestManager : MonoBehaviour
         if (activeQuestsNum == 0)
             return null;
 
-        UnityEngine.Random.InitState(DateTime.Now.Millisecond);  //Seeds the randomizer
+        Random.InitState(System.DateTime.Now.Millisecond);  //Seeds the randomizer
         Quest[] activeQuests = GetActiveQuests();
 
         int currentQuest = UnityEngine.Random.Range(0, activeQuests.Length);
@@ -183,5 +182,5 @@ public class QuestManager : MonoBehaviour
 
     public int GetActiveQuestNumber() => activeQuestsNum;
 
-    private Quest FindQuest(string name) => Array.Find(masterQuestList, quest => quest.name == name);
+    private Quest FindQuest(string name) => System.Array.Find(masterQuestList, quest => quest.name == name);
 }
