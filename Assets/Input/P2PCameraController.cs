@@ -192,92 +192,13 @@ public class P2PCameraController : MonoBehaviour
         StartMove(i);
     }*/
     
-    //Actually sets the values we will be Lerping to. Similar to Travel(), and the two should probably be combined. TO FIX
+    //For manual movement, otherwise go right to Travel()
     void StartMove(int i)
     {
-
         //First we check that there is a valid camera positon in that direction, and we are not mid dialog
         if (curPos.positions[i] != null && !dialog.IsDialogueRunning)
         {
-			bool forceSmoothie = curPos.obeyRotation && !curPos.quickSwitch;
-			float houseYRotation = curPos.houseYRotation;
-			if (curPos.enableAtPosition.Count > 0)
-            {
-                foreach (GameObject obj in curPos.enableAtPosition)
-                {
-                    obj.SetActive(false);
-                }
-            }
-
-			if (curPos.audioAtPosition.Count > 0)
-			{
-				foreach (AudioSource obj in curPos.audioAtPosition)
-				{
-					if (curPos.playFromStart)
-					{
-						obj.Stop();
-					}
-					else
-					{
-						obj.Pause();
-					}
-				}
-			}
-			curPos = curPos.positions[i]; //Update the current camera positon
-            if (curPos.obeyRotation)
-            {
-                //If we must obeyRotation, then we take our desired Rotation from the camera positions rotation
-                desiredRotation = curPos.transform.eulerAngles;
-            }
-            else if (!curPos.obeyRotation && !curPos.quickSwitch)
-            {
-				if (forceSmoothie)
-				{
-					desiredRotation.y = houseYRotation;
-				}
-				desiredRotation.z = 0;
-                desiredRotation.x = 12;
-            }
-            //Debug.Log(curPos.quickSwitch);
-			if (forceSmoothSwitch)
-			{
-				rotationSpeed = 16;
-				moveSpeed = 16;
-			}
-            else if (curPos.quickSwitch && !forceSmoothie) {
-                //If it's a quick switch (so far exclusively inside the Dollhouse, we want the transition to be virtually instant
-                rotationSpeed = 256;
-                moveSpeed = 256;
-            }
-            else
-            {
-                //Otherwise, it's cool to see the camera move a bit.
-                rotationSpeed = 16;
-                moveSpeed = 16;
-            }
-
-            if (curPos.enableAtPosition.Count > 0)
-            {
-                foreach (GameObject obj in curPos.enableAtPosition)
-                {
-                    obj.SetActive(true);
-                }
-            }
-			if (curPos.audioAtPosition.Count > 0)
-			{
-				foreach (AudioSource obj in curPos.audioAtPosition)
-				{
-					obj.Play();
-				}
-			}
-
-			if (curPos.runYarn != "" && !(curPos.runYarnOnce && curPos.ranYarn))
-			{
-				dialog.StartDialogue(curPos.runYarn);
-				curPos.ranYarn = true;
-			}
-
-            curPos.OnPositionMovement();
+			Travel(curPos.positions[i]);
 		}
     }
 
@@ -578,7 +499,8 @@ public class P2PCameraController : MonoBehaviour
 			}
         }
     }
-    //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object) Redudant.
+
+    //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object), as well as by StartMove()
     public void Travel(CameraPosition newPosition)
     {
 		bool forceSmoothie = curPos.obeyRotation && !curPos.quickSwitch;
@@ -607,7 +529,8 @@ public class P2PCameraController : MonoBehaviour
         curPos = newPosition;
         if (curPos.obeyRotation)
         {
-            desiredRotation = curPos.transform.eulerAngles;
+			//If we must obeyRotation, then we take our desired Rotation from the camera positions rotation
+			desiredRotation = curPos.transform.eulerAngles;
         }
 		else if (!curPos.obeyRotation && !curPos.quickSwitch)
 		{
@@ -635,6 +558,7 @@ public class P2PCameraController : MonoBehaviour
 			rotationSpeed = 16;
 			moveSpeed = 16;
 		}
+
 		if (curPos.enableAtPosition.Count > 0)
         {
             foreach (GameObject obj in curPos.enableAtPosition)
@@ -654,7 +578,9 @@ public class P2PCameraController : MonoBehaviour
 			dialog.StartDialogue(curPos.runYarn);
 			curPos.ranYarn = true;
 		}
-    }
+
+		curPos.OnPositionMovement();
+	}
 
     [YarnCommand("enable_controls")]
     public void EnableControls()
