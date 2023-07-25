@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class Wardrobe : MonoBehaviour
 {
-    public GameObject Chair;
+    [Tooltip("The large chair object to show")] public GameObject Chair;
 
-    // Start is called before the first frame update
     void Awake()
     {
-        Chair.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Chair.SetActive(false);
     }
 }

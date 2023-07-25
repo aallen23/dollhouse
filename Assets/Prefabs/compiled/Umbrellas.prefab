@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 234458215}
   - component: {fileID: 234458216}
   m_Layer: 0
-  m_Name: deck_box_4
+  m_Name: Stand 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,8 +171,11 @@ MonoBehaviour:
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
+  rotateAroundX: 0
 --- !u!114 &3690989569681919619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,8 +193,6 @@ MonoBehaviour:
   - {fileID: 6409397242534086163}
   - {fileID: 7811845009418786722}
   - {fileID: 269158430916469031}
-  puzzle: {fileID: 0}
-  putdownAudio: {fileID: 234458215}
 --- !u!82 &234458215
 AudioSource:
   m_ObjectHideFlags: 0
@@ -436,7 +437,7 @@ GameObject:
   - component: {fileID: 79736806}
   - component: {fileID: 79736807}
   m_Layer: 0
-  m_Name: deck_box_3
+  m_Name: Stand 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,8 +591,11 @@ MonoBehaviour:
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
+  rotateAroundX: 0
 --- !u!114 &9010260319602478315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,8 +613,6 @@ MonoBehaviour:
   - {fileID: 2954688296882361727}
   - {fileID: 154806515556620902}
   - {fileID: 7160128875838559310}
-  puzzle: {fileID: 0}
-  putdownAudio: {fileID: 79736806}
 --- !u!82 &79736806
 AudioSource:
   m_ObjectHideFlags: 0
@@ -820,7 +822,7 @@ GameObject:
   - component: {fileID: 1456469594}
   - component: {fileID: 1456469595}
   m_Layer: 0
-  m_Name: deck_box_2
+  m_Name: Stand 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,8 +976,11 @@ MonoBehaviour:
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
+  rotateAroundX: 0
 --- !u!114 &8128256887639717324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,8 +998,6 @@ MonoBehaviour:
   - {fileID: 6409397242603486780}
   - {fileID: 6436516562274214586}
   - {fileID: 269158431486034128}
-  puzzle: {fileID: 0}
-  putdownAudio: {fileID: 1456469594}
 --- !u!82 &1456469594
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1204,7 +1207,7 @@ GameObject:
   - component: {fileID: 449232390}
   - component: {fileID: 449232391}
   m_Layer: 0
-  m_Name: deck_box_1
+  m_Name: Stand 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1358,8 +1361,11 @@ MonoBehaviour:
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
   rotationAnimation: 0
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
+  rotateAroundX: 0
 --- !u!114 &8751900930100500270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1377,8 +1383,6 @@ MonoBehaviour:
   - {fileID: 6409397242343110168}
   - {fileID: 7811845010374026829}
   - {fileID: 2289905801412521524}
-  puzzle: {fileID: 0}
-  putdownAudio: {fileID: 449232390}
 --- !u!82 &449232390
 AudioSource:
   m_ObjectHideFlags: 0

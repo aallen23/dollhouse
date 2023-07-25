@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class UmbrellaPuzzle : MonoBehaviour
 {
-    public ItemScriptableObject umbBlue;
-    public ItemScriptableObject umbRed;
-    public ItemScriptableObject umbYellow;
-    public ItemScriptableObject umbGreen;
+    [Tooltip("Umbrella Scriptable Objects of each color.")] public ItemScriptableObject umbBlue, umbRed, umbYellow, umbGreen;
+	[Tooltip("Umbrella Scriptable Objects that are in each stand.")] public ItemScriptableObject stand1, stand2, stand3, stand4;
 
-    public ItemScriptableObject stand1, stand2, stand3, stand4;
+	[Tooltip("Puzzle Complete music.")] public AudioSource audioComplete;
 
-	public AudioSource audioComplete;
+
 
     private void Start()
     {
@@ -20,20 +18,21 @@ public class UmbrellaPuzzle : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+	//Updates the current value of each stand
     public void UpdateUmbrellas(string inStand, ItemScriptableObject umbrellaColor)
     {
         switch (inStand)
         {
-            case "deck_box_1":
+            case "Stand 1":
                 stand1 = umbrellaColor;
                 break;
-            case "deck_box_2":
+            case "Stand 2":
                 stand2 = umbrellaColor;
                 break;
-            case "deck_box_3":
+            case "Stand 3":
                 stand3 = umbrellaColor;
                 break;
-            case "deck_box_4":
+            case "Stand 4":
                 stand4 = umbrellaColor;
                 break;
         }
@@ -42,14 +41,12 @@ public class UmbrellaPuzzle : MonoBehaviour
 
     public void Check()
     {
-        //Debug.Log((umbLeft.addedItem == umbYellow) + " " + (umbMidLeft.addedItem == umbRed) + " " + (umbMidRight.addedItem == umbBlue) + " " + (umbRight.addedItem == umbGreen));
+		//Current puzzle solution, hardcoded (for now)
         if (stand1 == umbYellow &&
             stand2 == umbRed &&
             stand3 == umbBlue &&
             stand4 == umbGreen)
         {
-            //GetComponent<Collider>().enabled = true;
-            //GetComponent<MeshRenderer>().enabled = true;
             gameObject.SetActive(true);
 			audioComplete.Play();
         }
