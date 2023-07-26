@@ -29,10 +29,7 @@ public class CreditsScroll : MonoBehaviour
     private void OnEnable()
     {
         inputControls.Enable();
-
-        //Reset the credits scroll data
-        timeElapsed = 0.0f;
-        isFastForwarding = false;
+        ResetScroll();
     }
 
     private void OnDisable()
@@ -45,6 +42,7 @@ public class CreditsScroll : MonoBehaviour
     /// </summary>
     public void StartScroll()
     {
+        ResetScroll();
         StartCoroutine(Scroll());
     }
 
@@ -93,6 +91,7 @@ public class CreditsScroll : MonoBehaviour
     {
         creditsText.anchoredPosition = creditsStartPos;
         timeElapsed = 0.0f;
+        isFastForwarding = false;
     }
 
     /// <summary>
