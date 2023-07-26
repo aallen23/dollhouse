@@ -92,6 +92,7 @@ public class CreditsScroll : MonoBehaviour
         creditsText.anchoredPosition = creditsStartPos;
         timeElapsed = 0.0f;
         isFastForwarding = false;
+        fastForwardIcon.SetActive(isFastForwarding);
     }
 
     /// <summary>
