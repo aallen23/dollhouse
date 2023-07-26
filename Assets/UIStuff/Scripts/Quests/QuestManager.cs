@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuestManager : MonoBehaviour
 {
@@ -14,6 +15,30 @@ public class QuestManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        RefreshQuestList();
+    }
+
+    /// <summary>
+    /// Refreshes the quest list so that it is empty after a scene loads.
+    /// </summary>
+    private void RefreshQuestList()
+    {
+        foundQuests.Clear();
+        activeQuestsNum = 0;
     }
 
     /// <summary>
