@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    internal bool isGameActive;
     internal string currentGameLocation;
     internal bool inDollhouse = false;
 
@@ -20,19 +21,26 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void OnSwitchPerspective()
     {
-        if (inDollhouse)
+        if (isGameActive)
         {
-            //Function for when you enter the Dollhouse
-            //Debug.Log("Player is in the Doll House.");
-            if (!FindObjectOfType<LocationName>().IsLabelShowing())
-                FindObjectOfType<LocationName>().ShowLabel(true);
-        }
-        else
-        {
-            //Function for when you exit the Dollhouse
-            //Debug.Log("Player is outside of the Doll House.");
-            if (FindObjectOfType<LocationName>().IsLabelShowing())
-                FindObjectOfType<LocationName>().ShowLabel(false);
+            LocationName locationNameLabel = FindObjectOfType<LocationName>();
+            if (locationNameLabel != null)
+            {
+                if (inDollhouse)
+                {
+                    //Function for when you enter the Dollhouse
+                    //Debug.Log("Player is in the Doll House.");
+                    if (!locationNameLabel.IsLabelShowing())
+                        locationNameLabel.ShowLabel(true);
+                }
+                else
+                {
+                    //Function for when you exit the Dollhouse
+                    //Debug.Log("Player is outside of the Doll House.");
+                    if (locationNameLabel.IsLabelShowing())
+                        locationNameLabel.ShowLabel(false);
+                }
+            }
         }
     }
 }
