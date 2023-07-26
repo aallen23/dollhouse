@@ -322,6 +322,8 @@ public class MenuManager : MonoBehaviour
 			restart_game = true;
 			Restart();
 		}
+
+        GameManager.Instance.isGameActive = true;
         SetAllInactive();
         audioManager.TurnOffMusic();
         //audioManager.StartAmbience();
@@ -577,6 +579,8 @@ public class MenuManager : MonoBehaviour
         //audioManager.TurnOffMusic();
         //audioManager.MenuMusic();
         SetAllInactive();
+
+        GameManager.Instance.isGameActive = false;
         mainMenu1.SetActive(true);
 
         //if (FindObjectOfType<P2PCameraController>().gameStarted)
@@ -616,10 +620,13 @@ public class MenuManager : MonoBehaviour
     public void ActualQuitButton()
     {
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     //changes quality settings in options menu
-	public void ChangeQuality()
+    public void ChangeQuality()
 	{
 		TMP_Dropdown dropdown = GameObject.Find("QualityDropdown").GetComponent<TMP_Dropdown>();
 		QualitySettings.SetQualityLevel(dropdown.value);

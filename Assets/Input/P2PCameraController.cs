@@ -293,6 +293,9 @@ public class P2PCameraController : MonoBehaviour
 
     private void Interact_performed(InputAction.CallbackContext obj)
     {
+        if (!GameManager.Instance.isGameActive)
+            return;
+
         //For Gamepad buttons, they trigger _performed when releasing the button (in addition to pressing the button down) with the value of 0. When this occurs, we don't want to do anything, so we return
         if (obj.ReadValue<float>() == 0)
         {
@@ -340,6 +343,9 @@ public class P2PCameraController : MonoBehaviour
     //When we release the Interact button, we need to do stuff if we're dragging an object
     private void Interact_canceled(InputAction.CallbackContext obj)
     {
+        if (!GameManager.Instance.isGameActive)
+            return;
+
         hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
         if (hitObject && !dialog.IsDialogueRunning && heldItem) //If we are over an Object, not running dialog, and holding an object
         {

@@ -46,16 +46,19 @@ public class QuestManager : MonoBehaviour
     {
         Quest currentQuest = System.Array.Find(foundQuests.ToArray(), quest => quest.name == questName);
 
-        //If the current quest is already complete, return
-        if (currentQuest.IsQuestCompleted())
-            return;
-
-        //If the quest is now complete, add to the list of completed quests, and remove from the list of active quests
-        if (UpdateQuestCompletion(currentQuest))
+        if(currentQuest != null)
         {
-            Debug.Log("Quest Completed: " + currentQuest.ToString());
-            GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>Quest Completed.</size>\n" + currentQuest.name.ToString());
-            activeQuestsNum--;
+            //If the current quest is already complete, return
+            if (currentQuest.IsQuestCompleted())
+                return;
+
+            //If the quest is now complete, add to the list of completed quests, and remove from the list of active quests
+            if (UpdateQuestCompletion(currentQuest))
+            {
+                Debug.Log("Quest Completed: " + currentQuest.ToString());
+                GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>Quest Completed.</size>\n" + currentQuest.name.ToString());
+                activeQuestsNum--;
+            }
         }
     }
 
