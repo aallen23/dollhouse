@@ -51,6 +51,7 @@ title: Cece
 tags:
 ---
 <<ActivateCece UI>>
+<<setLocation YarnCommands "Foyer">>
 {$PlayerName}: Who are you?
 -> Who are *you*?
 {$PlayerName}: I don't remember... I think I've lost my memories. Maybe you can help me look for them.
@@ -202,6 +203,7 @@ BigBoy: Someone used to feed real food, but they disappeared long ago. I have ne
 <<ActivateCece UI>>
 <<Neutral Cecelia>>
 {$PlayerName}: I'll see if I can find anything. I'm hungry too.
+<<addQuest YarnCommands "Food for Big Boy">>
 <<DeactivateCece UI>>
 ===
 
@@ -213,6 +215,7 @@ tags:
 <<activate BigBoySprite>>
 BigBoy: FOOD! REAL FOOD! Thank you, thank you. I can't thank you enough. The taste of this food reminds me of the past.
 <<deactivate BigBoySprite>>
+<<updateQuest YarnCommands "Food for Big Boy">>
 <<memoryTriggered GluttonyMemory>>
 You unlocked a new memory.
 ===
@@ -472,6 +475,7 @@ Allura: Don't you know how to cry, little one? Don't worry... I'll teach you.
 <<deactivate AlluraSprite>>
 Press the C Key or the X Button to force the doll to cry.
 <<enable_cry P2PPlayer>>
+<<addQuest YarnCommands "The Weeping Flower">>
 ===
 
 title: AlluraDuringQuest
@@ -507,6 +511,7 @@ Allura: Here is my secret: I remember you. Your name is Cecelia. I haven't seen 
 <<activate AlluraSprite>>
 Allura: Now, now. I only promised you one secret.
 <<deactivate AlluraSprite>>
+<<updateQuest YarnCommands "The Weeping Flower">>
 <<memoryTriggered LustMemory>>
 You unlocked a new memory.
 ===

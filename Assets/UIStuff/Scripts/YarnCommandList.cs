@@ -16,4 +16,10 @@ public class YarnCommandList : MonoBehaviour
     {
         QuestManager.Instance.ProgressQuest(questName);
     }
+
+    [YarnCommand("setLocation")]
+    public void SetLocation(string locationName)
+    {
+        FindObjectOfType<LocationName>().ChangeLocationName(locationName);
+    }
 }

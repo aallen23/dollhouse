@@ -607,6 +607,7 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        GameManager.Instance.isGameActive = false;
     }
 
     //quit button triggers quit frame that confirms player wants to quit

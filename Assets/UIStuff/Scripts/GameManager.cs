@@ -23,19 +23,23 @@ public class GameManager : MonoBehaviour
     {
         if (isGameActive)
         {
-            if (inDollhouse)
+            LocationName locationNameLabel = FindObjectOfType<LocationName>();
+            if (locationNameLabel != null)
             {
-                //Function for when you enter the Dollhouse
-                //Debug.Log("Player is in the Doll House.");
-                if (!FindObjectOfType<LocationName>().IsLabelShowing())
-                    FindObjectOfType<LocationName>().ShowLabel(true);
-            }
-            else
-            {
-                //Function for when you exit the Dollhouse
-                //Debug.Log("Player is outside of the Doll House.");
-                if (FindObjectOfType<LocationName>().IsLabelShowing())
-                    FindObjectOfType<LocationName>().ShowLabel(false);
+                if (inDollhouse)
+                {
+                    //Function for when you enter the Dollhouse
+                    //Debug.Log("Player is in the Doll House.");
+                    if (!locationNameLabel.IsLabelShowing())
+                        locationNameLabel.ShowLabel(true);
+                }
+                else
+                {
+                    //Function for when you exit the Dollhouse
+                    //Debug.Log("Player is outside of the Doll House.");
+                    if (locationNameLabel.IsLabelShowing())
+                        locationNameLabel.ShowLabel(false);
+                }
             }
         }
     }
