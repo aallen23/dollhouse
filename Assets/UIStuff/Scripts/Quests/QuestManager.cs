@@ -60,6 +60,8 @@ public class QuestManager : MonoBehaviour
             Debug.Log("Quest Added: " + newQuest.ToString());
             GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>New Quest Added.</size>\n" + newQuest.name.ToString());
             activeQuestsNum++;
+
+            FindObjectOfType<QuestLogManager>().AddToQuestLog(newQuest);
         }
     }
 
@@ -84,6 +86,8 @@ public class QuestManager : MonoBehaviour
                 GameObject.FindGameObjectWithTag("QuestPopup").GetComponent<PopupBox>().ShowPopup("<size=70>Quest Completed.</size>\n" + currentQuest.name.ToString());
                 activeQuestsNum--;
             }
+
+            FindObjectOfType<QuestLogManager>().UpdateQuestLog(currentQuest);
         }
     }
 
