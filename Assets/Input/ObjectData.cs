@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using UnityEngine.AI;
 using Yarn.Unity;
 
-
 public enum InteractType
 {
     Examine,
@@ -31,9 +30,9 @@ public enum ObjectUseType
 //Stores an Interactable Object's Data
 public class ObjectData : MonoBehaviour
 {
-    [Tooltip("If true, Doll must travel to object before Interact()ing.")]
-    public bool isDollObject;
-    [Tooltip("Move Doll to here.")]
+    [Tooltip("If true, Doll must travel to Position Doll before calling Interact().")]
+	public bool isDollObject;
+    [Tooltip("Transform position Doll must travel to if Is Doll Object.")]
     public Transform positionDoll;
 
     [Tooltip("CameraPosition to LERP camera to when Interact()ing.")]
@@ -134,6 +133,7 @@ public class ObjectData : MonoBehaviour
     //Private variables for calling fucntions
     private DialogueRunner dialog;
     private P2PCameraController player;
+
     public Vector3 lookPoint;
     public Vector2 mouseDelta;
     public Vector3 rotateAroundModAngle;
@@ -146,10 +146,17 @@ public class ObjectData : MonoBehaviour
 	public AudioSource itemSFX;
     public InventorySystem inv;
 
-    public bool rotationAnimation;
+	[Tooltip("(Optional) Trigger Animation to play when interacting")]
 	public Animator animationToPlay;
+	[Tooltip("Trigger Animation parameter to forward along.")]
 	public string animationParameter;
-    public Vector3 defaultRotation, secondRotation;
+	[Tooltip("If true, LERP to animate this object from default -> second -> default.")]
+	public bool rotationAnimation;
+	[Tooltip("The default rotation of the Object.")]
+    public Vector3 defaultRotation;
+	[Tooltip("The rotation of the Object to LERP to when Interact()ing.")]
+	public Vector3 secondRotation;
+
 
 	public bool rotateAroundX;
 

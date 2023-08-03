@@ -7,7 +7,7 @@ public class CameraSwitcher : MonoBehaviour
 {
     private P2PCameraController pcamera;
     private DollBehavior doll;
-	public bool forceSmooth;
+	[Tooltip("When true, force a smooth camera transition.")] public bool forceSmooth;
 
     private void Start()
     {
@@ -18,7 +18,6 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.gameObject.name);
         if (other.gameObject == doll.gameObject && pcamera.gameStarted)
         {
 			pcamera.forceSmoothSwitch = forceSmooth;
