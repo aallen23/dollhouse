@@ -276,22 +276,6 @@ public class MenuManager : MonoBehaviour
 		audioManager.PlayCreditsMusic();
 	}
 
-    //activates CeceFace in game ui
-    [YarnCommand("ActivateCece")]
-    public void ActivateCece()
-    {
-        ceceFace.SetActive(true);
-        ceceFace.GetComponent<CeceFace>().PlayCurrentEmote();
-    }
-
-    //deactivates CeceFace in game ui
-    [YarnCommand("DeactivateCece")]
-    public void DeactivateCece()
-    {
-        ceceFace.GetComponent<CeceFace>().SetBlinkFalse();
-        ceceFace.SetActive(false);
-    }
-
     //saved for future game save system
     //designed to reset dialogue variables for new save
     //public void ResetDialogue()
@@ -323,6 +307,8 @@ public class MenuManager : MonoBehaviour
 			restart_game = true;
 			Restart();
 		}
+
+        GameManager.Instance.isGameActive = true;
         SetAllInactive();
         audioManager.TurnOffMusic();
         //audioManager.StartAmbience();
@@ -578,6 +564,8 @@ public class MenuManager : MonoBehaviour
         //audioManager.TurnOffMusic();
         //audioManager.MenuMusic();
         SetAllInactive();
+
+        GameManager.Instance.isGameActive = false;
         mainMenu1.SetActive(true);
 
         //if (FindObjectOfType<P2PCameraController>().gameStarted)
@@ -604,6 +592,7 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        GameManager.Instance.isGameActive = false;
     }
 
     //quit button triggers quit frame that confirms player wants to quit
@@ -617,10 +606,13 @@ public class MenuManager : MonoBehaviour
     public void ActualQuitButton()
     {
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     //changes quality settings in options menu
-	public void ChangeQuality()
+    public void ChangeQuality()
 	{
 		TMP_Dropdown dropdown = GameObject.Find("QualityDropdown").GetComponent<TMP_Dropdown>();
 		QualitySettings.SetQualityLevel(dropdown.value);

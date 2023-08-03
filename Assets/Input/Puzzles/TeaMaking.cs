@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class TeaMaking : MonoBehaviour
 {
-    public List<GameObject> SugarCube;
-    public GameObject TeaBag;
-    public GameObject TeaBagString;
-    public GameObject Cup;
-    public bool addedSugar;
-    public bool addedBag;
-    public bool pouring;
-    public bool donePouring;
+    [Tooltip("List of all possible SugarCubes.")] public List<GameObject> SugarCube;
+	[Tooltip("Teabag GameObject.")] public GameObject TeaBag;
+	[Tooltip("Teabag String GameObject.")] public GameObject TeaBagString;
+	[Tooltip("Cup GameObject.")] public GameObject Cup;
+	[Tooltip("Have we added Sugar?")] public bool addedSugar;
+	[Tooltip("Have we added the tea bag?")] public bool addedBag;
+	[Tooltip("Are we currently pouring?")] public bool pouring;
+	[Tooltip("Have we finished pouring?")] public bool donePouring;
 
-    public GameObject potLiquid;
-    public GameObject cupLiquid;
-    public Transform PotPos;
-    public float rotateSpeed;
-	public AudioSource audioSource;
+	[Tooltip("Tea pot Liquid GameObject.")] public GameObject potLiquid;
+	[Tooltip("Tea cup Liquid GameObject.")] public GameObject cupLiquid;
+	[Tooltip("The position to lerp the pot to while pouring")] public Transform PotPos;
+	[Tooltip("The speed the pot will tip.")] public float rotateSpeed;
+	[Tooltip("Pouring SFX.")] public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
