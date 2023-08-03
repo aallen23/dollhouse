@@ -13,11 +13,14 @@ public class AnimatedCharacter : MonoBehaviour
     private CanvasGroup canvasGroup;
     private bool isSpriteShowing;
 
-    private void Start()
+    private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         spriteAnimator = GetComponentInChildren<SpriteAnimator>();
+    }
 
+    private void Start()
+    {
         canvasGroup.alpha = 0;
         isSpriteShowing = false;
     }

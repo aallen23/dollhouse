@@ -215,4 +215,7 @@ public class QuestManager : MonoBehaviour
     public int GetActiveQuestNumber() => activeQuestsNum;
 
     private Quest FindQuest(string name) => System.Array.Find(masterQuestList, quest => quest.name == name);
+
+
+    public QuestLogManager GetQuestLog() => FindObjectOfType<QuestLogManager>();
 }
