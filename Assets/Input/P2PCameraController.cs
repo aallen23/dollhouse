@@ -10,6 +10,8 @@ using UnityEngine.EventSystems;
 //Controls the Player character
 public class P2PCameraController : MonoBehaviour
 {
+	
+	[Tooltip("If true, disable the intro that normally plays. Make sure it is false for a build.")] public bool debugDisableIntro;
     private RaycastHit hit;
     public bool gameStarted;
     [Tooltip("The Input Map we are using.")] public Controls inputMap;

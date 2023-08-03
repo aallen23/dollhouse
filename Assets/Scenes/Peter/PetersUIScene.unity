@@ -1223,9 +1223,9 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
-  rotationAnimation: 0
   animationToPlay: {fileID: 0}
   animationParameter: 
+  rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
   rotateAroundX: 0
@@ -1736,50 +1736,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4f942052a1b2a488082995130a44ef, type: 3}
---- !u!1 &466305542
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 466305544}
-  - component: {fileID: 466305543}
-  m_Layer: 0
-  m_Name: YarnCommands
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &466305543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466305542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f72dc00e446976b4e872e39c3027fc3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &466305544
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466305542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &484114054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,9 +1816,9 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
-  rotationAnimation: 0
   animationToPlay: {fileID: 0}
   animationParameter: 
+  rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
   rotateAroundX: 0
@@ -2289,9 +2245,9 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
-  rotationAnimation: 0
   animationToPlay: {fileID: 0}
   animationParameter: 
+  rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
   rotateAroundX: 0
@@ -2823,9 +2779,9 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
-  rotationAnimation: 0
   animationToPlay: {fileID: 0}
   animationParameter: 
+  rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
   rotateAroundX: 0
@@ -3678,9 +3634,9 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
-  rotationAnimation: 0
   animationToPlay: {fileID: 0}
   animationParameter: 
+  rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
   rotateAroundX: 0
@@ -4848,9 +4804,9 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
-  rotationAnimation: 0
   animationToPlay: {fileID: 0}
   animationParameter: 
+  rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
   rotateAroundX: 0
@@ -5404,9 +5360,9 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
-  rotationAnimation: 0
   animationToPlay: {fileID: 0}
   animationParameter: 
+  rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
   rotateAroundX: 0
@@ -6306,6 +6262,63 @@ PrefabInstance:
       objectReference: {fileID: 12240490}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be799a31b40491a4086afbcb4f745f00, type: 3}
+--- !u!1001 &2729353923837606051
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2729353923480779429, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_Name
+      value: YarnCommands
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729353923480779435, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 78bf0c83ea9c2774a8c96bc400c8c3b0, type: 3}
 --- !u!1 &3359117305417006564
 GameObject:
   m_ObjectHideFlags: 0
@@ -6876,9 +6889,9 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
-  rotationAnimation: 0
   animationToPlay: {fileID: 0}
   animationParameter: 
+  rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
   rotateAroundX: 0

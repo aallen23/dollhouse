@@ -32,20 +32,17 @@ Grandma: Well, no surprise there.
 Grandma: No. Not since their father died.
 <<moveNameTab YarnCommands "left">>
 ...: What a tragedy… At least now, they have you to take care of them…
-<<PlayCarIntro Audio>>
-<<wait 15>>
+<<StartIntro Audio>>
+===
+
+title: StartGame2
+---
 <<StartAmbience Audio>>
 <<fadeOut UI>>
 <<wait 1>>
 <<BlinkSequence UI>>
 <<ActivateUI UI>>
 <<enable_controls P2PPlayer>>
-<<jump Intro>>
-===
-
-title: Intro
-tags:
----
 {$PlayerName}: Hello?
 {$PlayerName}: Is someone there?
 Search for the source of the voice.
