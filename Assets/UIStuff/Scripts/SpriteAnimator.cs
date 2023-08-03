@@ -3,57 +3,100 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
-using GD.MinMaxSlider;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Image), typeof(Animator))]
 public class SpriteAnimator : MonoBehaviour
 {
     //controls current facial emotion
     public enum Emotes { Neutral, Sad, Disgusted, Scared, Terrified, Angry };      //contains all possible facial emotions
     private Emotes currentEmote;            //saves current emotion
 
-    [SerializeField, Tooltip("If true, the sprite can blink.")] private bool animateBlink = true;
-    [SerializeField, MinMaxSlider(0, 30), Tooltip("The random range (in seconds) between blinking.")] private Vector2 blinkingFrequency;
+    private CharacterData charData;
 
+    private Image spriteImage;
     private Animator spriteAnimator;
     private bool isBlinking;
     private float currentBlinkWaitTime, blinkWaitTime;
 
     private void Awake()
     {
-        //gets animator component from CeceFace
+        spriteImage = GetComponent<Image>();
         spriteAnimator = GetComponent<Animator>();
-        RandomizeBlinkTime();
 
-        //sets animator to neutral
-        Neutral();
+        if(charData != null)
+            InitializeCharacter();
+    }
+
+    /// <summary>
+    /// Sets the values of the character data to the component.
+    /// </summary>
+    private void InitializeCharacter()
+    {
+        spriteImage.sprite = charData.defaultSprite;
+        spriteAnimator.runtimeAnimatorController = charData.characterController;
+        currentEmote = Emotes.Neutral;
+
+        if (charData.animateBlink)
+        {
+            isBlinking = true;
+            RandomizeBlinkTime();
+        }
+        else
+            isBlinking = false;
     }
 
     private void OnEnable()
     {
-        if (animateBlink)
+        ResetCharacter();
+    }
+
+    /// <summary>
+    /// Resets all component values to defaults.
+    /// </summary>
+    private void ResetCharacter()
+    {
+        if(charData != null)
         {
-            isBlinking = true;
-            RandomizeBlinkTime();
+            spriteImage.sprite = charData.defaultSprite;
+
+            if (charData.animateBlink)
+            {
+                isBlinking = true;
+                RandomizeBlinkTime();
+            }
+            else
+                isBlinking = false;
         }
     }
 
     private void OnDisable()
     {
-        ResetAnimator();
-        if (animateBlink)
-            isBlinking = false;
+        if(charData != null)
+        {
+            ResetAnimator();
+            spriteImage.sprite = charData.defaultSprite;
+            currentEmote = Emotes.Neutral;
+
+            if (charData.animateBlink)
+                isBlinking = false;
+        }
     }
+
+    public void OnShown() => OnEnable();
+    public void OnHidden() => OnDisable();
 
     void Update()
     {
-        //If the character can blink, increment the blink timer
-        if (animateBlink && isBlinking)
+        if(charData != null && spriteAnimator.runtimeAnimatorController != null)
         {
-            if (currentBlinkWaitTime > blinkWaitTime)
-                Blink();
-            else
-                currentBlinkWaitTime += Time.deltaTime;
+            //If the character can blink, increment the blink timer
+            if (charData.animateBlink && isBlinking)
+            {
+                if (currentBlinkWaitTime > blinkWaitTime)
+                    Blink();
+                else
+                    currentBlinkWaitTime += Time.deltaTime;
+            }
         }
     }
 
@@ -64,7 +107,7 @@ public class SpriteAnimator : MonoBehaviour
     {
         currentBlinkWaitTime = 0f;
         Random.InitState(System.DateTime.Now.Millisecond);
-        blinkWaitTime = Random.Range(blinkingFrequency.x, blinkingFrequency.y);
+        blinkWaitTime = Random.Range(charData.blinkingFrequency.x, charData.blinkingFrequency.y);
     }
 
     /// <summary>
@@ -72,58 +115,11 @@ public class SpriteAnimator : MonoBehaviour
     /// </summary>
     private void Blink()
     {
-        spriteAnimator.SetTrigger("isBlink");
-        RandomizeBlinkTime();
-    }
-
-    //sets animator to disgusted
-    [YarnCommand("Disgusted")]
-    public void Disgusted()
-    {
-        spriteAnimator.SetBool("isDisgusted", true);
-        currentEmote = Emotes.Disgusted;
-    }
-
-    //sets animator to sad
-    [YarnCommand("Sad")]
-    public void Sad()
-    {
-        spriteAnimator.SetBool("isSad", true);
-        currentEmote = Emotes.Sad;
-    }
-
-    //sets animator to angry
-    [YarnCommand("Angry")]
-    public void Angry()
-    {
-        spriteAnimator.SetBool("isAngry", true);
-        currentEmote = Emotes.Angry;
-    }
-
-    //sets animator to scared
-    [YarnCommand("Scared")]
-    public void Scared()
-    {
-        spriteAnimator.SetBool("isScared", true);
-        currentEmote = Emotes.Scared;
-    }
-
-    //sets animator to terrified
-    [YarnCommand("Terrified")]
-    public void Terrified()
-    {
-        spriteAnimator.SetBool("isTerrified", true);
-        currentEmote = Emotes.Terrified;
-    }
-
-    //sets animator to neutral
-    [YarnCommand("Neutral")]
-    public void Neutral()
-    {
-        ResetAnimator();
-        spriteAnimator.Play("Neutral");
-        currentEmote = Emotes.Neutral;
-        //blinking = true;
+        if(spriteAnimator.runtimeAnimatorController != null)
+        {
+            spriteAnimator.SetTrigger("isBlink");
+            RandomizeBlinkTime();
+        }
     }
 
     /// <summary>
@@ -131,53 +127,93 @@ public class SpriteAnimator : MonoBehaviour
     /// </summary>
     public void ResetAnimator()
     {
-        spriteAnimator.SetBool("isDisgusted", false);
-        spriteAnimator.SetBool("isSad", false);
-        spriteAnimator.SetBool("isAngry", false);
-        spriteAnimator.SetBool("isScared", false);
-        spriteAnimator.SetBool("isTerrified", false);
+        if(spriteAnimator.runtimeAnimatorController != null)
+        {
+            spriteAnimator.SetBool("isDisgusted", false);
+            spriteAnimator.SetBool("isSad", false);
+            spriteAnimator.SetBool("isAngry", false);
+            spriteAnimator.SetBool("isScared", false);
+            spriteAnimator.SetBool("isTerrified", false);
+        }
     }
 
     /// <summary>
-    /// Saves and plays the current emote animation.
+    /// Changes the emote of the sprite and plays it.
+    /// </summary>
+    /// <param name="emotion">The name of the emotion to change to.</param>
+    public void ChangeEmote(string emotion)
+    {
+        emotion = emotion.ToLower();
+        switch (emotion)
+        {
+            case "neutral":
+                currentEmote = Emotes.Neutral;
+                break;
+            case "terrified":
+                currentEmote = Emotes.Terrified;
+                break;
+            case "angry":
+                currentEmote = Emotes.Angry;
+                break;
+            case "disgusted":
+                currentEmote = Emotes.Disgusted;
+                break;
+            case "scared":
+                currentEmote = Emotes.Scared;
+                break;
+            case "sad":
+                currentEmote = Emotes.Sad;
+                break;
+            default:
+                Debug.LogWarning("\"" + emotion + "\" does not exist.");
+                break;
+        }
+
+        //Play the current emote animation
+        PlayCurrentEmote();
+    }
+
+    /// <summary>
+    /// Plays the current emote animation.
     /// </summary>
     public void PlayCurrentEmote()
     {
-        switch (currentEmote)
+        if(spriteAnimator.runtimeAnimatorController != null)
         {
-            case Emotes.Neutral:
-                {
-                    Neutral();
-                    break;
-                }
-            case Emotes.Sad:
-                {
-                    Sad();
-                    break;
-                }
-            case Emotes.Angry:
-                {
-                    Angry();
-                    break;
-                }
-            case Emotes.Disgusted:
-                {
-                    Disgusted();
-                    break;
-                }
-            case Emotes.Scared:
-                {
-                    Scared();
-                    break;
-                }
-            case Emotes.Terrified:
-                {
-                    Terrified();
-                    break;
-                }
-        }
+            ResetAnimator();
 
+            Debug.Log("Current Emote: " + currentEmote);
+            
+            switch (currentEmote)
+            {
+                case Emotes.Neutral:
+                    spriteAnimator.Play("Neutral");
+                    break;
+                case Emotes.Sad:
+                    spriteAnimator.SetBool("isSad", true);
+                    break;
+                case Emotes.Angry:
+                    spriteAnimator.SetBool("isAngry", true);
+                    break;
+                case Emotes.Disgusted:
+                    spriteAnimator.SetBool("isDisgusted", true);
+                    break;
+                case Emotes.Scared:
+                    spriteAnimator.SetBool("isScared", true);
+                    break;
+                case Emotes.Terrified:
+                    spriteAnimator.SetBool("isTerrified", true);
+                    break;
+            }
+        }
     }
 
+    public CharacterData GetCharacterData() => charData;
     public Emotes GetCharacterEmote() => currentEmote;
+
+    public void SetCharacterData(CharacterData newCharacterData)
+    {
+        charData = newCharacterData;
+        InitializeCharacter();
+    }
 }

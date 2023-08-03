@@ -22,4 +22,28 @@ public class YarnCommandList : MonoBehaviour
     {
         FindObjectOfType<LocationName>().ChangeLocationName(locationName);
     }
+
+    [YarnCommand("showSprite")]
+    public void ShowSprite(string spriteName, string direction, bool isActive = true)
+    {
+        DialogueController.Instance.ShowSprite(spriteName, direction, isActive);
+    }
+
+    [YarnCommand("showIcon")]
+    public void ShowIcon(string spriteName, bool isActive = true)
+    {
+        DialogueController.Instance.ShowIcon(spriteName, isActive);
+    }
+
+    [YarnCommand("changeEmotion")]
+    public void ChangeEmotion(string spriteName, string emotion = "neutral")
+    {
+        DialogueController.Instance.ChangeEmotion(spriteName, emotion);   
+    }
+
+    [YarnCommand("moveNameTab")]
+    public void MoveNameTab(string direction)
+    {
+        DialogueController.Instance.MoveNameTab(direction);
+    }
 }

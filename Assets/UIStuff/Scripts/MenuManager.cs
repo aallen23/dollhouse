@@ -276,21 +276,6 @@ public class MenuManager : MonoBehaviour
 		audioManager.PlayCreditsMusic();
 	}
 
-    //activates CeceFace in game ui
-    [YarnCommand("ActivateCece")]
-    public void ActivateCece()
-    {
-        ceceFace.SetActive(true);
-        ceceFace.GetComponent<SpriteAnimator>().PlayCurrentEmote();
-    }
-
-    //deactivates CeceFace in game ui
-    [YarnCommand("DeactivateCece")]
-    public void DeactivateCece()
-    {
-        ceceFace.SetActive(false);
-    }
-
     //saved for future game save system
     //designed to reset dialogue variables for new save
     //public void ResetDialogue()
