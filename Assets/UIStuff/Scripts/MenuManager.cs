@@ -510,7 +510,7 @@ public class MenuManager : MonoBehaviour
     //pauses and unpauses game
     public void Pause()
     {
-        if (!isPaused && !journal.activeSelf)
+        if (!isPaused && !journal.activeSelf && !QuestManager.Instance.GetQuestLog().IsQuestLogOpen())
         {
             isPaused = true;
             //Time.timeScale = 0f;
@@ -521,9 +521,17 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            isPaused = false;
-            Time.timeScale = 1f;
-            journal.SetActive(false);
+            if(journal.activeInHierarchy)
+                journal.SetActive(false);
+
+            if (QuestManager.Instance.GetQuestLog().IsQuestLogOpen())
+                QuestManager.Instance.GetQuestLog().ShowQuestLog(false);
+
+            if (isPaused)
+            {
+                isPaused = false;
+                Time.timeScale = 1f;
+            }
         }
 
         //if (optionsFrame.activeSelf)

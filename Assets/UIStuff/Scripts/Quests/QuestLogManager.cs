@@ -134,4 +134,6 @@ public class QuestLogManager : MonoBehaviour
     }
 
     private QuestLogEntry GetLogEntry(Quest logData) => System.Array.Find(questContentTransform.GetComponentsInChildren<QuestLogEntry>(), quest => quest.GetQuestData().name == logData.name);
+
+    public bool IsQuestLogOpen() => questLogOpen;
 }
