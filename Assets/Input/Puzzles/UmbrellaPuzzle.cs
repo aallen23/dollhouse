@@ -9,12 +9,8 @@ public class UmbrellaPuzzle : MonoBehaviour
 
 	[Tooltip("Puzzle Complete music.")] public AudioSource audioComplete;
 
-
-
     private void Start()
     {
-        //GetComponent<Collider>().enabled = false;
-        //GetComponent<MeshRenderer>().enabled = false;
         gameObject.SetActive(false);
     }
 
