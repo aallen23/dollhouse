@@ -8,11 +8,17 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+
+[System.Serializable]
+public class PageArrows
+{
+    public Selectable[] arrowButtons;
+}
 
 public class MenuManager : MonoBehaviour
 {
-
+    public enum Menus { MAIN, PAGE1, PAGE2, PAGE3, PAGE4, PAUSE, CREDITS, QUIT }
     [SerializeField]
     private GameObject dollLantern,         //contains dollLantern to turn light flicker off
         ceceFace,                           //contains ceceface sprite from in game ui
@@ -32,6 +38,9 @@ public class MenuManager : MonoBehaviour
         filterVol,                          //post processing global volume
         blackscreen,                        //blackscreen canvas object
         audioBox;                           //audio - holds all universal audio sources
+
+    [SerializeField, Tooltip("The menu buttons to select by default when switching to gamepad. Ordered in terms of the Menus enum.")] private Selectable[] defaultMenuButtons;
+    [SerializeField, Tooltip("The arrows on each journal page.")] private PageArrows[] journalArrowButtons;
 
     [SerializeField]
     private AudioMixer masterMixer;         //audio mixer
@@ -66,6 +75,7 @@ public class MenuManager : MonoBehaviour
 	public AudioSource CeceCrumple;                 //audio source for cece crumple ( paper ripping )
 
 	public Button page1_right, page4_left;
+    private Menus previousMenu, currentMenu;
 
     //finds lights, audio manager, dialogue, post processing volume values, and other important game objects on awake
     public void Awake()
@@ -97,7 +107,9 @@ public class MenuManager : MonoBehaviour
 
 	private void Start()
 	{
-		CeceCrumple.gameObject.SetActive(false);
+        GameManager.Instance.SetInMenu(true);
+
+        CeceCrumple.gameObject.SetActive(false);
 		if (restart_game)
 		{
 			restart_game = false;
@@ -305,10 +317,13 @@ public class MenuManager : MonoBehaviour
 		if (game_ended)
 		{
 			restart_game = true;
-			Restart();
+			ReloadScene();
 		}
 
         GameManager.Instance.isGameActive = true;
+        GameManager.Instance.SetInMenu(false);
+        EventSystem.current.SetSelectedGameObject(null);
+
         SetAllInactive();
         audioManager.TurnOffMusic();
         //audioManager.StartAmbience();
@@ -323,6 +338,7 @@ public class MenuManager : MonoBehaviour
     //starts credit scroll and music
     public void CreditsButton()
     {
+        OnSwitchMenu(Menus.CREDITS);
         SetAllInactive();
         //audioManager.TurnOffMusic();
         //audioManager.MenuMusic();
@@ -355,7 +371,6 @@ public class MenuManager : MonoBehaviour
             journal.SetActive(true);
             mainPanel.SetActive(true);
             Page1Button();
-
         }
     }
 
@@ -475,6 +490,7 @@ public class MenuManager : MonoBehaviour
     {
         SetPagesInactive();
         page1.SetActive(true);
+        OnSwitchMenu(isPaused ? Menus.PAUSE : Menus.PAGE1);
     }
 
     //sets page 2 of journal active
@@ -482,6 +498,7 @@ public class MenuManager : MonoBehaviour
     {
         SetPagesInactive();
         page2.SetActive(true);
+        OnSwitchMenu(Menus.PAGE2);
     }
 
     //sets page 3 of journal active
@@ -489,6 +506,7 @@ public class MenuManager : MonoBehaviour
     {
         SetPagesInactive();
         page3.SetActive(true);
+        OnSwitchMenu(Menus.PAGE3);
     }
 
     //sets page 4 of journal active
@@ -496,6 +514,7 @@ public class MenuManager : MonoBehaviour
     {
         SetPagesInactive();
         page4.SetActive(true);
+        OnSwitchMenu(Menus.PAGE4);
     }
 
     //sets all journal pages inactive
@@ -531,6 +550,8 @@ public class MenuManager : MonoBehaviour
             {
                 isPaused = false;
                 Time.timeScale = 1f;
+                GameManager.Instance.SetInMenu(false);
+                EventSystem.current.SetSelectedGameObject(null);
             }
         }
 
@@ -567,13 +588,14 @@ public class MenuManager : MonoBehaviour
         }
 		else if (FindObjectOfType<P2PCameraController>().gameStarted)
 		{
-			Restart();
+			ReloadScene();
 		}
         //audioManager.TurnOffMusic();
         //audioManager.MenuMusic();
         SetAllInactive();
 
         GameManager.Instance.isGameActive = false;
+        OnSwitchMenu(Menus.MAIN);
         mainMenu1.SetActive(true);
 
         //if (FindObjectOfType<P2PCameraController>().gameStarted)
@@ -596,11 +618,12 @@ public class MenuManager : MonoBehaviour
     }
 
     //reloads the entire game
-    public void Restart()
+    public void ReloadScene()
     {
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         GameManager.Instance.isGameActive = false;
+        GameManager.Instance.SetInMenu(true);
     }
 
     //quit button triggers quit frame that confirms player wants to quit
@@ -608,6 +631,7 @@ public class MenuManager : MonoBehaviour
     {
         SetAllInactive();
         quitFrame.SetActive(true);
+        OnSwitchMenu(Menus.QUIT);
     }
 
     //actual quit button quits game
@@ -627,5 +651,35 @@ public class MenuManager : MonoBehaviour
 		Debug.Log(QualitySettings.GetQualityLevel());
 	}
 
+    private void OnSwitchMenu(Menus newMenu)
+    {
+        GameManager.Instance.SetInMenu(true);
+        previousMenu = currentMenu;
+        currentMenu = newMenu;
+        if(InputSourceDetector.Instance.currentInputSource == InputSourceDetector.Controls.GAMEPAD)
+            SetDefaultSelectedButton();
+    }
+
+    public void SetDefaultSelectedButton()
+    {
+        if(InputSourceDetector.Instance != null)
+            EventSystem.current.SetSelectedGameObject(null);
+
+        if (GameManager.Instance != null && GameManager.Instance.inMenu)
+        {
+            switch (currentMenu)
+            {
+                case Menus.PAGE2:
+                    EventSystem.current.SetSelectedGameObject(journalArrowButtons[1].arrowButtons[previousMenu == Menus.PAGE1 ? 1 : 0].gameObject);
+                    break;
+                case Menus.PAGE3:
+                    EventSystem.current.SetSelectedGameObject(journalArrowButtons[1].arrowButtons[previousMenu == Menus.PAGE2 ? 1 : 0].gameObject);
+                    break;
+                default:
+                    EventSystem.current.SetSelectedGameObject(defaultMenuButtons[(int)currentMenu].gameObject);
+                    break;
+            }
+        }
+    }
 
 }

@@ -55,6 +55,7 @@ tags:
 <<showIcon YarnCommands "Cecelia" true>>
 <<setLocation YarnCommands "Foyer">>
 {$PlayerName}: Who are you?
+<<highlightFirstOption YarnCommands>>
 -> Who are *you*?
 {$PlayerName}: I don't remember... I think I've lost my memories. Maybe you can help me look for them.
 {$PlayerName}: Just point where you think I should go.
@@ -264,6 +265,7 @@ tags:
 ???: My name is... Talon.
 <<moveNameTab YarnCommands "left">>
 {$PlayerName}: Hello, Mr. Talon.
+<<highlightFirstOption YarnCommands>>
 -> {$PlayerName}: Why are you so quiet and sad?
 	<<moveNameTab YarnCommands "right">>
 	Talon: I have waited here alone for many years. Talking seemed a waste of breath.
@@ -347,6 +349,7 @@ Ariadne: This is not what you should be afraid of... There is worse to come...
 <<moveNameTab YarnCommands "right">>
 Ariadne: If you wish to understand what is happening here, you must keep exploring. But be careful. You may regret what you discover.
 <<changeEmotion YarnCommands "Cecelia" "neutral">>
+<<highlightFirstOption YarnCommands>>
 -> {$PlayerName}: I have to keep going.
 <<moveNameTab YarnCommands "right">>
 	Ariadne: Very well. Thank you for playing your music for me. It reminded me of who I am. I hope you find something that will do the same for you.
@@ -416,6 +419,7 @@ Allura: Interesting. Do you remember anything about yourself?
 <<moveNameTab YarnCommands "right">>
 Allura: I may be able to help you.
 <<changeEmotion YarnCommands "Cecelia" "Neutral">>
+<<highlightFirstOption YarnCommands>>
 -> {$PlayerName}: Really? How could you help?
 	Allura: Maybe, if you did something for me, I could help you remember something.
 -> {$PlayerName}: Why would you help me?
