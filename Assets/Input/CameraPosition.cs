@@ -23,8 +23,9 @@ public class CameraPosition : MonoBehaviour
 	[Tooltip("Have we run the Yarn passage yet?")] public bool ranYarn;
 
 	[Tooltip("Is this Camera Position in the Dollhouse?")] public bool inDollhouse;
+    [Tooltip("Enable the Gamepad Cursor?")] public bool enableCursorForGamepad = true;
 
-	private P2PCameraController player;
+    private P2PCameraController player;
 
     private void Start()
     {
@@ -64,6 +65,12 @@ public class CameraPosition : MonoBehaviour
         {
             GameManager.Instance.inDollhouse = inDollhouse;
             GameManager.Instance.OnSwitchPerspective();
+        }
+
+        //If the enable gamepad cursor boolean is different than what the game has stored, change the variable
+        if(enableCursorForGamepad != GameManager.Instance.gamepadCursorActive)
+        {
+            GameManager.Instance.SetGamepadCursorActive(enableCursorForGamepad);
         }
     }
 

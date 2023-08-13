@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 using Yarn.Unity;
 
@@ -14,6 +16,8 @@ public class DialogueController : MonoBehaviour
     [SerializeField, Tooltip("The sprites shown on the sides of the screen.")] private AnimatedCharacter[] gameSprites;
     [SerializeField, Tooltip("The icon shown on the side of the dialogue box.")] private AnimatedCharacter sideIcon;
 
+    [SerializeField, Tooltip("The container for the options view.")] private Transform optionsViewContainer;
+
     private DialogueRunner dialogueRunner;
 
     public static DialogueController Instance;
@@ -26,6 +30,7 @@ public class DialogueController : MonoBehaviour
 
     private void OnEnable()
     {
+        dialogueRunner.onNodeStart.AddListener(OnNodeStart);
         dialogueRunner.onNodeComplete.AddListener(OnNodeComplete);
         dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
     }
@@ -103,12 +108,31 @@ public class DialogueController : MonoBehaviour
         nameTabTransform.anchoredPosition = currentTabPosition;
     }
 
+    /// <summary>
+    /// Selects the first option in the Dialogue option view.
+    /// </summary>
+    public void SelectFirstOption()
+    {
+        Selectable[] optionButtons = optionsViewContainer.GetComponentsInChildren<Selectable>();
+        if (optionButtons.Length > 0)
+            EventSystem.current.SetSelectedGameObject(optionButtons[0].gameObject);
+    }
+
     private void Update()
     {
         //Show the character name tab if there is a character name to show
         bool isNameEmpty = string.IsNullOrEmpty(characterNameText.text);
         if (nameTabTransform.gameObject.activeInHierarchy == isNameEmpty)
             nameTabTransform.gameObject.SetActive(!isNameEmpty);
+    }
+
+    /// <summary>
+    /// Function that is run when the current node is started.
+    /// </summary>
+    /// <param name="nodeName">The name of the node that was just started.</param>
+    private void OnNodeStart(string nodeName)
+    {
+        GameManager.Instance.SetCutsceneActive(true);
     }
 
     /// <summary>
@@ -126,6 +150,7 @@ public class DialogueController : MonoBehaviour
     private void OnDialogueComplete()
     {
         ResetUI();
+        GameManager.Instance.SetCutsceneActive(false);
     }
 
     /// <summary>

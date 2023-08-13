@@ -46,4 +46,10 @@ public class YarnCommandList : MonoBehaviour
     {
         DialogueController.Instance.MoveNameTab(direction);
     }
+
+    [YarnCommand("highlightFirstOption")]
+    public void HighlightFirstOption()
+    {
+        DialogueController.Instance.SelectFirstOption();
+    }
 }

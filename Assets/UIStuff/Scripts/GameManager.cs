@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     internal bool isGameActive;
+    internal bool isCutsceneActive;
+    internal bool inMenu;
+    internal bool gamepadCursorActive;
     internal string currentGameLocation;
     internal bool inDollhouse = false;
 
@@ -42,5 +45,34 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetGamepadCursorActive(bool cursorActive)
+    {
+        Debug.Log("Gamepad Cursor Active: " + cursorActive);
+        gamepadCursorActive = cursorActive;
+        UpdateGamepadCursor();
+    }
+
+    public void SetInMenu(bool isInMenu)
+    {
+        Debug.Log("In Menu: " + isInMenu);
+        inMenu = isInMenu;
+        UpdateGamepadCursor();
+    }
+
+    public void SetCutsceneActive(bool isInCutscene)
+    {
+        Debug.Log("Cutscene Active: " + isInCutscene);
+        isCutsceneActive = isInCutscene;
+        UpdateGamepadCursor();
+    }
+
+    private void UpdateGamepadCursor()
+    {
+        //Update the game's cursor based on the control scheme's input
+        GamepadCursor gamepadCursor = FindObjectOfType<GamepadCursor>();
+        if (gamepadCursor != null)
+            gamepadCursor.EnableCursor(gamepadCursorActive && !inMenu && !isCutsceneActive);
     }
 }

@@ -15,16 +15,17 @@ public class GamepadCursor : MonoBehaviour
     [Tooltip("The Gamepad Cursor Speed.")] [SerializeField] private float cursorSpeed;
     [Tooltip("The Transform of the UI Canvas.")] [SerializeField] private RectTransform canvasTransform;
     [Tooltip("The UI Canvas.")] [SerializeField] private Canvas canvas;
+    [Tooltip("Warp mouse on virtual mouse position on control changing to keyboard.")][SerializeField] private bool warpToVirtualMousePosition = true;
+
     private Camera mainCamera;
 
     private bool previousMouseState;
-    public bool freshSwitch;
-    public string lastDevice;
+    private bool cursorEnabled;
 
     private void OnEnable()
     {
-        lastDevice = "Mouse";
         mainCamera = Camera.main;
+        cursorEnabled = true;
 
         //If we don't have a virtualMouse, create it and add the device.
         if (virtualMouse == null)
@@ -57,32 +58,29 @@ public class GamepadCursor : MonoBehaviour
 
     private void UpdateMotion()
     {
+        if (!cursorEnabled)
+        {
+            return;
+        }
+
         if (virtualMouse == null || Gamepad.current == null)
         {
             AnchorCursor(Mouse.current.position.ReadValue());
             return;
         }
+
         //Delta 
         Vector2 stickValue = Gamepad.current.leftStick.ReadValue();
-        //Debug.Log(stickValue.magnitude);
+
         if (stickValue.magnitude > 0.5f)
         {
             stickValue *= cursorSpeed * Time.deltaTime;
-            if (lastDevice == "Mouse")
-            {
-                InputState.Change(virtualMouse.position, Mouse.current.position.ReadValue());
-                freshSwitch = true;
-            }
         }
         else
         {
             stickValue = Vector2.zero;
-            if (lastDevice == "Gamepad")
-            {
-                Mouse.current.WarpCursorPosition(virtualMouse.position.ReadValue());
-                freshSwitch = false;
-            }
-            else if (lastDevice == "Mouse")
+            
+            if (InputSourceDetector.Instance.currentInputSource == InputSourceDetector.Controls.KEYBOARD)
             {
                 AnchorCursor(Mouse.current.position.ReadValue());
 
@@ -108,6 +106,7 @@ public class GamepadCursor : MonoBehaviour
         newPosition.x = Mathf.Clamp(newPosition.x, 10, Screen.width - 10);
         newPosition.y = Mathf.Clamp(newPosition.y, 10, Screen.height - 10);
         //Debug.Log(newPosition);
+
         InputState.Change(virtualMouse.position, newPosition);
         InputState.Change(virtualMouse.delta, stickValue);
 
@@ -123,6 +122,42 @@ public class GamepadCursor : MonoBehaviour
         }
 
         AnchorCursor(newPosition);
+    }
+
+    /// <summary>
+    /// Function called by the InputSourceDetector when the control scheme is changed.
+    /// </summary>
+    public void SwitchCursorInput()
+    {
+        if(InputSourceDetector.Instance != null)
+        {
+            switch (InputSourceDetector.Instance.currentInputSource)
+            {
+                case InputSourceDetector.Controls.KEYBOARD:
+                    //Moves the system's mouse to the position of the virtual mouse
+                    if (warpToVirtualMousePosition)
+                        Mouse.current.WarpCursorPosition(virtualMouse.position.ReadValue());
+                    EnableCursor(true);
+                    break;
+
+                case InputSourceDetector.Controls.GAMEPAD:
+                    //Moves the virtual mouse to the position of the system's mouse
+                    InputState.Change(virtualMouse.position, Mouse.current.position.ReadValue());
+                    EnableCursor(GameManager.Instance.gamepadCursorActive && !GameManager.Instance.inMenu && !GameManager.Instance.isCutsceneActive);
+                    break;
+            }
+        }
+    }
+
+    private void UpdateCursorVisibility()
+    {
+        cursorTransform.GetComponent<CanvasGroup>().alpha = cursorEnabled ? 1 : 0;
+    }
+
+    public void EnableCursor(bool enableCursor)
+    {
+        cursorEnabled = enableCursor;
+        UpdateCursorVisibility();
     }
 
     public void AnchorCursor(Vector2 position)
