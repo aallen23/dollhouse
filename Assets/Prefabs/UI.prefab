@@ -1177,10 +1177,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTransform: {fileID: 6077036837671224191}
-  cursorSpeed: 1500
   canvasTransform: {fileID: 5901120336347237424}
   canvas: {fileID: 7440955082863732341}
   warpToVirtualMousePosition: 0
+  cursorSpeed: 1500
+  cursorDeadzone: 0.05
 --- !u!1 &602894162
 GameObject:
   m_ObjectHideFlags: 0
@@ -15607,7 +15608,6 @@ MonoBehaviour:
   sliderMain: {fileID: 6077036837324605189}
   sliderMusic: {fileID: 6865515988748013490}
   sliderSFX: {fileID: 3429605517860903324}
-  showFPS: 0
   fps: {fileID: 298440227}
   CeceCrumple: {fileID: 0}
   page1_right: {fileID: 6831746197089972113}

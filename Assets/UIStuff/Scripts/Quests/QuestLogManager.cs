@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class QuestLogManager : MonoBehaviour
 {
@@ -23,9 +24,14 @@ public class QuestLogManager : MonoBehaviour
 
     private bool animationActive = false;
     private bool questLogOpen = false;
+    private Controls playerControls;
 
     private void Awake()
     {
+        playerControls = new Controls();
+        playerControls.Menu.Log.started += _ => LogHotkey();
+        playerControls.Menu.Cancel.started += _ => OnCancel();
+
         questLogTransform = GetComponent<RectTransform>();
     }
 
@@ -38,11 +44,13 @@ public class QuestLogManager : MonoBehaviour
     private void OnEnable()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        playerControls.Enable();
     }
 
     private void OnDisable()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+        playerControls.Disable();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -79,6 +87,24 @@ public class QuestLogManager : MonoBehaviour
         bool questsAvailable = questContentTransform.GetComponentsInChildren<QuestLogEntry>().Length > 0;
         noQuestAvailableTransform.gameObject.SetActive(!questsAvailable);
         questContentTransform.gameObject.SetActive(questsAvailable);
+    }
+
+    /// <summary>
+    /// Function called when the quest log hotkey is pressed.
+    /// </summary>
+    private void LogHotkey()
+    {
+        if (GameManager.Instance.IsGameplayActive())
+            ShowQuestLog(!questLogOpen);
+    }
+
+    /// <summary>
+    /// Function called when the cancel button is pressed.
+    /// </summary>
+    private void OnCancel()
+    {
+        if (questLogOpen)
+            ShowQuestLog(false);
     }
 
     /// <summary>

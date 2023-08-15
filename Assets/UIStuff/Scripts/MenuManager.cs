@@ -67,7 +67,6 @@ public class MenuManager : MonoBehaviour
 
 	public Slider sliderMain, sliderMusic, sliderSFX;       //three options menu sliders for each audio mixer volume
 
-	public bool showFPS;        //is fps visible
 	public TMP_Text fps;        //text to display fps
 
 	private bool game_ended;                        //bool to store if game is ended
@@ -76,10 +75,15 @@ public class MenuManager : MonoBehaviour
 
 	public Button page1_right, page4_left;
     private Menus previousMenu, currentMenu;
+    private Controls playerControls;
 
     //finds lights, audio manager, dialogue, post processing volume values, and other important game objects on awake
     public void Awake()
     {
+        playerControls = new Controls();
+        playerControls.Menu.Pause.started += _ => TogglePause();
+        playerControls.Menu.Cancel.started += _ => OnCancel();
+
         audioManager = audioBox.GetComponent<AudioManager>();
         dialog = FindObjectOfType<DialogueRunner>();
         lits = lighting.GetComponentsInChildren<Light>();
@@ -99,11 +103,8 @@ public class MenuManager : MonoBehaviour
 		sliderMusic.value = undoLog(volMusic);
 		masterMixer.GetFloat("sfxVol", out float volSFX);
 		sliderSFX.value = undoLog(volSFX);
-		if (!showFPS)
-		{
-			fps.gameObject.SetActive(false);
-		}
-	}
+        fps.gameObject.SetActive(GameSettings.showFPS);
+    }
 
 	private void Start()
 	{
@@ -117,7 +118,17 @@ public class MenuManager : MonoBehaviour
 		}
 	}
 
-	private float undoLog(float num)
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
+    private float undoLog(float num)
 	{
 		float newNum = num / 20;
 		newNum = Mathf.Pow(10, num);
@@ -526,10 +537,16 @@ public class MenuManager : MonoBehaviour
         page4.SetActive(false);
     }
 
+    private void TogglePause()
+    {
+        Debug.Log("Pause Button Pressed.");
+        Pause();
+    }
+
     //pauses and unpauses game
     public void Pause()
     {
-        if (!isPaused && !journal.activeSelf && !QuestManager.Instance.GetQuestLog().IsQuestLogOpen())
+        if (!isPaused && !journal.activeSelf && !QuestManager.IsQuestMenuOpen())
         {
             isPaused = true;
             //Time.timeScale = 0f;
@@ -575,6 +592,36 @@ public class MenuManager : MonoBehaviour
         //        journal.SetActive(true);
         //    }
         //}
+    }
+
+    private void OnCancel()
+    {
+        Debug.Log("Cancel Button Pressed.");
+        if (GameManager.Instance.inMenu)
+        {
+            switch (currentMenu)
+            {
+                case Menus.MAIN:
+                    QuitButton();
+                    break;
+                case Menus.PAGE1:
+                    if (!GameManager.Instance.IsGameplayActive())
+                        ReturnToMain();
+                    break;
+                case Menus.PAGE2:
+                case Menus.PAGE3:
+                case Menus.PAGE4:
+                    Page1Button();
+                    break;
+                case Menus.PAUSE:
+                    Pause();
+                    break;
+                case Menus.CREDITS:
+                case Menus.QUIT:
+                    ReturnToMain();
+                    break;
+            }
+        }
     }
 
     //returns to main menu

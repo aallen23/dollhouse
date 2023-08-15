@@ -104,6 +104,7 @@ MonoBehaviour:
   gameStarted: 0
   startPos: {fileID: 0}
   firstPos: {fileID: 0}
+  lastPos: {fileID: 0}
   curPos: {fileID: 0}
   doll: {fileID: 0}
   desiredRotation: {x: 0, y: 0, z: 0}
@@ -122,6 +123,8 @@ MonoBehaviour:
   curDollHand: {fileID: 21300000, guid: 01284ba183e62614e97483b7709fb302, type: 3}
   curLook: {fileID: 21300000, guid: 9113e69af801f4a42954d79b4d247af7, type: 3}
   curExamine: {fileID: 21300000, guid: 90a95de49ab911f40b348053a00360a5, type: 3}
+  curSelectHapticsMagnitude: {x: 0.1, y: 0.1}
+  curSelectHapticsDuration: 0.1
   overUI: 0
   drawingObjects: []
   draggingObject: {fileID: 0}
