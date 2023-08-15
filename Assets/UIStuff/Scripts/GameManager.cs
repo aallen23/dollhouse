@@ -72,7 +72,9 @@ public class GameManager : MonoBehaviour
     {
         //Update the game's cursor based on the control scheme's input
         GamepadCursor gamepadCursor = FindObjectOfType<GamepadCursor>();
-        if (gamepadCursor != null)
+        if (gamepadCursor != null && InputSourceDetector.Instance.currentInputSource == InputSourceDetector.Controls.GAMEPAD)
             gamepadCursor.EnableCursor(gamepadCursorActive && !inMenu && !isCutsceneActive);
     }
+
+    public bool IsGameplayActive() => isGameActive && !inMenu && !isCutsceneActive;
 }

@@ -81,7 +81,7 @@ public class AudioManager : MonoBehaviour
 
 	IEnumerator IntroCo()
 	{
-		if (!FindObjectOfType<P2PCameraController>().debugDisableIntro)
+		if (!GameSettings.debugMode)
 		{
 			PlayCarScene();
 			yield return new WaitForSeconds(14f);

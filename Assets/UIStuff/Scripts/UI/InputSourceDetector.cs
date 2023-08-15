@@ -43,10 +43,19 @@ public class InputSourceDetector : MonoBehaviour
         //If the new input is different than what is currently stored, the control scheme has been successfully changed
         if(newInput != currentInputSource)
         {
-            Debug.Log("Controls switched to " + newInput.ToString());
-            currentInputSource = newInput;
-            InvokeControlsChanged();
+            SwitchControls(newInput);
         }
+    }
+
+    /// <summary>
+    /// Switches controls to the new input detected.
+    /// </summary>
+    /// <param name="newInput">The new input source detected.</param>
+    private void SwitchControls(Controls newInput)
+    {
+        Debug.Log("Controls switched to " + newInput.ToString());
+        currentInputSource = newInput;
+        InvokeControlsChanged();
     }
 
     /// <summary>

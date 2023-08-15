@@ -17,14 +17,33 @@ public class HintManager : MonoBehaviour
 
     private RectTransform hintRectTransform;
     private bool animationActive;
-
     private bool hintButtonShowing;
+    private bool hintMenuActive;
+
+    private Controls playerControls;
+
+    private void Awake()
+    {
+        playerControls = new Controls();
+        playerControls.Menu.Hint.started += _ => HintHotkey();
+        playerControls.Menu.Cancel.started += _ => OnCancel();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         hintRectTransform = GetComponent<RectTransform>();
         ResetHintUI();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 
     /// <summary>
@@ -34,7 +53,31 @@ public class HintManager : MonoBehaviour
     {
         hintText.text = "";
         hintRectTransform.anchoredPosition = new Vector2(hintUIStartPos, hintRectTransform.anchoredPosition.y);
+        hintMenuActive = false;
         UpdateHintButton();
+    }
+
+    /// <summary>
+    /// Function called when the hint hotkey button is pressed.
+    /// </summary>
+    private void HintHotkey()
+    {
+        if (GameManager.Instance.IsGameplayActive())
+        {
+            if(hintMenuActive)
+                HideHint();
+            else
+                ShowHint();
+        }
+    }
+
+    /// <summary>
+    /// Function called when the cancel button is pressed.
+    /// </summary>
+    private void OnCancel()
+    {
+        if (hintMenuActive)
+            HideHint();
     }
 
     /// <summary>
@@ -69,6 +112,8 @@ public class HintManager : MonoBehaviour
         //Do not animate the UI if it's already in the middle of an animation
         if (animationActive)
             return;
+
+        hintMenuActive = showUI;
 
         animationActive = true;
         LeanTween.moveX(hintRectTransform, showUI ? hintUIEndPos : hintUIStartPos, hintUIAniDuration).setEase(showUI ? hintUIShowEaseType : hintUIHideEaseType).setOnComplete(() => animationActive = false);

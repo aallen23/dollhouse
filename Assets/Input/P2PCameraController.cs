@@ -10,8 +10,6 @@ using UnityEngine.EventSystems;
 //Controls the Player character
 public class P2PCameraController : MonoBehaviour
 {
-	
-	[Tooltip("If true, disable the intro that normally plays. Make sure it is false for a build.")] public bool debugDisableIntro;
     private RaycastHit hit;
     public bool gameStarted;
     [Tooltip("The Input Map we are using.")] public Controls inputMap;
@@ -42,6 +40,8 @@ public class P2PCameraController : MonoBehaviour
 	public Sprite curDollHand;
     public Sprite curLook;
     public Sprite curExamine;
+    public Vector2 curSelectHapticsMagnitude;
+    public float curSelectHapticsDuration;
 
     public bool overUI;
     [Tooltip("All Drawing Objects.")] public Drawing[] drawingObjects;
@@ -54,6 +54,10 @@ public class P2PCameraController : MonoBehaviour
 
 	public bool forceSmoothSwitch;
 	public ItemScriptableObject hoverItem;
+
+    private bool selectHapticsPlayed;
+    private bool selectingItem;
+
     private void Awake()
     {
         //Load input map and connect to all the functions
@@ -303,7 +307,7 @@ public class P2PCameraController : MonoBehaviour
         {
             return;
         }
-        if (!dialog.IsDialogueRunning)
+        if (!dialog.IsDialogueRunning && hit.transform != null)
         {
             //Debug.Log(hit.transform.gameObject.TryGetComponent<ObjectData>(out ObjectData ff));
             hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
@@ -348,33 +352,37 @@ public class P2PCameraController : MonoBehaviour
         if (!GameManager.Instance.isGameActive)
             return;
 
-        hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
-        if (hitObject && !dialog.IsDialogueRunning && heldItem) //If we are over an Object, not running dialog, and holding an object
+        if(hit.transform != null)
         {
-            if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
+            hit.transform.gameObject.TryGetComponent(out ObjectData hitObject);
+            if (hitObject && !dialog.IsDialogueRunning && heldItem) //If we are over an Object, not running dialog, and holding an object
             {
-                if (hitObject.yarnItem != null && hitObject.yarnItem != "")
+                if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
                 {
-                    dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));
-                    dialog.StartDialogue(hitObject.yarnItem);
-                }
-                else
-                {
-                    hitObject.UseItem(hitObject.item.IndexOf(heldItem));
-                }
-                if (!heldItem.multiUse) 
-                {
-                    Debug.Log(heldItem.displayName);
-                    //If the item isn't multi use, like the lantern or any other tool, we need to remove the item and update our inventory display
-                    invSystem.inv.Remove(heldItem);
-                    invSystem.UpdateInventory();
+                    if (hitObject.yarnItem != null && hitObject.yarnItem != "")
+                    {
+                        dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));
+                        dialog.StartDialogue(hitObject.yarnItem);
+                    }
+                    else
+                    {
+                        hitObject.UseItem(hitObject.item.IndexOf(heldItem));
+                    }
+                    if (!heldItem.multiUse)
+                    {
+                        Debug.Log(heldItem.displayName);
+                        //If the item isn't multi use, like the lantern or any other tool, we need to remove the item and update our inventory display
+                        invSystem.inv.Remove(heldItem);
+                        invSystem.UpdateInventory();
+                    }
                 }
             }
+            else if (heldItem && hoverItem)
+            {
+                invSystem.Rearrange(heldItem, hoverItem);
+            }
         }
-		else if (heldItem && hoverItem)
-		{
-			invSystem.Rearrange(heldItem, hoverItem);
-		}
+
         //No matter what, we want to remove the item from our cursor
         heldItem = null;
         Destroy(cursorSprite);
@@ -468,6 +476,13 @@ public class P2PCameraController : MonoBehaviour
                 if (od.interactType == InteractType.Examine)
                 {
                     mouseCursorImage.sprite = curExamine;
+                    
+                    selectingItem = true;
+                    if (!selectHapticsPlayed)
+                    {
+                        HapticsController.Instance.PlayControllerHaptics(curSelectHapticsMagnitude.x, curSelectHapticsMagnitude.y, curSelectHapticsDuration);
+                        selectHapticsPlayed = true;
+                    }
                 }
                 else if (od.interactType == InteractType.Rotate || od.interactType == InteractType.RotateAround || od.interactType == InteractType.Teleport || od.interactType == InteractType.AddItem || od.interactType == InteractType.BlankHand || od.interactType == InteractType.Dragging || od.interactType == InteractType.WardrobeWithdraw)
                 {
@@ -479,22 +494,34 @@ public class P2PCameraController : MonoBehaviour
 					{
 						mouseCursorImage.sprite = curHand;
 					}
+
+                    selectingItem = true;
+
+                    if (!selectHapticsPlayed)
+                    {
+                        HapticsController.Instance.PlayControllerHaptics(curSelectHapticsMagnitude.x, curSelectHapticsMagnitude.y, curSelectHapticsDuration);
+                        selectHapticsPlayed = true;
+                    }
                 }
                 else
                 {
                     mouseCursorImage.sprite = curDefault;
+                    selectingItem = false;
+                    selectHapticsPlayed = false;
                 }
             }
         }
         if (!hitAnObject)
         {
             mouseCursorImage.sprite = curDefault;
+            selectingItem = false;
+            selectHapticsPlayed = false;
         }
 
         //Lerping our FOV
         GetComponent<Camera>().fieldOfView = Mathf.Lerp(gameObject.GetComponent<Camera>().fieldOfView, desiredFOV, Time.deltaTime * 4);
 
-        //Eventually will be replaced by our pause system, in the meantime we will want to quit the game this way
+/*        //Eventually will be replaced by our pause system, in the meantime we will want to quit the game this way
         if (Keyboard.current.escapeKey.wasPressedThisFrame && gameStarted)
         {
 			if (gameStarted)
@@ -505,7 +532,7 @@ public class P2PCameraController : MonoBehaviour
 			{
 				FindObjectOfType<MenuManager>().ReturnToMain();
 			}
-        }
+        }*/
     }
 
     //Called by DollBehavior.cs when she reaches her destination (and interacts with an Object), as well as by StartMove()

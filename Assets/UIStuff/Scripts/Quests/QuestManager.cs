@@ -218,4 +218,13 @@ public class QuestManager : MonoBehaviour
 
 
     public QuestLogManager GetQuestLog() => FindObjectOfType<QuestLogManager>();
+
+    public static bool IsQuestMenuOpen()
+    {
+        if (Instance == null)
+            return false;
+
+        return Instance.GetQuestLog().IsQuestLogOpen();
+    }
+
 }

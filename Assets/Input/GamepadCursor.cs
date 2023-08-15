@@ -12,10 +12,14 @@ public class GamepadCursor : MonoBehaviour
     [Tooltip("The Input Map we are using.")] [SerializeField] private Controls playerInput;
     private Mouse virtualMouse;
     [Tooltip("The Transform of the Gamepad Cursor.")] [SerializeField] private RectTransform cursorTransform;
-    [Tooltip("The Gamepad Cursor Speed.")] [SerializeField] private float cursorSpeed;
     [Tooltip("The Transform of the UI Canvas.")] [SerializeField] private RectTransform canvasTransform;
     [Tooltip("The UI Canvas.")] [SerializeField] private Canvas canvas;
     [Tooltip("Warp mouse on virtual mouse position on control changing to keyboard.")][SerializeField] private bool warpToVirtualMousePosition = true;
+    [Space(10)]
+    [Header("Cursor Settings")]
+    [Tooltip("The Gamepad Cursor Speed.")][SerializeField] private float cursorSpeed;
+    [Tooltip("The deadzone value for making sure the cursor doesn't move with small movements.")][SerializeField] private float cursorDeadzone;
+
 
     private Camera mainCamera;
 
@@ -72,7 +76,7 @@ public class GamepadCursor : MonoBehaviour
         //Delta 
         Vector2 stickValue = Gamepad.current.leftStick.ReadValue();
 
-        if (stickValue.magnitude > 0.5f)
+        if (stickValue.magnitude > cursorDeadzone)
         {
             stickValue *= cursorSpeed * Time.deltaTime;
         }
