@@ -35,6 +35,25 @@ public class UmbrellaPuzzle : MonoBehaviour
         Check();
     }
 
+	public void TakeUmbrella(int standID)
+	{
+		switch (standID)
+		{
+			case 1:
+				stand1 = null;
+				break;
+			case 2:
+				stand2 = null;
+				break;
+			case 3:
+				stand3 = null;
+				break;
+			case 4: 
+				stand4 = null;
+				break;
+		}
+	}
+
     public void Check()
     {
 		//Current puzzle solution, hardcoded (for now)
