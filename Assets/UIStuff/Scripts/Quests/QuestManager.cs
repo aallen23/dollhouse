@@ -221,7 +221,7 @@ public class QuestManager : MonoBehaviour
 
     public static bool IsQuestMenuOpen()
     {
-        if (Instance == null)
+        if (Instance == null || Instance.GetQuestLog() == null)
             return false;
 
         return Instance.GetQuestLog().IsQuestLogOpen();

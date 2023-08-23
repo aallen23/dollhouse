@@ -83,7 +83,7 @@ public class MemoryManager : MonoBehaviour
         {
             memoryUI.SetActive(true);
             menuManager.Pause();
-            menuManager.Page2Button();
+            menuManager.OpenMemories(false);
             audios.PageFlip();
         }
         paper.SetActive(false);

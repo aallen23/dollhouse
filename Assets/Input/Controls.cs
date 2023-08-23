@@ -695,6 +695,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffbf817a-5692-4436-ad74-f87f1887675c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -840,6 +849,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f188c5e-a5c5-43f9-8092-d8c751b30335"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""ToggleInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""578879c9-e700-4872-bb73-331b71995260"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ToggleInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -911,6 +942,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Menu_Log = m_Menu.FindAction("Log", throwIfNotFound: true);
         m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
+        m_Menu_ToggleInventory = m_Menu.FindAction("ToggleInventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1243,6 +1275,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Menu_Log;
     private readonly InputAction m_Menu_Cancel;
     private readonly InputAction m_Menu_Pause;
+    private readonly InputAction m_Menu_ToggleInventory;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
@@ -1252,6 +1285,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Log => m_Wrapper.m_Menu_Log;
         public InputAction @Cancel => m_Wrapper.m_Menu_Cancel;
         public InputAction @Pause => m_Wrapper.m_Menu_Pause;
+        public InputAction @ToggleInventory => m_Wrapper.m_Menu_ToggleInventory;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1276,6 +1310,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @ToggleInventory.started += instance.OnToggleInventory;
+            @ToggleInventory.performed += instance.OnToggleInventory;
+            @ToggleInventory.canceled += instance.OnToggleInventory;
         }
 
         private void UnregisterCallbacks(IMenuActions instance)
@@ -1295,6 +1332,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @ToggleInventory.started -= instance.OnToggleInventory;
+            @ToggleInventory.performed -= instance.OnToggleInventory;
+            @ToggleInventory.canceled -= instance.OnToggleInventory;
         }
 
         public void RemoveCallbacks(IMenuActions instance)
@@ -1365,5 +1405,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnLog(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnToggleInventory(InputAction.CallbackContext context);
     }
 }

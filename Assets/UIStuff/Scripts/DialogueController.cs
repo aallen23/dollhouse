@@ -20,6 +20,8 @@ public class DialogueController : MonoBehaviour
 
     private DialogueRunner dialogueRunner;
 
+    private bool overrideDialogueComplete;
+
     public static DialogueController Instance;
 
     void Awake()
@@ -132,7 +134,14 @@ public class DialogueController : MonoBehaviour
     /// <param name="nodeName">The name of the node that was just started.</param>
     private void OnNodeStart(string nodeName)
     {
-        GameManager.Instance.SetCutsceneActive(true);
+        switch (nodeName)
+        {
+            case "Start":
+                break;
+            default:
+                GameManager.Instance.SetCutsceneActive(true);
+                break;
+        }
     }
 
     /// <summary>
@@ -142,6 +151,16 @@ public class DialogueController : MonoBehaviour
     private void OnNodeComplete(string nodeName)
     {
         ResetUI();
+        switch (nodeName)
+        {
+            case "Start":
+            case "StartGame":
+                overrideDialogueComplete = true;
+                break;
+            default:
+                overrideDialogueComplete = false;
+                break;
+        }
     }
 
     /// <summary>
@@ -150,7 +169,10 @@ public class DialogueController : MonoBehaviour
     private void OnDialogueComplete()
     {
         ResetUI();
-        GameManager.Instance.SetCutsceneActive(false);
+        if (!overrideDialogueComplete)
+        {
+            GameManager.Instance.SetCutsceneActive(false);
+        }
     }
 
     /// <summary>

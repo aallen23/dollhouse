@@ -12,10 +12,26 @@ public class InventorySystem : MonoBehaviour
     [Tooltip("GameObject to Instantiate Inventory Items into.")] public GameObject contentParent;
     [Tooltip("Prefab template for Inventory Items.")] public GameObject itemDisplayTemplate;
 
-	private float desiredX = 1600;
-	public float drawerSpeed;
+    [SerializeField] private float openDrawerX = 1600;
+    [SerializeField] private float closedDrawerX = 800;
+    [SerializeField] private float openSpeed = 8;
+    [SerializeField] private float closeSpeed = 8;
+    [SerializeField] private LeanTweenType openEaseType;
+    [SerializeField] private LeanTweenType closeEaseType;
+
 	private RectTransform trans;
 	public AudioManager audios;
+
+    private bool drawerOpen = false;
+    private bool drawerAnimationActive = false;
+
+    private Controls playerControls;
+
+    private void Awake()
+    {
+        playerControls = new Controls();
+        playerControls.Menu.ToggleInventory.started += _ => ToggleInventory();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +40,14 @@ public class InventorySystem : MonoBehaviour
         UpdateInventory();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-		trans.anchoredPosition = new Vector2(Mathf.Lerp(trans.anchoredPosition.x, desiredX, Time.deltaTime * drawerSpeed), trans.anchoredPosition.y);
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 
 	public void Rearrange(ItemScriptableObject heldItem, ItemScriptableObject hoverItem)
@@ -55,15 +75,23 @@ public class InventorySystem : MonoBehaviour
 
     public void ToggleInventory()
 	{
-		if (desiredX == 1600)
-		{
-			desiredX = 800;
-			audios.PlayDrawerOpen();
-		}
-		else
-		{
-			desiredX = 1600;
-			audios.PlayDrawerClosed();
-		}
-	}
+        if(GameManager.Instance.IsGameplayActive())
+            OpenDrawer(!drawerOpen);
+    }
+
+    private void OpenDrawer(bool isOpen)
+    {
+        if (drawerAnimationActive)
+            return;
+
+        drawerAnimationActive = true;
+        drawerOpen = isOpen;
+
+        if(drawerOpen)
+            audios.PlayDrawerOpen();
+        else
+            audios.PlayDrawerClosed();
+
+        LeanTween.moveX(trans, isOpen ? openDrawerX : closedDrawerX, isOpen ? openSpeed : closeSpeed).setEase(isOpen ? openEaseType : closeEaseType).setOnComplete(() => drawerAnimationActive = false); ;
+    }
 }

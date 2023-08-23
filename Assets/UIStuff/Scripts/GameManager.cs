@@ -14,9 +14,16 @@ public class GameManager : MonoBehaviour
     internal string currentGameLocation;
     internal bool inDollhouse = false;
 
+    internal MenuManager menuManager;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        menuManager = FindObjectOfType<MenuManager>();
     }
 
     /// <summary>
@@ -66,6 +73,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Cutscene Active: " + isInCutscene);
         isCutsceneActive = isInCutscene;
         UpdateGamepadCursor();
+
+        ShowGameUI(!isInCutscene);
+    }
+
+    public void ShowGameUI(bool showUI)
+    {
+        menuManager.ActivateGameUI(showUI);
     }
 
     private void UpdateGamepadCursor()

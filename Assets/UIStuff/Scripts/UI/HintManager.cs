@@ -7,7 +7,13 @@ using TMPro;
 public class HintManager : MonoBehaviour
 {
     [SerializeField, Tooltip("The button component for the hint button.")] private Button hintButton;
+    [SerializeField, Tooltip("The question mark image component.")] private Image questionMark;
     [SerializeField, Tooltip("The text used to display the most recent hint.")] private TextMeshProUGUI hintText;
+
+    [SerializeField, Tooltip("The parent radial timer.")] private Image radialTimer;
+    [SerializeField, Tooltip("The fill of the radial timer.")] private Image timerFill;
+    [SerializeField, Tooltip("The text of the radial timer.")] private TextMeshProUGUI timerText;
+    [SerializeField, Tooltip("The cooldown time in between hints.")] private float hintCooldownTime;
 
     [SerializeField, Tooltip("The X position of the UI when hidden.")] private float hintUIStartPos;
     [SerializeField, Tooltip("The X position of the UI when shown.")] private float hintUIEndPos;
@@ -15,10 +21,17 @@ public class HintManager : MonoBehaviour
     [SerializeField, Tooltip("The ease type for the hint UI showing.")] private LeanTweenType hintUIShowEaseType;
     [SerializeField, Tooltip("The ease type for the hint UI hiding.")] private LeanTweenType hintUIHideEaseType;
 
+    [SerializeField, Tooltip("The fill of the hint cooldown bar.")] private Image showCooldownFill;
+    [SerializeField, Tooltip("The time it takes for the hint to automatically close.")] private float hintShowCooldownTime;
+
     private RectTransform hintRectTransform;
     private bool animationActive;
     private bool hintButtonShowing;
     private bool hintMenuActive;
+    private float currentHintCooldownTime;
+    private float currentHintShowCooldownTime;
+    private bool hintButtonActivated;
+    private Color questionMarkDefaultColor;
 
     private Controls playerControls;
 
@@ -33,6 +46,7 @@ public class HintManager : MonoBehaviour
     void Start()
     {
         hintRectTransform = GetComponent<RectTransform>();
+        questionMarkDefaultColor = questionMark.color;
         ResetHintUI();
     }
 
@@ -85,13 +99,17 @@ public class HintManager : MonoBehaviour
     /// </summary>
     public void ShowHint()
     {
-        string hint = QuestManager.Instance.GetActiveQuestHint();
-
-        //If there is a hint to show, update the text and show the hint UI.
-        if(hint != null)
+        if (hintButtonActivated && !hintMenuActive)
         {
-            hintText.text = hint;
-            ShowHintUI(true);
+            string hint = QuestManager.Instance.GetActiveQuestHint();
+
+            //If there is a hint to show, update the text and show the hint UI.
+            if (hint != null)
+            {
+                hintText.text = hint;
+                ShowHintUI(true);
+                ActivateButton(false);
+            }
         }
     }
 
@@ -100,7 +118,8 @@ public class HintManager : MonoBehaviour
     /// </summary>
     public void HideHint()
     {
-        ShowHintUI(false);
+        if(hintMenuActive)
+            ShowHintUI(false);
     }
 
     /// <summary>
@@ -126,17 +145,26 @@ public class HintManager : MonoBehaviour
         if (!hintButtonShowing && activeQuestNumber > 0)
         {
             hintButtonShowing = true;
-            hintButton.interactable = true;
+            ActivateButton(false);
             UpdateHintButton();
         }
 
         else if(hintButtonShowing && activeQuestNumber == 0)
         {
             hintButtonShowing = false;
-            hintButton.interactable = false;
+            ActivateButton(false);
             UpdateHintButton();
         }
 
+        if (!hintButtonActivated && hintButtonShowing)
+        {
+            UpdateHintCooldownTimer();
+        }
+
+        if (hintMenuActive)
+        {
+            UpdateShowHintTimer();
+        }
     }
 
     /// <summary>
@@ -152,5 +180,57 @@ public class HintManager : MonoBehaviour
 
         else
             Debug.LogWarning("Warning: Hint Button Not Set In Inspector.");
+    }
+
+    private void UpdateHintCooldownTimer()
+    {
+        if(currentHintCooldownTime < hintCooldownTime)
+        {
+            float remainingTime = hintCooldownTime - currentHintCooldownTime;
+            UpdateTimerFill(remainingTime, hintCooldownTime, timerFill);
+
+            timerText.text = Mathf.FloorToInt(remainingTime).ToString();
+            currentHintCooldownTime += Time.deltaTime;
+        }
+
+        else
+        {
+            ActivateButton(true);
+            currentHintCooldownTime = 0;
+        }
+    }
+
+    private void UpdateShowHintTimer()
+    {
+        if (currentHintShowCooldownTime < hintShowCooldownTime)
+        {
+            float remainingTime = hintShowCooldownTime - currentHintShowCooldownTime;
+            UpdateTimerFill(remainingTime, hintShowCooldownTime, showCooldownFill);
+            currentHintShowCooldownTime += Time.deltaTime;
+        }
+
+        else
+        {
+            HideHint();
+            currentHintShowCooldownTime = 0;
+        }
+    }
+
+    private void UpdateTimerFill(float remainingTime, float maxTime, Image timerFill)
+    {
+        timerFill.fillAmount = Mathf.InverseLerp(0, maxTime, remainingTime);
+    }
+
+    private void ActivateButton(bool isActivated)
+    {
+        hintButtonActivated = isActivated;
+        hintButton.interactable = isActivated;
+        radialTimer.gameObject.SetActive(!isActivated);
+        timerFill.gameObject.SetActive(!isActivated);
+        timerText.gameObject.SetActive(!isActivated);
+
+        Color newQuestionMarkColor = questionMarkDefaultColor;
+        newQuestionMarkColor.a = isActivated ? 1 : 0.25f;
+        questionMark.color = newQuestionMarkColor;
     }
 }
