@@ -75,6 +75,7 @@ public class MenuManager : MonoBehaviour
 
 	public Button page1_right, page4_left;
     private Menus previousMenu, currentMenu;
+    private bool goBackToMenuOnMemories;
     private Controls playerControls;
 
     //finds lights, audio manager, dialogue, post processing volume values, and other important game objects on awake
@@ -121,11 +122,18 @@ public class MenuManager : MonoBehaviour
     private void OnEnable()
     {
         playerControls.Enable();
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SetDefaultSelectedButton();
     }
 
     private float undoLog(float num)
@@ -161,10 +169,6 @@ public class MenuManager : MonoBehaviour
             Screen.SetResolution(Screen.width, Screen.height - offsety, true);
         }*/
 
-
-        //updates for fps testing
-
-		fps.text = (1f / Time.unscaledDeltaTime).ToString("0.0");
 	}
     
     //triggers fade coroutine true - black fades in
@@ -285,10 +289,10 @@ public class MenuManager : MonoBehaviour
 
     //activates ingame ui
     [YarnCommand("ActivateUI")]
-    public void ActivateGameUI()
+    public void ActivateGameUI(bool showUI = true)
     {
         SetAllInactive();
-        gameUI.SetActive(true);
+        gameUI.SetActive(showUI);
     }
 
     //activates credits
@@ -381,7 +385,7 @@ public class MenuManager : MonoBehaviour
             SetAllInactive();
             journal.SetActive(true);
             mainPanel.SetActive(true);
-            Page1Button();
+            Page4Button();
         }
     }
 
@@ -549,7 +553,7 @@ public class MenuManager : MonoBehaviour
         if (!isPaused && !journal.activeSelf && !QuestManager.IsQuestMenuOpen())
         {
             isPaused = true;
-            //Time.timeScale = 0f;
+            Time.timeScale = 0f;
             journal.SetActive(true);
 			mainPanel.SetActive(false);
 			Page1Button();
@@ -560,16 +564,19 @@ public class MenuManager : MonoBehaviour
             if(journal.activeInHierarchy)
                 journal.SetActive(false);
 
-            if (QuestManager.Instance.GetQuestLog().IsQuestLogOpen())
-                QuestManager.Instance.GetQuestLog().ShowQuestLog(false);
-
             if (isPaused)
             {
                 isPaused = false;
                 Time.timeScale = 1f;
                 GameManager.Instance.SetInMenu(false);
                 EventSystem.current.SetSelectedGameObject(null);
+                OnResume();
             }
+
+            QuestLogManager questLogManager = QuestManager.Instance.GetQuestLog();
+
+            if (questLogManager != null && questLogManager.IsQuestLogOpen())
+                questLogManager.ShowQuestLog(false);
         }
 
         //if (optionsFrame.activeSelf)
@@ -594,9 +601,51 @@ public class MenuManager : MonoBehaviour
         //}
     }
 
+    private void OnResume()
+    {
+        if (GameManager.Instance.isCutsceneActive)
+        {
+            DialogueController.Instance.SelectFirstOption();
+        }
+        else
+        {
+            ActivateGameUI();
+        }
+    }
+
+    public void MemoriesButton()
+    {
+        SetAllInactive();
+        journal.SetActive(true);
+        OpenMemories();
+    }
+
+    public void OpenMemories(bool goBackToMenu = true)
+    {
+        goBackToMenuOnMemories = goBackToMenu;
+        Page2Button();
+    }
+
+    public void ExitMemories()
+    {
+        if (!goBackToMenuOnMemories)
+        {
+            Pause();
+        }
+        else
+        {
+            OptionsMenuBack();
+        }
+
+        goBackToMenuOnMemories = true;
+    }
+
     private void OnCancel()
     {
         Debug.Log("Cancel Button Pressed.");
+        if (InputSourceDetector.Instance != null)
+            EventSystem.current.SetSelectedGameObject(null);
+
         if (GameManager.Instance.inMenu)
         {
             switch (currentMenu)
@@ -610,11 +659,14 @@ public class MenuManager : MonoBehaviour
                     break;
                 case Menus.PAGE2:
                 case Menus.PAGE3:
+                    ExitMemories();
+                    break;
                 case Menus.PAGE4:
-                    Page1Button();
+                    OptionsMenuBack();
                     break;
                 case Menus.PAUSE:
-                    Pause();
+                    if (InputSourceDetector.Instance.currentInputSource == InputSourceDetector.Controls.GAMEPAD)
+                        Pause();
                     break;
                 case Menus.CREDITS:
                 case Menus.QUIT:
@@ -622,6 +674,14 @@ public class MenuManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void OptionsMenuBack()
+    {
+        if (!GameManager.Instance.isGameActive)
+            ReturnToMain();
+        else
+            Page1Button();
     }
 
     //returns to main menu
@@ -714,18 +774,7 @@ public class MenuManager : MonoBehaviour
 
         if (GameManager.Instance != null && GameManager.Instance.inMenu)
         {
-            switch (currentMenu)
-            {
-                case Menus.PAGE2:
-                    EventSystem.current.SetSelectedGameObject(journalArrowButtons[1].arrowButtons[previousMenu == Menus.PAGE1 ? 1 : 0].gameObject);
-                    break;
-                case Menus.PAGE3:
-                    EventSystem.current.SetSelectedGameObject(journalArrowButtons[1].arrowButtons[previousMenu == Menus.PAGE2 ? 1 : 0].gameObject);
-                    break;
-                default:
-                    EventSystem.current.SetSelectedGameObject(defaultMenuButtons[(int)currentMenu].gameObject);
-                    break;
-            }
+            EventSystem.current.SetSelectedGameObject(defaultMenuButtons[(int)currentMenu].gameObject);
         }
     }
 

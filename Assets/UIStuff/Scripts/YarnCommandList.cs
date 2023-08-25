@@ -8,18 +8,21 @@ public class YarnCommandList : MonoBehaviour
     [YarnCommand("addQuest")]
     public void AddQuest(string questName)
     {
+        GameManager.Instance.ShowGameUI(true);
         QuestManager.Instance.AddQuest(questName);
     }
 
     [YarnCommand("updateQuest")]
     public void UpdateQuest(string questName)
     {
+        GameManager.Instance.ShowGameUI(true);
         QuestManager.Instance.ProgressQuest(questName);
     }
 
     [YarnCommand("setLocation")]
     public void SetLocation(string locationName)
     {
+        GameManager.Instance.ShowGameUI(true);
         FindObjectOfType<LocationName>().ChangeLocationName(locationName);
     }
 

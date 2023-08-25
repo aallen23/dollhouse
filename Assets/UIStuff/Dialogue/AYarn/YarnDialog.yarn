@@ -53,12 +53,12 @@ title: Cece
 tags:
 ---
 <<showIcon YarnCommands "Cecelia" true>>
-<<setLocation YarnCommands "Foyer">>
 {$PlayerName}: Who are you?
 <<highlightFirstOption YarnCommands>>
 -> Who are *you*?
 {$PlayerName}: I don't remember... I think I've lost my memories. Maybe you can help me look for them.
 {$PlayerName}: Just point where you think I should go.
+<<setLocation YarnCommands "Foyer">>
 ===
 
 title: NurseryDoor
