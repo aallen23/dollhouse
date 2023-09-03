@@ -79,13 +79,12 @@ public class MemoryManager : MonoBehaviour
             sprite2.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, i);
 			yield return new WaitForSeconds(0.1f);
         }
-        if (!triggerEndGame)
-        {
-            memoryUI.SetActive(true);
-            menuManager.Pause();
-            menuManager.OpenMemories(false);
-            audios.PageFlip();
-        }
+
+        memoryUI.SetActive(true);
+        menuManager.Pause();
+        menuManager.OpenMemories(false);
+        audios.PageFlip();
+
         paper.SetActive(false);
         sprite2.SetActive(false);
 
