@@ -4999,6 +4999,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1823902038, guid: bac4ec35081a5f144b65f5f99291b2fa, type: 3}
+      propertyPath: Chair
+      value: 
+      objectReference: {fileID: 189780018}
+    - target: {fileID: 1823902042, guid: bac4ec35081a5f144b65f5f99291b2fa, type: 3}
+      propertyPath: positionCamera
+      value: 
+      objectReference: {fileID: 516457421}
     - target: {fileID: 43136391485979364, guid: bac4ec35081a5f144b65f5f99291b2fa, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5049,24 +5057,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bac4ec35081a5f144b65f5f99291b2fa, type: 3}
---- !u!1 &1823902037 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6447384265520806733, guid: bac4ec35081a5f144b65f5f99291b2fa, type: 3}
-  m_PrefabInstance: {fileID: 1823902036}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1823902038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823902037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d26c107bd1c9243a00ab9813912cf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Chair: {fileID: 189780018}
 --- !u!1 &1836919063
 GameObject:
   m_ObjectHideFlags: 0
