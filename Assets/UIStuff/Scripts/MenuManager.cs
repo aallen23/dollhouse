@@ -23,7 +23,7 @@ public class MenuManager : MonoBehaviour
     private GameObject dollLantern,         //contains dollLantern to turn light flicker off
         ceceFace,                           //contains ceceface sprite from in game ui
         mainMenu1,                          //original main menu - no saves
-        mainMenu2,                          //second main menu - for save system
+        //mainMenu2,                        //second main menu - for save system
         gameUI,                             //in game ui
         credits,                            //credits scroll
         quitFrame,                          //quit frame triggered with quit button
@@ -278,12 +278,12 @@ public class MenuManager : MonoBehaviour
     //sets all menus inactive
     public void SetAllInactive()
     {
-        mainMenu1.SetActive(false);
-        mainMenu2.SetActive(false);
-        journal.SetActive(false);
-        gameUI.SetActive(false);
-        credits.SetActive(false);
-        quitFrame.SetActive(false);
+		mainMenu1.SetActive(false);
+		//mainMenu2.SetActive(false);
+		journal.SetActive(false);
+		gameUI.SetActive(false);
+		credits.SetActive(false);
+		quitFrame.SetActive(false);
         //optionsFrame.SetActive(false);
     }
 

@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     internal string currentGameLocation;
     internal bool inDollhouse = false;
 
-    internal MenuManager menuManager;
+    //internal MenuManager menuManager;
 
     private void Awake()
     {
@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        menuManager = FindObjectOfType<MenuManager>();
-    }
+        //menuManager = FindObjectOfType<MenuManager>();
+	}
 
     /// <summary>
     /// Function called when the player switches between the interior / exterior of the Doll House.
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowGameUI(bool showUI)
     {
-        menuManager.ActivateGameUI(showUI);
+		FindObjectOfType<MenuManager>().ActivateGameUI(showUI);
     }
 
     private void UpdateGamepadCursor()
