@@ -23,7 +23,7 @@ public class QuestLogManager : MonoBehaviour
     private RectTransform questLogTransform;
 
     private bool animationActive = false;
-    private bool questLogOpen = false;
+    [SerializeField] private bool questLogOpen = false;
     private Controls playerControls;
 
     private void Awake()
