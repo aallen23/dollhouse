@@ -63,8 +63,9 @@ public class MenuManager : MonoBehaviour
     public bool isPaused;                   //bool for pausing the game
     private CreditsScroll scrollScript;     //credits scroll script that controls credits moving
 
-    //private int offsetx, offsety;
+	//private int offsetx, offsety;
 
+	public TextMeshProUGUI versionNumber;
 	public Slider sliderMain, sliderMusic, sliderSFX;       //three options menu sliders for each audio mixer volume
 
 	public TMP_Text fps;        //text to display fps
@@ -134,6 +135,7 @@ public class MenuManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SetDefaultSelectedButton();
+		versionNumber.text = Application.version;
     }
 
     private float undoLog(float num)
