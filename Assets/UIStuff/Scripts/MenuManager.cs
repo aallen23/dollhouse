@@ -184,7 +184,6 @@ public class MenuManager : MonoBehaviour
     [YarnCommand("fadeOut")]
     public void FadeOut()
     {
-        FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().firstPos);
 		//FindObjectOfType<P2PCameraController>().desiredRotation.y = 180f; //disable if firstpos is in dollhouse
         StartCoroutine(Fade(false));
     }
@@ -220,7 +219,8 @@ public class MenuManager : MonoBehaviour
                 yield return null;
             }
             blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 1);
-        }
+			FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().firstPos);
+		}
         //fade black out
         else
         {
