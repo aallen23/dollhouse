@@ -30,8 +30,6 @@ public enum ObjectUseType
 //Stores an Interactable Object's Data
 public class ObjectData : MonoBehaviour
 {
-    [Tooltip("If true, Doll must travel to Position Doll before calling Interact().")]
-	public bool isDollObject;
     [Tooltip("Transform position Doll must travel to if Is Doll Object.")]
     public Transform positionDoll;
 
@@ -396,6 +394,7 @@ public class ObjectData : MonoBehaviour
     [YarnCommand("use_item")]
     public void UseItem(float i)
     {
+
 		if (itemSFX)
 		{
 			itemSFX.Play();

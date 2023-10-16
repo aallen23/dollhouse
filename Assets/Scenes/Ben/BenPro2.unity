@@ -1112,7 +1112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 1024692063}
   disableInteractAtPosition: 1
@@ -2332,7 +2331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 1248489415}
   disableInteractAtPosition: 1
@@ -3188,7 +3186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 1
   positionDoll: {fileID: 1366625808}
   positionCamera: {fileID: 667780555}
   disableInteractAtPosition: 1
@@ -4574,6 +4571,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6077036837753607061, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: inv.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077036837753607061, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
+      propertyPath: inv.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 61931eddfb2c81b49a20f1ed82e772c1, type: 2}
     - target: {fileID: 7720040694625609214, guid: 1393fa675a737c441b89c8d31fa465a6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4916,7 +4921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 0}
   disableInteractAtPosition: 0
@@ -5998,6 +6002,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5888307805700479812, guid: 61fe6a8de02208c44b42330be5c1e68e, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61fe6a8de02208c44b42330be5c1e68e, type: 3}
 --- !u!4 &6269917968769671795
@@ -6266,7 +6274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 0}
   disableInteractAtPosition: 0

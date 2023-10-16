@@ -359,6 +359,12 @@ public class P2PCameraController : MonoBehaviour
             {
                 if (hitObject.item.Contains(heldItem) && hitObject.itemEnabled)
                 {
+					if (hitObject.positionDoll)
+					{
+						doll.GetComponent<NavMeshAgent>().destination = hitObject.positionDoll.position;
+						//Travel(hitObject.positionCamera);
+					}
+
                     if (hitObject.yarnItem != null && hitObject.yarnItem != "")
                     {
                         dialog.VariableStorage.SetValue("$itemUsed", hitObject.item.IndexOf(heldItem));

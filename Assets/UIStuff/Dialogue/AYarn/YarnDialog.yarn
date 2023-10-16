@@ -212,6 +212,7 @@ BigBoy: Someone used to feed real food, but they disappeared long ago. I have ne
 title: BigBoyFed
 tags:
 ---
+<<PlaySound bigboy>>
 <<set $memoryCount = $memoryCount + 1>>
 <<set $BBfed to true>>
 <<showSprite YarnCommands "Big Boy" "right" true>>
@@ -292,6 +293,7 @@ Talon: A good cup of tea... that would be nice.
 title: BirdManTea
 tags: 
 ---
+<<PlaySound talon>>
 <<set $memoryCount = $memoryCount + 1>>
 <<set $Tea to true>>
 <<PlaySound talon>>
@@ -465,6 +467,7 @@ Allura: Bring me a flower, and I'll tell you a secret.
 title: AlluraFlower
 tags:
 ---
+<<PlaySound allura>>
 <<set $memoryCount = $memoryCount + 1>>
 <<set $Flower to true>>
 <<showSprite YarnCommands "Cecelia" "left" true>>

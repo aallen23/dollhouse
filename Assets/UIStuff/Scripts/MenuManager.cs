@@ -213,7 +213,9 @@ public class MenuManager : MonoBehaviour
         //fade black in
         if (fadeToBlack)
         {
-            for (float i = 0; i <= 1; i += Time.deltaTime)
+			blackscreen.GetComponent<Image>().raycastTarget = true;
+
+			for (float i = 0; i <= 1; i += Time.deltaTime)
             {
                 blackscreen.GetComponent<Image>().color = new Color(0,0,0, i);
                 yield return null;
@@ -224,13 +226,16 @@ public class MenuManager : MonoBehaviour
         //fade black out
         else
         {
-            for (float i = 1; i >= 0; i -= Time.deltaTime)
+			
+
+			for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 blackscreen.GetComponent<Image>().color = new Color(0,0,0, i);
                 yield return null;
             }
             blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        }
+			blackscreen.GetComponent<Image>().raycastTarget = false;
+		}
     }
 
     //starts coroutine for blink sequence
