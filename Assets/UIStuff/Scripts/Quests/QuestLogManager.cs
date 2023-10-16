@@ -22,7 +22,7 @@ public class QuestLogManager : MonoBehaviour
 
     private RectTransform questLogTransform;
 
-    private bool animationActive = false;
+	[SerializeField] private bool animationActive = false;
     [SerializeField] private bool questLogOpen = false;
     private Controls playerControls;
 

@@ -58,7 +58,7 @@ public class LocationName : MonoBehaviour
         if (locationTextCanvasGroup.alpha > 0)
         {
             if (currentTween != null)
-                LeanTween.cancel(currentTween.id);
+                //LeanTween.cancel(currentTween.id);
             currentTween = LeanTween.alphaCanvas(locationTextCanvasGroup, 0f, nameFadeDuration).setEase(nameFadeEaseType).setOnComplete(() => UpdateLocationText(newName));
         }
         else
