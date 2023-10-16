@@ -37,24 +37,27 @@ public class TeaMaking : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (pouring)
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, PotPos.rotation, Time.deltaTime * rotateSpeed);
-        }
-        if (donePouring)
-        {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * rotateSpeed * 2);
-        }
-    }
+	private void Pour(bool liftInstead)
+	{
+		if (liftInstead)
+		{
+			LeanTween.rotateLocal(gameObject, Vector3.zero, rotateSpeed).setOnComplete(() => PourWrapUp());
+		}
+		else
+		{
+			LeanTween.rotate(gameObject, PotPos.eulerAngles, rotateSpeed).setOnComplete(() => StartCoroutine(WaterParticles()));
+		}
+	}
 
+	private void PourWrapUp()
+	{
+		GetComponent<Rigidbody>().useGravity = true;
+		gameObject.GetComponent<ObjectData>().interactType = InteractType.Dragging;
+		Cup.GetComponent<ObjectData>().interactType = InteractType.Dragging;
+	}
 
     IEnumerator WaterParticles()
     {
-        yield return new WaitForSeconds(2f);
-        pouring = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
         Cup.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
@@ -63,12 +66,7 @@ public class TeaMaking : MonoBehaviour
         GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(false);
         cupLiquid.SetActive(true);
         potLiquid.transform.localScale = new Vector3 (0.03f, 0.01f, 0.03f);
-        donePouring = true;
-        yield return new WaitForSeconds(2f);
-        donePouring = false;
-        GetComponent<Rigidbody>().useGravity = true;
-		gameObject.GetComponent<ObjectData>().interactType = InteractType.Dragging;
-		Cup.GetComponent<ObjectData>().interactType = InteractType.Dragging;
+		Pour(true);
 	}
     private void OnCollisionEnter(Collision collision)
     {
@@ -89,10 +87,9 @@ public class TeaMaking : MonoBehaviour
         {
             GetComponent<Rigidbody>().useGravity = false;
             gameObject.transform.position = PotPos.position;
-            pouring = true;
 			gameObject.GetComponent<ObjectData>().interactType = InteractType.Examine;
 			Cup.GetComponent<ObjectData>().interactType = InteractType.Examine;
-			StartCoroutine(WaterParticles());
+			Pour(false);
 		}
 
         if (addedBag && gameObject.name == "Teapot")
