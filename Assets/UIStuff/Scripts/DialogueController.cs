@@ -169,7 +169,7 @@ public class DialogueController : MonoBehaviour
     private void OnDialogueComplete()
     {
         ResetUI();
-        if (!overrideDialogueComplete)
+        if (!overrideDialogueComplete && !FindObjectOfType<MenuManager>().game_ended)
         {
             GameManager.Instance.SetCutsceneActive(false);
         }

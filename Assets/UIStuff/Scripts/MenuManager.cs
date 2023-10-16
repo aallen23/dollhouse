@@ -70,7 +70,7 @@ public class MenuManager : MonoBehaviour
 
 	public TMP_Text fps;        //text to display fps
 
-	private bool game_ended;                        //bool to store if game is ended
+	public bool game_ended;                        //bool to store if game is ended
 	private static bool restart_game = false;       //bool to restart game
 	public AudioSource CeceCrumple;                 //audio source for cece crumple ( paper ripping )
 
@@ -221,13 +221,14 @@ public class MenuManager : MonoBehaviour
                 yield return null;
             }
             blackscreen.GetComponent<Image>().color = new Color(0, 0, 0, 1);
-			FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().firstPos);
+			if (!game_ended)
+			{
+				FindObjectOfType<P2PCameraController>().Travel(FindObjectOfType<P2PCameraController>().firstPos);
+			}
 		}
         //fade black out
         else
         {
-			
-
 			for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 blackscreen.GetComponent<Image>().color = new Color(0,0,0, i);
@@ -707,7 +708,7 @@ public class MenuManager : MonoBehaviour
             audioManager.StopCreditsMusic();
             audioManager.MenuMusic();
         }
-		else if (FindObjectOfType<P2PCameraController>().gameStarted)
+		else if (FindObjectOfType<P2PCameraController>().gameStarted && !game_ended)
 		{
 			ReloadScene();
 		}
