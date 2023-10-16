@@ -84,7 +84,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091637691595319276}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -656,7 +656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 1
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 0}
   disableInteractAtPosition: 0
@@ -705,6 +704,8 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
@@ -3370,7 +3371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 1
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 0}
   disableInteractAtPosition: 0
@@ -3419,6 +3419,8 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
