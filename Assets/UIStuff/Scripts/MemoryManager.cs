@@ -82,7 +82,14 @@ public class MemoryManager : MonoBehaviour
 
         memoryUI.SetActive(true);
         menuManager.Pause();
-        menuManager.OpenMemories(false);
+		if (triggerEndGame)
+		{
+			menuManager.OpenMemories(false, 3);
+		}
+		else
+		{
+			menuManager.OpenMemories(false, 2);
+		}
         audios.PageFlip();
 
         paper.SetActive(false);
@@ -91,7 +98,7 @@ public class MemoryManager : MonoBehaviour
 
         //tina: commmented this out with the addition of the open journal since dialogue box is mostly covered and tutorial seemed superfluous with the open journal.
         //can be changed if disagreed with
-  //      //if this is the first memory, trigger memory tutorial dialogue
+        //if this is the first memory, trigger memory tutorial dialogue
 		//FindObjectOfType<P2PCameraController>().dialog.VariableStorage.TryGetValue("$memoryCount", out float memoryCount);
 		//if (memoryCount <= 1)
 		//{

@@ -627,10 +627,17 @@ public class MenuManager : MonoBehaviour
         OpenMemories();
     }
 
-    public void OpenMemories(bool goBackToMenu = true)
+	public void OpenMemories(bool goBackToMenu = true, int pageNum = 2)
     {
         goBackToMenuOnMemories = goBackToMenu;
-        Page2Button();
+		if (pageNum == 2)
+		{
+			Page2Button();
+		}
+		else if (pageNum == 3)
+		{
+			Page3Button();
+		}
     }
 
     public void ExitMemories()

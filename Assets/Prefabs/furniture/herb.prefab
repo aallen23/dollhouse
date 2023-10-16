@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 0}
   disableInteractAtPosition: 0
@@ -180,6 +179,8 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
@@ -247,8 +248,9 @@ MonoBehaviour:
   sprite2: {fileID: 481780962}
   paper: {fileID: 2051904029}
   memoryUI: {fileID: 0}
-  audio: {fileID: 0}
-  fadeSpeed: 2
+  menuManager: {fileID: 0}
+  audios: {fileID: 0}
+  fadeSpeed: 5
   triggerEndGame: 1
 --- !u!1 &2051904029
 GameObject:
@@ -398,7 +400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 9193423423788160928}
   disableInteractAtPosition: 1
@@ -447,6 +448,8 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
@@ -526,6 +529,7 @@ MonoBehaviour:
   runYarnOnce: 0
   ranYarn: 0
   inDollhouse: 0
+  enableCursorForGamepad: 1
 --- !u!1001 &3561943142643837674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -681,7 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 0}
   disableInteractAtPosition: 0
@@ -729,6 +732,8 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
@@ -968,7 +973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7248b98186f984b83b3944b839502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDollObject: 0
   positionDoll: {fileID: 0}
   positionCamera: {fileID: 0}
   disableInteractAtPosition: 0
@@ -1016,6 +1020,8 @@ MonoBehaviour:
   interactSFX: {fileID: 0}
   itemSFX: {fileID: 0}
   inv: {fileID: 0}
+  animationToPlay: {fileID: 0}
+  animationParameter: 
   rotationAnimation: 0
   defaultRotation: {x: 0, y: 0, z: 0}
   secondRotation: {x: 0, y: 0, z: 0}
