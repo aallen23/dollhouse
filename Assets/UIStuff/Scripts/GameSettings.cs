@@ -4,6 +4,6 @@ using UnityEngine;
 
 public static class GameSettings
 {
-    public static bool debugMode = true;
+    public static bool debugMode = false;
     public static bool showFPS = false; 
 }
